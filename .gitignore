@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated frames (run `npm run frames:hero` to regenerate)
+/public/frames/

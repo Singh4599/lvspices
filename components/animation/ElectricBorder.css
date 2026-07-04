@@ -1,0 +1,20 @@
+.electric-border-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.electric-border-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+.electric-border-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
