@@ -149,7 +149,6 @@ body {
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   line-height: 1.7;
   min-height: 100vh;
-  overflow-x: clip;
   position: relative;
 }
 

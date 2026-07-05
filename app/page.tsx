@@ -37,7 +37,7 @@ const PAGE_PAD = 'clamp(20px, 5vw, 64px)';
 
 export default function HomePage() {
   return (
-    <main style={{ background: 'transparent', overflowX: 'clip' }}>
+    <main style={{ background: 'transparent' }}>
       {/* <FloatingSpiceObject /> */}
       <div id="hero-section"><Hero /></div>
       <div id="after-hero">
