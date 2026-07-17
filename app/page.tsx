@@ -430,22 +430,13 @@ function WhoWeAre() {
         </p>
       </div>
 
-      {/* 3 sub-sections — each pins the full row */}
-      {/*
-      {subSections.map((sub) => (
-        <StickyProcessStep
-          key={sub.id}
-          num={sub.tag}
-          title={sub.title}
-          desc={sub.desc}
-          mobileDesc={sub.mobileDesc}
-          framesDir={sub.framesDir}
-          frameCount={sub.frameCount}
-          imageRight={sub.imageRight}
-          scrollDistance={500}
-        />
-      ))}
-      */}
+      {/* Single combined section */}
+      <StaticProcessStep
+        title="Farm to Factory"
+        desc="Our sourcing journey begins at carefully selected chilli farms across Rajasthan, Andhra Pradesh, and Madhya Pradesh. We manage over 500+ acres of contracted, fully traceable, and strictly pesticide-free farming to ensure the highest standards from the very root. Our traditional sun-drying methods naturally preserve the essential volatile oils, vibrant colour, deep aroma, and ideal moisture content of our spices."
+        label="raw-materials"
+        imageRight={false}
+      />
     </section>
   );
 }
@@ -513,21 +504,16 @@ function WhatWeDo() {
         </div>
       </div>
       {/* 11 steps — each pins full row */}
-      {/*
       {steps.map((step, i) => (
-        <StickyProcessStep
+        <StaticProcessStep
           key={step.num}
           num={step.num}
           title={step.title}
           desc={step.desc}
-          mobileDesc={step.mobileDesc}
-          framesDir={step.framesDir}
-          frameCount={step.frameCount}
+          label={step.framesDir}
           imageRight={i % 2 === 0}
-          scrollDistance={500}
         />
       ))}
-      */}
     </section>
   );
 }
@@ -572,41 +558,45 @@ function Resources() {
     <section style={{ padding: 'clamp(16px,2vw,24px) 0' }}>
       {/* Section header */}
       <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(20px,3vw,40px)' }}>
-        <ChapterTag label="Our Infrastructure" />
+        <ChapterTag label="Why Choose Us" />
         <div className="header-flex-row" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
-          <h2 suppressHydrationWarning style={{
-            fontFamily: SERIF,
-            fontSize: 'clamp(40px,6vw,96px)',
-            fontWeight: 700,
-            color: '#fff',
-            lineHeight: 1.0,
-            letterSpacing: '-0.03em',
-            margin: '16px 0 0',
-          }}>
-            Resources.
-          </h2>
+          <div>
+            <h2 suppressHydrationWarning style={{
+              fontFamily: SERIF,
+              fontSize: 'clamp(40px,6vw,96px)',
+              fontWeight: 700,
+              color: '#fff',
+              lineHeight: 1.0,
+              letterSpacing: '-0.03em',
+              margin: '16px 0 0',
+            }}>
+              Why Choose Us.
+            </h2>
+            <div suppressHydrationWarning style={{
+              fontFamily: SANS,
+              fontSize: 'clamp(16px,2vw,24px)',
+              fontWeight: 400,
+              color: '#AC033B',
+              marginTop: '12px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em'
+            }}>
+              Resources & Infrastructure
+            </div>
+          </div>
           <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,16px)', color: 'rgba(255,255,255,0.38)', lineHeight: 1.65, maxWidth: 360, margin: '0 0 8px' }}>
             The infrastructure, expertise and systems that make LV Spices a trusted global supplier.
           </p>
         </div>
       </div>
 
-      {/* 10 resource steps — each pins full row */}
-      {/*
-      {steps.map((step, i) => (
-        <StickyProcessStep
-          key={step.num}
-          num={step.num}
-          title={step.title}
-          desc={step.desc}
-          mobileDesc={step.mobileDesc}
-          framesDir={step.framesDir}
-          frameCount={step.frameCount}
-          imageRight={i % 2 === 0}
-          scrollDistance={500}
-        />
-      ))}
-      */}
+      {/* Single combined resource step */}
+      <StaticProcessStep
+        title="Global Standards &\nInfrastructure"
+        desc="Our NABL-accredited laboratory tests 200+ quality parameters per batch. Combined with our massive temperature-controlled cold chain and a dedicated R&D team, we offer comprehensive private branding and bespoke spice blends. We maintain FDA and EU certified zero-tolerance policies on contamination, ensuring a highly consistent supply chain across 40+ countries backed by 200+ food scientists and supply chain engineers."
+        label="quality-infrastructure"
+        imageRight={false}
+      />
     </section>
   );
 }
@@ -679,5 +669,40 @@ function ProductCard({ slug, name, shortDesc }: { slug: string; name: string; sh
       <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.8vw, 22px)', fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: 8 }}>{name}</h3>
       <p style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.55 }}>{shortDesc}</p>
     </Link>
+  );
+}
+
+function StaticProcessStep({
+  num,
+  title,
+  desc,
+  label,
+  imageRight,
+}: {
+  num?: string;
+  title: string;
+  desc: string;
+  label: string;
+  imageRight: boolean;
+}) {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: imageRight ? 'row-reverse' : 'row',
+      gap: 'clamp(32px, 5vw, 64px)',
+      alignItems: 'center',
+      maxWidth: 1400, margin: '0 auto', padding: `clamp(40px, 6vw, 80px) ${PAGE_PAD}`,
+      borderBottom: '1px solid rgba(255,255,255,0.05)',
+      flexWrap: 'wrap'
+    }}>
+      <div style={{ flex: 1, minWidth: 'min(100%, 300px)' }}>
+        {num && <div style={{ fontFamily: SERIF, fontSize: 'clamp(48px, 6vw, 80px)', fontStyle: 'italic', color: CRIMSON, lineHeight: 1, marginBottom: 16 }}>{num}</div>}
+        <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#fff', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.1 }}>{title}</h3>
+        <p style={{ fontFamily: SANS, fontSize: 'clamp(15px, 1.2vw, 18px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>{desc}</p>
+      </div>
+      <div style={{ flex: 1, minWidth: 'min(100%, 300px)', width: '100%' }}>
+        <CanvasPlaceholder label={label} />
+      </div>
+    </div>
   );
 }

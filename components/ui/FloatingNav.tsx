@@ -8,7 +8,7 @@ import { Home, Cog, Package, Mail } from "lucide-react";
 
 const NAV_ITEMS = [
   { name: "Home",        url: "/#after-hero", icon: Home    },
-  { name: "Our Process", url: "/technology", icon: Cog     },
+
   { name: "Products",   url: "/products",    icon: Package },
   { name: "Contact",    url: "/contact",     icon: Mail    },
 ];

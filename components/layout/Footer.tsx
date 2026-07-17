@@ -11,50 +11,37 @@ const sections = [
   {
     title: 'Products',
     links: [
-      { label: 'Spices & Seasoning', href: '/products/spices-seasoning' },
-      { label: 'No Onion No Garlic', href: '/products/no-onion-no-garlic' },
-      { label: 'Curry Powder', href: '/products/curry-powder' },
-      { label: 'Snack Seasoning', href: '/products/snack-seasoning' },
-      { label: 'Agri Products', href: '/products/agri-products' },
-      { label: 'Organic Line', href: '/products/organic' },
-      { label: 'Supermarket Range', href: '/products/supermarket' },
-      { label: 'Millet Products', href: '/products/millet' },
-      { label: 'Chilli Speciality', href: '/products/chilli-speciality' },
-      { label: 'Dehydrated', href: '/products/dehydrated' },
-      { label: 'Botanical Powders', href: '/products/botanical-powders' },
-      { label: 'Herbal Teas', href: '/products/herbal-teas' },
+      { label: 'All Products', href: '/products' },
+      { label: 'Chilli Speciality', href: '/chilli-speciality' },
+      { label: 'Brands', href: '/brands' },
+      { label: 'E-Brochure', href: '/e-brochure' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'Our Story', href: '/story' },
-      { label: 'Mission & Vision', href: '/mission' },
-      { label: 'Certifications', href: '/certifications' },
-      { label: 'Global Network', href: '/global-network' },
-      { label: 'Sustainability', href: '/sustainability' },
-      { label: 'Blog', href: '/blog' },
+      { label: 'About Us', href: '/about-us' },
+      { label: 'How We Operate', href: '/how-we-operate' },
+      { label: 'Facilities', href: '/facilities' },
+      { label: 'Career', href: '/career' },
+      { label: 'Testimonials', href: '/testimonials' },
     ],
   },
   {
     title: 'Technology',
     links: [
-      { label: 'Overview', href: '/technology' },
-      { label: 'Infrastructure', href: '/technology/infrastructure' },
-      { label: 'Cryogenic Grinding', href: '/technology/cryogenic-grinding' },
-      { label: 'Steam Sterilization', href: '/technology/steam-sterilization' },
-      { label: 'CFG Science', href: '/technology/cfg-science' },
-      { label: 'Quality Assurance', href: '/technology/quality-assurance' },
-      { label: 'Process Flow', href: '/technology/process-flow' },
+      { label: 'Technology', href: '/technology' },
+      { label: 'Quality Assurance', href: '/quality-assurance' },
+      { label: 'Quality Control & Training', href: '/quality-control-and-training' },
+      { label: 'Research & Development', href: '/research-and-development' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'Quick Links',
     links: [
-      { label: 'All Products', href: '/products' },
-      { label: 'Download Catalog', href: '/catalog' },
-      { label: 'Private Label Service', href: '/private-label' },
+      { label: 'Private Label', href: '/packaging-and-private-labelling' },
       { label: 'Contact Us', href: '/contact' },
+      { label: 'FAQ', href: '/faq' },
     ],
   },
 ];
@@ -197,10 +184,10 @@ export default function Footer() {
             </div>
             {/* Links */}
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 w-full gap-x-2 gap-y-4 md:gap-x-4 md:gap-y-4" style={{ flex: 1, minWidth: 240 }}>
-              {/* Products — 2 cols */}
-              <div className="col-span-2">
+              {/* Products — 1 col */}
+              <div className="col-span-1">
                 <h4 className="font-mono uppercase text-white font-bold" style={{ fontSize: 11, letterSpacing: '0.2em', marginBottom: 10 }}>Products</h4>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', rowGap: 0, columnGap: 20 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                   {sections[0].links.map((l) => (
                     <Link key={l.label} href={l.href}
                       className="font-sans text-white/45 hover:text-[#AC033B] transition-colors"
