@@ -22,7 +22,7 @@ class Particle {
   startColor = { r: 0, g: 0, b: 0 }
   targetColor = { r: 0, g: 0, b: 0 }
   colorWeight = 0
-  colorBlendRate = 0.01
+  colorBlendRate = 0.01 
 
   move() {
     let proximityMult = 1
