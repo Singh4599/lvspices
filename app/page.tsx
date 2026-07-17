@@ -666,7 +666,7 @@ function WhatWeDo() {
     { num: '06', title: 'Roasting', framesDir: 'roasting-new', frameCount: 96,
       desc: 'Spices are subjected to precision temperature-controlled roasting, unlocking their deep natural aroma while carefully maintaining optimal moisture levels for maximum shelf life.',
       mobileDesc: 'Temperature-controlled roasting unlocks aroma while maintaining moisture.' },
-    { num: '07', title: 'Cryogenic\nGrinding', framesDir: 'grinding-new', frameCount: 96,
+    { num: '07', title: 'Cryogenic\nGrinding', framesDir: 'grinding-new2', frameCount: 61,
       desc: 'Advanced liquid nitrogen grinding processes at sub-zero temperatures preserve the highly volatile essential oils, natural colour, and delicate flavor profiles of the spices.',
       mobileDesc: 'Liquid nitrogen grinding preserves volatile oils and natural colour.' },
     { num: '08', title: 'Packaging\nLine', framesDir: 'packaging-new', frameCount: 96,
