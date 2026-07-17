@@ -46,8 +46,8 @@ export default function HomePage() {
       <div id="who-we-are-section"><WhoWeAre /></div>
       <Divider />
       {/* PRODUCT GALLERY */}
-      <section id="section-products" style={{ padding: 'clamp(24px,4vw,48px) 0 clamp(100px,14vw,140px)', overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: '32px', textAlign: 'center', overflow: 'hidden' }}>
+      <section id="section-products" style={{ padding: 'clamp(16px,2vw,32px) 0 clamp(60px,8vw,80px)', overflow: 'hidden' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: '16px', textAlign: 'center', overflow: 'hidden' }}>
           <ChapterTag label="Our Range" />
           <ScrollReveal delay={0} from={60}>
             <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(28px,6vw,96px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#fff', margin: '16px 0 12px' }}>
@@ -86,8 +86,8 @@ export default function HomePage() {
       <div id="section-resources"><Resources /></div>
       <Divider />
       {/* DOME GALLERY */}
-      <section id="section-dome" style={{ padding: 'clamp(48px,6vw,80px) 0 0' }}>
-        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+      <section id="section-dome" style={{ padding: 'clamp(24px,4vw,40px) 0 0' }}>
+        <div style={{ textAlign: 'center', marginBottom: 16 }}>
           <ChapterTag label="Our World" />
           <ScrollReveal delay={0} from={40}>
             <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(36px,5vw,72px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '16px 0 0' }}>
@@ -219,7 +219,7 @@ function Hero() {
 /* ═══ TICKER ═════════════════════════════════════════════ */
 function TickerBar() {
   return (
-    <div style={{ background: 'transparent', padding: 'clamp(40px, 6vw, 80px) 0', overflow: 'hidden' }}>
+    <div style={{ background: 'transparent', padding: 'clamp(16px, 3vw, 32px) 0', overflow: 'hidden' }}>
       <ScrollVelocity
         texts={['THE SPICE SPECIALIST ·', 'PREMIUM EXPORT QUALITY ·']}
         velocity={50}
@@ -412,7 +412,7 @@ function WhoWeAre() {
   return (
     <section style={{ padding: 'clamp(16px,2vw,24px) 0' }}>
       {/* Section header */}
-      <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(40px,5vw,80px)' }}>
+      <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(20px,3vw,40px)' }}>
         <ChapterTag label="Our Story" />
         <h2 suppressHydrationWarning style={{
           fontFamily: SERIF,
@@ -431,6 +431,7 @@ function WhoWeAre() {
       </div>
 
       {/* 3 sub-sections — each pins the full row */}
+      {/*
       {subSections.map((sub) => (
         <StickyProcessStep
           key={sub.id}
@@ -444,6 +445,7 @@ function WhoWeAre() {
           scrollDistance={500}
         />
       ))}
+      */}
     </section>
   );
 }
@@ -491,7 +493,7 @@ function WhatWeDo() {
   return (
     <section style={{ padding: 'clamp(16px,2vw,24px) 0' }}>
       {/* Section header */}
-      <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(40px,5vw,80px)' }}>
+      <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(20px,3vw,40px)' }}>
         <ChapterTag label="Our Process" />
         <div className="header-flex-row" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
           <h2 suppressHydrationWarning style={{
@@ -511,6 +513,7 @@ function WhatWeDo() {
         </div>
       </div>
       {/* 11 steps — each pins full row */}
+      {/*
       {steps.map((step, i) => (
         <StickyProcessStep
           key={step.num}
@@ -524,6 +527,7 @@ function WhatWeDo() {
           scrollDistance={500}
         />
       ))}
+      */}
     </section>
   );
 }
@@ -567,7 +571,7 @@ function Resources() {
   return (
     <section style={{ padding: 'clamp(16px,2vw,24px) 0' }}>
       {/* Section header */}
-      <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(40px,5vw,80px)' }}>
+      <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(20px,3vw,40px)' }}>
         <ChapterTag label="Our Infrastructure" />
         <div className="header-flex-row" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
           <h2 suppressHydrationWarning style={{
@@ -588,6 +592,7 @@ function Resources() {
       </div>
 
       {/* 10 resource steps — each pins full row */}
+      {/*
       {steps.map((step, i) => (
         <StickyProcessStep
           key={step.num}
@@ -601,6 +606,7 @@ function Resources() {
           scrollDistance={500}
         />
       ))}
+      */}
     </section>
   );
 }

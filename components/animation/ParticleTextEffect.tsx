@@ -29,6 +29,15 @@ class Particle {
     const distance = Math.sqrt(
       Math.pow(this.pos.x - this.target.x, 2) + Math.pow(this.pos.y - this.target.y, 2)
     )
+    
+    if (distance < 1.0) {
+      this.pos.x = this.target.x
+      this.pos.y = this.target.y
+      this.vel.x = 0
+      this.vel.y = 0
+      return
+    }
+
     if (distance < this.closeEnoughTarget) {
       proximityMult = distance / this.closeEnoughTarget
     }
@@ -168,7 +177,7 @@ export function ParticleTextEffect({
   const mouseRef = useRef({ x: 0, y: 0, isPressed: false, isRightClick: false })
 
   const pixelSteps = 6
-  const drawAsPoints = true
+  const drawAsPoints = false
 
   const generateRandomPos = (x: number, y: number, mag: number): Vector2D => {
     const randomX = Math.random() * 1000
@@ -222,32 +231,30 @@ export function ParticleTextEffect({
     const particles = particlesRef.current
     let particleIndex = 0
 
-    const coordsIndexes: number[] = []
-
-    if (isMobile) {
-      // step=3 on mobile — balanced density: solid text without too many particles
-      for (let y = 0; y < canvas.height; y += 3) {
-        for (let x = 0; x < canvas.width; x += 3) {
-          const index = (y * canvas.width + x) * 4
-          if (pixels[index + 3] > 100) {
-            coordsIndexes.push(index)
-          }
-        }
-      }
-    } else {
-      // Original desktop scan — every 6th pixel in flattened array (same as pixelSteps=6)
-      for (let i = 0; i < pixels.length; i += 6 * 4) {
-        if (pixels[i + 3] > 0) {
-          coordsIndexes.push(i)
-        }
+    // Collect all valid solid pixels at 1px resolution
+    const allCoords: number[] = []
+    for (let i = 0; i < pixels.length; i += 4) {
+      if (pixels[i + 3] > 150) {
+        allCoords.push(i)
       }
     }
 
-    // Shuffle for fluid motion
-    for (let i = coordsIndexes.length - 1; i > 0; i--) {
+    // Shuffle the array to randomize
+    for (let i = allCoords.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-      ;[coordsIndexes[i], coordsIndexes[j]] = [coordsIndexes[j], coordsIndexes[i]]
+      ;[allCoords[i], allCoords[j]] = [allCoords[j], allCoords[i]]
     }
+
+    // Pick a limited number of particles so it doesn't become a massive unreadable blob
+    // This creates an organic, grid-free, beautifully scattered sand/crystal effect
+    const targetCount = isMobile ? 3000 : 6000
+    // Prevent it from being too dense on small words
+    const maxDensity = Math.floor(allCoords.length * 0.20)
+    const count = Math.min(targetCount, maxDensity)
+    
+    const coordsIndexes = allCoords.slice(0, count)
+    
+    // The shuffle above already randomized them, no need for second shuffle
 
     for (const coordIndex of coordsIndexes) {
       const x = (coordIndex / 4) % canvas.width
@@ -266,11 +273,11 @@ export function ParticleTextEffect({
           // Extremely fast speed so they form the word instantly instead of flying around
           particle.maxSpeed = Math.random() * 40 + 40
           particle.maxForce = particle.maxSpeed * 0.4
-          // Balanced particle size on mobile
+          // Round particles that overlap to form a solid, readable crystal word
           const isMob = canvas.width < 768
           particle.particleSize = isMob
-            ? Math.random() * 2 + 2     // 2–4px on mobile
-            : Math.random() * 6 + 6     // 6–12px on desktop
+            ? Math.random() * 2 + 1.5 // 1.5-3.5px
+            : Math.random() * 2 + 2   // 2.0-4.0px
           // Faster color blend so color snaps immediately too
           particle.colorBlendRate = Math.random() * 0.15 + 0.1
           particles.push(particle)
