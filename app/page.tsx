@@ -134,10 +134,13 @@ function Hero() {
     const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
+    const isMobile = () => window.innerWidth <= 768;
+
     const images: HTMLImageElement[] = new Array(TOTAL);
     const frameObj = { value: 0 };
     let rafId: number | null = null;
     let pendingIdx = 0;
+    let currentDir = isMobile() ? 'hero-mobile' : 'hero';
 
     const drawFrame = (img: HTMLImageElement) => {
       const cw = canvas.width, ch = canvas.height;
@@ -157,6 +160,16 @@ function Hero() {
       });
     };
 
+    const loadFrames = (dir: string) => {
+      for (let i = 0; i < TOTAL; i++) {
+        const img = new window.Image();
+        images[i] = img;
+        img.src = `/frames/${dir}/frame_${String(i + 1).padStart(4, '0')}.jpg`;
+        img.decoding = 'async';
+        img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
+      }
+    };
+
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio, 2);
       const rect = section.getBoundingClientRect();
@@ -164,24 +177,24 @@ function Hero() {
       const h = rect.height || window.innerHeight;
       canvas.width  = w * dpr;
       canvas.height = h * dpr;
+      // Swap frame set if device type changed
+      const newDir = isMobile() ? 'hero-mobile' : 'hero';
+      if (newDir !== currentDir) {
+        currentDir = newDir;
+        loadFrames(currentDir);
+      }
       const img = images[Math.round(frameObj.value)];
       if (img?.complete && img?.naturalWidth) drawFrame(img);
     };
+
     resize();
     window.addEventListener('resize', resize);
+    loadFrames(currentDir);
 
-    for (let i = 0; i < TOTAL; i++) {
-      const img = new window.Image();
-      images[i] = img;
-      img.src = `/frames/hero/frame_${String(i + 1).padStart(4, '0')}.jpg`;
-      img.decoding = 'async';
-      img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
-    }
-
-    // GSAP temporarily disabled by user request
-    /*
+    // GSAP hero scroll scrub — plays as user scrolls from top
     const tween = gsap.to(frameObj, {
-      value: TOTAL - 1, ease: 'none',
+      value: TOTAL - 1,
+      ease: 'none',
       scrollTrigger: {
         trigger: section,
         start: 'top top',
@@ -194,13 +207,12 @@ function Hero() {
       },
       onUpdate: () => scheduleDraw(Math.round(frameObj.value)),
     });
-    */
 
     return () => {
       if (rafId !== null) cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
-      // tween.scrollTrigger?.kill();
-      // tween.kill();
+      tween.scrollTrigger?.kill();
+      tween.kill();
     };
   }, []);
 
@@ -672,7 +684,7 @@ function WhatWeDo() {
     { num: '08', title: 'Packaging\nLine', framesDir: 'packaging-new', frameCount: 96,
       desc: 'Fully automated, contactless hygienic packaging systems rapidly pack the finished products into consumer pouches, retail jars, and bulk industrial bags.',
       mobileDesc: 'Automated hygienic packaging for pouches, jars, and bulk bags.' },
-    { num: '09', title: 'Steam\nSterilization', framesDir: 'safety-quality', frameCount: 72,
+    { num: '09', title: 'Steam\nSterilization', framesDir: 'steam-sterilization', frameCount: 192,
       desc: 'Our FDA-compliant steam sterilization chamber achieves a guaranteed 5-log pathogen reduction without the use of harmful chemicals or irradiation.',
       mobileDesc: 'FDA-compliant chamber achieves 5-log pathogen reduction without chemicals.' },
     { num: '10', title: 'Quality\nAssurance', framesDir: 'quality-check-new', frameCount: 96,
@@ -786,17 +798,15 @@ function WhatWeDo() {
         imageRight={true}
       />
 
-      {/* Step 09: Steam Sterilization — static for now */}
-      {steps.slice(8, 9).map((step, i) => (
-        <StaticProcessStep
-          key={step.num}
-          num={step.num}
-          title={step.title}
-          desc={step.desc}
-          label={step.framesDir}
-          imageRight={false}
-        />
-      ))}
+      {/* Step 09: Steam Sterilization */}
+      <FrameScrubStep
+        num={steps[8].num}
+        title={steps[8].title}
+        desc={steps[8].desc}
+        framesDir={steps[8].framesDir}
+        frameCount={steps[8].frameCount}
+        imageRight={false}
+      />
 
       {/* Step 10: Quality Assurance */}
       <FrameScrubStep
