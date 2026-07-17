@@ -178,6 +178,8 @@ function Hero() {
       img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
     }
 
+    // GSAP temporarily disabled by user request
+    /*
     const tween = gsap.to(frameObj, {
       value: TOTAL - 1, ease: 'none',
       scrollTrigger: {
@@ -192,12 +194,13 @@ function Hero() {
       },
       onUpdate: () => scheduleDraw(Math.round(frameObj.value)),
     });
+    */
 
     return () => {
       if (rafId !== null) cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
-      tween.scrollTrigger?.kill();
-      tween.kill();
+      // tween.scrollTrigger?.kill();
+      // tween.kill();
     };
   }, []);
 
@@ -364,7 +367,6 @@ function CanvasPlaceholder({ label }: { label: string }) {
       <div style={{ position: 'absolute', top: 12, right: 12, width: 20, height: 20, borderTop: '2px solid #AC033B', borderRight: '2px solid #AC033B' }} />
       <div style={{ position: 'absolute', bottom: 12, left: 12, width: 20, height: 20, borderBottom: '2px solid #AC033B', borderLeft: '2px solid #AC033B' }} />
       <div style={{ position: 'absolute', bottom: 12, right: 12, width: 20, height: 20, borderBottom: '2px solid #AC033B', borderRight: '2px solid #AC033B' }} />
-      {/* Play icon */}
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ opacity: 0.3 }}>
         <circle cx="20" cy="20" r="19" stroke="#AC033B" strokeWidth="1.5"/>
         <path d="M16 13L28 20L16 27V13Z" fill="#AC033B"/>
@@ -377,66 +379,143 @@ function CanvasPlaceholder({ label }: { label: string }) {
 }
 
 function WhoWeAre() {
-  const GOLD = '#D4A843';
 
-  const subSections = [
-    {
-      id: 'chilli-farm',
-      tag: '01',
-      title: 'Chilli Farm',
-      desc: 'Our sourcing journey begins at carefully selected chilli farms across Rajasthan, Andhra Pradesh, and Madhya Pradesh — where ideal climate and soil produce the finest grade produce.',
-      mobileDesc: 'Our sourcing journey begins at carefully selected chilli farms across Rajasthan, Andhra Pradesh, and Madhya Pradesh — where ideal climate and soil produce the finest grade produce.',
-      framesDir: 'raw', frameCount: 48,
-      imageRight: true,
-    },
-    {
-      id: 'spice-market',
-      tag: '02',
-      title: 'Spice Market',
-      desc: 'We manage over 500+ acres of contracted, fully traceable, and strictly pesticide-free chilli farming to ensure the absolute highest standards of quality from the very root.',
-      mobileDesc: '500+ acres of contracted, traceable, pesticide-free chilli farming.',
-      framesDir: 'storing-spices', frameCount: 48,
-      imageRight: false,
-    },
-    {
-      id: 'sun-drying',
-      tag: '03',
-      title: 'Sun Drying —\nMix Spices',
-      desc: 'Our traditional sun-drying methods are carefully monitored to naturally preserve the essential volatile oils, vibrant colour, deep aroma, and ideal moisture content of the spices.',
-      mobileDesc: 'Traditional sun-drying preserves natural oils, colour, aroma and moisture.',
-      framesDir: 'roasting', frameCount: 48,
-      imageRight: true,
-    },
-  ];
+  const sectionRef = useRef<HTMLElement>(null);
+  const canvasRef  = useRef<HTMLCanvasElement>(null);
+  const TOTAL = 240;
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const canvas  = canvasRef.current;
+    if (!section || !canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: false });
+    if (!ctx) return;
+
+    const images: HTMLImageElement[] = new Array(TOTAL);
+    const frameObj = { value: 0 };
+    let rafId: number | null = null;
+    let pendingIdx = 0;
+
+    const drawFrame = (img: HTMLImageElement) => {
+      const cw = canvas.width, ch = canvas.height;
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      if (!iw || !ih || !cw || !ch) return;
+      const scale = Math.max(cw / iw, ch / ih);
+      ctx.drawImage(img,
+        (iw - cw / scale) / 2, (ih - ch / scale) / 2, cw / scale, ch / scale,
+        0, 0, cw, ch
+      );
+    };
+
+    const scheduleDraw = (idx: number) => {
+      pendingIdx = idx;
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const img = images[pendingIdx];
+        if (img?.complete && img?.naturalWidth) drawFrame(img);
+      });
+    };
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio, 2);
+      const rect = canvas.getBoundingClientRect();
+      canvas.width  = rect.width  * dpr;
+      canvas.height = rect.height * dpr;
+      const img = images[Math.round(frameObj.value)];
+      if (img?.complete && img?.naturalWidth) drawFrame(img);
+    };
+
+    // load all frames
+    for (let i = 0; i < TOTAL; i++) {
+      const img = new window.Image();
+      images[i] = img;
+      img.src = `/frames/who-we-are/frame_${String(i + 1).padStart(4, '0')}.jpg`;
+      img.decoding = 'async';
+      img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // GSAP: scroll starts exactly when section CENTER hits viewport CENTER
+    const tween = gsap.to(frameObj, {
+      value: TOTAL - 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'center center',   // section center == viewport center
+        end: '+=1800',
+        pin: true,
+        anticipatePin: 1,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onRefresh: () => resize(),
+      },
+      onUpdate: () => scheduleDraw(Math.round(frameObj.value)),
+    });
+
+    return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', resize);
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, []);
 
   return (
-    <section style={{ padding: 'clamp(16px,2vw,24px) 0' }}>
-      {/* Section header */}
-      <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(20px,3vw,40px)' }}>
-        <ChapterTag label="Our Story" />
-        <h2 suppressHydrationWarning style={{
-          fontFamily: SERIF,
-          fontSize: 'clamp(40px,6vw,96px)',
-          fontWeight: 700,
-          color: '#fff',
-          lineHeight: 1.0,
-          letterSpacing: '-0.03em',
-          margin: '16px 0 24px',
-        }}>
-          Who We Are.
-        </h2>
-        <p style={{ fontFamily: SANS, fontSize: 'clamp(15px,1.2vw,18px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, maxWidth: 540 }}>
-          Founded in 1975 — five decades of farm-to-shelf mastery, serving 40+ countries across 5 continents. Every grain, every colour, every aroma — controlled from origin.
-        </p>
-      </div>
+    <section ref={sectionRef} style={{ padding: 'clamp(40px,5vw,80px) 0', background: 'transparent' }}>
+      <div style={{ 
+        maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, 
+        display: 'flex', flexWrap: 'wrap', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center' 
+      }}>
+        
+        {/* Left Side: Headings & Content */}
+        <div style={{ flex: 1, minWidth: 'min(100%, 400px)' }}>
+          <ChapterTag label="Our Story" />
+          <h2 suppressHydrationWarning style={{
+            fontFamily: SERIF,
+            fontSize: 'clamp(32px,5vw,64px)',
+            fontWeight: 700,
+            color: '#fff',
+            lineHeight: 1.0,
+            letterSpacing: '-0.03em',
+            margin: '16px 0 0',
+            whiteSpace: 'nowrap'
+          }}>
+            Who We Are.
+          </h2>
+          <div suppressHydrationWarning style={{
+            fontFamily: SANS,
+            fontSize: 'clamp(14px,1.5vw,18px)',
+            fontWeight: 400,
+            color: '#AC033B',
+            marginTop: '12px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            marginBottom: '32px'
+          }}>
+            Farm to Factory
+          </div>
 
-      {/* Single combined section */}
-      <StaticProcessStep
-        title="Farm to Factory"
-        desc="Our sourcing journey begins at carefully selected chilli farms across Rajasthan, Andhra Pradesh, and Madhya Pradesh. We manage over 500+ acres of contracted, fully traceable, and strictly pesticide-free farming to ensure the highest standards from the very root. Our traditional sun-drying methods naturally preserve the essential volatile oils, vibrant colour, deep aroma, and ideal moisture content of our spices."
-        label="raw-materials"
-        imageRight={false}
-      />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px, 1.1vw, 16px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, margin: 0 }}>
+              Founded in 1975 — five decades of farm-to-shelf mastery, serving 40+ countries across 5 continents. Every grain, every colour, every aroma — controlled from origin.
+            </p>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px, 1.1vw, 16px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, margin: 0 }}>
+              Our sourcing journey begins at carefully selected chilli farms across Rajasthan, Andhra Pradesh, and Madhya Pradesh. We manage over 500+ acres of contracted, fully traceable, and strictly pesticide-free farming to ensure the absolute highest standards of quality from the very root.
+            </p>
+          </div>
+        </div>
+
+        {/* Right Side: Frame-scrub canvas */}
+        <div style={{ flex: 1, minWidth: 'min(100%, 400px)', position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '16/9', background: '#111' }}>
+          <canvas
+            ref={canvasRef}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
+          />
+        </div>
+
+      </div>
     </section>
   );
 }
@@ -444,39 +523,162 @@ function WhoWeAre() {
 
 
 /* WHAT WE DO */
+function FrameScrubStep({
+  num,
+  title,
+  desc,
+  framesDir,
+  frameCount,
+  imageRight,
+}: {
+  num: string;
+  title: string;
+  desc: string;
+  framesDir: string;
+  frameCount: number;
+  imageRight: boolean;
+}) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const canvasRef  = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const canvas  = canvasRef.current;
+    if (!section || !canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: false });
+    if (!ctx) return;
+
+    const images: HTMLImageElement[] = new Array(frameCount);
+    const frameObj = { value: 0 };
+    let rafId: number | null = null;
+    let pendingIdx = 0;
+
+    const drawFrame = (img: HTMLImageElement) => {
+      const cw = canvas.width, ch = canvas.height;
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      if (!iw || !ih || !cw || !ch) return;
+      const scale = Math.max(cw / iw, ch / ih);
+      ctx.drawImage(img,
+        (iw - cw / scale) / 2, (ih - ch / scale) / 2, cw / scale, ch / scale,
+        0, 0, cw, ch
+      );
+    };
+
+    const scheduleDraw = (idx: number) => {
+      pendingIdx = idx;
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const img = images[pendingIdx];
+        if (img?.complete && img?.naturalWidth) drawFrame(img);
+      });
+    };
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio, 2);
+      const rect = canvas.getBoundingClientRect();
+      canvas.width  = rect.width  * dpr;
+      canvas.height = rect.height * dpr;
+      const img = images[Math.round(frameObj.value)];
+      if (img?.complete && img?.naturalWidth) drawFrame(img);
+    };
+
+    for (let i = 0; i < frameCount; i++) {
+      const img = new window.Image();
+      images[i] = img;
+      img.src = `/frames/${framesDir}/frame_${String(i + 1).padStart(4, '0')}.jpg`;
+      img.decoding = 'async';
+      img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Scroll starts when section CENTER hits viewport CENTER
+    const tween = gsap.to(frameObj, {
+      value: frameCount - 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'center center',
+        end: '+=1200',
+        pin: true,
+        anticipatePin: 1,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onRefresh: () => resize(),
+      },
+      onUpdate: () => scheduleDraw(Math.round(frameObj.value)),
+    });
+
+    return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', resize);
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, [framesDir, frameCount]);
+
+  return (
+    <div
+      ref={sectionRef}
+      style={{
+        display: 'flex',
+        flexDirection: imageRight ? 'row-reverse' : 'row',
+        gap: 'clamp(32px, 5vw, 64px)',
+        alignItems: 'center',
+        maxWidth: 1400, margin: '0 auto', padding: `clamp(40px, 6vw, 80px) ${PAGE_PAD}`,
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        flexWrap: 'wrap'
+      }}
+    >
+      <div style={{ flex: 1, minWidth: 'min(100%, 300px)' }}>
+        <div style={{ fontFamily: SERIF, fontSize: 'clamp(48px, 6vw, 80px)', fontStyle: 'italic', color: CRIMSON, lineHeight: 1, marginBottom: 16 }}>{num}</div>
+        <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#fff', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.1 }}>{title}</h3>
+        <p style={{ fontFamily: SANS, fontSize: 'clamp(15px, 1.2vw, 18px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>{desc}</p>
+      </div>
+      <div style={{ flex: 1, minWidth: 'min(100%, 300px)', position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '16/9', background: '#111' }}>
+        <canvas
+          ref={canvasRef}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
+        />
+      </div>
+    </div>
+  );
+}
+
 function WhatWeDo() {
   const steps = [
-    { num: '01', title: 'Raw Material\nProcurement', framesDir: 'raw', frameCount: 48,
+    { num: '01', title: 'Raw Material\nProcurement', framesDir: 'raw-material', frameCount: 96,
       desc: 'Our sourcing journey begins at carefully selected chilli farms. Direct sourcing from 500+ certified farms ensuring complete backward integration and GPS traceability from farm to factory.',
       mobileDesc: 'Direct sourcing from 500+ certified farms with GPS traceability.' },
-    { num: '02', title: 'Storage', framesDir: 'storing-spices', frameCount: 48,
+    { num: '02', title: 'Storage', framesDir: 'cold-storage-new', frameCount: 144,
       desc: 'Upon arrival, materials are stored in our state-of-the-art climate-controlled warehousing preventing moisture build-up, microbial growth, and cross-contamination prior to processing.',
       mobileDesc: 'Climate-controlled warehousing preventing moisture and cross-contamination.' },
-    { num: '03', title: 'RM Inspection', framesDir: 'rm-inspection', frameCount: 48,
+    { num: '03', title: 'RM Inspection', framesDir: 'rm-inspection-new', frameCount: 96,
       desc: 'Every batch undergoes rigorous inbound testing for moisture levels, microbial load, aflatoxins, and pesticide residue to ensure absolute compliance with global standards.',
       mobileDesc: 'Rigorous testing for moisture, microbial load, and pesticide residue.' },
-    { num: '04', title: 'Cleaning &\nSorting', framesDir: 'cleaning-sorting', frameCount: 72,
+    { num: '04', title: 'Cleaning &\nSorting', framesDir: 'cleaning-sorting-new', frameCount: 144,
       desc: 'We utilize advanced Optical Sortex technology and multi-stage mechanical cleaning to meticulously remove any foreign matter, dust, and physically damaged units.',
       mobileDesc: 'Optical Sortex tech removes foreign matter and damaged units.' },
-    { num: '05', title: 'Metal\nDetection', framesDir: 'metal-detection', frameCount: 48,
+    { num: '05', title: 'Metal\nDetection', framesDir: 'metal-detection-new', frameCount: 96,
       desc: 'Our processing lines are equipped with ultra-sensitive industrial metal detectors ensuring zero ferrous, non-ferrous, or stainless steel contamination in the raw materials.',
       mobileDesc: 'Zero ferrous or stainless steel contamination via industrial detectors.' },
-    { num: '06', title: 'Roasting', framesDir: 'roasting', frameCount: 48,
+    { num: '06', title: 'Roasting', framesDir: 'roasting-new', frameCount: 96,
       desc: 'Spices are subjected to precision temperature-controlled roasting, unlocking their deep natural aroma while carefully maintaining optimal moisture levels for maximum shelf life.',
       mobileDesc: 'Temperature-controlled roasting unlocks aroma while maintaining moisture.' },
-    { num: '07', title: 'Cryogenic\nGrinding', framesDir: 'cold-storage', frameCount: 72,
+    { num: '07', title: 'Cryogenic\nGrinding', framesDir: 'grinding-new', frameCount: 96,
       desc: 'Advanced liquid nitrogen grinding processes at sub-zero temperatures preserve the highly volatile essential oils, natural colour, and delicate flavor profiles of the spices.',
       mobileDesc: 'Liquid nitrogen grinding preserves volatile oils and natural colour.' },
-    { num: '08', title: 'Packaging\nLine', framesDir: 'dispatch', frameCount: 64,
+    { num: '08', title: 'Packaging\nLine', framesDir: 'packaging-new', frameCount: 96,
       desc: 'Fully automated, contactless hygienic packaging systems rapidly pack the finished products into consumer pouches, retail jars, and bulk industrial bags.',
       mobileDesc: 'Automated hygienic packaging for pouches, jars, and bulk bags.' },
     { num: '09', title: 'Steam\nSterilization', framesDir: 'safety-quality', frameCount: 72,
       desc: 'Our FDA-compliant steam sterilization chamber achieves a guaranteed 5-log pathogen reduction without the use of harmful chemicals or irradiation.',
       mobileDesc: 'FDA-compliant chamber achieves 5-log pathogen reduction without chemicals.' },
-    { num: '10', title: 'Quality\nAssurance', framesDir: 'quality-check', frameCount: 48,
+    { num: '10', title: 'Quality\nAssurance', framesDir: 'quality-check-new', frameCount: 96,
       desc: 'Our NABL-accredited in-house FSSAI laboratory conducts comprehensive testing on 200+ physical, chemical, and microbiological parameters for every single batch.',
       mobileDesc: 'In-house FSSAI lab tests 200+ physical and chemical parameters.' },
-    { num: '11', title: 'Shipment\nClearance & Dispatch', framesDir: 'dispatch', frameCount: 64,
+    { num: '11', title: 'Shipment\nClearance & Dispatch', framesDir: 'dispatch-new', frameCount: 192,
       desc: 'We handle end-to-end export documentation, custom clearance, and strict pre-shipment inspections ensuring smooth global dispatch to over 40 countries.',
       mobileDesc: 'End-to-end export documentation and pre-shipment inspection before dispatch.' },
   ];
@@ -503,17 +705,118 @@ function WhatWeDo() {
           </p>
         </div>
       </div>
-      {/* 11 steps — each pins full row */}
-      {steps.map((step, i) => (
+
+      {/* Step 01: Raw Material Procurement */}
+      <FrameScrubStep
+        num={steps[0].num}
+        title={steps[0].title}
+        desc={steps[0].desc}
+        framesDir={steps[0].framesDir}
+        frameCount={steps[0].frameCount}
+        imageRight={false}
+      />
+
+      {/* Step 02: Storage */}
+      <FrameScrubStep
+        num={steps[1].num}
+        title={steps[1].title}
+        desc={steps[1].desc}
+        framesDir={steps[1].framesDir}
+        frameCount={steps[1].frameCount}
+        imageRight={true}
+      />
+
+      {/* Step 03: RM Inspection */}
+      <FrameScrubStep
+        num={steps[2].num}
+        title={steps[2].title}
+        desc={steps[2].desc}
+        framesDir={steps[2].framesDir}
+        frameCount={steps[2].frameCount}
+        imageRight={false}
+      />
+
+      {/* Step 04: Cleaning & Sorting */}
+      <FrameScrubStep
+        num={steps[3].num}
+        title={steps[3].title}
+        desc={steps[3].desc}
+        framesDir={steps[3].framesDir}
+        frameCount={steps[3].frameCount}
+        imageRight={true}
+      />
+
+      {/* Step 05: Metal Detection */}
+      <FrameScrubStep
+        num={steps[4].num}
+        title={steps[4].title}
+        desc={steps[4].desc}
+        framesDir={steps[4].framesDir}
+        frameCount={steps[4].frameCount}
+        imageRight={false}
+      />
+
+      {/* Step 06: Roasting */}
+      <FrameScrubStep
+        num={steps[5].num}
+        title={steps[5].title}
+        desc={steps[5].desc}
+        framesDir={steps[5].framesDir}
+        frameCount={steps[5].frameCount}
+        imageRight={true}
+      />
+
+      {/* Step 07: Cryogenic Grinding */}
+      <FrameScrubStep
+        num={steps[6].num}
+        title={steps[6].title}
+        desc={steps[6].desc}
+        framesDir={steps[6].framesDir}
+        frameCount={steps[6].frameCount}
+        imageRight={false}
+      />
+
+      {/* Step 08: Packaging Line */}
+      <FrameScrubStep
+        num={steps[7].num}
+        title={steps[7].title}
+        desc={steps[7].desc}
+        framesDir={steps[7].framesDir}
+        frameCount={steps[7].frameCount}
+        imageRight={true}
+      />
+
+      {/* Step 09: Steam Sterilization — static for now */}
+      {steps.slice(8, 9).map((step, i) => (
         <StaticProcessStep
           key={step.num}
           num={step.num}
           title={step.title}
           desc={step.desc}
           label={step.framesDir}
-          imageRight={i % 2 === 0}
+          imageRight={false}
         />
       ))}
+
+      {/* Step 10: Quality Assurance */}
+      <FrameScrubStep
+        num={steps[9].num}
+        title={steps[9].title}
+        desc={steps[9].desc}
+        framesDir={steps[9].framesDir}
+        frameCount={steps[9].frameCount}
+        imageRight={true}
+      />
+
+      {/* Step 11: Shipment & Dispatch */}
+      <FrameScrubStep
+        num={steps[10].num}
+        title={steps[10].title}
+        desc={steps[10].desc}
+        framesDir={steps[10].framesDir}
+        frameCount={steps[10].frameCount}
+        imageRight={false}
+      />
     </section>
   );
 }
@@ -555,48 +858,74 @@ function Resources() {
   ];
 
   return (
-    <section style={{ padding: 'clamp(16px,2vw,24px) 0' }}>
-      {/* Section header */}
-      <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(20px,3vw,40px)' }}>
-        <ChapterTag label="Why Choose Us" />
-        <div className="header-flex-row" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
-          <div>
-            <h2 suppressHydrationWarning style={{
-              fontFamily: SERIF,
-              fontSize: 'clamp(40px,6vw,96px)',
-              fontWeight: 700,
-              color: '#fff',
-              lineHeight: 1.0,
-              letterSpacing: '-0.03em',
-              margin: '16px 0 0',
-            }}>
-              Why Choose Us.
-            </h2>
-            <div suppressHydrationWarning style={{
-              fontFamily: SANS,
-              fontSize: 'clamp(16px,2vw,24px)',
-              fontWeight: 400,
-              color: '#AC033B',
-              marginTop: '12px',
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em'
-            }}>
-              Resources & Infrastructure
+    <section style={{ padding: 'clamp(40px,5vw,80px) 0' }}>
+      <div style={{ 
+        maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, 
+        display: 'flex', flexWrap: 'wrap', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center' 
+      }}>
+        
+        {/* Left Side: Headings & Subheadings */}
+        <div style={{ flex: 1, minWidth: 'min(100%, 400px)' }}>
+          <ChapterTag label="Why Choose Us" />
+          <h2 suppressHydrationWarning style={{
+            fontFamily: SERIF,
+            fontSize: 'clamp(32px,5vw,64px)',
+            fontWeight: 700,
+            color: '#fff',
+            lineHeight: 1.0,
+            letterSpacing: '-0.03em',
+            margin: '16px 0 0',
+            whiteSpace: 'nowrap'
+          }}>
+            Why Choose Us.
+          </h2>
+          <div suppressHydrationWarning style={{
+            fontFamily: SANS,
+            fontSize: 'clamp(14px,1.5vw,18px)',
+            fontWeight: 400,
+            color: '#AC033B',
+            marginTop: '12px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            marginBottom: '32px'
+          }}>
+            Resources & Infrastructure
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+            <div>
+              <h4 style={{ fontFamily: SERIF, fontSize: 'clamp(18px, 1.8vw, 22px)', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>
+                Global Standards
+              </h4>
+              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px, 1vw, 15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, margin: 0 }}>
+                NABL-accredited labs testing 200+ parameters with complete cold-chain infrastructure.
+              </p>
+            </div>
+            <div>
+              <h4 style={{ fontFamily: SERIF, fontSize: 'clamp(18px, 1.8vw, 22px)', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>
+                Custom Solutions
+              </h4>
+              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px, 1vw, 15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, margin: 0 }}>
+                End-to-end private branding and bespoke spice blends backed by our expert R&D team.
+              </p>
+            </div>
+            <div>
+              <h4 style={{ fontFamily: SERIF, fontSize: 'clamp(18px, 1.8vw, 22px)', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>
+                Global Supply
+              </h4>
+              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px, 1vw, 15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, margin: 0 }}>
+                Zero-tolerance contamination policy ensuring consistent supply across 40+ countries.
+              </p>
             </div>
           </div>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,16px)', color: 'rgba(255,255,255,0.38)', lineHeight: 1.65, maxWidth: 360, margin: '0 0 8px' }}>
-            The infrastructure, expertise and systems that make LV Spices a trusted global supplier.
-          </p>
         </div>
-      </div>
 
-      {/* Single combined resource step */}
-      <StaticProcessStep
-        title="Global Standards &\nInfrastructure"
-        desc="Our NABL-accredited laboratory tests 200+ quality parameters per batch. Combined with our massive temperature-controlled cold chain and a dedicated R&D team, we offer comprehensive private branding and bespoke spice blends. We maintain FDA and EU certified zero-tolerance policies on contamination, ensuring a highly consistent supply chain across 40+ countries backed by 200+ food scientists and supply chain engineers."
-        label="quality-infrastructure"
-        imageRight={false}
-      />
+        {/* Right Side: Video/Placeholder */}
+        <div style={{ flex: 1, minWidth: 'min(100%, 400px)' }}>
+          <CanvasPlaceholder label="infrastructure-video" />
+        </div>
+
+      </div>
     </section>
   );
 }
