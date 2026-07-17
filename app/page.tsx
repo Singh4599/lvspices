@@ -651,7 +651,7 @@ function WhatWeDo() {
     { num: '01', title: 'Raw Material\nProcurement', framesDir: 'raw-material', frameCount: 96,
       desc: 'Our sourcing journey begins at carefully selected chilli farms. Direct sourcing from 500+ certified farms ensuring complete backward integration and GPS traceability from farm to factory.',
       mobileDesc: 'Direct sourcing from 500+ certified farms with GPS traceability.' },
-    { num: '02', title: 'Storage', framesDir: 'cold-storage-new', frameCount: 144,
+    { num: '02', title: 'Storage', framesDir: 'storage-whatwedo', frameCount: 96,
       desc: 'Upon arrival, materials are stored in our state-of-the-art climate-controlled warehousing preventing moisture build-up, microbial growth, and cross-contamination prior to processing.',
       mobileDesc: 'Climate-controlled warehousing preventing moisture and cross-contamination.' },
     { num: '03', title: 'RM Inspection', framesDir: 'rm-inspection-new', frameCount: 96,
@@ -824,108 +824,70 @@ function WhatWeDo() {
 
 /* RESOURCES */
 function Resources() {
-  const steps = [
-    { num: '01', title: 'Inhouse Lab', framesDir: 'inhouse-lab', frameCount: 72,
-      desc: 'Our advanced NABL-accredited testing laboratory is equipped to analyze over 200+ quality parameters for every production batch, ensuring zero defects.',
-      mobileDesc: 'NABL-accredited testing lab with 200+ parameters for every batch.' },
-    { num: '02', title: 'Cold Storage', framesDir: 'cold-storage', frameCount: 72,
-      desc: 'Our massive temperature-controlled cold chain infrastructure preserves highly volatile essential oils, active compounds, and natural color over extended storage periods.',
-      mobileDesc: 'Temperature-controlled cold chain preserves volatile oils and active compounds.' },
-    { num: '03', title: 'Product R&D', framesDir: 'product-rd', frameCount: 72,
-      desc: 'Our dedicated food scientists are continuously developing innovative new spice blends, seasonings, and functional formulations tailored for diverse global markets.',
-      mobileDesc: 'Developing new spice blends and functional formulations for global markets.' },
-    { num: '04', title: 'Private Label', framesDir: 'private-label', frameCount: 64,
-      desc: 'We offer comprehensive end-to-end private branding, custom recipe formulations, and flexible co-packing solutions for major global retailers and food brands.',
-      mobileDesc: 'Full branding, custom formulations and co-packing for global retailers.' },
-    { num: '05', title: 'Customized\nSolution', framesDir: 'customised', frameCount: 64,
-      desc: 'From bespoke spice blends and specific particle sizes to unique packaging requirements, our solutions are meticulously tailored to your exact needs.',
-      mobileDesc: 'Bespoke blends, particle sizes, and packaging tailored to your needs.' },
-    { num: '06', title: 'Safety & Quality\nPractices', framesDir: 'safety-quality', frameCount: 72,
-      desc: 'We maintain an FDA and EU certified zero-tolerance policy on contamination, featuring complete farm-to-shelf traceability for absolute consumer safety.',
-      mobileDesc: 'FDA/EU certified zero-tolerance policy with full farm-to-shelf traceability.' },
-    { num: '07', title: 'Annual Export\nSpice Stock', framesDir: 'annual-export', frameCount: 64,
-      desc: 'With a robust inventory managing over 500+ containers annually, we ensure a highly consistent and uninterrupted supply chain across 40+ countries.',
-      mobileDesc: '500+ containers annually ensuring consistent supply across 40+ countries.' },
-    { num: '08', title: 'Agent Network', framesDir: 'agent-network', frameCount: 72,
-      desc: 'Our highly active and expansive global distributor network ensures rapid last-mile delivery and strict adherence to local regulatory compliance.',
-      mobileDesc: 'Active distributor network ensuring last-mile delivery and regulatory compliance.' },
-    { num: '09', title: 'Professional\nTeam', framesDir: 'professional-team', frameCount: 72,
-      desc: 'A dedicated team of 200+ experienced food scientists, agronomists, and supply chain engineers actively manage every aspect of our operations.',
-      mobileDesc: '200+ food scientists, agronomists, and engineers managing the supply chain.' },
-    { num: '10', title: 'Market Insights', framesDir: 'market-insights', frameCount: 72,
-      desc: 'We leverage real-time pricing intelligence, geopolitical crop trend analysis, and deep market insights to optimize our strategic sourcing decisions.',
-      mobileDesc: 'Real-time pricing intelligence and global crop trend analysis for sourcing.' },
+  const resourceSteps = [
+    { num: '01', title: 'Inhouse Lab',             framesDir: 'inhouse-lab-new',       frameCount: 144,
+      desc: 'Our advanced NABL-accredited testing laboratory is equipped to analyze over 200+ quality parameters for every production batch, ensuring zero defects.' },
+    { num: '02', title: 'Cold Storage',            framesDir: 'cold-storage-new2',      frameCount: 144,
+      desc: 'Our massive temperature-controlled cold chain infrastructure preserves highly volatile essential oils, active compounds, and natural color over extended storage periods.' },
+    { num: '03', title: 'Product R&D',             framesDir: 'product-rd-new',         frameCount: 144,
+      desc: 'Our dedicated food scientists are continuously developing innovative new spice blends, seasonings, and functional formulations tailored for diverse global markets.' },
+    { num: '04', title: 'Private Label',           framesDir: 'private-label-new',      frameCount: 192,
+      desc: 'We offer comprehensive end-to-end private branding, custom recipe formulations, and flexible co-packing solutions for major global retailers and food brands.' },
+    { num: '05', title: 'Customized\nSolution',    framesDir: 'customised-new',         frameCount: 192,
+      desc: 'From bespoke spice blends and specific particle sizes to unique packaging requirements, our solutions are meticulously tailored to your exact needs.' },
+    { num: '06', title: 'Safety & Quality\nPractices', framesDir: 'safety-quality-new', frameCount: 144,
+      desc: 'We maintain an FDA and EU certified zero-tolerance policy on contamination, featuring complete farm-to-shelf traceability for absolute consumer safety.' },
+    { num: '07', title: 'Annual Export\nSpice Stock',  framesDir: 'annual-export-new',  frameCount: 192,
+      desc: 'With a robust inventory managing over 500+ containers annually, we ensure a highly consistent and uninterrupted supply chain across 40+ countries.' },
+    { num: '08', title: 'Agent Network',           framesDir: 'agent-network-new',      frameCount: 144,
+      desc: 'Our highly active and expansive global distributor network ensures rapid last-mile delivery and strict adherence to local regulatory compliance.' },
+    { num: '09', title: 'Professional\nTeam',      framesDir: 'professional-team-new',  frameCount: 144,
+      desc: 'A dedicated team of 200+ experienced food scientists, agronomists, and supply chain engineers actively manage every aspect of our operations.' },
+    { num: '10', title: 'Market Insights',         framesDir: 'market-insights-new',    frameCount: 144,
+      desc: 'We leverage real-time pricing intelligence, geopolitical crop trend analysis, and deep market insights to optimize our strategic sourcing decisions.' },
   ];
 
   return (
     <section style={{ padding: 'clamp(40px,5vw,80px) 0' }}>
-      <div style={{ 
-        maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, 
-        display: 'flex', flexWrap: 'wrap', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center' 
-      }}>
-        
-        {/* Left Side: Headings & Subheadings */}
-        <div style={{ flex: 1, minWidth: 'min(100%, 400px)' }}>
-          <ChapterTag label="Why Choose Us" />
-          <h2 suppressHydrationWarning style={{
-            fontFamily: SERIF,
-            fontSize: 'clamp(32px,5vw,64px)',
-            fontWeight: 700,
-            color: '#fff',
-            lineHeight: 1.0,
-            letterSpacing: '-0.03em',
-            margin: '16px 0 0',
-            whiteSpace: 'nowrap'
-          }}>
-            Why Choose Us.
-          </h2>
-          <div suppressHydrationWarning style={{
-            fontFamily: SANS,
-            fontSize: 'clamp(14px,1.5vw,18px)',
-            fontWeight: 400,
-            color: '#AC033B',
-            marginTop: '12px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            marginBottom: '32px'
-          }}>
-            Resources & Infrastructure
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-            <div>
-              <h4 style={{ fontFamily: SERIF, fontSize: 'clamp(18px, 1.8vw, 22px)', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>
-                Global Standards
-              </h4>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px, 1vw, 15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, margin: 0 }}>
-                NABL-accredited labs testing 200+ parameters with complete cold-chain infrastructure.
-              </p>
-            </div>
-            <div>
-              <h4 style={{ fontFamily: SERIF, fontSize: 'clamp(18px, 1.8vw, 22px)', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>
-                Custom Solutions
-              </h4>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px, 1vw, 15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, margin: 0 }}>
-                End-to-end private branding and bespoke spice blends backed by our expert R&D team.
-              </p>
-            </div>
-            <div>
-              <h4 style={{ fontFamily: SERIF, fontSize: 'clamp(18px, 1.8vw, 22px)', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>
-                Global Supply
-              </h4>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px, 1vw, 15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, margin: 0 }}>
-                Zero-tolerance contamination policy ensuring consistent supply across 40+ countries.
-              </p>
-            </div>
-          </div>
+      {/* Header: single column, no video */}
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(40px, 6vw, 80px)' }}>
+        <ChapterTag label="Why Choose Us" />
+        <h2 suppressHydrationWarning style={{
+          fontFamily: SERIF,
+          fontSize: 'clamp(40px,6vw,96px)',
+          fontWeight: 700,
+          color: '#fff',
+          lineHeight: 1.0,
+          letterSpacing: '-0.03em',
+          margin: '16px 0 0',
+        }}>
+          Why Choose Us.
+        </h2>
+        <div suppressHydrationWarning style={{
+          fontFamily: SANS,
+          fontSize: 'clamp(14px,1.5vw,18px)',
+          fontWeight: 400,
+          color: '#AC033B',
+          marginTop: '12px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.1em',
+        }}>
+          Resources & Infrastructure
         </div>
-
-        {/* Right Side: Video/Placeholder */}
-        <div style={{ flex: 1, minWidth: 'min(100%, 400px)' }}>
-          <CanvasPlaceholder label="infrastructure-video" />
-        </div>
-
       </div>
+
+      {/* 10 resource steps — frame-scrub with GSAP center trigger */}
+      {resourceSteps.map((step, i) => (
+        <FrameScrubStep
+          key={step.num}
+          num={step.num}
+          title={step.title}
+          desc={step.desc}
+          framesDir={step.framesDir}
+          frameCount={step.frameCount}
+          imageRight={i % 2 !== 0}
+        />
+      ))}
     </section>
   );
 }
