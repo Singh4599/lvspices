@@ -142,7 +142,7 @@ export default function ChilliSpecialityPage() {
   const currentProducts = chillies[activeTab as keyof typeof chillies];
 
   return (
-    <main style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+    <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(300px,40vw,500px)', overflow: 'hidden' }}>
@@ -153,7 +153,7 @@ export default function ChilliSpecialityPage() {
           style={{ objectFit: 'cover', opacity: 0.5 }}
           priority
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #000 0%, rgba(0,0,0,0.3) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 100%)' }} />
         
         <div style={{ position: 'absolute', bottom: 'clamp(40px,6vw,80px)', left: 0, right: 0, textAlign: 'center', padding: '0 24px' }}>
           <div style={{
@@ -174,17 +174,17 @@ export default function ChilliSpecialityPage() {
       {/* ══ INTRO TEXT ════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(40px,6vw,80px) clamp(24px,5vw,80px)', textAlign: 'center' }}>
         <div style={{ maxWidth: 860, margin: '0 auto' }}>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,15.5px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.8, marginBottom: 20 }}>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,15.5px)', color: 'rgba(0,0,0,0.6)', lineHeight: 1.8, marginBottom: 20 }}>
             One of the things that people find intimidating about cooking Indian food is the vast array of spices used—both whole and ground, which are often combined into complex spice mix. Rich in antioxidants and alluring tastes spices are the secret ingredient every good diet boasts of.
           </p>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,15.5px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.8, marginBottom: 20 }}>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,15.5px)', color: 'rgba(0,0,0,0.6)', lineHeight: 1.8, marginBottom: 20 }}>
             LV Spices remains central to its pioneer status in the world of spices today. We have been bringing flavor, color and variety to the palates for over 50 years. Chilli has been the backbone of our empire. Our capability to identify, distinguish, store and process large volumes of chilli year on year has led us to form a trusted brand. We boast of more than 15 products in different form of chillies, from Raw to Stemless to Crushed to Ground, for both domestic and international market.
           </p>
         </div>
       </section>
 
       {/* ══ TABS ══════════════════════════════════════════════ */}
-      <section style={{ padding: '0 clamp(24px,5vw,80px)', position: 'sticky', top: 80, zIndex: 10, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255,255,255,0.05)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: '0 clamp(24px,5vw,80px)', position: 'sticky', top: 80, zIndex: 10, background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(0,0,0,0.07)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto', display: 'flex', gap: 12, overflowX: 'auto', padding: '16px 0', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
           {chilliCategories.map(cat => (
             <button
@@ -193,9 +193,9 @@ export default function ChilliSpecialityPage() {
               style={{
                 fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
                 padding: '12px 24px', borderRadius: 999, flexShrink: 0,
-                background: activeTab === cat ? CRIMSON : 'rgba(255,255,255,0.05)',
-                color: activeTab === cat ? '#fff' : 'rgba(255,255,255,0.6)',
-                border: `1px solid ${activeTab === cat ? CRIMSON : 'rgba(255,255,255,0.1)'}`,
+                background: activeTab === cat ? CRIMSON : 'rgba(0,0,0,0.05)',
+                color: activeTab === cat ? '#fff' : 'rgba(0,0,0,0.5)',
+                border: `1px solid ${activeTab === cat ? CRIMSON : 'rgba(0,0,0,0.1)'}`,
                 cursor: 'pointer', transition: 'all 0.2s'
               }}
             >
@@ -215,46 +215,46 @@ export default function ChilliSpecialityPage() {
                 display: 'flex', gap: 'clamp(24px,5vw,48px)', alignItems: 'flex-start',
                 flexWrap: 'wrap',
                 paddingBottom: 40,
-                borderBottom: idx === currentProducts.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.08)'
+                borderBottom: idx === currentProducts.length - 1 ? 'none' : '1px solid rgba(0,0,0,0.08)'
               }}>
                 {/* Image */}
                 <div style={{
                   flex: '0 0 clamp(160px,25vw,240px)',
                   aspectRatio: '1/1',
                   position: 'relative',
-                  background: 'rgba(255,255,255,0.02)',
+                  background: 'rgba(0,0,0,0.03)',
                   borderRadius: 16,
                   overflow: 'hidden',
-                  border: '1px solid rgba(255,255,255,0.05)'
+                  border: '1px solid rgba(0,0,0,0.07)'
                 }}>
                   <Image src={product.image} alt={product.name} fill style={{ objectFit: 'cover' }} />
                 </div>
 
                 {/* Details */}
                 <div style={{ flex: 1, minWidth: 260 }}>
-                  <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(20px,2.5vw,28px)', fontWeight: 700, color: '#fff', margin: '0 0 12px' }}>
+                  <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(20px,2.5vw,28px)', fontWeight: 700, color: '#111', margin: '0 0 12px' }}>
                     {product.name}
                   </h3>
-                  <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, margin: '0 0 20px' }}>
+                  <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(0,0,0,0.55)', lineHeight: 1.7, margin: '0 0 20px' }}>
                     {product.desc}
                   </p>
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
                     <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                      <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: '#fff', width: 140, flexShrink: 0 }}>Pungency (SHU) :</span>
-                      <span style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>{product.pungency}</span>
+                      <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: '#111', width: 140, flexShrink: 0 }}>Pungency (SHU) :</span>
+                      <span style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(0,0,0,0.55)' }}>{product.pungency}</span>
                     </div>
                     <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                      <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: '#fff', width: 140, flexShrink: 0 }}>Color Value :</span>
-                      <span style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>{product.color}</span>
+                      <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: '#111', width: 140, flexShrink: 0 }}>Color Value :</span>
+                      <span style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(0,0,0,0.55)' }}>{product.color}</span>
                     </div>
                   </div>
 
                   <div>
-                    <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: '#fff', display: 'block', marginBottom: 8 }}>Uses:</span>
+                    <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: '#111', display: 'block', marginBottom: 8 }}>Uses:</span>
                     <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6 }}>
                       {product.uses.map((use, i) => (
-                        <li key={i} style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,0.6)', lineHeight: 1.5 }}>
+                        <li key={i} style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(0,0,0,0.55)', lineHeight: 1.5 }}>
                           {use}
                         </li>
                       ))}

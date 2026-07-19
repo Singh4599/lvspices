@@ -96,7 +96,7 @@ export default function PrivateLabelPage() {
   };
 
   return (
-    <main style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+    <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{
@@ -135,7 +135,7 @@ export default function PrivateLabelPage() {
               fontFamily: SERIF,
               fontSize: 'clamp(32px,5.5vw,72px)',
               fontWeight: 700,
-              color: '#fff',
+              color: '#111',
               lineHeight: 1.05,
               letterSpacing: '-0.03em',
               margin: '0 0 20px',
@@ -158,7 +158,7 @@ export default function PrivateLabelPage() {
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               <a href="#contact-form" style={{
                 display: 'inline-block', fontFamily: SANS, fontSize: 14, fontWeight: 600,
-                background: CRIMSON, color: '#fff', padding: '14px 32px', borderRadius: 999,
+                background: CRIMSON, color: '#111', padding: '14px 32px', borderRadius: 999,
                 textDecoration: 'none', letterSpacing: '0.04em', transition: 'opacity 0.2s',
               }}
                 onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = '0.85')}
@@ -168,7 +168,7 @@ export default function PrivateLabelPage() {
               </a>
               <a href="#how-it-works" style={{
                 display: 'inline-block', fontFamily: SANS, fontSize: 14, fontWeight: 500,
-                border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)',
+                border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(0,0,0,0.6)',
                 padding: '14px 28px', borderRadius: 999, textDecoration: 'none', transition: 'all 0.2s',
               }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(172,3,59,0.5)'; el.style.color = '#fff'; }}
@@ -188,8 +188,8 @@ export default function PrivateLabelPage() {
                 background: i % 3 === 0
                   ? `linear-gradient(160deg, ${CRIMSON}, #6B0025)`
                   : i % 3 === 1
-                    ? 'rgba(255,255,255,0.06)'
-                    : 'rgba(255,255,255,0.03)',
+                    ? 'rgba(0,0,0,0.06)'
+                    : 'rgba(0,0,0,0.03)',
                 border: '1px solid rgba(255,255,255,0.1)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 textAlign: 'center',
@@ -211,10 +211,10 @@ export default function PrivateLabelPage() {
       <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', textAlign: 'center' }}>
         <div style={{ maxWidth: 700, margin: '0 auto' }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 20 }}>What is Private Labelling</div>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#fff', lineHeight: 1.1, letterSpacing: '-0.02em', margin: '0 0 24px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', lineHeight: 1.1, letterSpacing: '-0.02em', margin: '0 0 24px' }}>
             Your brand on the front.<br />Our work behind it.
           </h2>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, margin: 0 }}>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.75, margin: 0 }}>
             We source the finest Indian spices, pack them under your brand name and design, and ship them to your market. Your customers see your brand. We do all the work behind the scenes.
           </p>
         </div>
@@ -224,24 +224,24 @@ export default function PrivateLabelPage() {
       <section style={{ padding: '0 clamp(24px,5vw,80px) clamp(60px,8vw,100px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 16 }}>What We Offer</div>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3vw,44px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 40px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3vw,44px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 40px' }}>
             Everything you need under one roof
           </h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(260px,28vw,340px), 1fr))', gap: 20 }}>
             {features.map(f => (
               <div key={f.title} style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
+                background: 'rgba(0,0,0,0.03)',
+                border: '1px solid rgba(0,0,0,0.07)',
                 borderRadius: 16,
                 padding: '28px 24px',
                 transition: 'all 0.25s',
               }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(172,3,59,0.4)'; el.style.background = 'rgba(172,3,59,0.05)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(255,255,255,0.07)'; el.style.background = 'rgba(255,255,255,0.03)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(0,0,0,0.07)'; el.style.background = 'rgba(0,0,0,0.03)'; }}
               >
                 <div style={{ fontSize: 28, marginBottom: 14 }}>{f.icon}</div>
-                <h3 style={{ fontFamily: SANS, fontSize: 15, fontWeight: 700, color: '#fff', margin: '0 0 10px' }}>{f.title}</h3>
+                <h3 style={{ fontFamily: SANS, fontSize: 15, fontWeight: 700, color: '#111', margin: '0 0 10px' }}>{f.title}</h3>
                 <p style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,0.42)', lineHeight: 1.65, margin: 0 }}>{f.desc}</p>
               </div>
             ))}
@@ -250,10 +250,10 @@ export default function PrivateLabelPage() {
       </section>
 
       {/* ══ STEPS ══════════════════════════════════════════════ */}
-      <section id="how-it-works" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section id="how-it-works" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 16 }}>How It Works</div>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,48px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 48px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,48px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 48px' }}>
             From vision to shipped container in 6 steps
           </h2>
 
@@ -266,7 +266,7 @@ export default function PrivateLabelPage() {
                     width: 44, height: 44, borderRadius: '50%',
                     background: `linear-gradient(135deg, ${CRIMSON}, #6B0025)`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontFamily: MONO, fontSize: 12, fontWeight: 700, color: '#fff',
+                    fontFamily: MONO, fontSize: 12, fontWeight: 700, color: '#111',
                     flexShrink: 0,
                     boxShadow: '0 4px 20px rgba(172,3,59,0.35)',
                   }}>{step.num}</div>
@@ -276,7 +276,7 @@ export default function PrivateLabelPage() {
                 </div>
                 {/* Right — content */}
                 <div style={{ paddingTop: 10 }}>
-                  <h3 style={{ fontFamily: SANS, fontSize: 16, fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>{step.title}</h3>
+                  <h3 style={{ fontFamily: SANS, fontSize: 16, fontWeight: 700, color: '#111', margin: '0 0 8px' }}>{step.title}</h3>
                   <p style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(255,255,255,0.42)', lineHeight: 1.65, margin: 0 }}>{step.desc}</p>
                 </div>
               </div>
@@ -289,15 +289,15 @@ export default function PrivateLabelPage() {
       <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 16 }}>Available Categories</div>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,48px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 40px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,48px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 40px' }}>
             Products available for private label
           </h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(130px,14vw,180px), 1fr))', gap: 16, marginBottom: 32 }}>
             {productCats.map(cat => (
               <div key={cat.name} style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
+                background: 'rgba(0,0,0,0.03)',
+                border: '1px solid rgba(0,0,0,0.07)',
                 borderRadius: 14,
                 padding: '24px 16px',
                 display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12,
@@ -305,7 +305,7 @@ export default function PrivateLabelPage() {
                 cursor: 'default',
               }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(172,3,59,0.4)'; el.style.background = 'rgba(172,3,59,0.05)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(255,255,255,0.07)'; el.style.background = 'rgba(255,255,255,0.03)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(0,0,0,0.07)'; el.style.background = 'rgba(0,0,0,0.03)'; }}
               >
                 <span style={{ fontSize: 32 }}>{cat.icon}</span>
                 <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>{cat.name}</span>
@@ -313,7 +313,7 @@ export default function PrivateLabelPage() {
             ))}
           </div>
 
-          <p style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(255,255,255,0.35)' }}>
+          <p style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(0,0,0,0.4)' }}>
             500+ products available for private labelling. Don&apos;t see yours?{' '}
             <a href="#contact-form" style={{ color: CRIMSON, textDecoration: 'none' }}>Ask us →</a>
           </p>
@@ -324,14 +324,14 @@ export default function PrivateLabelPage() {
       <section style={{ padding: '0 clamp(24px,5vw,80px) clamp(60px,8vw,100px)' }}>
         <div style={{ maxWidth: 860, margin: '0 auto' }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 16 }}>Why It Matters</div>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,48px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 12px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,48px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 12px' }}>
             Why our in-house team matters
           </h2>
-          <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(255,255,255,0.35)', textAlign: 'center', margin: '0 0 36px' }}>
+          <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(0,0,0,0.4)', textAlign: 'center', margin: '0 0 36px' }}>
             Every step happens under one roof — no hand-offs, no finger-pointing.
           </p>
 
-          <div style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, overflow: 'hidden' }}>
+          <div style={{ border: '1px solid rgba(0,0,0,0.08)', borderRadius: 16, overflow: 'hidden' }}>
             {/* Header */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', background: 'rgba(172,3,59,0.15)', borderBottom: '1px solid rgba(172,3,59,0.25)' }}>
               {['Capability', 'LV Spices', 'Typical Exporter'].map((h, i) => (
@@ -347,10 +347,10 @@ export default function PrivateLabelPage() {
             {compRows.map((row, i) => (
               <div key={row.cap} style={{
                 display: 'grid', gridTemplateColumns: '1fr 1fr 1fr',
-                borderBottom: i < compRows.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+                borderBottom: i < compRows.length - 1 ? '1px solid rgba(0,0,0,0.05)' : 'none',
                 background: i % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent',
               }}>
-                <div style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(255,255,255,0.6)', padding: '16px 20px' }}>{row.cap}</div>
+                <div style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(0,0,0,0.6)', padding: '16px 20px' }}>{row.cap}</div>
                 <div style={{ fontFamily: SANS, fontSize: 13.5, color: '#4ade80', padding: '16px 20px', display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{ fontWeight: 700 }}>✓</span> {row.lv}
                 </div>
@@ -374,7 +374,7 @@ export default function PrivateLabelPage() {
             width: 48, height: 48, borderRadius: '50%',
             background: `linear-gradient(135deg, ${CRIMSON}, #6B0025)`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontFamily: SERIF, fontSize: 20, fontWeight: 700, color: '#fff',
+            fontFamily: SERIF, fontSize: 20, fontWeight: 700, color: '#111',
             margin: '0 auto 20px',
           }}>P</div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 20 }}>
@@ -386,20 +386,20 @@ export default function PrivateLabelPage() {
           }}>
             {testimonial.text}
           </blockquote>
-          <div style={{ fontFamily: SANS, fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 4 }}>{testimonial.name}</div>
-          <div style={{ fontFamily: SANS, fontSize: 12, color: 'rgba(255,255,255,0.35)' }}>{testimonial.company}</div>
+          <div style={{ fontFamily: SANS, fontSize: 14, fontWeight: 700, color: '#111', marginBottom: 4 }}>{testimonial.name}</div>
+          <div style={{ fontFamily: SANS, fontSize: 12, color: 'rgba(0,0,0,0.4)' }}>{testimonial.company}</div>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: CRIMSON, marginTop: 4 }}>{testimonial.location}</div>
         </div>
       </section>
 
       {/* ══ CONTACT FORM ══════════════════════════════════════ */}
-      <section id="contact-form" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <section id="contact-form" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 16 }}>Get Started</div>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,48px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 12px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,48px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 12px' }}>
             Ready to launch your brand?
           </h2>
-          <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(255,255,255,0.35)', textAlign: 'center', margin: '0 0 40px' }}>
+          <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(0,0,0,0.4)', textAlign: 'center', margin: '0 0 40px' }}>
             Tell us about your vision. Our team will get back within 24 hours.
           </p>
 
@@ -410,11 +410,11 @@ export default function PrivateLabelPage() {
             }}>
               <div style={{ fontSize: 40, marginBottom: 16 }}>✅</div>
               <h3 style={{ fontFamily: SERIF, fontSize: 24, color: '#4ade80', margin: '0 0 12px' }}>Request Received!</h3>
-              <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(255,255,255,0.5)' }}>We&apos;ll be in touch within 24 hours.</p>
+              <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(0,0,0,0.5)' }}>We&apos;ll be in touch within 24 hours.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{
-              background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)',
+              background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.08)',
               borderRadius: 20, padding: 'clamp(24px,4vw,48px)',
             }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
@@ -427,7 +427,7 @@ export default function PrivateLabelPage() {
                   { key: 'products', label: 'Products of Interest', placeholder: 'e.g. Spices, snacks, tea', type: 'text' },
                 ].map(f => (
                   <div key={f.key} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    <label style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>{f.label}</label>
+                    <label style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.45)' }}>{f.label}</label>
                     <input
                       type={f.type}
                       placeholder={f.placeholder}
@@ -435,8 +435,8 @@ export default function PrivateLabelPage() {
                       onChange={e => setForm(prev => ({ ...prev, [f.key]: e.target.value }))}
                       style={{
                         fontFamily: SANS, fontSize: 13.5,
-                        background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
-                        borderRadius: 10, padding: '12px 16px', color: '#fff', outline: 'none',
+                        background: 'rgba(0,0,0,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+                        borderRadius: 10, padding: '12px 16px', color: '#111', outline: 'none',
                       }}
                     />
                   </div>
@@ -445,7 +445,7 @@ export default function PrivateLabelPage() {
 
               {/* Message */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 28 }}>
-                <label style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>Message</label>
+                <label style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.45)' }}>Message</label>
                 <textarea
                   rows={4}
                   placeholder="Tell us about your brand vision, target market, and any specific products you have in mind."
@@ -453,20 +453,20 @@ export default function PrivateLabelPage() {
                   onChange={e => setForm(prev => ({ ...prev, message: e.target.value }))}
                   style={{
                     fontFamily: SANS, fontSize: 13.5,
-                    background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
-                    borderRadius: 10, padding: '12px 16px', color: '#fff', outline: 'none',
+                    background: 'rgba(0,0,0,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: 10, padding: '12px 16px', color: '#111', outline: 'none',
                     resize: 'vertical',
                   }}
                 />
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-                <p style={{ fontFamily: SANS, fontSize: 12, color: 'rgba(255,255,255,0.25)', margin: 0 }}>
+                <p style={{ fontFamily: SANS, fontSize: 12, color: 'rgba(0,0,0,0.3)', margin: 0 }}>
                   We never share your details. Reply within 24 hours.
                 </p>
                 <button type="submit" style={{
                   fontFamily: SANS, fontSize: 14, fontWeight: 600, letterSpacing: '0.04em',
-                  background: CRIMSON, color: '#fff', padding: '14px 32px', borderRadius: 999,
+                  background: CRIMSON, color: '#111', padding: '14px 32px', borderRadius: 999,
                   border: 'none', cursor: 'pointer', transition: 'opacity 0.2s',
                 }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = '0.85')}

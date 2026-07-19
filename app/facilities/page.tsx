@@ -64,7 +64,7 @@ function FacilityAccordion({
 }) {
   return (
     <div style={{
-      borderBottom: '1px solid rgba(255,255,255,0.08)',
+      borderBottom: '1px solid rgba(0,0,0,0.08)',
       overflow: 'hidden',
     }}>
       <button
@@ -107,7 +107,7 @@ function FacilityAccordion({
       }}>
         <div style={{ paddingBottom: 32, display: 'flex', gap: 'clamp(24px,4vw,40px)', flexWrap: 'wrap' }}>
           <div style={{ flex: 1, minWidth: 280 }}>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,15.5px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.8, margin: 0 }}>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,15.5px)', color: 'rgba(0,0,0,0.6)', lineHeight: 1.8, margin: 0 }}>
               {content}
             </p>
           </div>
@@ -131,7 +131,7 @@ export default function FacilitiesPage() {
   };
 
   return (
-    <main style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+    <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(300px,40vw,500px)', overflow: 'hidden' }}>
@@ -154,7 +154,7 @@ export default function FacilitiesPage() {
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: CRIMSON, display: 'inline-block' }} />
               <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: CRIMSON }}>Infrastructure</span>
             </div>
-          <h1 style={{ fontFamily: SERIF, fontSize: 'clamp(36px,5vw,64px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: 0 }}>
+          <h1 style={{ fontFamily: SERIF, fontSize: 'clamp(36px,5vw,64px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: 0 }}>
             World-Class Facilities
           </h1>
         </div>
@@ -163,7 +163,7 @@ export default function FacilitiesPage() {
       {/* ══ FACILITIES ACCORDION ══════════════════════════════ */}
       <section style={{ padding: 'clamp(40px,6vw,80px) clamp(24px,5vw,80px)' }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <div style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}>
             {facilities.map((fac) => (
               <FacilityAccordion
                 key={fac.id}

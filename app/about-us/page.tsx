@@ -108,7 +108,7 @@ export default function AboutUsPage() {
   const [activeVMV, setActiveVMV] = useState(0);
 
   return (
-    <main style={{ background: '#000', minHeight: '100vh', color: '#fff', overflow: 'hidden' }}>
+    <main style={{ background: '#fff', minHeight: '100vh', color: '#111', overflow: 'hidden' }}>
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px) 0' }}>
@@ -127,9 +127,9 @@ export default function AboutUsPage() {
               borderRadius: '50%', width: 100, height: 100,
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
               boxShadow: '0 8px 32px rgba(172,3,59,0.5)',
-              border: '2px solid rgba(255,255,255,0.15)',
+              border: '2px solid rgba(0,0,0,0.1)',
             }}>
-              <div style={{ fontFamily: SERIF, fontSize: 30, fontWeight: 700, color: '#fff', lineHeight: 1 }}>50</div>
+              <div style={{ fontFamily: SERIF, fontSize: 30, fontWeight: 700, color: '#111', lineHeight: 1 }}>50</div>
               <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)', marginTop: 3 }}>Years</div>
             </div>
             {/* Small stat cards */}
@@ -141,11 +141,11 @@ export default function AboutUsPage() {
                 { val: '1975', label: 'Est.' },
               ].map(s => (
                 <div key={s.label} style={{
-                  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)',
+                  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(0,0,0,0.07)',
                   borderRadius: 12, padding: '14px 16px', textAlign: 'center',
                 }}>
-                  <div style={{ fontFamily: SERIF, fontSize: 20, fontWeight: 700, color: '#fff', lineHeight: 1 }}>{s.val}</div>
-                  <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginTop: 5 }}>{s.label}</div>
+                  <div style={{ fontFamily: SERIF, fontSize: 20, fontWeight: 700, color: '#111', lineHeight: 1 }}>{s.val}</div>
+                  <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginTop: 5 }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -164,7 +164,7 @@ export default function AboutUsPage() {
 
             <h1 style={{
               fontFamily: SERIF, fontSize: 'clamp(32px,5.5vw,80px)', fontWeight: 700,
-              color: '#fff', lineHeight: 1.0, letterSpacing: '-0.03em', margin: '0 0 28px',
+              color: '#111', lineHeight: 1.0, letterSpacing: '-0.03em', margin: '0 0 28px',
             }}>
               About<br />LV Spices
             </h1>
@@ -172,10 +172,10 @@ export default function AboutUsPage() {
             <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,16px)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, marginBottom: 20 }}>
               As a family-owned enterprise, LV Spices has been at the forefront of premium spice processing and exports for over 50 years. Founded in 1975 with a commitment to quality and integrity, we have grown from a single processing unit into one of India's most respected spice exporters.
             </p>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.85, marginBottom: 20 }}>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.85, marginBottom: 20 }}>
               Today, spanning 7+ manufacturing units across 1,00,000 sq. ft. of built-up area, LV Spices serves customers in 40+ countries — from retail spice brands and food manufacturers to private label importers and restaurant chains. With an unwavering commitment to quality and service, each decade has seen us invest in new technology, expand our reach, and deepen our roots in sustainable sourcing.
             </p>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.4)', lineHeight: 1.85 }}>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.45)', lineHeight: 1.85 }}>
               The firm mantra at LV Spices since inception has been consistent adherence to <em style={{ color: CRIMSON, fontStyle: 'normal' }}>Vintage Values, Tomorrow's Technology &amp; Global Presence</em>.
             </p>
           </div>
@@ -197,9 +197,9 @@ export default function AboutUsPage() {
               <button key={item.label} onClick={() => setActiveVMV(i)} style={{
                 fontFamily: SANS, fontSize: 15, fontWeight: 600,
                 padding: '12px 32px', borderRadius: 999,
-                background: activeVMV === i ? CRIMSON : 'rgba(255,255,255,0.05)',
+                background: activeVMV === i ? CRIMSON : 'rgba(0,0,0,0.05)',
                 border: `1px solid ${activeVMV === i ? CRIMSON : 'rgba(255,255,255,0.12)'}`,
-                color: '#fff', cursor: 'pointer', transition: 'all 0.25s',
+                color: '#111', cursor: 'pointer', transition: 'all 0.25s',
                 display: 'flex', alignItems: 'center', gap: 8,
               }}>
                 <span>{item.icon}</span> {item.label}
@@ -209,12 +209,12 @@ export default function AboutUsPage() {
 
           {/* Content */}
           <div style={{
-            background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
+            background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(0,0,0,0.08)',
             borderRadius: 20, padding: 'clamp(28px,4vw,48px)',
             backdropFilter: 'blur(12px)', textAlign: 'left',
           }}>
             {typeof vmv[activeVMV].content === 'string' ? (
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.85, margin: 0 }}>
+              <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(0,0,0,0.6)', lineHeight: 1.85, margin: 0 }}>
                 {vmv[activeVMV].content as string}
               </p>
             ) : (
@@ -225,7 +225,7 @@ export default function AboutUsPage() {
                       width: 24, height: 24, borderRadius: '50%', flexShrink: 0,
                       background: `linear-gradient(135deg, ${CRIMSON}, #6B0025)`,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontFamily: MONO, fontSize: 10, fontWeight: 700, color: '#fff',
+                      fontFamily: MONO, fontSize: 10, fontWeight: 700, color: '#111',
                       marginTop: 1,
                     }}>{i + 1}</span>
                     <span style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75 }}>{point}</span>
@@ -238,26 +238,26 @@ export default function AboutUsPage() {
       </section>
 
       {/* ══ WHY US ════════════════════════════════════════════ */}
-      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,60px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 16px' }}>Why Us?</h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.4)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,60px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 16px' }}>Why Us?</h2>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.45)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
               For five decades, we have always strived to outperform ourselves by introducing innovative technology and processes to increase efficiency and outcome.
             </p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(200px,22vw,260px), 1fr))', gap: 16 }}>
             {whyUs.map(item => (
               <div key={item.title} style={{
-                background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)',
+                background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.07)',
                 borderRadius: 16, padding: '24px 20px', textAlign: 'center',
                 transition: 'all 0.25s',
               }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(172,3,59,0.4)'; el.style.background = 'rgba(172,3,59,0.05)'; el.style.transform = 'translateY(-3px)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(255,255,255,0.07)'; el.style.background = 'rgba(255,255,255,0.03)'; el.style.transform = 'translateY(0)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(0,0,0,0.07)'; el.style.background = 'rgba(0,0,0,0.03)'; el.style.transform = 'translateY(0)'; }}
               >
                 <div style={{ fontSize: 32, marginBottom: 12 }}>{item.icon}</div>
-                <h3 style={{ fontFamily: SANS, fontSize: 13.5, fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>{item.title}</h3>
+                <h3 style={{ fontFamily: SANS, fontSize: 13.5, fontWeight: 700, color: '#111', margin: '0 0 8px' }}>{item.title}</h3>
                 <p style={{ fontFamily: SANS, fontSize: 12.5, color: 'rgba(255,255,255,0.38)', lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
               </div>
             ))}
@@ -266,12 +266,12 @@ export default function AboutUsPage() {
       </section>
 
       {/* ══ OUR JOURNEY TIMELINE ══════════════════════════════ */}
-      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ display: 'flex', gap: 'clamp(40px,6vw,100px)', alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: 56 }}>
             <div style={{ flex: '0 0 clamp(200px,28vw,320px)' }}>
-              <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,60px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 20px', lineHeight: 1.0 }}>Our Journey</h2>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>
+              <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,60px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 20px', lineHeight: 1.0 }}>Our Journey</h2>
+              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.45)', lineHeight: 1.7 }}>
                 A company that laid its roots in 1975, LV Spices has grown with every generation — modernising the approach, technically and qualitatively, while taking the business beyond ever-widening horizons.
               </p>
             </div>
@@ -309,7 +309,7 @@ export default function AboutUsPage() {
                         border: `1px solid ${item.color}40`,
                         borderRadius: 999, padding: '3px 12px',
                       }}>{item.year}</span>
-                      <h3 style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.5vw,17px)', fontWeight: 700, color: '#fff', margin: 0 }}>{item.title}</h3>
+                      <h3 style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.5vw,17px)', fontWeight: 700, color: '#111', margin: 0 }}>{item.title}</h3>
                     </div>
                     <p style={{ fontFamily: SANS, fontSize: 'clamp(12.5px,1vw,14px)', color: 'rgba(255,255,255,0.42)', lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
                   </div>
@@ -322,16 +322,16 @@ export default function AboutUsPage() {
 
       {/* ══ BOTTOM CTA ════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,56px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 16px' }}>
+        <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 16px' }}>
           50 Years. Still Going Strong.
         </h2>
-        <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.4)', margin: '0 0 32px', maxWidth: 500, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.7 }}>
+        <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.45)', margin: '0 0 32px', maxWidth: 500, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.7 }}>
           Partner with us and experience five decades of spice expertise, cutting-edge technology, and a relentless commitment to quality.
         </p>
         <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
           <a href="/contact" style={{
             display: 'inline-block', fontFamily: SANS, fontSize: 14, fontWeight: 600,
-            background: CRIMSON, color: '#fff', padding: '14px 32px', borderRadius: 999,
+            background: CRIMSON, color: '#111', padding: '14px 32px', borderRadius: 999,
             textDecoration: 'none', transition: 'opacity 0.2s',
           }}
             onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = '0.85')}
@@ -341,7 +341,7 @@ export default function AboutUsPage() {
           </a>
           <a href="/how-we-operate" style={{
             display: 'inline-block', fontFamily: SANS, fontSize: 14, fontWeight: 500,
-            border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)',
+            border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(0,0,0,0.6)',
             padding: '14px 32px', borderRadius: 999, textDecoration: 'none', transition: 'all 0.2s',
           }}
             onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(172,3,59,0.5)'; el.style.color = '#fff'; }}

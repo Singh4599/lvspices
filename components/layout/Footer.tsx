@@ -49,24 +49,24 @@ const sections = [
 /* ── Mobile accordion section ── */
 function AccordionSection({ title, links, isOpen, onToggle }: { title: string; links: { label: string; href: string }[]; isOpen: boolean; onToggle: () => void }) {
   return (
-    <div style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+    <div style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
       <button
         onClick={onToggle}
-        style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '18px 0', background: 'none', border: 'none', cursor: 'pointer', color: '#fff' }}
+        style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '18px 0', background: 'none', border: 'none', cursor: 'pointer', color: '#111' }}
       >
         <span style={{ fontFamily: 'var(--font-sans)', fontSize: 15, fontWeight: 600 }}>{title}</span>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
           style={{ transition: 'transform 0.3s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0 }}>
-          <path d="M5 7.5L10 12.5L15 7.5" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="rgba(0,0,0,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
       <div style={{ overflow: 'hidden', maxHeight: isOpen ? `${links.length * 44 + 24}px` : '0px', transition: 'max-height 0.35s ease' }}>
         <div style={{ paddingBottom: 16, display: 'flex', flexDirection: 'column' }}>
           {links.map((l) => (
             <Link key={l.label} href={l.href}
-              style={{ fontFamily: 'var(--font-sans)', fontSize: 14, color: 'rgba(255,255,255,0.45)', textDecoration: 'none', padding: '7px 0', display: 'block', transition: 'color 0.2s' }}
+              style={{ fontFamily: 'var(--font-sans)', fontSize: 14, color: 'rgba(0,0,0,0.45)', textDecoration: 'none', padding: '7px 0', display: 'block', transition: 'color 0.2s' }}
               onMouseEnter={e => (e.currentTarget.style.color = CRIMSON)}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(0,0,0,0.45)')}
             >
               {l.label}
             </Link>
@@ -81,14 +81,14 @@ function AccordionSection({ title, links, isOpen, onToggle }: { title: string; l
 function DesktopCol({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
     <div>
-      <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 10, fontWeight: 700 }}>
+      <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginBottom: 10, fontWeight: 700 }}>
         {title}
       </h4>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         {links.map((l) => (
           <Link key={l.label} href={l.href}
-            className="font-sans text-white/45 hover:text-[#AC033B] transition-colors"
-            style={{ fontSize: '11.5px', textDecoration: 'none', whiteSpace: 'nowrap', lineHeight: 1, display: 'flex', alignItems: 'center', height: 18 }}
+            className="font-sans hover:text-[#AC033B] transition-colors"
+            style={{ fontSize: '11.5px', textDecoration: 'none', whiteSpace: 'nowrap', lineHeight: 1, display: 'flex', alignItems: 'center', height: 18, color: 'rgba(0,0,0,0.45)' }}
           >
             {l.label}
           </Link>
@@ -104,20 +104,20 @@ export default function Footer() {
 
   return (
     <>
-      <footer style={{ background: '#000', color: '#fff', position: 'relative', zIndex: 2 }}>
+      <footer style={{ background: '#f8f8f6', color: '#111', position: 'relative', zIndex: 2, borderTop: '1px solid rgba(0,0,0,0.07)' }}>
 
         {/* ════════════════════════════════════
             MOBILE FOOTER  (hidden on ≥768px)
         ════════════════════════════════════ */}
         <div className="footer-mobile">
           {/* Brand + social */}
-          <div style={{ padding: '40px 24px 24px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+          <div style={{ padding: '40px 24px 24px', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
             <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 12 }}>
-              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.7rem', letterSpacing: '-0.02em', color: '#fff' }}>
+              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.7rem', letterSpacing: '-0.02em', color: '#111' }}>
                 LV <span style={{ color: CRIMSON }}>Spices</span>
               </span>
             </Link>
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.7, maxWidth: 300, marginBottom: 20 }}>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(0,0,0,0.4)', lineHeight: 1.7, maxWidth: 300, marginBottom: 20 }}>
               Premium, globally certified spices — engineered for scale, purity, and excellence.
             </p>
             {/* Socials */}
@@ -128,9 +128,9 @@ export default function Footer() {
                 { href: '#', label: 'Instagram', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> },
               ].map(({ href, label, icon }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                  style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }}
+                  style={{ color: 'rgba(0,0,0,0.4)', transition: 'color 0.2s' }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = CRIMSON)}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.4)')}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'rgba(0,0,0,0.4)')}
                 >
                   {icon}
                 </a>
@@ -140,24 +140,24 @@ export default function Footer() {
           {/* Accordion */}
           <div style={{ padding: '0 24px' }}>
             {sections.map((s) => (
-              <AccordionSection 
-                key={s.title} 
-                title={s.title} 
-                links={s.links} 
+              <AccordionSection
+                key={s.title}
+                title={s.title}
+                links={s.links}
                 isOpen={openSection === s.title}
                 onToggle={() => setOpenSection(openSection === s.title ? null : s.title)}
               />
             ))}
           </div>
           {/* Mobile bottom bar */}
-          <div style={{ padding: '20px 24px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>
+          <div style={{ padding: '20px 24px', borderTop: '1px solid rgba(0,0,0,0.08)' }}>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(0,0,0,0.3)', marginBottom: 12 }}>
               © {currentYear} LV Spices. All rights reserved.
             </p>
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               {[{ label: 'Privacy Policy', href: '/privacy' }, { label: 'Terms & Conditions', href: '/terms' }].map((l) => (
                 <Link key={l.label} href={l.href}
-                  style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(255,255,255,0.3)', textDecoration: 'none' }}
+                  style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(0,0,0,0.3)', textDecoration: 'none' }}
                 >
                   {l.label}
                 </Link>
@@ -170,15 +170,15 @@ export default function Footer() {
             DESKTOP FOOTER  (hidden on <768px)
         ════════════════════════════════════ */}
         <div className="footer-desktop">
-          <div style={{ maxWidth: 1440, margin: '0 auto', background: 'rgba(255,255,255,0.04)', borderRadius: 24, padding: 'clamp(32px,5vw,64px)', display: 'flex', flexDirection: 'row', gap: 'clamp(32px,5vw,80px)', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+          <div style={{ maxWidth: 1440, margin: '0 auto', background: 'rgba(0,0,0,0.03)', borderRadius: 24, padding: 'clamp(32px,5vw,64px)', display: 'flex', flexDirection: 'row', gap: 'clamp(32px,5vw,80px)', alignItems: 'flex-start', flexWrap: 'wrap' }}>
             {/* Brand column */}
             <div style={{ flex: '0 0 240px', minWidth: 180 }}>
               <Link href="/" style={{ textDecoration: 'none' }}>
-                <span className="font-display font-bold text-white" style={{ fontSize: 'clamp(1.6rem,2.5vw,2rem)', letterSpacing: '-0.02em' }}>
+                <span className="font-display font-bold" style={{ fontSize: 'clamp(1.6rem,2.5vw,2rem)', letterSpacing: '-0.02em', color: '#111' }}>
                   LV <span style={{ color: CRIMSON }}>Spices</span>
                 </span>
               </Link>
-              <p className="font-sans text-white/45 leading-relaxed" style={{ fontSize: 14, marginTop: 16, maxWidth: 220 }}>
+              <p className="font-sans leading-relaxed" style={{ fontSize: 14, marginTop: 16, maxWidth: 220, color: 'rgba(0,0,0,0.45)' }}>
                 Experience the luxury of premium, globally certified spices. Engineered for scale, purity, and excellence without compromise.
               </p>
             </div>
@@ -186,12 +186,12 @@ export default function Footer() {
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 w-full gap-x-2 gap-y-4 md:gap-x-4 md:gap-y-4" style={{ flex: 1, minWidth: 240 }}>
               {/* Products — 1 col */}
               <div className="col-span-1">
-                <h4 className="font-mono uppercase text-white font-bold" style={{ fontSize: 11, letterSpacing: '0.2em', marginBottom: 10 }}>Products</h4>
+                <h4 className="font-mono uppercase font-bold" style={{ fontSize: 11, letterSpacing: '0.2em', marginBottom: 10, color: 'rgba(0,0,0,0.35)' }}>Products</h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                   {sections[0].links.map((l) => (
                     <Link key={l.label} href={l.href}
-                      className="font-sans text-white/45 hover:text-[#AC033B] transition-colors"
-                      style={{ fontSize: '11.5px', textDecoration: 'none', whiteSpace: 'nowrap', lineHeight: 1, display: 'flex', alignItems: 'center', height: 18 }}
+                      className="font-sans hover:text-[#AC033B] transition-colors"
+                      style={{ fontSize: '11.5px', textDecoration: 'none', whiteSpace: 'nowrap', lineHeight: 1, display: 'flex', alignItems: 'center', height: 18, color: 'rgba(0,0,0,0.45)' }}
                     >{l.label}</Link>
                   ))}
                 </div>
@@ -201,15 +201,15 @@ export default function Footer() {
               <DesktopCol title="Resources" links={sections[3].links} />
               {/* Contact */}
               <div className="col-span-2 md:col-span-1">
-                <h4 className="font-mono uppercase text-white font-bold" style={{ fontSize: 11, letterSpacing: '0.2em', marginBottom: 10 }}>Contact</h4>
+                <h4 className="font-mono uppercase font-bold" style={{ fontSize: 11, letterSpacing: '0.2em', marginBottom: 10, color: 'rgba(0,0,0,0.35)' }}>Contact</h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                  <a href={`tel:${siteConfig.contact.phone}`} className="font-sans text-white/45 hover:text-[#AC033B] transition-colors" style={{ fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <a href={`tel:${siteConfig.contact.phone}`} className="font-sans hover:text-[#AC033B] transition-colors" style={{ fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(0,0,0,0.45)' }}>
                     <Phone className="w-4 h-4 shrink-0" />{siteConfig.contact.phone}
                   </a>
-                  <a href={`mailto:${siteConfig.contact.email}`} className="font-sans text-white/45 hover:text-[#AC033B] transition-colors" style={{ fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <a href={`mailto:${siteConfig.contact.email}`} className="font-sans hover:text-[#AC033B] transition-colors" style={{ fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(0,0,0,0.45)' }}>
                     <Mail className="w-4 h-4 shrink-0" />{siteConfig.contact.email}
                   </a>
-                  <div className="font-sans text-white/45" style={{ fontSize: 13, display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                  <div className="font-sans" style={{ fontSize: 13, display: 'flex', alignItems: 'flex-start', gap: 10, color: 'rgba(0,0,0,0.45)' }}>
                     <MapPin className="w-4 h-4 shrink-0 mt-0.5" />{siteConfig.hq.city}, {siteConfig.hq.country}
                   </div>
                 </div>
@@ -219,15 +219,15 @@ export default function Footer() {
           {/* Desktop bottom bar */}
           <div style={{ maxWidth: 1200, margin: '0 auto', padding: '20px 8px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
             <div style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
-              <span className="font-sans text-white/35" style={{ fontSize: '12.5px' }}>© {currentYear} LV Spices. All rights reserved.</span>
-              <Link href="/privacy" className="font-sans text-white/35 hover:text-[#AC033B] transition-colors" style={{ fontSize: '12.5px', textDecoration: 'none' }}>Privacy Policy</Link>
-              <Link href="/terms" className="font-sans text-white/35 hover:text-[#AC033B] transition-colors" style={{ fontSize: '12.5px', textDecoration: 'none' }}>Terms & Conditions</Link>
+              <span className="font-sans" style={{ fontSize: '12.5px', color: 'rgba(0,0,0,0.3)' }}>© {currentYear} LV Spices. All rights reserved.</span>
+              <Link href="/privacy" className="font-sans hover:text-[#AC033B] transition-colors" style={{ fontSize: '12.5px', textDecoration: 'none', color: 'rgba(0,0,0,0.3)' }}>Privacy Policy</Link>
+              <Link href="/terms" className="font-sans hover:text-[#AC033B] transition-colors" style={{ fontSize: '12.5px', textDecoration: 'none', color: 'rgba(0,0,0,0.3)' }}>Terms & Conditions</Link>
             </div>
             <div style={{ display: 'flex', gap: 18, alignItems: 'center' }}>
-              <a href={siteConfig.social.linkedin || '#'} target="_blank" rel="nofollow noopener" aria-label="LinkedIn" className="text-white/35 hover:text-[#AC033B] transition-colors">
+              <a href={siteConfig.social.linkedin || '#'} target="_blank" rel="nofollow noopener" aria-label="LinkedIn" className="hover:text-[#AC033B] transition-colors" style={{ color: 'rgba(0,0,0,0.3)' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               </a>
-              <a href={siteConfig.social.twitter || '#'} target="_blank" rel="nofollow noopener" aria-label="Twitter (X)" className="text-white/35 hover:text-[#AC033B] transition-colors">
+              <a href={siteConfig.social.twitter || '#'} target="_blank" rel="nofollow noopener" aria-label="Twitter (X)" className="hover:text-[#AC033B] transition-colors" style={{ color: 'rgba(0,0,0,0.3)' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               </a>
             </div>

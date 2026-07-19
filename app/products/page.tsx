@@ -27,7 +27,7 @@ export default function ProductsPage() {
           fullScreen
         />
         <div style={{ position: 'absolute', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, pointerEvents: 'none' }}>
-          <span style={{ fontFamily: 'monospace', fontSize: 9, letterSpacing: '0.25em', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase' }}>Scroll</span>
+          <span style={{ fontFamily: 'monospace', fontSize: 9, letterSpacing: '0.25em', color: 'rgba(0,0,0,0.3)', textTransform: 'uppercase' }}>Scroll</span>
           <div style={{ width: 1, height: 32, background: 'linear-gradient(to bottom, rgba(172,3,59,0.7), transparent)' }} />
         </div>
       </section>

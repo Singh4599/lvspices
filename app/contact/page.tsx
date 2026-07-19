@@ -43,8 +43,8 @@ export default function ContactPage() {
     borderRadius: '10px',
     fontSize: '14px',
     fontFamily: 'Inter, sans-serif',
-    color: '#ffffff',
-    background: 'rgba(255,255,255,0.05)',
+    color: '#111111',
+    background: 'rgba(0,0,0,0.05)',
     outline: 'none',
     transition: 'border-color 200ms ease',
   };
@@ -129,35 +129,35 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <div className="form-row-grid">
                     <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '8px' }}>Full Name *</label>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.5)', marginBottom: '8px' }}>Full Name *</label>
                       <input required style={inputStyle} value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} placeholder="Your name" onFocus={e => (e.target.style.borderColor = '#AC033B')} onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')} />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '8px' }}>Email *</label>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.5)', marginBottom: '8px' }}>Email *</label>
                       <input required type="email" style={inputStyle} value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} placeholder="you@company.com" onFocus={e => (e.target.style.borderColor = '#AC033B')} onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')} />
                     </div>
                   </div>
 
                   <div className="form-row-grid">
                     <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '8px' }}>Company</label>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.5)', marginBottom: '8px' }}>Company</label>
                       <input style={inputStyle} value={formData.company} onChange={e => setFormData(p => ({ ...p, company: e.target.value }))} placeholder="Your company" onFocus={e => (e.target.style.borderColor = '#AC033B')} onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')} />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '8px' }}>Country</label>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.5)', marginBottom: '8px' }}>Country</label>
                       <input style={inputStyle} value={formData.country} onChange={e => setFormData(p => ({ ...p, country: e.target.value }))} placeholder="United Kingdom" onFocus={e => (e.target.style.borderColor = '#AC033B')} onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')} />
                     </div>
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '8px' }}>Subject *</label>
+                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.5)', marginBottom: '8px' }}>Subject *</label>
                     <select required style={{ ...inputStyle, cursor: 'pointer' }} value={formData.subject} onChange={e => setFormData(p => ({ ...p, subject: e.target.value }))} onFocus={e => (e.target.style.borderColor = '#AC033B')} onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}>
                       {subjects.map(s => <option key={s}>{s}</option>)}
                     </select>
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '8px' }}>Message *</label>
+                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.5)', marginBottom: '8px' }}>Message *</label>
                     <textarea required rows={5} style={{ ...inputStyle, resize: 'vertical' }} value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} placeholder="Tell us about your requirements — products, volumes, destination..." onFocus={e => (e.target.style.borderColor = '#AC033B')} onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')} />
                   </div>
 
@@ -167,7 +167,7 @@ export default function ContactPage() {
                     style={{
                       padding: '14px 40px',
                       background: formState === 'sending' ? 'rgba(172,3,59,0.6)' : '#AC033B',
-                      color: '#fff',
+                      color: '#111',
                       border: 'none',
                       borderRadius: '10px',
                       fontSize: '13px',
@@ -202,11 +202,11 @@ export default function ContactPage() {
                   </div>
                   <h3 className="font-display font-bold text-white" style={{ fontSize: '1.05rem' }}>Our Address</h3>
                 </div>
-                <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)', marginBottom: '18px' }} />
+                <div style={{ height: '1px', background: 'rgba(0,0,0,0.07)', marginBottom: '18px' }} />
                 <p style={{ fontSize: '13.5px', lineHeight: '1.75', color: 'rgba(255,255,255,0.7)', fontFamily: 'Inter, sans-serif' }}>
                   LV Spices Pvt. Ltd.<br />
                   Mumbai, Maharashtra, India<br />
-                  <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: '12px' }}>Manufacturing: Bhiwandi Plant · Mon–Sat, 9am–6pm IST</span>
+                  <span style={{ color: 'rgba(0,0,0,0.5)', fontSize: '12px' }}>Manufacturing: Bhiwandi Plant · Mon–Sat, 9am–6pm IST</span>
                 </p>
               </div>
 
@@ -218,24 +218,24 @@ export default function ContactPage() {
                   </div>
                   <h3 className="font-display font-bold text-white" style={{ fontSize: '1.05rem' }}>Contact Us</h3>
                 </div>
-                <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)', marginBottom: '18px' }} />
+                <div style={{ height: '1px', background: 'rgba(0,0,0,0.07)', marginBottom: '18px' }} />
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                   <a href="mailto:export@lvspices.com" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'inherit' }}>
                     <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(172,3,59,0.04)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#AC033B', flexShrink: 0 }}>
                       <Mail className="h-4 w-4" />
                     </div>
                     <div>
-                      <div style={{ fontSize: '9px', fontFamily: 'monospace', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '2px' }}>Email</div>
+                      <div style={{ fontSize: '9px', fontFamily: 'monospace', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '2px' }}>Email</div>
                       <div style={{ fontSize: '13.5px', color: '#AC033B', fontWeight: 600 }}>export@lvspices.com</div>
                     </div>
                   </a>
-                  <div style={{ height: '1px', background: 'rgba(255,255,255,0.05)' }} />
+                  <div style={{ height: '1px', background: 'rgba(0,0,0,0.05)' }} />
                   <a href="tel:+91XXXXXXXXXX" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'inherit' }}>
                     <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(172,3,59,0.04)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#AC033B', flexShrink: 0 }}>
                       <Phone className="h-4 w-4" />
                     </div>
                     <div>
-                      <div style={{ fontSize: '9px', fontFamily: 'monospace', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '2px' }}>Phone / WhatsApp</div>
+                      <div style={{ fontSize: '9px', fontFamily: 'monospace', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '2px' }}>Phone / WhatsApp</div>
                       <div style={{ fontSize: '13.5px', color: '#AC033B', fontWeight: 600 }}>+91 XXXXX XXXXX</div>
                     </div>
                   </a>

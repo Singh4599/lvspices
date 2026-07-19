@@ -47,7 +47,7 @@ const qaProcess = [
 
 export default function QualityAssurancePage() {
   return (
-    <main style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+    <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px) 0', textAlign: 'center' }}>
@@ -62,11 +62,11 @@ export default function QualityAssurancePage() {
           </div>
           <h1 style={{
             fontFamily: SERIF, fontSize: 'clamp(36px,6vw,88px)', fontWeight: 700,
-            color: '#fff', lineHeight: 1.0, letterSpacing: '-0.03em', margin: '0 0 24px',
+            color: '#111', lineHeight: 1.0, letterSpacing: '-0.03em', margin: '0 0 24px',
           }}>
             Quality Assurance
           </h1>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, margin: 0 }}>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.75, margin: 0 }}>
             A team of 30+ enthusiastic professionals working round the clock to monitor quality testing, analysis and research along with new product development and delivery of reliable finished products to our customers.
           </p>
         </div>
@@ -95,14 +95,14 @@ export default function QualityAssurancePage() {
             }}>
               <span style={{ fontSize: 40 }}>🔬</span>
               <div>
-                <div style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,48px)', fontWeight: 700, color: '#fff', lineHeight: 1 }}>30+</div>
-                <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginTop: 6 }}>Enthusiastic<br />Professionals</div>
+                <div style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,48px)', fontWeight: 700, color: '#111', lineHeight: 1 }}>30+</div>
+                <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.5)', marginTop: 6 }}>Enthusiastic<br />Professionals</div>
               </div>
             </div>
           </div>
 
           {/* Supporting text */}
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.85, textAlign: 'center', maxWidth: 780, margin: '40px auto 0' }}>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.85, textAlign: 'center', maxWidth: 780, margin: '40px auto 0' }}>
             Each member of the team is equipped with the necessary qualifications and experience based on their position, ensuring maximum efficiency and the best possible outcomes on the shop floor. The expertise of appropriate internal and external training are conducted from time to time, helping the team to equip themselves with current trends and knowledge and available information in the field. We in the Quality Assurance department believe in understanding the product and processes thoroughly so that any non-conformances identified are taken care of before the product release itself. This ensures minimum quality complaints and maximum quality standards for all our customers.
           </p>
         </div>
@@ -120,11 +120,11 @@ export default function QualityAssurancePage() {
             {/* Text */}
             <div style={{ flex: 1, minWidth: 260 }}>
               <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 16 }}>Lab Accreditation</div>
-              <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(26px,3.5vw,48px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 20px', lineHeight: 1.1 }}>About The Lab</h2>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.85, marginBottom: 20 }}>
+              <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(26px,3.5vw,48px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 20px', lineHeight: 1.1 }}>About The Lab</h2>
+              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.85, marginBottom: 20 }}>
                 The lab is accredited for ISO 17025:2017 by NABL and we are accredited for most of the test parameters that are essential for the spice industry. Our tests for heavy metals, mycotoxins, pesticide residues and allergens are included in the scope of accreditation. Being equipped with various instruments to carry out analysis with utmost precision and calibrated from third party accredited labs on an annual frequency.
               </p>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.85 }}>
+              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.85 }}>
                 The QC Team alone is responsible for running three labs viz. the Raw material Analytical Lab, Microbiological lab and the Instrumentation Lab. The labs are responsible for monitoring 200+ quality parameters and issuing Certificates of Analysis per various globally acknowledged standards, providing a certificate of analysis for every individual product.
               </p>
             </div>
@@ -135,7 +135,7 @@ export default function QualityAssurancePage() {
       {/* ══ STATS ROW ══════════════════════════════════════════ */}
       <section style={{ padding: '0 clamp(24px,5vw,80px) clamp(60px,8vw,100px)' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
-          <p style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(255,255,255,0.35)', textAlign: 'center', margin: '0 0 36px' }}>
+          <p style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(0,0,0,0.4)', textAlign: 'center', margin: '0 0 36px' }}>
             The three labs &amp; qualified team at LV Spices
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 20 }}>
@@ -146,32 +146,32 @@ export default function QualityAssurancePage() {
               { val: '30+', label: 'Qualified Team Members', icon: '👩‍🔬' },
             ].map(s => (
               <div key={s.label} style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
+                background: 'rgba(0,0,0,0.03)',
+                border: '1px solid rgba(0,0,0,0.07)',
                 borderRadius: 16, padding: '28px 20px',
                 textAlign: 'center',
                 transition: 'all 0.25s',
               }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(172,3,59,0.4)'; el.style.background = 'rgba(172,3,59,0.05)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(255,255,255,0.07)'; el.style.background = 'rgba(255,255,255,0.03)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(0,0,0,0.07)'; el.style.background = 'rgba(0,0,0,0.03)'; }}
               >
                 <div style={{ fontSize: 32, marginBottom: 12 }}>{s.icon}</div>
-                <div style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4vw,52px)', fontWeight: 700, color: '#fff', lineHeight: 1 }}>{s.val}</div>
-                <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginTop: 10, lineHeight: 1.5 }}>{s.label}</div>
+                <div style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4vw,52px)', fontWeight: 700, color: '#111', lineHeight: 1 }}>{s.val}</div>
+                <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginTop: 10, lineHeight: 1.5 }}>{s.label}</div>
               </div>
             ))}
           </div>
-          <p style={{ fontFamily: SANS, fontSize: 12.5, color: 'rgba(255,255,255,0.25)', textAlign: 'center', marginTop: 20 }}>
+          <p style={{ fontFamily: SANS, fontSize: 12.5, color: 'rgba(0,0,0,0.3)', textAlign: 'center', marginTop: 20 }}>
             The lab is performing pesticide residues and OTA/ZON analysis in-house with great precision and accuracy.
           </p>
         </div>
       </section>
 
       {/* ══ QA PROCESS ════════════════════════════════════════ */}
-      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 16 }}>Our QA Flow</div>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,52px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 48px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,52px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 48px' }}>
             From Lot Receipt to Customer Delivery
           </h2>
 
@@ -183,14 +183,14 @@ export default function QualityAssurancePage() {
                     width: 44, height: 44, borderRadius: '50%',
                     background: `linear-gradient(135deg, ${CRIMSON}, #6B0025)`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontFamily: MONO, fontSize: 12, fontWeight: 700, color: '#fff',
+                    fontFamily: MONO, fontSize: 12, fontWeight: 700, color: '#111',
                     boxShadow: '0 4px 16px rgba(172,3,59,0.3)',
                     flexShrink: 0,
                   }}>{step.num}</div>
                   {i < qaProcess.length - 1 && <div style={{ width: 1, flex: 1, background: 'rgba(172,3,59,0.18)', marginTop: 8 }} />}
                 </div>
                 <div style={{ paddingTop: 10 }}>
-                  <h3 style={{ fontFamily: SANS, fontSize: 15, fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>{step.title}</h3>
+                  <h3 style={{ fontFamily: SANS, fontSize: 15, fontWeight: 700, color: '#111', margin: '0 0 8px' }}>{step.title}</h3>
                   <p style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(255,255,255,0.42)', lineHeight: 1.7, margin: 0 }}>{step.desc}</p>
                 </div>
               </div>
@@ -203,23 +203,23 @@ export default function QualityAssurancePage() {
       <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 16 }}>200+ Parameters</div>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,52px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 40px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,52px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 40px' }}>
             What We Test
           </h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(260px,28vw,340px), 1fr))', gap: 20 }}>
             {qaTests.map(cat => (
               <div key={cat.category} style={{
-                background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)',
+                background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.07)',
                 borderRadius: 16, padding: '24px 24px 28px',
                 transition: 'all 0.25s',
               }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(172,3,59,0.4)'; el.style.background = 'rgba(172,3,59,0.04)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(255,255,255,0.07)'; el.style.background = 'rgba(255,255,255,0.03)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(0,0,0,0.07)'; el.style.background = 'rgba(0,0,0,0.03)'; }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: CRIMSON, flexShrink: 0 }} />
-                  <h3 style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: '#fff', margin: 0 }}>{cat.category}</h3>
+                  <h3 style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: '#111', margin: 0 }}>{cat.category}</h3>
                 </div>
                 <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
                   {cat.tests.map(t => (
@@ -236,25 +236,25 @@ export default function QualityAssurancePage() {
       </section>
 
       {/* ══ CERTIFICATIONS ════════════════════════════════════ */}
-      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 16 }}>Accreditations</div>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,52px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 40px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3.5vw,52px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 40px' }}>
             Certifications &amp; Compliance
           </h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(140px,14vw,190px), 1fr))', gap: 14 }}>
             {certifications.map(cert => (
               <div key={cert.name} style={{
-                background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)',
+                background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.07)',
                 borderRadius: 14, padding: '20px 16px', textAlign: 'center',
                 transition: 'all 0.25s',
               }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(172,3,59,0.4)'; el.style.background = 'rgba(172,3,59,0.06)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(255,255,255,0.07)'; el.style.background = 'rgba(255,255,255,0.03)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(0,0,0,0.07)'; el.style.background = 'rgba(0,0,0,0.03)'; }}
               >
-                <div style={{ fontFamily: SERIF, fontSize: 15, fontWeight: 700, color: '#fff', marginBottom: 6 }}>{cert.name}</div>
-                <div style={{ fontFamily: SANS, fontSize: 11, color: 'rgba(255,255,255,0.35)', lineHeight: 1.5 }}>{cert.desc}</div>
+                <div style={{ fontFamily: SERIF, fontSize: 15, fontWeight: 700, color: '#111', marginBottom: 6 }}>{cert.name}</div>
+                <div style={{ fontFamily: SANS, fontSize: 11, color: 'rgba(0,0,0,0.4)', lineHeight: 1.5 }}>{cert.desc}</div>
               </div>
             ))}
           </div>

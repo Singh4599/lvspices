@@ -6,4 +6,3 @@ public/frames/**
 scripts
 
 # Exclude dev videos
-*.mp4

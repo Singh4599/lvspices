@@ -59,7 +59,7 @@ export default function TechnologyPage() {
   };
 
   return (
-    <main style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+    <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(420px,55vw,680px)', overflow: 'hidden' }}>
@@ -91,7 +91,7 @@ export default function TechnologyPage() {
             fontFamily: SERIF,
             fontSize: 'clamp(40px,7vw,96px)',
             fontWeight: 700,
-            color: '#fff',
+            color: '#111',
             lineHeight: 1.0,
             letterSpacing: '-0.04em',
             margin: 0,
@@ -106,7 +106,7 @@ export default function TechnologyPage() {
         position: 'sticky', top: 64, zIndex: 30,
         background: navSticky ? 'rgba(0,0,0,0.95)' : '#0a0a0a',
         backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        borderBottom: '1px solid rgba(0,0,0,0.06)',
         transition: 'background 0.3s',
       }}>
         <div style={{
@@ -140,11 +140,11 @@ export default function TechnologyPage() {
       {/* ══ OVERVIEW ══════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', textAlign: 'center' }}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,5vw,64px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.03em', margin: '0 0 24px' }}>Overview</h2>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, marginBottom: 16 }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,5vw,64px)', fontWeight: 700, color: '#111', letterSpacing: '-0.03em', margin: '0 0 24px' }}>Overview</h2>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8, marginBottom: 16 }}>
             LV Spices was among the first Indian exporters to adopt fully automated seed cleaning and cryogenic grinding equipment. Our commitment to precision technology and continuous innovation has made us a trusted global processing hub.
           </p>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, margin: '0 0 48px' }}>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8, margin: '0 0 48px' }}>
             Spread across 7+ units with a built-up area of 100,000 sq. ft., we are equipped to produce at an annual capacity of over 80,000 mts. Our automated systems reduce human intervention, minimise errors, and ensure utmost safety, security, and health of both people and product.
           </p>
 
@@ -165,8 +165,8 @@ export default function TechnologyPage() {
               }}>
                 <span style={{ fontSize: 28 }}>{s.icon}</span>
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontFamily: SERIF, fontSize: 'clamp(22px,3vw,36px)', fontWeight: 700, color: '#fff', lineHeight: 1 }}>{s.val}</div>
-                  <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginTop: 6 }}>{s.label}</div>
+                  <div style={{ fontFamily: SERIF, fontSize: 'clamp(22px,3vw,36px)', fontWeight: 700, color: '#111', lineHeight: 1 }}>{s.val}</div>
+                  <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.45)', marginTop: 6 }}>{s.label}</div>
                 </div>
               </div>
             ))}
@@ -175,10 +175,10 @@ export default function TechnologyPage() {
       </section>
 
       {/* ══ SEED CLEANING ══════════════════════════════════════ */}
-      <section id="seed-cleaning" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section id="seed-cleaning" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 12px' }}>Seed Cleaning</h2>
-          <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(255,255,255,0.35)', textAlign: 'center', margin: '0 0 48px', maxWidth: 640, marginLeft: 'auto', marginRight: 'auto' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 12px' }}>Seed Cleaning</h2>
+          <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(0,0,0,0.4)', textAlign: 'center', margin: '0 0 48px', maxWidth: 640, marginLeft: 'auto', marginRight: 'auto' }}>
             This line was started back in the mid 90s and has been consistently upgraded — adapting to the latest technology available for seed cleaning globally.
           </p>
 
@@ -202,23 +202,23 @@ export default function TechnologyPage() {
                 borderRadius: 12, padding: '16px 20px',
               }}>
                 <div style={{ fontFamily: SANS, fontSize: 13, color: CRIMSON, fontWeight: 700, marginBottom: 4 }}>Processing Capacity</div>
-                <div style={{ fontFamily: SERIF, fontSize: 24, fontWeight: 700, color: '#fff' }}>1 – 3 tons / hour</div>
-                <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginTop: 4 }}>Per spice seed intended for cleaning</div>
+                <div style={{ fontFamily: SERIF, fontSize: 24, fontWeight: 700, color: '#111' }}>1 – 3 tons / hour</div>
+                <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginTop: 4 }}>Per spice seed intended for cleaning</div>
               </div>
             </div>
           </div>
 
           {/* Kibbled subheading */}
           <div style={{ marginTop: 64 }}>
-            <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(22px,3vw,40px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 20px' }}>
+            <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(22px,3vw,40px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 20px' }}>
               Kibbled Spice and Botanicals Line
             </h3>
             <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start', flexWrap: 'wrap' }}>
               <div style={{ flex: 1, minWidth: 260 }}>
-                <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, marginBottom: 16 }}>
+                <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8, marginBottom: 16 }}>
                   At the facility, pre-crushing lines are installed for the preparation of various cut sizes of chillies, as well as for herbal roots and botanicals. Before crushing, the product is cleaned through different stages. Zig-zag classifiers are used for removing heavy admixtures and stones, which operate according to density difference.
                 </p>
-                <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8 }}>
+                <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8 }}>
                   We use FIC Sortex machines manufactured by Buhler. It is currently possible to remove fungal-prone chilli pods and discoloured chillies vs. normal ones. The online installation of magnets removes ferrous impurities as well as sieves with varying screen sizes so that the final product fits the required cut size.
                 </p>
               </div>
@@ -227,8 +227,8 @@ export default function TechnologyPage() {
                 background: 'rgba(172,3,59,0.08)', border: '1px solid rgba(172,3,59,0.25)',
                 borderRadius: 16, padding: '28px 32px', textAlign: 'center',
               }}>
-                <div style={{ fontFamily: SERIF, fontSize: 'clamp(40px,5vw,72px)', fontWeight: 700, color: '#fff', lineHeight: 1 }}>4000</div>
-                <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginTop: 8 }}>Tons of material<br />can be processed<br />per annum</div>
+                <div style={{ fontFamily: SERIF, fontSize: 'clamp(40px,5vw,72px)', fontWeight: 700, color: '#111', lineHeight: 1 }}>4000</div>
+                <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginTop: 8 }}>Tons of material<br />can be processed<br />per annum</div>
               </div>
             </div>
           </div>
@@ -236,15 +236,15 @@ export default function TechnologyPage() {
       </section>
 
       {/* ══ MILLING ════════════════════════════════════════════ */}
-      <section id="milling" style={{ borderTop: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflow: 'hidden' }}>
+      <section id="milling" style={{ borderTop: '1px solid rgba(0,0,0,0.05)', position: 'relative', overflow: 'hidden' }}>
         {/* Background team image */}
         <div style={{ position: 'absolute', inset: 0 }}>
           <Image src="/images/factory.png" alt="Milling" fill style={{ objectFit: 'cover', opacity: 0.12 }} />
         </div>
 
         <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 20px' }}>Milling</h2>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, margin: '0 0 40px', maxWidth: 640, marginLeft: 'auto', marginRight: 'auto' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 20px' }}>Milling</h2>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8, margin: '0 0 40px', maxWidth: 640, marginLeft: 'auto', marginRight: 'auto' }}>
             Installation of Milling Lines is important to ensure there is minimal human intervention by use of a touch screen PLC Controller. The temperature deltas are critically controlled to prevent overheating which ensures retention of flavour and negligible loss of SHUs, ASTA Colour and Volatile oil of spice blends. At LV Spices, we have installed 3 Milling Lines, each with a capacity higher than the former, to cater to the specific needs of each product/spice.
           </p>
 
@@ -257,7 +257,7 @@ export default function TechnologyPage() {
                 style={{
                   fontFamily: SANS, fontSize: 13, fontWeight: 500,
                   padding: '10px 24px', borderRadius: 999,
-                  background: activeMillingLine === i ? CRIMSON : 'rgba(255,255,255,0.06)',
+                  background: activeMillingLine === i ? CRIMSON : 'rgba(0,0,0,0.06)',
                   border: `1px solid ${activeMillingLine === i ? CRIMSON : 'rgba(255,255,255,0.12)'}`,
                   color: activeMillingLine === i ? '#fff' : 'rgba(255,255,255,0.55)',
                   cursor: 'pointer', transition: 'all 0.2s',
@@ -268,7 +268,7 @@ export default function TechnologyPage() {
 
           {/* Content card */}
           <div style={{
-            background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.08)',
+            background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(0,0,0,0.08)',
             borderRadius: 16, padding: 'clamp(24px,3vw,40px)',
             backdropFilter: 'blur(20px)',
             textAlign: 'left',
@@ -281,10 +281,10 @@ export default function TechnologyPage() {
       </section>
 
       {/* ══ ROASTING ══════════════════════════════════════════ */}
-      <section id="roasting" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(255,255,255,0.05)', textAlign: 'center' }}>
+      <section id="roasting" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)', textAlign: 'center' }}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 20px' }}>Roasting</h2>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, margin: '0 0 40px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 20px' }}>Roasting</h2>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8, margin: '0 0 40px' }}>
             No Indian Spice Blend is complete without the special roasted flavour. We have a dedicated Roasting Line with a running capacity of 4000 mts/annum. These roasters are ideal for making the perfectly desired custom roasted blends, thus guaranteeing the extra special taste in our spice. Often the degree of roasting is critical in ensuring that we get the perfect flavour and aroma.
           </p>
 
@@ -296,22 +296,22 @@ export default function TechnologyPage() {
           }}>
             <span style={{ fontSize: 28 }}>🔥</span>
             <div style={{ textAlign: 'left' }}>
-              <div style={{ fontFamily: SERIF, fontSize: 32, fontWeight: 700, color: '#fff', lineHeight: 1 }}>4000 mts/annum</div>
-              <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginTop: 4 }}>Dedicated Roasting Line Capacity</div>
+              <div style={{ fontFamily: SERIF, fontSize: 32, fontWeight: 700, color: '#111', lineHeight: 1 }}>4000 mts/annum</div>
+              <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginTop: 4 }}>Dedicated Roasting Line Capacity</div>
             </div>
           </div>
 
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.4)', lineHeight: 1.8 }}>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.45)', lineHeight: 1.8 }}>
             It is the responsibility of R&D Department to prepare recipes, meet the specific requirements of custom roast blends and to run trials that match the samples provided by the customer.
           </p>
         </div>
       </section>
 
       {/* ══ STEAM STERILIZATION ════════════════════════════════ */}
-      <section id="steam-sterilization" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section id="steam-sterilization" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 16px' }}>Steam Sterilization</h2>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, textAlign: 'center', maxWidth: 680, margin: '0 auto 48px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 16px' }}>Steam Sterilization</h2>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8, textAlign: 'center', maxWidth: 680, margin: '0 auto 48px' }}>
             Steam Sterilization is an environmental-friendly and extremely effective sterilization method. It yields little waste while monitoring multiple parameters like moisture, temperature, time, etc. Our process is a seamless marriage between the EuroFins-validated continuous and batch systems for a 5-log reduction.
           </p>
 
@@ -327,9 +327,9 @@ export default function TechnologyPage() {
                 Flexibility in the system allows for gentle pasteurisation or high-temperature sterilization cycles. Very low micro-results can easily be achieved, especially for seasonings where less than 10,000 TPC is required.
               </p>
               <div style={{
-                background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)',
+                background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.08)',
                 borderRadius: 12, padding: '16px 20px',
-                fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6,
+                fontFamily: SANS, fontSize: 13, color: 'rgba(0,0,0,0.45)', lineHeight: 1.6,
               }}>
                 <span style={{ color: CRIMSON, fontWeight: 700 }}>Post-sterilization packaging</span> takes place in a class 100,000 clean room utilising HEPA filters or high micron filters.
               </div>
@@ -339,10 +339,10 @@ export default function TechnologyPage() {
       </section>
 
       {/* ══ CRYOGENIC GRINDING ════════════════════════════════ */}
-      <section id="cryogenic" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section id="cryogenic" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 16px' }}>Cryogenic Grinding</h2>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, textAlign: 'center', maxWidth: 640, margin: '0 auto 48px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 16px' }}>Cryogenic Grinding</h2>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8, textAlign: 'center', maxWidth: 640, margin: '0 auto 48px' }}>
             Cryogenic grinding at -150°C preserves 40% more essential oils, colour, and aroma than conventional ambient grinding — making it the gold standard for premium spice processing.
           </p>
 
@@ -360,11 +360,11 @@ export default function TechnologyPage() {
                 ].map(s => (
                   <div key={s.stat} style={{
                     display: 'flex', alignItems: 'center', gap: 20,
-                    background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)',
+                    background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.07)',
                     borderRadius: 12, padding: '16px 20px',
                   }}>
                     <div style={{ fontFamily: SERIF, fontSize: 28, fontWeight: 700, color: CRIMSON, minWidth: 80 }}>{s.stat}</div>
-                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>{s.label}</div>
+                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.45)' }}>{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -374,10 +374,10 @@ export default function TechnologyPage() {
       </section>
 
       {/* ══ CFG TECHNOLOGY ════════════════════════════════════ */}
-      <section id="cfg" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section id="cfg" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 16px' }}>CFG Technology</h2>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, textAlign: 'center', maxWidth: 640, margin: '0 auto 48px' }}>
+          <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 16px' }}>CFG Technology</h2>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8, textAlign: 'center', maxWidth: 640, margin: '0 auto 48px' }}>
             Our patented Continuous Flow Grinding (CFG) process is the most advanced spice processing technology in India — combining precision milling with inline quality monitoring.
           </p>
 
@@ -389,7 +389,7 @@ export default function TechnologyPage() {
               <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, marginBottom: 24 }}>
                 CFG eliminates batch-to-batch variation by continuously feeding, grinding, and classifying spices in a closed-loop system. Real-time sensor feedback adjusts the process parameters automatically, ensuring consistent colour, particle size, and microbiology lot after lot.
               </p>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8 }}>
+              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8 }}>
                 The system is validated under FDA 21 CFR Part 117 FSMA standards and is GMP-compliant, making LV Spices one of very few Indian processors capable of supplying direct to US and EU private label retailers.
               </p>
             </div>

@@ -401,26 +401,28 @@ function WhoWeAre() {
         <div style={{ flex: 1, minWidth: 'min(100%, 280px)' }}>
           <h2 suppressHydrationWarning style={{
             fontFamily: SERIF,
-            fontSize: 'clamp(36px,6vw,84px)',
+            fontSize: 'clamp(48px, 7vw, 120px)',
             fontWeight: 700,
             color: '#111',
-            lineHeight: 1.05,
-            letterSpacing: '-0.03em',
-            margin: '16px 0 0',
+            lineHeight: 1.0,
+            letterSpacing: '-0.04em',
+            margin: '0 0 20px',
           }}>
-            Who We Are.
+            Who <span className="heading-accent" style={{ fontStyle: 'italic', color: CRIMSON }}>We</span> Are.
           </h2>
-          <div suppressHydrationWarning style={{
-            fontFamily: SANS,
-            fontSize: 'clamp(12px,1.5vw,18px)',
-            fontWeight: 400,
-            color: '#AC033B',
-            marginTop: '12px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            marginBottom: '32px'
-          }}>
-            Farm to Factory
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: '32px' }}>
+            <div style={{ width: 32, height: 1.5, background: CRIMSON }} />
+            <p style={{
+              fontFamily: MONO,
+              fontSize: 'clamp(10px, 1.2vw, 13px)',
+              color: 'rgba(0,0,0,0.45)',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              margin: 0,
+              fontWeight: 700
+            }}>
+              Farm to Factory
+            </p>
           </div>
         </div>
 

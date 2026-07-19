@@ -28,7 +28,7 @@ export default function CareerPage() {
   };
 
   return (
-    <main style={{ background: '#000', minHeight: '100vh', color: '#fff', overflow: 'hidden' }}>
+    <main style={{ background: '#fff', minHeight: '100vh', color: '#111', overflow: 'hidden' }}>
       
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(300px, 40vw, 480px)' }}>
@@ -52,7 +52,7 @@ export default function CareerPage() {
             padding: '12px 24px',
             display: 'inline-block'
           }}>
-            <h1 style={{ fontFamily: SANS, fontSize: 'clamp(24px, 4vw, 40px)', fontWeight: 700, color: '#fff', margin: 0, letterSpacing: '-0.02em' }}>
+            <h1 style={{ fontFamily: SANS, fontSize: 'clamp(24px, 4vw, 40px)', fontWeight: 700, color: '#111', margin: 0, letterSpacing: '-0.02em' }}>
               Work With Us
             </h1>
           </div>
@@ -64,10 +64,10 @@ export default function CareerPage() {
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
           
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 16px' }}>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 16px' }}>
               We're Hiring!
             </h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px, 1.1vw, 15px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, maxWidth: 600, margin: '0 auto' }}>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px, 1.1vw, 15px)', color: 'rgba(0,0,0,0.6)', lineHeight: 1.7, maxWidth: 600, margin: '0 auto' }}>
               We are always looking for talented resources with experience in the Spice Trade to help us achieve our goals. Interested candidates can reach out to us by filling out the details below.
             </p>
           </div>
@@ -128,9 +128,9 @@ export default function CareerPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingBottom: 16, paddingTop: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, borderRight: '1px solid rgba(255,255,255,0.2)', paddingRight: 12 }}>
                   <span style={{ fontSize: 16 }}>🇮🇳</span>
-                  <span style={{ fontFamily: SANS, fontSize: 14, color: '#fff' }}>+91</span>
+                  <span style={{ fontFamily: SANS, fontSize: 14, color: '#111' }}>+91</span>
                 </div>
-                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter contact number here" style={{ background: 'transparent', border: 'none', color: '#fff', fontFamily: SANS, fontSize: 14, outline: 'none', width: '100%' }} required />
+                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter contact number here" style={{ background: 'transparent', border: 'none', color: '#111', fontFamily: SANS, fontSize: 14, outline: 'none', width: '100%' }} required />
               </div>
             </fieldset>
 
@@ -155,7 +155,7 @@ export default function CareerPage() {
                 }}>
                   Choose file
                 </label>
-                <span style={{ fontFamily: SANS, fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>No file chosen</span>
+                <span style={{ fontFamily: SANS, fontSize: 12, color: 'rgba(0,0,0,0.5)' }}>No file chosen</span>
               </div>
             </fieldset>
 

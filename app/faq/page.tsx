@@ -137,7 +137,7 @@ const faqCategories = [
 function AccordionItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
   return (
     <div style={{
-      border: `1px solid ${isOpen ? 'rgba(172,3,59,0.35)' : 'rgba(255,255,255,0.07)'}`,
+      border: `1px solid ${isOpen ? 'rgba(172,3,59,0.35)' : 'rgba(0,0,0,0.07)'}`,
       borderRadius: 14,
       overflow: 'hidden',
       transition: 'border-color 0.25s',
@@ -149,18 +149,18 @@ function AccordionItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpe
           width: '100%',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16,
           padding: '20px 24px',
-          background: isOpen ? 'rgba(172,3,59,0.06)' : 'rgba(255,255,255,0.02)',
+          background: isOpen ? 'rgba(172,3,59,0.06)' : 'rgba(0,0,0,0.02)',
           border: 'none', cursor: 'pointer',
           textAlign: 'left',
           transition: 'background 0.25s',
         }}
       >
-        <span style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', fontWeight: 600, color: '#fff', lineHeight: 1.4 }}>{q}</span>
+        <span style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', fontWeight: 600, color: '#111', lineHeight: 1.4 }}>{q}</span>
         <span style={{
           width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-          background: isOpen ? CRIMSON : 'rgba(255,255,255,0.08)',
+          background: isOpen ? CRIMSON : 'rgba(0,0,0,0.08)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: '#fff', fontSize: 18, fontWeight: 300,
+          color: '#111', fontSize: 18, fontWeight: 300,
           transition: 'all 0.25s',
         }}>
           {isOpen ? '−' : '+'}
@@ -169,7 +169,7 @@ function AccordionItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpe
 
       {isOpen && (
         <div style={{ padding: '0 24px 20px' }}>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,14.5px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, margin: 0 }}>{a}</p>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,14.5px)', color: 'rgba(0,0,0,0.5)', lineHeight: 1.8, margin: 0 }}>{a}</p>
         </div>
       )}
     </div>
@@ -193,7 +193,7 @@ export default function FAQPage() {
   const totalFAQs = faqCategories.reduce((acc, c) => acc + c.faqs.length, 0);
 
   return (
-    <main style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+    <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{
@@ -212,18 +212,18 @@ export default function FAQPage() {
               <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: CRIMSON }}>Help Centre</span>
             </div>
 
-            <h1 style={{ fontFamily: SERIF, fontSize: 'clamp(44px,6vw,96px)', fontWeight: 700, color: '#fff', lineHeight: 1.0, letterSpacing: '-0.04em', margin: '0 0 20px' }}>
+            <h1 style={{ fontFamily: SERIF, fontSize: 'clamp(44px,6vw,96px)', fontWeight: 700, color: '#111', lineHeight: 1.0, letterSpacing: '-0.04em', margin: '0 0 20px' }}>
               FAQs
             </h1>
 
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1vw,15px)', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7, margin: '0 0 32px' }}>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1vw,15px)', color: 'rgba(0,0,0,0.45)', lineHeight: 1.7, margin: '0 0 32px' }}>
               Have more questions? Contact us for more information.
             </p>
 
             <a href="/contact" style={{
               display: 'inline-block',
               fontFamily: SANS, fontSize: 14, fontWeight: 600,
-              background: CRIMSON, color: '#fff',
+              background: CRIMSON, color: '#111',
               padding: '13px 28px', borderRadius: 999,
               textDecoration: 'none', letterSpacing: '0.04em',
               transition: 'opacity 0.2s',
@@ -236,7 +236,7 @@ export default function FAQPage() {
 
             {/* Category filters */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 40 }}>
-              <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 8 }}>Filter by topic</div>
+              <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', marginBottom: 8 }}>Filter by topic</div>
               {['All', ...faqCategories.map(c => c.category)].map(cat => (
                 <button key={cat} onClick={() => setActiveCategory(cat)} style={{
                   fontFamily: SANS, fontSize: 12.5, fontWeight: 500,
@@ -250,9 +250,9 @@ export default function FAQPage() {
             </div>
 
             {/* Stats */}
-            <div style={{ marginTop: 32, padding: '16px', background: 'rgba(255,255,255,0.03)', borderRadius: 12, border: '1px solid rgba(255,255,255,0.06)' }}>
-              <div style={{ fontFamily: SERIF, fontSize: 28, fontWeight: 700, color: '#fff', lineHeight: 1 }}>{totalFAQs}</div>
-              <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginTop: 6 }}>Questions Answered</div>
+            <div style={{ marginTop: 32, padding: '16px', background: 'rgba(0,0,0,0.03)', borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)' }}>
+              <div style={{ fontFamily: SERIF, fontSize: 28, fontWeight: 700, color: '#111', lineHeight: 1 }}>{totalFAQs}</div>
+              <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginTop: 6 }}>Questions Answered</div>
             </div>
           </div>
 
@@ -261,7 +261,7 @@ export default function FAQPage() {
             {/* Hathi Masala style header */}
             <div style={{
               fontFamily: SERIF, fontSize: 'clamp(16px,2vw,26px)', fontWeight: 700,
-              color: '#fff', marginBottom: 32, lineHeight: 1.2,
+              color: '#111', marginBottom: 32, lineHeight: 1.2,
             }}>
               Questions About Our Spices?<br />
               <span style={{ color: CRIMSON }}>Answered.</span>
@@ -274,10 +274,10 @@ export default function FAQPage() {
                   display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16,
                 }}>
                   <div style={{ width: 6, height: 6, borderRadius: '50%', background: CRIMSON, flexShrink: 0 }} />
-                  <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>
+                  <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)' }}>
                     {cat.category}
                   </div>
-                  <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.06)' }} />
+                  <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.06)' }} />
                 </div>
 
                 {cat.faqs.map((faq, fi) => {
@@ -301,19 +301,19 @@ export default function FAQPage() {
       {/* ══ CTA BANNER ════════════════════════════════════════ */}
       <section style={{
         padding: 'clamp(40px,6vw,80px) clamp(24px,5vw,80px)',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
+        borderTop: '1px solid rgba(0,0,0,0.06)',
         textAlign: 'center',
       }}>
-        <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(22px,3vw,44px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 12px' }}>
+        <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(22px,3vw,44px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 12px' }}>
           Still have questions?
         </h2>
-        <p style={{ fontFamily: SANS, fontSize: 15, color: 'rgba(255,255,255,0.4)', margin: '0 0 28px' }}>
+        <p style={{ fontFamily: SANS, fontSize: 15, color: 'rgba(0,0,0,0.45)', margin: '0 0 28px' }}>
           Our export team typically replies within 24 hours.
         </p>
         <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
           <a href="/contact" style={{
             display: 'inline-block', fontFamily: SANS, fontSize: 14, fontWeight: 600,
-            background: CRIMSON, color: '#fff', padding: '13px 28px', borderRadius: 999,
+            background: CRIMSON, color: '#111', padding: '13px 28px', borderRadius: 999,
             textDecoration: 'none', transition: 'opacity 0.2s',
           }}
             onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = '0.85')}
@@ -323,7 +323,7 @@ export default function FAQPage() {
           </a>
           <a href="mailto:info@lvspices.com" style={{
             display: 'inline-block', fontFamily: SANS, fontSize: 14, fontWeight: 500,
-            border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)',
+            border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(0,0,0,0.6)',
             padding: '13px 28px', borderRadius: 999, textDecoration: 'none', transition: 'all 0.2s',
           }}
             onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(172,3,59,0.5)'; el.style.color = '#fff'; }}

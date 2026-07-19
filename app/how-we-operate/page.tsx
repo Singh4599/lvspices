@@ -183,14 +183,14 @@ function HeroBanner() {
             fontFamily: SERIF,
             fontSize: 'clamp(28px,5vw,72px)',
             fontWeight: 700,
-            color: '#fff',
+            color: '#111',
             lineHeight: 1.05,
             letterSpacing: '-0.03em',
             margin: '0 0 16px',
           }}>
             LV Spices Infrastructure
           </h1>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, maxWidth: 540 }}>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.6)', lineHeight: 1.7, maxWidth: 540 }}>
             Hathi Spices is one of the leading producers of Spices in Himmatnagar offering Branded as well as B2B supply to qualified producers with premium standards for infrastructure. Hathi Spices always brings the best of the most 5 years of experience in the Food processing Industry like storage, cleaning and processing conditions and focusses towards products that maximize our profitability and secure success.
           </p>
         </div>
@@ -245,15 +245,15 @@ function ProcessZigzag() {
                   borderRadius: 12,
                   overflow: 'hidden',
                   flexShrink: 0,
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(0,0,0,0.08)',
                 }}>
                   <Image src={step.img} alt={step.title} width={180} height={135} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 {/* Text */}
                 <div style={{ textAlign: isLeft ? 'right' : 'left' }}>
                   <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.2em', color: CRIMSON, marginBottom: 6 }}>STEP {step.num}</div>
-                  <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(15px,1.5vw,20px)', fontWeight: 700, color: '#fff', margin: '0 0 8px', lineHeight: 1.2 }}>{step.title}</h3>
-                  <p style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65, margin: 0 }}>{step.desc}</p>
+                  <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(15px,1.5vw,20px)', fontWeight: 700, color: '#111', margin: '0 0 8px', lineHeight: 1.2 }}>{step.title}</h3>
+                  <p style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(0,0,0,0.5)', lineHeight: 1.65, margin: 0 }}>{step.desc}</p>
                 </div>
               </div>
             </div>
@@ -267,13 +267,13 @@ function ProcessZigzag() {
 /* ── Headline Banner ───────────────────────────────────────── */
 function HeadlineBanner() {
   return (
-    <section style={{ padding: 'clamp(40px,5vw,72px) clamp(20px,5vw,80px)', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+    <section style={{ padding: 'clamp(40px,5vw,72px) clamp(20px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.06)', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 40, flexWrap: 'wrap' }}>
         <h2 style={{
           fontFamily: SERIF,
           fontSize: 'clamp(24px,3.5vw,52px)',
           fontWeight: 700,
-          color: '#fff',
+          color: '#111',
           lineHeight: 1.1,
           letterSpacing: '-0.02em',
           flex: '1 1 400px',
@@ -297,20 +297,20 @@ function InfraGrid() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(240px,28vw,340px), 1fr))', gap: 'clamp(20px,2.5vw,32px)' }}>
           {infraItems.map((item) => (
             <div key={item.title} style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.07)',
+              background: 'rgba(0,0,0,0.03)',
+              border: '1px solid rgba(0,0,0,0.07)',
               borderRadius: 16,
               overflow: 'hidden',
               transition: 'border-color 0.3s',
             }}
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(172,3,59,0.4)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(0,0,0,0.07)')}
             >
               <div style={{ height: 160, overflow: 'hidden', position: 'relative' }}>
                 <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover', opacity: 0.75 }} />
               </div>
               <div style={{ padding: '20px 20px 24px' }}>
-                <h3 style={{ fontFamily: SANS, fontSize: 14, fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>{item.title}</h3>
+                <h3 style={{ fontFamily: SANS, fontSize: 14, fontWeight: 700, color: '#111', margin: '0 0 8px' }}>{item.title}</h3>
                 <p style={{ fontFamily: SANS, fontSize: 12.5, color: 'rgba(255,255,255,0.42)', lineHeight: 1.65, margin: 0 }}>{item.desc}</p>
               </div>
             </div>
@@ -330,19 +330,19 @@ function GMPSection() {
           {/* Left — label */}
           <div style={{ flex: '0 0 clamp(200px,25vw,320px)' }}>
             <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 16 }}>Standards</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3vw,48px)', fontWeight: 700, color: '#fff', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0 }}>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(24px,3vw,48px)', fontWeight: 700, color: '#111', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0 }}>
               Good Manufacturing<br />Practices (GMP)
             </h2>
           </div>
           {/* Right — items */}
           <div style={{ flex: 1, minWidth: 280 }}>
             {gmpItems.map((item, i) => (
-              <details key={item.title} style={{ borderBottom: '1px solid rgba(255,255,255,0.07)', paddingBottom: 0 }}>
+              <details key={item.title} style={{ borderBottom: '1px solid rgba(0,0,0,0.07)', paddingBottom: 0 }}>
                 <summary style={{
                   fontFamily: SANS,
                   fontSize: 'clamp(13px,1.1vw,15px)',
                   fontWeight: 600,
-                  color: '#fff',
+                  color: '#111',
                   padding: '20px 0',
                   cursor: 'pointer',
                   display: 'flex',
@@ -353,7 +353,7 @@ function GMPSection() {
                   <span>{item.title}</span>
                   <span style={{ color: CRIMSON, fontSize: 20, fontWeight: 300, flexShrink: 0 }}>+</span>
                 </summary>
-                <p style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(255,255,255,0.5)', lineHeight: 1.75, paddingBottom: 20, margin: 0 }}>{item.desc}</p>
+                <p style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(0,0,0,0.5)', lineHeight: 1.75, paddingBottom: 20, margin: 0 }}>{item.desc}</p>
               </details>
             ))}
           </div>
@@ -366,7 +366,7 @@ function GMPSection() {
 /* ── Page ─────────────────────────────────────────────────── */
 export default function HowWeOperatePage() {
   return (
-    <main style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+    <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
       <HeroBanner />
       <ProcessZigzag />
       <HeadlineBanner />

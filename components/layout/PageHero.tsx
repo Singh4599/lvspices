@@ -25,14 +25,14 @@ export default function PageHero({
 
         <RevealText
           as="h1"
-          className="font-display text-[clamp(2.5rem,7vw,5.5rem)] font-bold leading-[1.05] tracking-tight text-white mt-8 md:mt-10 max-w-5xl"
+          className="font-display text-[clamp(2.5rem,7vw,5.5rem)] font-bold leading-[1.05] tracking-tight text-[#111] mt-8 md:mt-10 max-w-5xl"
           splitBy="words"
         >
           {title}
         </RevealText>
 
         {subtitle && (
-          <p className="text-[clamp(1rem,1.8vw,1.25rem)] text-white/50 leading-relaxed mt-7 md:mt-9 max-w-2xl">
+          <p className="text-[clamp(1rem,1.8vw,1.25rem)] text-[#111]/50 leading-relaxed mt-7 md:mt-9 max-w-2xl">
             {subtitle}
           </p>
         )}
@@ -42,7 +42,7 @@ export default function PageHero({
             {stats.map((s) => (
               <div key={s.label}>
                 <div className="font-mono text-[clamp(2rem,4vw,3.5rem)] font-bold text-[#AC033B] leading-none mb-3">{s.value}</div>
-                <div className="font-sans text-[12px] text-white/30 tracking-[0.15em] uppercase">{s.label}</div>
+                <div className="font-sans text-[12px] text-black/30 tracking-[0.15em] uppercase">{s.label}</div>
               </div>
             ))}
           </div>
