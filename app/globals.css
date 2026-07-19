@@ -9,7 +9,7 @@
   --crimson: #AC033B;
   --white: #FFFFFF;
   --black: #000000;
-  --bg: #000000;
+  --bg: #ffffff;
   --surface: rgba(255,255,255,0.04);
   --surface-hover: rgba(255,255,255,0.07);
   --border: rgba(255,255,255,0.08);
@@ -120,8 +120,8 @@
 }
 
 html {
-  background: #000000;
-  color: #ffffff;
+  background: #ffffff;
+  color: #111111;
   scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -144,8 +144,8 @@ html.lenis, html.lenis body {
 }
 
 body {
-  background: transparent;
-  color: #ffffff;
+  background: #ffffff;
+  color: #111111;
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   line-height: 1.7;
   min-height: 100vh;

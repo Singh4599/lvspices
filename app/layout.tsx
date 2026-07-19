@@ -4,7 +4,6 @@ import { generatePageMeta, generateOrganizationSchema } from '@/lib/seo';
 import SmoothScrollProvider from '@/components/animation/SmoothScrollProvider';
 import ScrollProgress from '@/components/animation/ScrollProgress';
 import PageTransition from '@/components/animation/PageTransition';
-import { WebGLShader } from '@/components/animation/WebGLShader';
 import Loader from '@/components/ui/Loader';
 import { FloatingNav } from '@/components/ui/FloatingNav';
 import Footer from '@/components/layout/Footer';
@@ -35,8 +34,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-black text-white">
-        <WebGLShader />
+      <body className="min-h-full flex flex-col bg-white text-white">
         <ClientEffects />
         <SmoothScrollProvider>
           <PageTransition />

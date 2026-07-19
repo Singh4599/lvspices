@@ -32,8 +32,13 @@ const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 
+// Cloudflare R2 CDN base URL — change via NEXT_PUBLIC_R2_BASE env var in Vercel
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE ?? '';
+
+
 // Responsive helpers via inline styles — works without CSS class dependency
 const PAGE_PAD = 'clamp(20px, 5vw, 64px)';
+
 
 export default function HomePage() {
   return (
@@ -48,16 +53,10 @@ export default function HomePage() {
       {/* PRODUCT GALLERY */}
       <section id="section-products" style={{ padding: 'clamp(16px,2vw,32px) 0 clamp(60px,8vw,80px)', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: '16px', textAlign: 'center', overflow: 'hidden' }}>
-          <ChapterTag label="Our Range" />
           <ScrollReveal delay={0} from={60}>
-            <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(28px,6vw,96px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#fff', margin: '16px 0 12px' }}>
+            <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(28px,6vw,96px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#111', margin: '16px 0 12px' }}>
               Every spice. Every format.
             </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={150} from={30}>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(255,255,255,0.4)', maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
-              500+ SKUs across 12 categories — scroll to explore our full product universe.
-            </p>
           </ScrollReveal>
         </div>
         <div style={{ height: 'clamp(340px, 55vw, 680px)', position: 'relative' }}>
@@ -88,9 +87,8 @@ export default function HomePage() {
       {/* DOME GALLERY */}
       <section id="section-dome" style={{ padding: 'clamp(24px,4vw,40px) 0 0' }}>
         <div style={{ textAlign: 'center', marginBottom: 16 }}>
-          <ChapterTag label="Our World" />
           <ScrollReveal delay={0} from={40}>
-            <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(36px,5vw,72px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '16px 0 0' }}>
+            <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(36px,5vw,72px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '16px 0 0' }}>
               Explore the Spice Universe.
             </h2>
           </ScrollReveal>
@@ -161,12 +159,11 @@ function Hero() {
     };
 
     const loadFrames = (dir: string) => {
-      // Load first frame immediately, then batch-load rest
       const loadBatch = (start: number, end: number) => {
         for (let i = start; i < end && i < TOTAL; i++) {
           const img = new window.Image();
           images[i] = img;
-          img.src = `/frames/${dir}/frame_${String(i + 1).padStart(4, '0')}.webp`;
+          img.src = `${R2_BASE}/frames/${dir}/frame_${String(i + 1).padStart(4, '0')}.webp`;
           img.decoding = 'async';
           img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
         }
@@ -176,7 +173,6 @@ function Hero() {
     };
 
     const resize = () => {
-      // Mobile: DPR=1, Desktop: cap at 1.5 for perf
       const mobile = isMobile();
       const dpr = mobile ? 1 : Math.min(window.devicePixelRatio, 1.5);
       const rect = section.getBoundingClientRect();
@@ -184,12 +180,8 @@ function Hero() {
       const h = rect.height || window.innerHeight;
       canvas.width  = w * dpr;
       canvas.height = h * dpr;
-      // Swap frame set if device type changed
       const newDir = mobile ? 'hero-mobile' : 'hero';
-      if (newDir !== currentDir) {
-        currentDir = newDir;
-        loadFrames(currentDir);
-      }
+      if (newDir !== currentDir) { currentDir = newDir; loadFrames(currentDir); }
       const img = images[Math.round(frameObj.value)];
       if (img?.complete && img?.naturalWidth) drawFrame(img);
     };
@@ -198,8 +190,6 @@ function Hero() {
     window.addEventListener('resize', resize);
     loadFrames(currentDir);
 
-
-    // GSAP hero scroll scrub — plays as user scrolls from top
     const tween = gsap.to(frameObj, {
       value: TOTAL - 1,
       ease: 'none',
@@ -238,6 +228,8 @@ function Hero() {
     </div>
   );
 }
+
+
 
 /* ═══ TICKER ═════════════════════════════════════════════ */
 function TickerBar() {
@@ -280,7 +272,7 @@ function Stats() {
         <div style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 44px)', fontStyle: 'italic', color: CRIMSON, lineHeight: 1, marginBottom: 6 }}>
           {typeof s.value === 'string' && /^\d+$/.test(s.value.replace('+','').replace('%','')) ? <CountUp to={parseInt(s.value)} suffix={s.value.includes('+') ? '+' : s.value.includes('%') ? '%' : ''} /> : s.value}
         </div>
-        <div style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.25em', textTransform: 'uppercase' }}>{s.label}</div>
+        <div style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(0,0,0,0.45)', letterSpacing: '0.25em', textTransform: 'uppercase' }}>{s.label}</div>
       </div>
     )
   }));
@@ -317,8 +309,7 @@ function Certifications() {
   return (
     <section id="section-certifications-inner" style={{ background: 'transparent', padding: `clamp(32px, 4vw, 60px) 0`, overflow: 'hidden' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, textAlign: 'center', marginBottom: 28 }}>
-        <ChapterTag label="Accreditations" />
-        <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(26px, 3.8vw, 60px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', color: '#fff', margin: '28px 0 0' }}>
+        <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(26px, 3.8vw, 60px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', color: '#111', margin: '28px 0 0' }}>
           Global Standards. Zero Compromise.
         </h2>
       </div>
@@ -332,7 +323,7 @@ function Certifications() {
           pauseOnHover={false}
           scaleOnHover={true}
           fadeOut={true}
-          fadeOutColor="#000000"
+          fadeOutColor="#ffffff"
           ariaLabel="Certification Partners"
         />
       </div>
@@ -399,91 +390,8 @@ function CanvasPlaceholder({ label }: { label: string }) {
 }
 
 function WhoWeAre() {
-
-  const sectionRef = useRef<HTMLElement>(null);
-  const canvasRef  = useRef<HTMLCanvasElement>(null);
-  const TOTAL = 240;
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const canvas  = canvasRef.current;
-    if (!section || !canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: false });
-    if (!ctx) return;
-
-    const images: HTMLImageElement[] = new Array(TOTAL);
-    const frameObj = { value: 0 };
-    let rafId: number | null = null;
-    let pendingIdx = 0;
-
-    const drawFrame = (img: HTMLImageElement) => {
-      const cw = canvas.width, ch = canvas.height;
-      const iw = img.naturalWidth, ih = img.naturalHeight;
-      if (!iw || !ih || !cw || !ch) return;
-      const scale = Math.max(cw / iw, ch / ih);
-      ctx.drawImage(img,
-        (iw - cw / scale) / 2, (ih - ch / scale) / 2, cw / scale, ch / scale,
-        0, 0, cw, ch
-      );
-    };
-
-    const scheduleDraw = (idx: number) => {
-      pendingIdx = idx;
-      if (rafId !== null) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const img = images[pendingIdx];
-        if (img?.complete && img?.naturalWidth) drawFrame(img);
-      });
-    };
-
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio, 2);
-      const rect = canvas.getBoundingClientRect();
-      canvas.width  = rect.width  * dpr;
-      canvas.height = rect.height * dpr;
-      const img = images[Math.round(frameObj.value)];
-      if (img?.complete && img?.naturalWidth) drawFrame(img);
-    };
-
-    // load all frames
-    for (let i = 0; i < TOTAL; i++) {
-      const img = new window.Image();
-      images[i] = img;
-      img.src = `/frames/who-we-are/frame_${String(i + 1).padStart(4, '0')}.webp`;
-      img.decoding = 'async';
-      img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    // GSAP: scroll starts exactly when section CENTER hits viewport CENTER
-    const tween = gsap.to(frameObj, {
-      value: TOTAL - 1,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'center center',   // section center == viewport center
-        end: '+=1800',
-        pin: true,
-        anticipatePin: 1,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        onRefresh: () => resize(),
-      },
-      onUpdate: () => scheduleDraw(Math.round(frameObj.value)),
-    });
-
-    return () => {
-      if (rafId !== null) cancelAnimationFrame(rafId);
-      window.removeEventListener('resize', resize);
-      tween.scrollTrigger?.kill();
-      tween.kill();
-    };
-  }, []);
-
   return (
-    <section ref={sectionRef} style={{ padding: 'clamp(40px,5vw,80px) 0', background: 'transparent' }}>
+    <section style={{ padding: 'clamp(40px,5vw,80px) 0', background: 'transparent' }}>
       <div style={{ 
         maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, 
         display: 'flex', flexWrap: 'wrap', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center' 
@@ -491,12 +399,11 @@ function WhoWeAre() {
         
         {/* Left Side: Headings & Content */}
         <div style={{ flex: 1, minWidth: 'min(100%, 400px)' }}>
-          <ChapterTag label="Our Story" />
           <h2 suppressHydrationWarning style={{
             fontFamily: SERIF,
-            fontSize: 'clamp(32px,5vw,64px)',
+            fontSize: 'clamp(40px,6vw,84px)',
             fontWeight: 700,
-            color: '#fff',
+            color: '#111',
             lineHeight: 1.0,
             letterSpacing: '-0.03em',
             margin: '16px 0 0',
@@ -516,22 +423,17 @@ function WhoWeAre() {
           }}>
             Farm to Factory
           </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px, 1.1vw, 16px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, margin: 0 }}>
-              Founded in 1975 — five decades of farm-to-shelf mastery, serving 40+ countries across 5 continents. Every grain, every colour, every aroma — controlled from origin.
-            </p>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px, 1.1vw, 16px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, margin: 0 }}>
-              Our sourcing journey begins at carefully selected chilli farms across Rajasthan, Andhra Pradesh, and Madhya Pradesh. We manage over 500+ acres of contracted, fully traceable, and strictly pesticide-free farming to ensure the absolute highest standards of quality from the very root.
-            </p>
-          </div>
         </div>
 
-        {/* Right Side: Frame-scrub canvas */}
-        <div style={{ flex: 1, minWidth: 'min(100%, 400px)', position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '16/9', background: '#111' }}>
-          <canvas
-            ref={canvasRef}
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
+        {/* Right Side: Direct video */}
+        <div style={{ flex: 1, minWidth: 'min(100%, 400px)', position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '16/9' }}>
+          <video
+            src="/videos/whoweare.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />
         </div>
 
@@ -543,148 +445,58 @@ function WhoWeAre() {
 
 
 /* WHAT WE DO */
-function FrameScrubStep({
+function VideoStep({
   num,
   title,
-  desc,
-  framesDir,
-  frameCount,
+  video,
   imageRight,
 }: {
   num: string;
   title: string;
-  desc: string;
-  framesDir: string;
-  frameCount: number;
+  video: string;
   imageRight: boolean;
 }) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const canvasRef  = useRef<HTMLCanvasElement>(null);
-  const loadedRef  = useRef(false);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const canvas  = canvasRef.current;
-    if (!section || !canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: false });
-    if (!ctx) return;
-
-    const images: HTMLImageElement[] = new Array(frameCount);
-    const frameObj = { value: 0 };
-    let rafId: number | null = null;
-    let pendingIdx = 0;
-    let tween: gsap.core.Tween | null = null;
-
-    const isMobile = window.innerWidth <= 768;
-
-    const drawFrame = (img: HTMLImageElement) => {
-      const cw = canvas.width, ch = canvas.height;
-      const iw = img.naturalWidth, ih = img.naturalHeight;
-      if (!iw || !ih || !cw || !ch) return;
-      const scale = Math.max(cw / iw, ch / ih);
-      ctx.drawImage(img,
-        (iw - cw / scale) / 2, (ih - ch / scale) / 2, cw / scale, ch / scale,
-        0, 0, cw, ch
-      );
-    };
-
-    const scheduleDraw = (idx: number) => {
-      pendingIdx = idx;
-      if (rafId !== null) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const img = images[pendingIdx];
-        if (img?.complete && img?.naturalWidth) drawFrame(img);
-      });
-    };
-
-    const resize = () => {
-      // Cap DPR: 1 on mobile, 1.5 on desktop for perf
-      const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5);
-      const rect = canvas.getBoundingClientRect();
-      canvas.width  = rect.width  * dpr;
-      canvas.height = rect.height * dpr;
-      const img = images[Math.round(frameObj.value)];
-      if (img?.complete && img?.naturalWidth) drawFrame(img);
-    };
-
-    const startGSAP = () => {
-      resize();
-      tween = gsap.to(frameObj, {
-        value: frameCount - 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'center center',
-          end: '+=1200',
-          pin: true,
-          anticipatePin: 1,
-          scrub: 1,
-          invalidateOnRefresh: true,
-          onRefresh: () => resize(),
-        },
-        onUpdate: () => scheduleDraw(Math.round(frameObj.value)),
-      });
-    };
-
-    // Lazy-load: only fetch frames when section is ~1.5 viewports away
-    const loadFrames = () => {
-      if (loadedRef.current) return;
-      loadedRef.current = true;
-      for (let i = 0; i < frameCount; i++) {
-        const img = new window.Image();
-        images[i] = img;
-        img.src = `/frames/${framesDir}/frame_${String(i + 1).padStart(4, '0')}.webp`;
-        img.decoding = 'async';
-        img.decode()
-          .then(() => { if (i === 0) { resize(); drawFrame(img); } })
-          .catch(() => {});
-      }
-      startGSAP();
-    };
-
-    window.addEventListener('resize', resize);
-
-    // IntersectionObserver — trigger load when section is 150% vh away
-    const observer = new IntersectionObserver(
-      (entries) => { if (entries[0].isIntersecting) { loadFrames(); observer.disconnect(); } },
-      { rootMargin: '150% 0px' }
-    );
-    observer.observe(section);
-
-    return () => {
-      if (rafId !== null) cancelAnimationFrame(rafId);
-      window.removeEventListener('resize', resize);
-      observer.disconnect();
-      tween?.scrollTrigger?.kill();
-      tween?.kill();
-    };
-  }, [framesDir, frameCount]);
-
-
   return (
     <div
-      ref={sectionRef}
       style={{
         display: 'flex',
         flexDirection: imageRight ? 'row-reverse' : 'row',
         gap: 'clamp(32px, 5vw, 64px)',
         alignItems: 'center',
-        maxWidth: 1400, margin: '0 auto', padding: `clamp(40px, 6vw, 80px) ${PAGE_PAD}`,
-        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        maxWidth: 1400, margin: '0 auto 10vh', padding: `clamp(60px, 8vw, 120px) ${PAGE_PAD}`,
         flexWrap: 'wrap'
       }}
     >
-      <div style={{ flex: 1, minWidth: 'min(100%, 300px)' }}>
+      <div style={{ flex: 0.8, minWidth: 'min(100%, 300px)' }}>
         <div style={{ fontFamily: SERIF, fontSize: 'clamp(48px, 6vw, 80px)', fontStyle: 'italic', color: CRIMSON, lineHeight: 1, marginBottom: 16 }}>{num}</div>
-        <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#fff', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.1 }}>{title}</h3>
-        <p style={{ fontFamily: SANS, fontSize: 'clamp(15px, 1.2vw, 18px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>{desc}</p>
+        <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#111', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.1 }}>{title}</h3>
       </div>
-      <div style={{ flex: 1, minWidth: 'min(100%, 300px)', position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '16/9', background: '#111' }}>
-        <canvas
-          ref={canvasRef}
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
-        />
+      <div style={{ flex: 1.6, minWidth: 'min(100%, 400px)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ position: 'relative', width: '105%', aspectRatio: '16/9' }}>
+          {/* Soft fog shadow */}
+          <div style={{
+            position: 'absolute',
+            top: '-25%', left: '-25%', width: '150%', height: '150%',
+            background: 'radial-gradient(circle at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 30%, rgba(0,0,0,0) 60%)',
+            filter: 'blur(40px)',
+            zIndex: 0,
+            pointerEvents: 'none'
+          }} />
+          {/* Direct video — autoplay, muted, loop */}
+          <video
+            src={video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              position: 'absolute', inset: 0, width: '100%', height: '100%',
+              objectFit: 'cover', zIndex: 1,
+              WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 72%)',
+              maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 72%)'
+            }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -692,173 +504,47 @@ function FrameScrubStep({
 
 function WhatWeDo() {
   const steps = [
-    { num: '01', title: 'Raw Material\nProcurement', framesDir: 'raw-material', frameCount: 96,
-      desc: 'Our sourcing journey begins at carefully selected chilli farms. Direct sourcing from 500+ certified farms ensuring complete backward integration and GPS traceability from farm to factory.',
-      mobileDesc: 'Direct sourcing from 500+ certified farms with GPS traceability.' },
-    { num: '02', title: 'Storage', framesDir: 'storage-whatwedo', frameCount: 96,
-      desc: 'Upon arrival, materials are stored in our state-of-the-art climate-controlled warehousing preventing moisture build-up, microbial growth, and cross-contamination prior to processing.',
-      mobileDesc: 'Climate-controlled warehousing preventing moisture and cross-contamination.' },
-    { num: '03', title: 'RM Inspection', framesDir: 'rm-inspection-new', frameCount: 96,
-      desc: 'Every batch undergoes rigorous inbound testing for moisture levels, microbial load, aflatoxins, and pesticide residue to ensure absolute compliance with global standards.',
-      mobileDesc: 'Rigorous testing for moisture, microbial load, and pesticide residue.' },
-    { num: '04', title: 'Cleaning &\nSorting', framesDir: 'cleaning-sorting-new', frameCount: 144,
-      desc: 'We utilize advanced Optical Sortex technology and multi-stage mechanical cleaning to meticulously remove any foreign matter, dust, and physically damaged units.',
-      mobileDesc: 'Optical Sortex tech removes foreign matter and damaged units.' },
-    { num: '05', title: 'Metal\nDetection', framesDir: 'metal-detection-new', frameCount: 96,
-      desc: 'Our processing lines are equipped with ultra-sensitive industrial metal detectors ensuring zero ferrous, non-ferrous, or stainless steel contamination in the raw materials.',
-      mobileDesc: 'Zero ferrous or stainless steel contamination via industrial detectors.' },
-    { num: '06', title: 'Roasting', framesDir: 'roasting-new', frameCount: 96,
-      desc: 'Spices are subjected to precision temperature-controlled roasting, unlocking their deep natural aroma while carefully maintaining optimal moisture levels for maximum shelf life.',
-      mobileDesc: 'Temperature-controlled roasting unlocks aroma while maintaining moisture.' },
-    { num: '07', title: 'Cryogenic\nGrinding', framesDir: 'grinding-new2', frameCount: 61,
-      desc: 'Advanced liquid nitrogen grinding processes at sub-zero temperatures preserve the highly volatile essential oils, natural colour, and delicate flavor profiles of the spices.',
-      mobileDesc: 'Liquid nitrogen grinding preserves volatile oils and natural colour.' },
-    { num: '08', title: 'Packaging\nLine', framesDir: 'packaging-new', frameCount: 96,
-      desc: 'Fully automated, contactless hygienic packaging systems rapidly pack the finished products into consumer pouches, retail jars, and bulk industrial bags.',
-      mobileDesc: 'Automated hygienic packaging for pouches, jars, and bulk bags.' },
-    { num: '09', title: 'Steam\nSterilization', framesDir: 'steam-sterilization', frameCount: 192,
-      desc: 'Our FDA-compliant steam sterilization chamber achieves a guaranteed 5-log pathogen reduction without the use of harmful chemicals or irradiation.',
-      mobileDesc: 'FDA-compliant chamber achieves 5-log pathogen reduction without chemicals.' },
-    { num: '10', title: 'Quality\nAssurance', framesDir: 'quality-check-new', frameCount: 96,
-      desc: 'Our NABL-accredited in-house FSSAI laboratory conducts comprehensive testing on 200+ physical, chemical, and microbiological parameters for every single batch.',
-      mobileDesc: 'In-house FSSAI lab tests 200+ physical and chemical parameters.' },
-    { num: '11', title: 'Shipment\nClearance & Dispatch', framesDir: 'dispatch-new', frameCount: 192,
-      desc: 'We handle end-to-end export documentation, custom clearance, and strict pre-shipment inspections ensuring smooth global dispatch to over 40 countries.',
-      mobileDesc: 'End-to-end export documentation and pre-shipment inspection before dispatch.' },
+    { num: '01', title: 'Raw Material\nProcurement', video: '/videos/raw.mp4' },
+    { num: '02', title: 'Storage',                   video: '/videos/storing-spices.mp4' },
+    { num: '03', title: 'RM Inspection',              video: '/videos/rm-inspection.mp4' },
+    { num: '04', title: 'Cleaning &\nSorting',        video: '/videos/cleaning-sorting.mp4' },
+    { num: '05', title: 'Metal\nDetection',           video: '/videos/metal-detection.mp4' },
+    { num: '06', title: 'Roasting',                   video: '/videos/roasting.mp4' },
+    { num: '07', title: 'Cryogenic\nGrinding',        video: '/videos/cryogenic-grinding-new.mp4' },
+    { num: '08', title: 'Packaging\nLine',            video: '/videos/process.mp4' },
+    { num: '09', title: 'Steam\nSterilization',       video: '/videos/steam-sterilization.mp4' },
+    { num: '10', title: 'Quality\nAssurance',         video: '/videos/quality-check.mp4' },
+    { num: '11', title: 'Shipment\nClearance & Dispatch', video: '/videos/dispatch.mp4' },
   ];
 
   return (
     <section style={{ padding: 'clamp(16px,2vw,24px) 0' }}>
       {/* Section header */}
       <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(20px,3vw,40px)' }}>
-        <ChapterTag label="Our Process" />
         <div className="header-flex-row" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
           <h2 suppressHydrationWarning style={{
             fontFamily: SERIF,
             fontSize: 'clamp(40px,6vw,96px)',
             fontWeight: 700,
-            color: '#fff',
+            color: '#111',
             lineHeight: 1.0,
             letterSpacing: '-0.03em',
             margin: '16px 0 0',
           }}>
             What We Do.
           </h2>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,16px)', color: 'rgba(255,255,255,0.38)', lineHeight: 1.65, maxWidth: 360, margin: '0 0 8px', paddingBottom: 8 }}>
-            Eleven precision steps — from raw material to global shelf. Every step controlled, certified and traceable.
-          </p>
         </div>
       </div>
 
-      {/* Step 01: Raw Material Procurement */}
-      <FrameScrubStep
-        num={steps[0].num}
-        title={steps[0].title}
-        desc={steps[0].desc}
-        framesDir={steps[0].framesDir}
-        frameCount={steps[0].frameCount}
-        imageRight={false}
-      />
-
-      {/* Step 02: Storage */}
-      <FrameScrubStep
-        num={steps[1].num}
-        title={steps[1].title}
-        desc={steps[1].desc}
-        framesDir={steps[1].framesDir}
-        frameCount={steps[1].frameCount}
-        imageRight={true}
-      />
-
-      {/* Step 03: RM Inspection */}
-      <FrameScrubStep
-        num={steps[2].num}
-        title={steps[2].title}
-        desc={steps[2].desc}
-        framesDir={steps[2].framesDir}
-        frameCount={steps[2].frameCount}
-        imageRight={false}
-      />
-
-      {/* Step 04: Cleaning & Sorting */}
-      <FrameScrubStep
-        num={steps[3].num}
-        title={steps[3].title}
-        desc={steps[3].desc}
-        framesDir={steps[3].framesDir}
-        frameCount={steps[3].frameCount}
-        imageRight={true}
-      />
-
-      {/* Step 05: Metal Detection */}
-      <FrameScrubStep
-        num={steps[4].num}
-        title={steps[4].title}
-        desc={steps[4].desc}
-        framesDir={steps[4].framesDir}
-        frameCount={steps[4].frameCount}
-        imageRight={false}
-      />
-
-      {/* Step 06: Roasting */}
-      <FrameScrubStep
-        num={steps[5].num}
-        title={steps[5].title}
-        desc={steps[5].desc}
-        framesDir={steps[5].framesDir}
-        frameCount={steps[5].frameCount}
-        imageRight={true}
-      />
-
-      {/* Step 07: Cryogenic Grinding */}
-      <FrameScrubStep
-        num={steps[6].num}
-        title={steps[6].title}
-        desc={steps[6].desc}
-        framesDir={steps[6].framesDir}
-        frameCount={steps[6].frameCount}
-        imageRight={false}
-      />
-
-      {/* Step 08: Packaging Line */}
-      <FrameScrubStep
-        num={steps[7].num}
-        title={steps[7].title}
-        desc={steps[7].desc}
-        framesDir={steps[7].framesDir}
-        frameCount={steps[7].frameCount}
-        imageRight={true}
-      />
-
-      {/* Step 09: Steam Sterilization */}
-      <FrameScrubStep
-        num={steps[8].num}
-        title={steps[8].title}
-        desc={steps[8].desc}
-        framesDir={steps[8].framesDir}
-        frameCount={steps[8].frameCount}
-        imageRight={false}
-      />
-
-      {/* Step 10: Quality Assurance */}
-      <FrameScrubStep
-        num={steps[9].num}
-        title={steps[9].title}
-        desc={steps[9].desc}
-        framesDir={steps[9].framesDir}
-        frameCount={steps[9].frameCount}
-        imageRight={true}
-      />
-
-      {/* Step 11: Shipment & Dispatch */}
-      <FrameScrubStep
-        num={steps[10].num}
-        title={steps[10].title}
-        desc={steps[10].desc}
-        framesDir={steps[10].framesDir}
-        frameCount={steps[10].frameCount}
-        imageRight={false}
-      />
+      {steps.map((step, i) => (
+        <VideoStep
+          key={step.num}
+          num={step.num}
+          title={step.title}
+          video={step.video}
+          imageRight={i % 2 !== 0}
+        />
+      ))}
     </section>
   );
 }
@@ -867,66 +553,41 @@ function WhatWeDo() {
 /* RESOURCES */
 function Resources() {
   const resourceSteps = [
-    { num: '01', title: 'Inhouse Lab',             framesDir: 'inhouse-lab-new',       frameCount: 144,
-      desc: 'Our advanced NABL-accredited testing laboratory is equipped to analyze over 200+ quality parameters for every production batch, ensuring zero defects.' },
-    { num: '02', title: 'Cold Storage',            framesDir: 'cold-storage-new2',      frameCount: 144,
-      desc: 'Our massive temperature-controlled cold chain infrastructure preserves highly volatile essential oils, active compounds, and natural color over extended storage periods.' },
-    { num: '03', title: 'Product R&D',             framesDir: 'product-rd-new',         frameCount: 144,
-      desc: 'Our dedicated food scientists are continuously developing innovative new spice blends, seasonings, and functional formulations tailored for diverse global markets.' },
-    { num: '04', title: 'Private Label',           framesDir: 'private-label-new',      frameCount: 192,
-      desc: 'We offer comprehensive end-to-end private branding, custom recipe formulations, and flexible co-packing solutions for major global retailers and food brands.' },
-    { num: '05', title: 'Customized\nSolution',    framesDir: 'customised-new',         frameCount: 192,
-      desc: 'From bespoke spice blends and specific particle sizes to unique packaging requirements, our solutions are meticulously tailored to your exact needs.' },
-    { num: '06', title: 'Safety & Quality\nPractices', framesDir: 'safety-quality-new', frameCount: 144,
-      desc: 'We maintain an FDA and EU certified zero-tolerance policy on contamination, featuring complete farm-to-shelf traceability for absolute consumer safety.' },
-    { num: '07', title: 'Annual Export\nSpice Stock',  framesDir: 'annual-export-new',  frameCount: 192,
-      desc: 'With a robust inventory managing over 500+ containers annually, we ensure a highly consistent and uninterrupted supply chain across 40+ countries.' },
-    { num: '08', title: 'Agent Network',           framesDir: 'agent-network-new',      frameCount: 144,
-      desc: 'Our highly active and expansive global distributor network ensures rapid last-mile delivery and strict adherence to local regulatory compliance.' },
-    { num: '09', title: 'Professional\nTeam',      framesDir: 'professional-team-new',  frameCount: 144,
-      desc: 'A dedicated team of 200+ experienced food scientists, agronomists, and supply chain engineers actively manage every aspect of our operations.' },
-    { num: '10', title: 'Market Insights',         framesDir: 'market-insights-new',    frameCount: 144,
-      desc: 'We leverage real-time pricing intelligence, geopolitical crop trend analysis, and deep market insights to optimize our strategic sourcing decisions.' },
+    { num: '01', title: 'Inhouse Lab',                   video: '/videos/inhouse-lab.mp4' },
+    { num: '02', title: 'Cold Storage',                  video: '/videos/cold-storage.mp4' },
+    { num: '03', title: 'Product R&D',                   video: '/videos/product-rd.mp4' },
+    { num: '04', title: 'Private Label',                 video: '/videos/private-label.mp4' },
+    { num: '05', title: 'Customized\nSolution',          video: '/videos/customised.mp4' },
+    { num: '06', title: 'Safety & Quality\nPractices',   video: '/videos/safety-quality.mp4' },
+    { num: '07', title: 'Annual Export\nSpice Stock',    video: '/videos/annual-export.mp4' },
+    { num: '08', title: 'Agent Network',                 video: '/videos/agent-network.mp4' },
+    { num: '09', title: 'Professional\nTeam',            video: '/videos/professional-team.mp4' },
+    { num: '10', title: 'Market Insights',               video: '/videos/market-insights.mp4' },
   ];
 
   return (
     <section style={{ padding: 'clamp(40px,5vw,80px) 0' }}>
       {/* Header: single column, no video */}
       <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(40px, 6vw, 80px)' }}>
-        <ChapterTag label="Why Choose Us" />
         <h2 suppressHydrationWarning style={{
           fontFamily: SERIF,
           fontSize: 'clamp(40px,6vw,96px)',
           fontWeight: 700,
-          color: '#fff',
+          color: '#111',
           lineHeight: 1.0,
           letterSpacing: '-0.03em',
           margin: '16px 0 0',
         }}>
           Why Choose Us.
         </h2>
-        <div suppressHydrationWarning style={{
-          fontFamily: SANS,
-          fontSize: 'clamp(14px,1.5vw,18px)',
-          fontWeight: 400,
-          color: '#AC033B',
-          marginTop: '12px',
-          textTransform: 'uppercase',
-          letterSpacing: '0.1em',
-        }}>
-          Resources & Infrastructure
-        </div>
       </div>
 
-      {/* 10 resource steps — frame-scrub with GSAP center trigger */}
       {resourceSteps.map((step, i) => (
-        <FrameScrubStep
+        <VideoStep
           key={step.num}
           num={step.num}
           title={step.title}
-          desc={step.desc}
-          framesDir={step.framesDir}
-          frameCount={step.frameCount}
+          video={step.video}
           imageRight={i % 2 !== 0}
         />
       ))}
@@ -941,7 +602,7 @@ function ChapterTag({ number, label }: { number?: string; label: string }) {
       {number && <span style={{ fontFamily: SERIF, fontSize: 'clamp(24px, 3vw, 48px)', fontWeight: 700, fontStyle: 'italic', color: CRIMSON, lineHeight: 1 }}>{number}</span>}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ height: 1, width: 24, background: CRIMSON }} />
-        <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', fontWeight: 600 }}>{label}</span>
+        <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.45)', fontWeight: 600 }}>{label}</span>
       </div>
     </div>
   );
@@ -977,8 +638,8 @@ function OutlineBtn({ href, label, dark = false }: { href: string; label: string
   return (
     <Link href={href} style={{
       display: 'inline-flex', alignItems: 'center', gap: 10,
-      background: 'transparent', color: '#fff',
-      border: `1px solid rgba(255,255,255,0.25)`,
+      background: 'transparent', color: '#111',
+      border: `1px solid rgba(0,0,0,0.25)`,
       padding: 'clamp(12px, 1.5vw, 18px) clamp(20px, 2.5vw, 36px)',
       fontFamily: MONO, fontSize: 11, letterSpacing: '0.18em',
       textTransform: 'uppercase', textDecoration: 'none',
@@ -999,8 +660,8 @@ function ProductCard({ slug, name, shortDesc }: { slug: string; name: string; sh
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderBottomColor = 'transparent'; }}
     >
       <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.18em', color: CRIMSON, textTransform: 'uppercase', marginBottom: 10 }}>Explore →</p>
-      <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.8vw, 22px)', fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: 8 }}>{name}</h3>
-      <p style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.55 }}>{shortDesc}</p>
+      <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.8vw, 22px)', fontWeight: 700, color: '#111', lineHeight: 1.2, marginBottom: 8 }}>{name}</h3>
+      <p style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(0,0,0,0.5)', lineHeight: 1.55 }}>{shortDesc}</p>
     </Link>
   );
 }
@@ -1030,8 +691,8 @@ function StaticProcessStep({
     }}>
       <div style={{ flex: 1, minWidth: 'min(100%, 300px)' }}>
         {num && <div style={{ fontFamily: SERIF, fontSize: 'clamp(48px, 6vw, 80px)', fontStyle: 'italic', color: CRIMSON, lineHeight: 1, marginBottom: 16 }}>{num}</div>}
-        <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#fff', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.1 }}>{title}</h3>
-        <p style={{ fontFamily: SANS, fontSize: 'clamp(15px, 1.2vw, 18px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>{desc}</p>
+        <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#111', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.1 }}>{title}</h3>
+        <p style={{ fontFamily: SANS, fontSize: 'clamp(15px, 1.2vw, 18px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.7 }}>{desc}</p>
       </div>
       <div style={{ flex: 1, minWidth: 'min(100%, 300px)', width: '100%' }}>
         <CanvasPlaceholder label={label} />

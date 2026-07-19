@@ -1,0 +1,9 @@
+# Exclude frames from Vercel deployment — served via Cloudflare R2 CDN instead
+public/frames
+public/frames/**
+
+# Exclude scripts
+scripts
+
+# Exclude dev videos
+*.mp4
