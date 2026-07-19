@@ -141,114 +141,84 @@ function Divider() {
 /* ═══ HERO ═══════════════════════════════════════════════ */
 function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const canvasRef  = useRef<HTMLCanvasElement>(null);
-  const TOTAL = 240;
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
     const section = sectionRef.current;
-    const canvas  = canvasRef.current;
-    if (!section || !canvas) return;
+    if (!video || !canvas || !section) return;
+
+    // JS-based source selection — media attribute on <source> is unreliable
+    const isMob = window.innerWidth <= 768;
+    const src = isMob ? '/videos/hero-mobile.mp4' : '/videos/hero-desktop.mp4';
+    // Cache-bust so browser doesn't serve stale video
+    video.src = src + '?v=3';
+    video.load();
+
     const ctx = canvas.getContext('2d', { alpha: false });
-    if (!ctx) return;
-
-    const isMobile = () => window.innerWidth <= 768;
-
-    const images: HTMLImageElement[] = new Array(TOTAL);
-    const frameObj = { value: 0 };
-    let rafId: number | null = null;
-    let pendingIdx = 0;
-    let currentDir = isMobile() ? 'hero-mobile' : 'hero';
-
-    const drawFrame = (img: HTMLImageElement) => {
-      const cw = canvas.width, ch = canvas.height;
-      const iw = img.naturalWidth, ih = img.naturalHeight;
-      if (!iw || !ih || !cw || !ch) return;
-      const scale = Math.max(cw / iw, ch / ih);
-      ctx.drawImage(img, (iw - cw / scale) / 2, (ih - ch / scale) / 2, cw / scale, ch / scale, 0, 0, cw, ch);
+    const render = () => {
+      if (!ctx || !video.videoWidth) return;
+      const hRatio = canvas.width / video.videoWidth;
+      const vRatio = canvas.height / video.videoHeight;
+      const ratio = Math.max(hRatio, vRatio);
+      const cx = (canvas.width - video.videoWidth * ratio) / 2;
+      const cy = (canvas.height - video.videoHeight * ratio) / 2;
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, cx, cy, video.videoWidth * ratio, video.videoHeight * ratio);
     };
 
-    const scheduleDraw = (idx: number) => {
-      pendingIdx = idx;
-      if (rafId !== null) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const img = images[pendingIdx];
-        if (img?.complete && img?.naturalWidth) drawFrame(img);
-      });
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      render();
     };
 
-    const loadFrames = (dir: string) => {
-      const loadBatch = (start: number, end: number) => {
-        for (let i = start; i < end && i < TOTAL; i++) {
-          const img = new window.Image();
-          images[i] = img;
-          img.src = `${R2_BASE}/frames/${dir}/frame_${String(i + 1).padStart(4, '0')}.webp`;
-          img.decoding = 'async';
-          img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    video.addEventListener('loadedmetadata', handleResize);
+    video.addEventListener('seeked', render);
+
+    // Scrub through full video duration on scroll
+    video.addEventListener('loadedmetadata', () => {
+      const dur = video.duration || 10;
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: '+=3000',
+          pin: true,
+          scrub: 0.1,
         }
-        if (end < TOTAL) setTimeout(() => loadBatch(end, end + 20), 16);
-      };
-      loadBatch(0, 20);
-    };
-
-    const resize = () => {
-      const mobile = isMobile();
-      const dpr = mobile ? 1 : Math.min(window.devicePixelRatio, 1.5);
-      const rect = section.getBoundingClientRect();
-      const w = rect.width  || window.innerWidth;
-      const h = rect.height || window.innerHeight;
-      canvas.width  = w * dpr;
-      canvas.height = h * dpr;
-      const newDir = mobile ? 'hero-mobile' : 'hero';
-      if (newDir !== currentDir) { currentDir = newDir; loadFrames(currentDir); }
-      const img = images[Math.round(frameObj.value)];
-      if (img?.complete && img?.naturalWidth) drawFrame(img);
-    };
-
-    resize();
-    window.addEventListener('resize', resize);
-    loadFrames(currentDir);
-
-    const tween = gsap.to(frameObj, {
-      value: TOTAL - 1,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: '+=2500',
-        pin: true,
-        anticipatePin: 1,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        onRefresh: () => resize(),
-      },
-      onUpdate: () => scheduleDraw(Math.round(frameObj.value)),
-    });
+      }).to(video, { currentTime: dur - 0.1, ease: 'none', duration: 1 });
+    }, { once: true });
 
     return () => {
-      if (rafId !== null) cancelAnimationFrame(rafId);
-      window.removeEventListener('resize', resize);
-      tween.scrollTrigger?.kill();
-      tween.kill();
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   return (
-    <div>
-      <section
-        ref={sectionRef}
-        style={{ position: 'relative', width: '100%', height: '100svh', overflow: 'hidden', background: '#000' }}
-      >
-        <canvas
-          ref={canvasRef}
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
-        />
-      </section>
-    </div>
+    <section
+      ref={sectionRef}
+      style={{ position: 'relative', width: '100%', height: '100svh', overflow: 'hidden', background: '#000' }}
+    >
+      <video
+        ref={videoRef}
+        playsInline
+        muted
+        preload="auto"
+        style={{ display: 'none' }}
+      />
+      <canvas
+        ref={canvasRef}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
+      />
+    </section>
   );
 }
-
-
 
 /* ═══ TICKER ═════════════════════════════════════════════ */
 function TickerBar() {
