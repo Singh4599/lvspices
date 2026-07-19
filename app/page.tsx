@@ -161,24 +161,31 @@ function Hero() {
     };
 
     const loadFrames = (dir: string) => {
-      for (let i = 0; i < TOTAL; i++) {
-        const img = new window.Image();
-        images[i] = img;
-        img.src = `/frames/${dir}/frame_${String(i + 1).padStart(4, '0')}.jpg`;
-        img.decoding = 'async';
-        img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
-      }
+      // Load first frame immediately, then batch-load rest
+      const loadBatch = (start: number, end: number) => {
+        for (let i = start; i < end && i < TOTAL; i++) {
+          const img = new window.Image();
+          images[i] = img;
+          img.src = `/frames/${dir}/frame_${String(i + 1).padStart(4, '0')}.webp`;
+          img.decoding = 'async';
+          img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
+        }
+        if (end < TOTAL) setTimeout(() => loadBatch(end, end + 20), 16);
+      };
+      loadBatch(0, 20);
     };
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio, 2);
+      // Mobile: DPR=1, Desktop: cap at 1.5 for perf
+      const mobile = isMobile();
+      const dpr = mobile ? 1 : Math.min(window.devicePixelRatio, 1.5);
       const rect = section.getBoundingClientRect();
       const w = rect.width  || window.innerWidth;
       const h = rect.height || window.innerHeight;
       canvas.width  = w * dpr;
       canvas.height = h * dpr;
       // Swap frame set if device type changed
-      const newDir = isMobile() ? 'hero-mobile' : 'hero';
+      const newDir = mobile ? 'hero-mobile' : 'hero';
       if (newDir !== currentDir) {
         currentDir = newDir;
         loadFrames(currentDir);
@@ -190,6 +197,7 @@ function Hero() {
     resize();
     window.addEventListener('resize', resize);
     loadFrames(currentDir);
+
 
     // GSAP hero scroll scrub — plays as user scrolls from top
     const tween = gsap.to(frameObj, {
@@ -442,7 +450,7 @@ function WhoWeAre() {
     for (let i = 0; i < TOTAL; i++) {
       const img = new window.Image();
       images[i] = img;
-      img.src = `/frames/who-we-are/frame_${String(i + 1).padStart(4, '0')}.jpg`;
+      img.src = `/frames/who-we-are/frame_${String(i + 1).padStart(4, '0')}.webp`;
       img.decoding = 'async';
       img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
     }
@@ -552,6 +560,7 @@ function FrameScrubStep({
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const canvasRef  = useRef<HTMLCanvasElement>(null);
+  const loadedRef  = useRef(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -564,6 +573,9 @@ function FrameScrubStep({
     const frameObj = { value: 0 };
     let rafId: number | null = null;
     let pendingIdx = 0;
+    let tween: gsap.core.Tween | null = null;
+
+    const isMobile = window.innerWidth <= 768;
 
     const drawFrame = (img: HTMLImageElement) => {
       const cw = canvas.width, ch = canvas.height;
@@ -587,7 +599,8 @@ function FrameScrubStep({
     };
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio, 2);
+      // Cap DPR: 1 on mobile, 1.5 on desktop for perf
+      const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5);
       const rect = canvas.getBoundingClientRect();
       canvas.width  = rect.width  * dpr;
       canvas.height = rect.height * dpr;
@@ -595,40 +608,59 @@ function FrameScrubStep({
       if (img?.complete && img?.naturalWidth) drawFrame(img);
     };
 
-    for (let i = 0; i < frameCount; i++) {
-      const img = new window.Image();
-      images[i] = img;
-      img.src = `/frames/${framesDir}/frame_${String(i + 1).padStart(4, '0')}.jpg`;
-      img.decoding = 'async';
-      img.decode().then(() => { if (i === 0) { resize(); drawFrame(img); } }).catch(() => {});
-    }
-    resize();
+    const startGSAP = () => {
+      resize();
+      tween = gsap.to(frameObj, {
+        value: frameCount - 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'center center',
+          end: '+=1200',
+          pin: true,
+          anticipatePin: 1,
+          scrub: 1,
+          invalidateOnRefresh: true,
+          onRefresh: () => resize(),
+        },
+        onUpdate: () => scheduleDraw(Math.round(frameObj.value)),
+      });
+    };
+
+    // Lazy-load: only fetch frames when section is ~1.5 viewports away
+    const loadFrames = () => {
+      if (loadedRef.current) return;
+      loadedRef.current = true;
+      for (let i = 0; i < frameCount; i++) {
+        const img = new window.Image();
+        images[i] = img;
+        img.src = `/frames/${framesDir}/frame_${String(i + 1).padStart(4, '0')}.webp`;
+        img.decoding = 'async';
+        img.decode()
+          .then(() => { if (i === 0) { resize(); drawFrame(img); } })
+          .catch(() => {});
+      }
+      startGSAP();
+    };
+
     window.addEventListener('resize', resize);
 
-    // Scroll starts when section CENTER hits viewport CENTER
-    const tween = gsap.to(frameObj, {
-      value: frameCount - 1,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'center center',
-        end: '+=1200',
-        pin: true,
-        anticipatePin: 1,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        onRefresh: () => resize(),
-      },
-      onUpdate: () => scheduleDraw(Math.round(frameObj.value)),
-    });
+    // IntersectionObserver — trigger load when section is 150% vh away
+    const observer = new IntersectionObserver(
+      (entries) => { if (entries[0].isIntersecting) { loadFrames(); observer.disconnect(); } },
+      { rootMargin: '150% 0px' }
+    );
+    observer.observe(section);
 
     return () => {
       if (rafId !== null) cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
-      tween.scrollTrigger?.kill();
-      tween.kill();
+      observer.disconnect();
+      tween?.scrollTrigger?.kill();
+      tween?.kill();
     };
   }, [framesDir, frameCount]);
+
 
   return (
     <div
