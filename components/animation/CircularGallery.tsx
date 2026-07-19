@@ -174,23 +174,30 @@ class Media {
   createTitle() { this.title = new Title({ gl: this.gl, plane: this.plane, renderer: this.renderer, text: this.text, textColor: this.textColor, font: this.font }); }
 
   update(scroll: {current:number;last:number}, direction: 'right'|'left') {
-    this.plane.position.x = this.x - scroll.current - this.extra;
-    const x = this.plane.position.x, H = this.viewport.width / 2;
-    if (this.bend === 0) { this.plane.position.y = 0; this.plane.rotation.z = 0; }
-    else {
-      const B_abs = Math.abs(this.bend), R = (H*H+B_abs*B_abs)/(2*B_abs), effectiveX = Math.min(Math.abs(x),H);
+    // True infinite loop via modulo — no extra/isBefore needed
+    const total = this.widthTotal;
+    const half  = total / 2;
+    const rawX  = this.x - scroll.current;
+    // Wrap rawX into [-half, half) so items loop seamlessly
+    let x = ((rawX % total) + total) % total;
+    if (x > half) x -= total;
+    this.plane.position.x = x;
+
+    if (this.bend === 0) {
+      this.plane.position.y = 0;
+      this.plane.rotation.z = 0;
+    } else {
+      const H = this.viewport.width / 2;
+      const B_abs = Math.abs(this.bend), R = (H*H + B_abs*B_abs) / (2*B_abs);
+      const effectiveX = Math.min(Math.abs(x), H);
       const arc = R - Math.sqrt(R*R - effectiveX*effectiveX);
       if (this.bend > 0) { this.plane.position.y = -arc; this.plane.rotation.z = -Math.sign(x)*Math.asin(effectiveX/R); }
-      else { this.plane.position.y = arc; this.plane.rotation.z = Math.sign(x)*Math.asin(effectiveX/R); }
+      else               { this.plane.position.y = arc;  this.plane.rotation.z =  Math.sign(x)*Math.asin(effectiveX/R); }
     }
+
     this.speed = scroll.current - scroll.last;
-    this.program.uniforms.uTime.value += 0.04;
-    this.program.uniforms.uSpeed.value = this.speed;
-    const po = this.plane.scale.x/2, vo = this.viewport.width/2;
-    this.isBefore = this.plane.position.x + po < -vo;
-    this.isAfter = this.plane.position.x - po > vo;
-    if (direction === 'right' && this.isBefore) { this.extra -= this.widthTotal; this.isBefore = this.isAfter = false; }
-    if (direction === 'left' && this.isAfter) { this.extra += this.widthTotal; this.isBefore = this.isAfter = false; }
+    this.program.uniforms.uTime.value  += 0.04;
+    this.program.uniforms.uSpeed.value  = this.speed;
   }
 
   onResize({ screen, viewport }: { screen?: {width:number;height:number}; viewport?: {width:number;height:number} } = {}) {
