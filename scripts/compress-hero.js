@@ -6,16 +6,16 @@ const VIDEOS_DIR = path.join(__dirname, '../public/videos');
 
 const jobs = [
   {
-    input: path.join(__dirname, '..', 'heroo.mp4'),
+    input: path.join(__dirname, '..', 'HERO DESKTOP 1.0.mp4'),
     output: path.join(VIDEOS_DIR, 'hero-desktop.mp4'),
-    // 720p, CRF 26, fast preset, no audio, H.264
-    args: '-vf "scale=-2:720" -vcodec libx264 -crf 26 -preset slow -profile:v main -movflags +faststart -an',
+    // 720p, CRF 24 (good quality), no audio, H.264, faststart for streaming
+    args: '-vf "scale=-2:720" -vcodec libx264 -crf 24 -preset slow -profile:v main -movflags +faststart -an',
   },
   {
-    input: path.join(__dirname, '..', 'herophonetry.mp4'),
+    input: path.join(__dirname, '..', 'HERO 2.mp4'),
     output: path.join(VIDEOS_DIR, 'hero-mobile.mp4'),
-    // 540p for mobile - even lighter
-    args: '-vf "scale=-2:540" -vcodec libx264 -crf 28 -preset slow -profile:v main -movflags +faststart -an',
+    // 720p portrait, CRF 20 (high quality, less blur on phone screens)
+    args: '-vf "scale=-2:720" -vcodec libx264 -crf 20 -preset slow -profile:v main -movflags +faststart -an',
   },
 ];
 

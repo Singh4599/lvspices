@@ -71,7 +71,7 @@ export default function HomePage() {
       <Divider />
       {/* PRODUCT GALLERY */}
       <section id="section-products" style={{ padding: 'clamp(16px,2vw,32px) 0 clamp(60px,8vw,80px)', overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: '16px', textAlign: 'center', overflow: 'hidden' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: '16px', textAlign: 'center', overflow: 'visible' }}>
           <ScrollReveal delay={0} from={60}>
             <h2 suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(28px,6vw,96px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#111', margin: '16px 0 12px' }}>
               Every spice. Every format.
@@ -150,53 +150,69 @@ function Hero() {
     const section = sectionRef.current;
     if (!video || !canvas || !section) return;
 
-    // JS-based source selection — media attribute on <source> is unreliable
     const isMob = window.innerWidth <= 768;
-    const src = isMob ? '/videos/hero-mobile.mp4' : '/videos/hero-desktop.mp4';
-    // Cache-bust so browser doesn't serve stale video
-    video.src = src + '?v=3';
+    const src = isMob ? '/videos/hero-mobile.mp4?v=5' : '/videos/hero-desktop.mp4?v=5';
+    video.src = src;
     video.load();
 
     const ctx = canvas.getContext('2d', { alpha: false });
-    const render = () => {
+    let targetTime = 0;
+    let rafId: number;
+
+    const drawFrame = () => {
       if (!ctx || !video.videoWidth) return;
       const hRatio = canvas.width / video.videoWidth;
       const vRatio = canvas.height / video.videoHeight;
       const ratio = Math.max(hRatio, vRatio);
       const cx = (canvas.width - video.videoWidth * ratio) / 2;
       const cy = (canvas.height - video.videoHeight * ratio) / 2;
-      ctx.fillStyle = '#000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, cx, cy, video.videoWidth * ratio, video.videoHeight * ratio);
     };
+
+    const loop = () => {
+      if (video.readyState >= 2) {
+        const diff = targetTime - video.currentTime;
+        if (Math.abs(diff) > 0.005) {
+          video.currentTime = video.currentTime + diff * 0.35;
+        }
+        drawFrame();
+      }
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      render();
+      drawFrame();
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
     video.addEventListener('loadedmetadata', handleResize);
-    video.addEventListener('seeked', render);
 
-    // Scrub through full video duration on scroll
     video.addEventListener('loadedmetadata', () => {
       const dur = video.duration || 10;
+      const proxy = { t: 0 };
       gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
           end: '+=3000',
           pin: true,
-          scrub: 0.1,
+          scrub: 0.5,
         }
-      }).to(video, { currentTime: dur - 0.1, ease: 'none', duration: 1 });
+      }).to(proxy, {
+        t: dur - 0.1,
+        ease: 'none',
+        duration: 1,
+        onUpdate() { targetTime = proxy.t; },
+      });
     }, { once: true });
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -419,8 +435,8 @@ function WhoWeAre() {
         {/* Right Side: Direct video with fog effect */}
         <div style={{ flex: 1.6, minWidth: 'min(100%, 300px)' }}>
           <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
-            {/* Soft fog shadow */}
-            <div style={{
+            {/* Soft fog shadow — desktop only */}
+            <div className="whoweare-fog" style={{
               position: 'absolute',
               top: '-25%', left: '-25%', width: '150%', height: '150%',
               background: 'radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 60%)',
@@ -436,11 +452,10 @@ function WhoWeAre() {
               muted
               loop
               playsInline
+              className="whoweare-video"
               style={{
                 position: 'absolute', inset: 0, width: '100%', height: '100%',
                 objectFit: 'cover', zIndex: 1,
-                WebkitMaskImage: 'radial-gradient(ellipse closest-side, black 40%, transparent 90%)',
-                maskImage: 'radial-gradient(ellipse closest-side, black 40%, transparent 90%)'
               }}
             />
           </div>
@@ -492,6 +507,7 @@ function StackedVideoStep({
   return (
     <div
       ref={cardRef}
+      className="stacked-card"
       style={{
         position: 'sticky',
         top: 80,
@@ -500,31 +516,31 @@ function StackedVideoStep({
         borderRadius: 28,
         transformOrigin: 'top center',
         marginBottom: 16,
-        marginLeft: 'clamp(12px, 3vw, 48px)',
-        marginRight: 'clamp(12px, 3vw, 48px)',
+        marginLeft: 'clamp(8px, 1.5vw, 24px)',
+        marginRight: 'clamp(8px, 1.5vw, 24px)',
         boxShadow: '0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)',
         overflow: 'hidden',
-        willChange: 'transform', // hint browser to keep on GPU layer
+        willChange: 'transform',
       }}
     >
       <div
         data-image-right={imageRight ? 'true' : 'false'}
+        className="stacked-card-inner"
         style={{
           display: 'flex',
-          flexDirection: imageRight ? 'row-reverse' : 'row',
-          gap: 'clamp(24px, 4vw, 48px)',
+          gap: 'clamp(32px, 5vw, 64px)',
           alignItems: 'center',
           maxWidth: 1400, margin: '0 auto',
-          padding: `clamp(32px, 5vw, 64px) clamp(24px, 4vw, 48px)`,
+          padding: `clamp(40px, 6vw, 80px) clamp(32px, 5vw, 64px)`,
           flexWrap: 'wrap',
         }}
       >
-        <div style={{ flex: 0.8, minWidth: 'min(100%, 260px)' }}>
-          <div style={{ fontFamily: SERIF, fontSize: 'clamp(40px, 6vw, 80px)', fontStyle: 'italic', color: CRIMSON, lineHeight: 1, marginBottom: 16 }}>{num}</div>
-          <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(22px, 4vw, 48px)', fontWeight: 700, color: '#111', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.1 }}>{title}</h3>
+        <div className="stacked-card-text" style={{ flex: 1 }}>
+          <div className="stacked-card-num" style={{ fontFamily: SERIF, fontSize: 'clamp(48px, 6vw, 80px)', fontStyle: 'italic', color: CRIMSON, lineHeight: 1, marginBottom: 16 }}>{num}</div>
+          <h3 className="stacked-card-title" style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4.5vw, 56px)', fontWeight: 700, color: '#111', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.05, letterSpacing: '-0.03em' }}>{title}</h3>
         </div>
-        <div style={{ flex: 1.6, minWidth: 'min(100%, 280px)' }}>
-          <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+        <div className="stacked-card-video" style={{ flex: 1.6 }}>
+          <div className="card-video-wrapper" style={{ position: 'relative', width: '100%' }}>
             <div
               className="card-fog"
               style={{
@@ -544,7 +560,6 @@ function StackedVideoStep({
               style={{
                 position: 'absolute', inset: 0, width: '100%', height: '100%',
                 objectFit: 'cover', zIndex: 1,
-                borderRadius: 24
               }}
             />
           </div>

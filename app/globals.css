@@ -2226,18 +2226,18 @@ nav[aria-label="Breadcrumb"] {
     margin: 0 !important;
   }
 
-  /* Section header titles */
-  section > div > h2 {
+  /* Section header titles — scoped to process showcase only */
+  .process-showcase-grid h2 {
     font-size: clamp(26px, 8vw, 40px) !important;
     margin-bottom: 4px !important;
   }
 
-  section > div > p {
+  .process-showcase-grid p {
     font-size: 12px !important;
     color: rgba(255,255,255,0.35) !important;
   }
 
-  section > div > div[style*="space-between"] {
+  .process-showcase-grid div[style*="space-between"] {
     flex-direction: column !important;
     gap: 4px !important;
   }
@@ -2265,6 +2265,26 @@ nav[aria-label="Breadcrumb"] {
 
 
 
+/* ── Stacked card video wrapper: aspect ratio controlled by CSS ── */
+.card-video-wrapper {
+  aspect-ratio: 16/9;
+}
+
+/* Desktop: row layout, imageRight = row-reverse */
+.stacked-card-inner {
+  flex-direction: row;
+}
+.stacked-card-inner[data-image-right="true"] {
+  flex-direction: row-reverse;
+}
+
+/* Desktop text/video min-widths */
+.stacked-card-text {
+  min-width: min(100%, 280px);
+}
+.stacked-card-video {
+  min-width: min(100%, 300px);
+}
 /* ── Stacked card video: oval on desktop, rounded rect on mobile ── */
 
 /* Base (mobile-first): rounded rectangle */
@@ -2298,10 +2318,11 @@ nav[aria-label="Breadcrumb"] {
 }
 
 
-/* ── Mobile: text always left, video always right (ignore imageRight flip) ── */
+/* ── Mobile: force column layout on cards ── */
 @media (max-width: 767px) {
-  [data-image-right="true"] {
-    flex-direction: row !important;
+  .stacked-card-inner,
+  .stacked-card-inner[data-image-right="true"] {
+    flex-direction: column !important;
   }
 }
 
@@ -2309,5 +2330,84 @@ nav[aria-label="Breadcrumb"] {
 @media (max-width: 767px) {
   .heading-accent {
     margin-right: 0.12em;
+  }
+}
+
+/* ── Who We Are video: oval on desktop, rounded rect on mobile ── */
+
+/* Mobile-first: rounded rectangle, no oval mask */
+.whoweare-video {
+  border-radius: 16px;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+.whoweare-fog {
+  display: none;
+}
+
+/* Desktop: oval fog mask */
+@media (min-width: 768px) {
+  .whoweare-video {
+    border-radius: 0;
+    -webkit-mask-image: radial-gradient(ellipse closest-side, black 40%, transparent 90%) !important;
+    mask-image: radial-gradient(ellipse closest-side, black 40%, transparent 90%) !important;
+  }
+  .whoweare-fog {
+    display: block !important;
+  }
+}
+
+/* ── Mobile: Make What We Do & Why Choose Us cards as big as Who We Are ── */
+@media (max-width: 767px) {
+  /* Full width cards, no side margins */
+  .stacked-card {
+    margin-left: 4px !important;
+    margin-right: 4px !important;
+    border-radius: 20px !important;
+  }
+
+  /* Column layout: text compact on top, big video below */
+  .stacked-card-inner {
+    flex-direction: column !important;
+    padding: 24px 20px 0 20px !important;
+    gap: 18px !important;
+  }
+
+  /* Text block: inline row (num + title side by side), compact height */
+  .stacked-card-text {
+    min-width: 100% !important;
+    flex: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  /* Number inline */
+  .stacked-card-num {
+    font-size: 44px !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0;
+  }
+
+  /* Title inline */
+  .stacked-card-title {
+    font-size: 26px !important;
+    margin-bottom: 0 !important;
+    white-space: normal !important;
+    line-height: 1.15 !important;
+  }
+
+  /* Video block: full width */
+  .stacked-card-video {
+    min-width: 100% !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+
+  /* Taller video on mobile using height override */
+  .card-video-wrapper {
+    aspect-ratio: 4/3 !important;
+    border-radius: 0 0 16px 16px !important;
+    overflow: hidden !important;
   }
 }
