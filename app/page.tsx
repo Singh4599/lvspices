@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
@@ -28,9 +28,28 @@ const DomeGallery = dynamic(() => import('@/components/animation/DomeGallery'), 
 
 
 const CRIMSON = '#AC033B';
-const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
+const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
+
+function useInView(options = { rootMargin: '400px' }) {
+  const [inView, setInView] = useState(false);
+  const ref = useRef<any>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setInView(true);
+        observer.disconnect();
+      }
+    }, options);
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [options.rootMargin]);
+
+  return { ref, inView };
+}
 
 // Cloudflare R2 CDN base URL — change via NEXT_PUBLIC_R2_BASE env var in Vercel
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE ?? '';
@@ -390,6 +409,7 @@ function CanvasPlaceholder({ label }: { label: string }) {
 }
 
 function WhoWeAre() {
+  const { ref: videoRef, inView } = useInView();
   return (
     <section style={{ padding: 'clamp(40px,5vw,160px) 0', background: 'transparent', overflowX: 'clip' }}>
       <div style={{ 
@@ -439,7 +459,9 @@ function WhoWeAre() {
               pointerEvents: 'none'
             }} />
             <video
-              src="/videos/whoweare.mp4"
+              ref={videoRef}
+              src={inView ? "/videos/whoweare.mp4" : undefined}
+              poster="/videos/whoweare.webp"
               autoPlay
               muted
               loop
@@ -469,6 +491,7 @@ function StackedVideoStep({
   imageRight: boolean; index: number; isLast: boolean;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const { ref: videoRef, inView } = useInView();
 
   useEffect(() => {
     const card = cardRef.current;
@@ -543,8 +566,16 @@ function StackedVideoStep({
               }}
             />
             <video
-              src={video} autoPlay muted loop playsInline
+              ref={videoRef}
+              src={inView ? video : undefined}
+              poster={video.replace('.mp4', '.webp')}
+              autoPlay muted loop playsInline
               className="card-video"
+              style={{
+                position: 'absolute', inset: 0, width: '100%', height: '100%',
+                objectFit: 'cover', zIndex: 1,
+                borderRadius: 24
+              }}
             />
           </div>
         </div>
@@ -559,6 +590,7 @@ function VideoStep({
 }: {
   num: string; title: string; video: string; imageRight: boolean;
 }) {
+  const { ref: videoRef, inView } = useInView();
   return (
     <div style={{
       display: 'flex',
@@ -580,7 +612,11 @@ function VideoStep({
             background: 'radial-gradient(circle at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 30%, rgba(0,0,0,0) 60%)',
             filter: 'blur(40px)', zIndex: 0, pointerEvents: 'none'
           }} />
-          <video src={video} autoPlay muted loop playsInline
+          <video 
+            ref={videoRef}
+            src={inView ? video : undefined}
+            poster={video.replace('.mp4', '.webp')}
+            autoPlay muted loop playsInline
             style={{
               position: 'absolute', inset: 0, width: '100%', height: '100%',
               objectFit: 'cover', zIndex: 1,
