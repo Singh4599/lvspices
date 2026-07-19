@@ -34,7 +34,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-white">
+      <body className="min-h-full flex flex-col bg-white text-[#111]">
         <ClientEffects />
         <SmoothScrollProvider>
           <PageTransition />

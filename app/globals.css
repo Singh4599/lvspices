@@ -2264,3 +2264,50 @@ nav[aria-label="Breadcrumb"] {
 
 
 
+
+/* ── Stacked card video: oval on desktop, rounded rect on mobile ── */
+
+/* Base (mobile-first): rounded rectangle */
+.card-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: 16px;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* Fog div: hidden by default, only show on desktop */
+.card-fog {
+  display: none;
+}
+
+/* Desktop: oval fog mask */
+@media (min-width: 768px) {
+  .card-video {
+    border-radius: 0;
+    -webkit-mask-image: radial-gradient(ellipse closest-side, black 40%, transparent 90%) !important;
+    mask-image: radial-gradient(ellipse closest-side, black 40%, transparent 90%) !important;
+  }
+  .card-fog {
+    display: block !important;
+  }
+}
+
+
+/* ── Mobile: text always left, video always right (ignore imageRight flip) ── */
+@media (max-width: 767px) {
+  [data-image-right="true"] {
+    flex-direction: row !important;
+  }
+}
+
+/* ── Mobile: extra space after italic accent word in headings ── */
+@media (max-width: 767px) {
+  .heading-accent {
+    margin-right: 0.12em;
+  }
+}

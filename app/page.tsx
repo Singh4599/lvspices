@@ -42,7 +42,7 @@ const PAGE_PAD = 'clamp(20px, 5vw, 64px)';
 
 export default function HomePage() {
   return (
-    <main style={{ background: 'transparent' }}>
+    <main style={{ background: 'transparent', overflowX: 'clip' }}>
       {/* <FloatingSpiceObject /> */}
       <div id="hero-section"><Hero /></div>
       <div id="after-hero">
@@ -54,7 +54,7 @@ export default function HomePage() {
       <section id="section-products" style={{ padding: 'clamp(16px,2vw,32px) 0 clamp(60px,8vw,80px)', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: '16px', textAlign: 'center', overflow: 'hidden' }}>
           <ScrollReveal delay={0} from={60}>
-            <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(28px,6vw,96px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#111', margin: '16px 0 12px' }}>
+            <h2 suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(28px,6vw,96px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#111', margin: '16px 0 12px' }}>
               Every spice. Every format.
             </h2>
           </ScrollReveal>
@@ -62,7 +62,7 @@ export default function HomePage() {
         <div style={{ height: 'clamp(340px, 55vw, 680px)', position: 'relative' }}>
           <CircularGallery
             bend={2}
-            textColor="#ffffff"
+            textColor="#111111"
             borderRadius={0.07}
             scrollEase={0.05}
             scrollSpeed={2}
@@ -88,7 +88,7 @@ export default function HomePage() {
       <section id="section-dome" style={{ padding: 'clamp(24px,4vw,40px) 0 0' }}>
         <div style={{ textAlign: 'center', marginBottom: 16 }}>
           <ScrollReveal delay={0} from={40}>
-            <h2 data-gsap="split" suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(36px,5vw,72px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '16px 0 0' }}>
+            <h2 suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(36px,5vw,72px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '16px 0 0' }}>
               Explore the Spice Universe.
             </h2>
           </ScrollReveal>
@@ -391,29 +391,28 @@ function CanvasPlaceholder({ label }: { label: string }) {
 
 function WhoWeAre() {
   return (
-    <section style={{ padding: 'clamp(40px,5vw,80px) 0', background: 'transparent' }}>
+    <section style={{ padding: 'clamp(40px,5vw,160px) 0', background: 'transparent', overflowX: 'clip' }}>
       <div style={{ 
         maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, 
         display: 'flex', flexWrap: 'wrap', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center' 
       }}>
         
         {/* Left Side: Headings & Content */}
-        <div style={{ flex: 1, minWidth: 'min(100%, 400px)' }}>
+        <div style={{ flex: 1, minWidth: 'min(100%, 280px)' }}>
           <h2 suppressHydrationWarning style={{
             fontFamily: SERIF,
-            fontSize: 'clamp(40px,6vw,84px)',
+            fontSize: 'clamp(36px,6vw,84px)',
             fontWeight: 700,
             color: '#111',
-            lineHeight: 1.0,
+            lineHeight: 1.05,
             letterSpacing: '-0.03em',
             margin: '16px 0 0',
-            whiteSpace: 'nowrap'
           }}>
             Who We Are.
           </h2>
           <div suppressHydrationWarning style={{
             fontFamily: SANS,
-            fontSize: 'clamp(14px,1.5vw,18px)',
+            fontSize: 'clamp(12px,1.5vw,18px)',
             fontWeight: 400,
             color: '#AC033B',
             marginTop: '12px',
@@ -425,16 +424,32 @@ function WhoWeAre() {
           </div>
         </div>
 
-        {/* Right Side: Direct video */}
-        <div style={{ flex: 1, minWidth: 'min(100%, 400px)', position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '16/9' }}>
-          <video
-            src="/videos/whoweare.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          />
+        {/* Right Side: Direct video with fog effect */}
+        <div style={{ flex: 1.6, minWidth: 'min(100%, 300px)' }}>
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+            {/* Soft fog shadow */}
+            <div style={{
+              position: 'absolute',
+              top: '-25%', left: '-25%', width: '150%', height: '150%',
+              background: 'radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 60%)',
+              filter: 'blur(40px)',
+              zIndex: 0,
+              pointerEvents: 'none'
+            }} />
+            <video
+              src="/videos/whoweare.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{
+                position: 'absolute', inset: 0, width: '100%', height: '100%',
+                objectFit: 'cover', zIndex: 1,
+                WebkitMaskImage: 'radial-gradient(ellipse closest-side, black 40%, transparent 90%)',
+                maskImage: 'radial-gradient(ellipse closest-side, black 40%, transparent 90%)'
+              }}
+            />
+          </div>
         </div>
 
       </div>
@@ -444,51 +459,126 @@ function WhoWeAre() {
 
 
 
-/* WHAT WE DO */
-function VideoStep({
-  num,
-  title,
-  video,
-  imageRight,
+/* WHAT WE DO — Scroll Stack */
+function StackedVideoStep({
+  num, title, video, imageRight, index, isLast,
 }: {
-  num: string;
-  title: string;
-  video: string;
-  imageRight: boolean;
+  num: string; title: string; video: string;
+  imageRight: boolean; index: number; isLast: boolean;
 }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card || isLast) return;
+
+    // Force card onto its own GPU compositing layer to avoid repaints
+    gsap.set(card, { z: 0 });
+
+    const st = ScrollTrigger.create({
+      trigger: card,
+      start: 'top top+=90',
+      end: 'bottom top+=90',
+      scrub: 0.5, // smooth scrub, no jerk
+      onUpdate: (self) => {
+        // Only scale — never use filter here (filter breaks GPU compositing)
+        gsap.set(card, { scale: 1 - self.progress * 0.04 });
+      },
+      onLeave: () => {
+        gsap.set(card, { scale: 0.96 });
+      },
+      onEnterBack: () => {
+        gsap.set(card, { scale: 1 });
+      },
+    });
+    return () => st.kill();
+  }, [isLast]);
+
   return (
     <div
+      ref={cardRef}
       style={{
-        display: 'flex',
-        flexDirection: imageRight ? 'row-reverse' : 'row',
-        gap: 'clamp(32px, 5vw, 64px)',
-        alignItems: 'center',
-        maxWidth: 1400, margin: '0 auto 10vh', padding: `clamp(60px, 8vw, 120px) ${PAGE_PAD}`,
-        flexWrap: 'wrap'
+        position: 'sticky',
+        top: 80,
+        zIndex: index + 10,
+        background: '#ffffff',
+        borderRadius: 28,
+        transformOrigin: 'top center',
+        marginBottom: 16,
+        marginLeft: 'clamp(12px, 3vw, 48px)',
+        marginRight: 'clamp(12px, 3vw, 48px)',
+        boxShadow: '0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)',
+        overflow: 'hidden',
+        willChange: 'transform', // hint browser to keep on GPU layer
       }}
     >
+      <div
+        data-image-right={imageRight ? 'true' : 'false'}
+        style={{
+          display: 'flex',
+          flexDirection: imageRight ? 'row-reverse' : 'row',
+          gap: 'clamp(24px, 4vw, 48px)',
+          alignItems: 'center',
+          maxWidth: 1400, margin: '0 auto',
+          padding: `clamp(32px, 5vw, 64px) clamp(24px, 4vw, 48px)`,
+          flexWrap: 'wrap',
+        }}
+      >
+        <div style={{ flex: 0.8, minWidth: 'min(100%, 260px)' }}>
+          <div style={{ fontFamily: SERIF, fontSize: 'clamp(40px, 6vw, 80px)', fontStyle: 'italic', color: CRIMSON, lineHeight: 1, marginBottom: 16 }}>{num}</div>
+          <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(22px, 4vw, 48px)', fontWeight: 700, color: '#111', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.1 }}>{title}</h3>
+        </div>
+        <div style={{ flex: 1.6, minWidth: 'min(100%, 280px)' }}>
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+            <div
+              className="card-fog"
+              style={{
+                position: 'absolute',
+                top: '-25%', left: '-25%', width: '150%', height: '150%',
+                background: 'radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 60%)',
+                filter: 'blur(40px)',
+                zIndex: 0, pointerEvents: 'none'
+              }}
+            />
+            <video
+              src={video} autoPlay muted loop playsInline
+              className="card-video"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Keep VideoStep for Resources section (no stacking there) */
+function VideoStep({
+  num, title, video, imageRight,
+}: {
+  num: string; title: string; video: string; imageRight: boolean;
+}) {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: imageRight ? 'row-reverse' : 'row',
+      gap: 'clamp(32px, 5vw, 64px)',
+      alignItems: 'center',
+      maxWidth: 1400, margin: '0 auto 10vh', padding: `clamp(60px, 8vw, 120px) ${PAGE_PAD}`,
+      flexWrap: 'wrap'
+    }}>
       <div style={{ flex: 0.8, minWidth: 'min(100%, 300px)' }}>
         <div style={{ fontFamily: SERIF, fontSize: 'clamp(48px, 6vw, 80px)', fontStyle: 'italic', color: CRIMSON, lineHeight: 1, marginBottom: 16 }}>{num}</div>
         <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, color: '#111', whiteSpace: 'pre-line', marginBottom: 24, lineHeight: 1.1 }}>{title}</h3>
       </div>
       <div style={{ flex: 1.6, minWidth: 'min(100%, 400px)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ position: 'relative', width: '105%', aspectRatio: '16/9' }}>
-          {/* Soft fog shadow */}
           <div style={{
             position: 'absolute',
             top: '-25%', left: '-25%', width: '150%', height: '150%',
             background: 'radial-gradient(circle at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 30%, rgba(0,0,0,0) 60%)',
-            filter: 'blur(40px)',
-            zIndex: 0,
-            pointerEvents: 'none'
+            filter: 'blur(40px)', zIndex: 0, pointerEvents: 'none'
           }} />
-          {/* Direct video — autoplay, muted, loop */}
-          <video
-            src={video}
-            autoPlay
-            muted
-            loop
-            playsInline
+          <video src={video} autoPlay muted loop playsInline
             style={{
               position: 'absolute', inset: 0, width: '100%', height: '100%',
               objectFit: 'cover', zIndex: 1,
@@ -518,36 +608,51 @@ function WhatWeDo() {
   ];
 
   return (
-    <section style={{ padding: 'clamp(16px,2vw,24px) 0' }}>
+    <section style={{ padding: 'clamp(60px,8vw,120px) 0 clamp(80px,10vw,160px)' }}>
       {/* Section header */}
-      <div className="section-header-wrapper" style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(20px,3vw,40px)' }}>
-        <div className="header-flex-row" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
-          <h2 suppressHydrationWarning style={{
-            fontFamily: SERIF,
-            fontSize: 'clamp(40px,6vw,96px)',
-            fontWeight: 700,
-            color: '#111',
-            lineHeight: 1.0,
-            letterSpacing: '-0.03em',
-            margin: '16px 0 0',
-          }}>
-            What We Do.
-          </h2>
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(32px, 4vw, 64px)', position: 'relative', zIndex: 200 }}>
+        <h2 suppressHydrationWarning style={{
+          fontFamily: SERIF,
+          fontSize: 'clamp(48px, 7vw, 120px)',
+          fontWeight: 700,
+          color: '#111',
+          lineHeight: 1.0,
+          letterSpacing: '-0.04em',
+          margin: '0 0 20px',
+        }}>
+          What <span className="heading-accent" style={{ fontStyle: 'italic', color: CRIMSON }}>We</span> Do.
+        </h2>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 32, height: 1.5, background: CRIMSON }} />
+          <p style={{
+            fontFamily: MONO,
+            fontSize: 'clamp(10px, 1.2vw, 13px)',
+            color: 'rgba(0,0,0,0.45)',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            margin: 0,
+          }}>Farm to Factory &mdash; 11 Steps of Excellence</p>
         </div>
       </div>
 
-      {steps.map((step, i) => (
-        <VideoStep
-          key={step.num}
-          num={step.num}
-          title={step.title}
-          video={step.video}
-          imageRight={i % 2 !== 0}
-        />
-      ))}
+      {/* Stacking cards container */}
+      <div style={{ position: 'relative' }}>
+        {steps.map((step, i) => (
+          <StackedVideoStep
+            key={step.num}
+            num={step.num}
+            title={step.title}
+            video={step.video}
+            imageRight={i % 2 !== 0}
+            index={i}
+            isLast={i === steps.length - 1}
+          />
+        ))}
+      </div>
     </section>
   );
 }
+
 
 
 /* RESOURCES */
@@ -566,31 +671,47 @@ function Resources() {
   ];
 
   return (
-    <section style={{ padding: 'clamp(40px,5vw,80px) 0' }}>
-      {/* Header: single column, no video */}
-      <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(40px, 6vw, 80px)' }}>
+    <section style={{ padding: 'clamp(60px,8vw,120px) 0 clamp(80px,10vw,160px)' }}>
+      {/* Section header */}
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: 'clamp(32px, 4vw, 64px)', position: 'relative', zIndex: 200 }}>
         <h2 suppressHydrationWarning style={{
           fontFamily: SERIF,
-          fontSize: 'clamp(40px,6vw,96px)',
+          fontSize: 'clamp(48px, 7vw, 120px)',
           fontWeight: 700,
           color: '#111',
           lineHeight: 1.0,
-          letterSpacing: '-0.03em',
-          margin: '16px 0 0',
+          letterSpacing: '-0.04em',
+          margin: '0 0 20px',
         }}>
-          Why Choose Us.
+          Why <span className="heading-accent" style={{ fontStyle: 'italic', color: CRIMSON }}>Choose</span> Us.
         </h2>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 32, height: 1.5, background: CRIMSON }} />
+          <p style={{
+            fontFamily: MONO,
+            fontSize: 'clamp(10px, 1.2vw, 13px)',
+            color: 'rgba(0,0,0,0.45)',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            margin: 0,
+          }}>World-class Resources &amp; Infrastructure</p>
+        </div>
       </div>
 
-      {resourceSteps.map((step, i) => (
-        <VideoStep
-          key={step.num}
-          num={step.num}
-          title={step.title}
-          video={step.video}
-          imageRight={i % 2 !== 0}
-        />
-      ))}
+      {/* Stacking cards */}
+      <div style={{ position: 'relative' }}>
+        {resourceSteps.map((step, i) => (
+          <StackedVideoStep
+            key={step.num}
+            num={step.num}
+            title={step.title}
+            video={step.video}
+            imageRight={i % 2 !== 0}
+            index={i}
+            isLast={i === resourceSteps.length - 1}
+          />
+        ))}
+      </div>
     </section>
   );
 }
