@@ -4,15 +4,16 @@ import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
-import ScrollVelocity from '@/components/ui/ScrollVelocity';
 import LogoLoop from '@/components/ui/LogoLoop';
 import CountUp from '@/components/animation/CountUp';
-import ScrollReveal from '@/components/animation/ScrollReveal';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import ElectricBorder from '@/components/animation/ElectricBorder';
 import CircularGallery from '@/components/animation/CircularGallery';
 import { ShuffleGrid } from '@/components/ui/ShuffleGrid';
 import dynamic from 'next/dynamic';
 import FloatingSpiceObject from '@/components/animation/FloatingSpiceObject';
+import { VelocityMarquee } from '@/components/about/MarqueeSection';
+import CurvedLoop from '@/components/ui/CurvedLoop';
 
 const PinnedVideoSection = dynamic(
   () => import('@/components/animation/PinnedVideoSection'),
@@ -72,7 +73,7 @@ export default function HomePage() {
       {/* PRODUCT GALLERY */}
       <section id="section-products" style={{ padding: 'clamp(16px,2vw,32px) 0 clamp(60px,8vw,80px)', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: '16px', textAlign: 'center', overflow: 'visible' }}>
-          <ScrollReveal delay={0} from={60}>
+          <ScrollReveal delay={0} fromY={60}>
             <h2 suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(28px,6vw,96px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#111', margin: '16px 0 12px' }}>
               Every spice. Every format.
             </h2>
@@ -106,7 +107,7 @@ export default function HomePage() {
       {/* DOME GALLERY */}
       <section id="section-dome" style={{ padding: 'clamp(24px,4vw,40px) 0 0' }}>
         <div style={{ textAlign: 'center', marginBottom: 16 }}>
-          <ScrollReveal delay={0} from={40}>
+          <ScrollReveal delay={0} fromY={40}>
             <h2 suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(36px,5vw,72px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '16px 0 0' }}>
               Explore the Spice Universe.
             </h2>
@@ -138,81 +139,118 @@ function Divider() {
   return <div style={{ height: 0, width: '100%' }} />;
 }
 
-/* ═══ HERO ═══════════════════════════════════════════════ */
+/* ═══ HERO ═══════════════════════════════════════════════
+   Video scrubbing — proper implementation:
+   • requestVideoFrameCallback: draw ONLY when new frame is ready
+   • Native scroll (bypasses Lenis delay for instant response)
+   • fastSeek() for fastest browser seeking
+   • canplaythrough gate so scroll starts only when buffered
+   ════════════════════════════════════════════════════════ */
 function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef  = useRef<HTMLCanvasElement>(null);
+  const videoRef   = useRef<HTMLVideoElement>(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    const section = sectionRef.current;
+    const video   = videoRef.current!;
+    const canvas  = canvasRef.current!;
+    const section = sectionRef.current!;
     if (!video || !canvas || !section) return;
 
     const isMob = window.innerWidth <= 768;
-    const src = isMob ? '/videos/hero-mobile.mp4?v=5' : '/videos/hero-desktop.mp4?v=5';
-    video.src = src;
+
+    // Video source (all-intra encoded for fast seeking)
+    video.src = isMob ? '/videos/hero-mobile.mp4?v=6' : '/videos/hero-desktop.mp4?v=6';
     video.load();
 
-    const ctx = canvas.getContext('2d', { alpha: false });
-    let targetTime = 0;
-    let rafId: number;
+    // Canvas
+    const ctx = canvas.getContext('2d', { alpha: false })!;
+
+    const resize = () => {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
 
     const drawFrame = () => {
-      if (!ctx || !video.videoWidth) return;
-      const hRatio = canvas.width / video.videoWidth;
-      const vRatio = canvas.height / video.videoHeight;
-      const ratio = Math.max(hRatio, vRatio);
-      const cx = (canvas.width - video.videoWidth * ratio) / 2;
-      const cy = (canvas.height - video.videoHeight * ratio) / 2;
-      ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, cx, cy, video.videoWidth * ratio, video.videoHeight * ratio);
+      if (!video.videoWidth) return;
+      const hR = canvas.width  / video.videoWidth;
+      const vR = canvas.height / video.videoHeight;
+      const r  = Math.max(hR, vR);
+      const cx = (canvas.width  - video.videoWidth  * r) / 2;
+      const cy = (canvas.height - video.videoHeight * r) / 2;
+      ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight,
+                    cx, cy, video.videoWidth * r, video.videoHeight * r);
     };
 
-    const loop = () => {
-      if (video.readyState >= 2) {
-        const diff = targetTime - video.currentTime;
-        if (Math.abs(diff) > 0.005) {
-          video.currentTime = video.currentTime + diff * 0.35;
-        }
-        drawFrame();
+    // requestVideoFrameCallback — fires exactly when a new frame is decoded and ready.
+    // This is the correct API for canvas video rendering (no stale-frame problem).
+    // Falls back to 'seeked' event on browsers without it.
+    let destroyed = false;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const anyVid = video as any;
+    const hasRVFC: boolean = typeof anyVid.requestVideoFrameCallback === 'function';
+
+    const scheduleRVFC = () => {
+      if (destroyed || !hasRVFC) return;
+      anyVid.requestVideoFrameCallback(() => { drawFrame(); scheduleRVFC(); });
+    };
+    scheduleRVFC();
+
+    const onSeeked = () => drawFrame();
+    if (!hasRVFC) video.addEventListener('seeked', onSeeked);
+
+    // Seek using fastSeek() where available (much faster than currentTime setter)
+    const seekTo = (t: number) => {
+      if (typeof anyVid.fastSeek === 'function') {
+        anyVid.fastSeek(t);
+      } else {
+        video.currentTime = t;
       }
-      rafId = requestAnimationFrame(loop);
     };
-    rafId = requestAnimationFrame(loop);
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    const SCROLL_DISTANCE = isMob ? 2000 : 3000;
+    let scrollTriggerInstance: ReturnType<typeof ScrollTrigger.create> | null = null;
+    let duration = 0;
+    let lastSeekT = -1;
+    let setupDone = false;
+
+    const setupScroll = () => {
+      if (setupDone) return;
+      setupDone = true;
+      duration = video.duration || 10;
+      setReady(true);
       drawFrame();
+
+      scrollTriggerInstance = ScrollTrigger.create({
+        trigger: section,
+        start:  'top top',
+        end:    `+=${SCROLL_DISTANCE}`,
+        pin:    true,
+        anticipatePin: 1,
+        onUpdate(self) {
+          const t = self.progress * (duration - 0.05);
+          // Only seek when frame actually changes (~1 frame at 15fps = 0.066s)
+          if (Math.abs(t - lastSeekT) > 0.033) {
+            lastSeekT = t;
+            seekTo(t);
+          }
+        },
+      });
     };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    video.addEventListener('loadedmetadata', handleResize);
-
-    video.addEventListener('loadedmetadata', () => {
-      const dur = video.duration || 10;
-      const proxy = { t: 0 };
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: '+=3000',
-          pin: true,
-          scrub: 0.5,
-        }
-      }).to(proxy, {
-        t: dur - 0.1,
-        ease: 'none',
-        duration: 1,
-        onUpdate() { targetTime = proxy.t; },
-      });
-    }, { once: true });
+    // Enable scroll once browser has buffered enough data
+    video.addEventListener('canplaythrough', setupScroll, { once: true });
+    video.addEventListener('loadeddata', () => setTimeout(setupScroll, 500), { once: true });
+    video.addEventListener('loadedmetadata', () => { resize(); drawFrame(); });
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(rafId);
+      destroyed = true;
+      window.removeEventListener('resize', resize);
+      if (!hasRVFC) video.removeEventListener('seeked', onSeeked);
+      scrollTriggerInstance?.kill();
     };
   }, []);
 
@@ -221,33 +259,58 @@ function Hero() {
       ref={sectionRef}
       style={{ position: 'relative', width: '100%', height: '100svh', overflow: 'hidden', background: '#000' }}
     >
-      <video
-        ref={videoRef}
-        playsInline
-        muted
-        preload="auto"
-        style={{ display: 'none' }}
-      />
-      <canvas
-        ref={canvasRef}
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
-      />
+      {!ready && (
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 10,
+          background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={typeof window !== 'undefined' && window.innerWidth <= 768
+              ? '/videos/hero-mobile-poster.webp'
+              : '/videos/hero-desktop-poster.webp'}
+            alt=""
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5 }}
+          />
+          <div style={{
+            position: 'relative', zIndex: 1,
+            width: 32, height: 32, borderRadius: '50%',
+            border: '2px solid rgba(255,255,255,0.1)',
+            borderTopColor: '#AC033B',
+            animation: 'spin 0.7s linear infinite',
+          }} />
+        </div>
+      )}
+      <video ref={videoRef} playsInline muted preload="auto" style={{ display: 'none' }} />
+      <canvas ref={canvasRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }} />
     </section>
   );
 }
 
+
+
+
+
 /* ═══ TICKER ═════════════════════════════════════════════ */
 function TickerBar() {
   return (
-    <div style={{ background: 'transparent', padding: 'clamp(16px, 3vw, 32px) 0', overflow: 'hidden' }}>
-      <ScrollVelocity
-        texts={['THE SPICE SPECIALIST ·', 'PREMIUM EXPORT QUALITY ·']}
-        velocity={50}
-        className="font-serif italic text-4xl md:text-7xl tracking-tight text-[#AC033B] px-8"
-        damping={50}
-        stiffness={400}
-      />
-    </div>
+    <>
+      <div style={{ background: '#fafafa', padding: 'clamp(16px, 3vw, 32px) 0', overflow: 'hidden' }}>
+        <VelocityMarquee dark={false} />
+      </div>
+      <div style={{ position: 'relative', background: '#F8F6F1', paddingBottom: 'clamp(40px, 6vw, 80px)', paddingTop: 'clamp(40px, 6vw, 80px)' }}>
+        <CurvedLoop 
+          marqueeText="PREMIUM EXPORT QUALITY • FARM FRESH • QUALITY GUARANTEED • "
+          speed={1.5}
+          curveAmount={250}
+          className="fill-[#111] uppercase font-mono tracking-widest"
+        />
+        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
+           <text style={{ fontSize: 'clamp(28px, 4vw, 56px)', fontFamily: 'var(--font-display)', color: CRIMSON, fontWeight: 800 }}>LV</text>
+           <text style={{ fontSize: 'clamp(9px, 1vw, 14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</text>
+        </div>
+      </div>
+    </>
   );
 }
 

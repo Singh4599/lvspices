@@ -1,0 +1,775 @@
+Build a complete, production-ready, highly animated “About Us / Our Story” page for LV Spices using Next.js App Router, TypeScript, Tailwind CSS, GSAP, ScrollTrigger and Lenis.
+
+Use the attached reference image as the primary visual reference.
+
+Keep the same overall design language:
+
+- clean white background
+- premium editorial layout
+- large black serif typography
+- deep LV red accent
+- generous whitespace
+- cinematic spice imagery
+- elegant asymmetric timeline
+- luxury minimal navigation
+- premium Indian spice brand identity
+
+Do not completely change the visual direction.
+
+Improve the reference design into a world-class, immersive scroll storytelling experience.
+
+The client does not want users to read long content.
+
+The user should understand the complete 50-year journey mainly through visuals, movement, transitions, animated imagery, icons, numbers and short labels.
+
+The final result should feel like an interactive documentary, not a regular corporate About Us page.
+
+TECH STACK
+
+Use:
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- GSAP
+- GSAP ScrollTrigger
+- Lenis smooth scrolling
+- Next/Image
+- SVG animations where suitable
+
+Do not use Framer Motion.
+
+Do not use heavy Three.js scenes.
+
+Do not use WebGL unless absolutely necessary.
+
+The page must remain smooth, lightweight and production-ready.
+
+PERFORMANCE IS CRITICAL
+
+The website must feel extremely smooth and must not lag on normal laptops or mobile devices.
+
+Follow these strict performance rules:
+
+- target smooth 60fps animations
+- animate only transform, opacity and clip-path where necessary
+- prioritize translate3d, scale, rotate and opacity
+- add will-change only while an element is actively animating
+- remove will-change after animation completes
+- never animate width, height, top, left, margin or padding continuously
+- avoid large blur animations
+- avoid backdrop-filter on large areas
+- avoid heavy box-shadow animations
+- avoid continuously animating dozens of particles
+- avoid multiple pinned sections running at the same time
+- avoid excessive scrub values
+- avoid ScrollTrigger on every tiny element
+- group related animations inside a single GSAP timeline
+- use gsap.context for every React component
+- properly kill timelines and ScrollTriggers during cleanup
+- use matchMedia for desktop and mobile animation variations
+- initialize Lenis only once globally
+- connect Lenis correctly with GSAP ticker
+- call ScrollTrigger.update during Lenis scroll
+- use lagSmoothing correctly
+- avoid React state updates during scroll
+- never run animations through setState
+- use refs for all animated elements
+- use requestAnimationFrame only where genuinely required
+- lazy-load below-the-fold images
+- preload only the first hero image
+- serve AVIF or WebP images
+- provide responsive image sizes
+- avoid massive full-resolution assets
+- use poster images for any video
+- pause videos outside the viewport
+- use reduced-motion support
+- ensure animations degrade gracefully
+- use dynamic imports only for genuinely heavy components
+- do not overuse client components
+- keep static content as server components where possible
+- isolate animated sections into small client components
+- prevent cumulative layout shift
+- define image dimensions and aspect ratios
+- refresh ScrollTrigger only after fonts and images are ready
+- do not continuously call ScrollTrigger.refresh
+- test all animations at 1920px, 1440px, 1024px, 768px and 390px widths
+
+DESIGN SYSTEM
+
+Primary background:
+#F8F6F1 or a warm premium off-white
+
+Secondary background:
+#FFFFFF
+
+Primary text:
+#111111
+
+Secondary text:
+#6D6962
+
+Brand red:
+#AC033B
+
+Soft border:
+rgba(17,17,17,0.10)
+
+Typography:
+
+- use a premium editorial serif font for major headings and years
+- use a clean modern sans-serif font for labels, navigation and supporting text
+- headings should feel elegant, bold and fashion-editorial
+- use very little body copy
+- no large paragraphs
+- maximum one or two short lines per story moment
+
+Overall mood:
+
+- Apple product storytelling
+- Aesop editorial restraint
+- luxury print magazine
+- National Geographic documentary realism
+- modern museum exhibition
+- premium Indian export company
+- not futuristic
+- not sci-fi
+- not neon
+- not glossy plastic
+- not a generic startup website
+- not an AI-generated UI look
+
+PAGE STRUCTURE
+
+Create the page using these major sections:
+
+1. Cinematic Hero
+2. Brand Origin Transition
+3. Scroll-Based Journey Timeline
+4. Farm-to-Factory Transformation
+5. Technology and Quality Process
+6. Global Reach
+7. What Sets Us Apart
+8. 50 Years Still Going CTA
+
+SECTION 1 — CINEMATIC HERO
+
+Create a full-height hero section, minimum 100svh.
+
+Layout:
+
+- LV Spices logo positioned in the top-left navigation
+- minimal centered navigation
+- right-side “Partner With Us” button
+- huge editorial headline on the left:
+
+“Our Story,”
+“Spiced With Passion.”
+
+Make “Spiced With Passion.” italic and brand red.
+
+Small supporting copy:
+
+“Five decades of dedication,
+from our roots to the world.”
+
+Place an artistic cinematic spice composition on the right.
+
+Use a wooden bowl filled with red chillies, turmeric, pepper, coriander, cardamom and whole spices.
+
+Surround the bowl with a controlled burst of spice powder and scattered ingredients.
+
+Keep the background clean and premium.
+
+Add a large “50 Years of Excellence” marker near the right side.
+
+HERO INTRO ANIMATION
+
+On initial load:
+
+- background fades in gently
+- navigation slides downward by 16px and fades in
+- headline reveals line-by-line using clip-path
+- red italic line follows 100ms later
+- supporting copy fades upward
+- spice bowl scales from 1.06 to 1
+- spice particles appear with a subtle outward movement
+- “50 Years” counter animates from 0 to 50
+- scroll indicator fades in last
+
+Keep the complete intro between 1.2 and 1.6 seconds.
+
+Do not make the user wait.
+
+Do not use a long loading screen.
+
+HERO SCROLL TRANSITION
+
+As the user scrolls through the first 100vh:
+
+- headline slowly moves upward and fades
+- spice composition moves slightly toward the center
+- bowl scales from 1 to 1.08
+- surrounding spice ingredients move at different parallax speeds
+- “50 Years” marker shifts upward
+- a warm photographic texture gradually appears underneath
+- the hero smoothly transitions into the 1975 origin scene
+- no hard section cut
+- no sudden white flash
+- no excessive pinning
+
+Use one controlled ScrollTrigger timeline for the complete hero transition.
+
+Pin only the hero visual container for a short duration if required.
+
+Do not pin the entire page for more than approximately 120vh.
+
+SECTION 2 — ORIGIN STORY, 1975
+
+Create a documentary-style origin scene.
+
+Visual:
+
+- an elderly Indian man manually grinding spices
+- warm natural morning light
+- humble home or small early shop environment
+- authentic, realistic Indian setting
+- subtle dust and spice particles
+- faded old LV Spices shop signage visible in the background
+
+Place only minimal text:
+
+“1975”
+“It All Began”
+
+One tiny supporting sentence:
+
+“A small beginning with big determination.”
+
+ANIMATION
+
+As this section enters:
+
+- the 1975 year reveals through vertical clipping
+- image expands from a narrow horizontal strip into a wide cinematic frame
+- the photograph has a very slow scale from 1.04 to 1
+- foreground spice dust moves subtly
+- the pestle can have a subtle looping visual only if using optimized video
+- if using a static image, simulate life using layered parallax instead of fake repetitive movement
+- text should appear only after the visual is readable
+
+Create depth using a maximum of three image layers:
+
+- background
+- subject
+- foreground dust
+
+Do not use large particle libraries.
+
+Use small CSS or SVG elements only if necessary.
+
+SECTION 3 — JOURNEY TIMELINE
+
+Create a long editorial scroll timeline inspired by the reference image.
+
+Timeline milestones:
+
+1975 — Origin
+1985 — First Shop
+1995 — First Factory
+2005 — Modernization
+2012 — Quality and Innovation
+2020 — Global Expansion
+2025 — 50 Years
+
+Use alternating left-right compositions.
+
+Each milestone should contain:
+
+- large year
+- one cinematic image
+- one tiny category pill
+- maximum one short descriptive line
+- subtle LV red progress marker
+
+Create one central or slightly offset progress line.
+
+The progress line should fill naturally based on scroll position.
+
+Do not create separate ScrollTriggers for every word.
+
+Create one parent timeline with grouped milestone animations.
+
+MILESTONE ANIMATION SYSTEM
+
+For each milestone:
+
+- the year enters from 40px below
+- image reveals through clip-path inset
+- image moves from scale 1.08 to 1
+- text fades in after the image begins revealing
+- active timeline dot changes from outlined to filled brand red
+- previous item gently reduces opacity to 0.65
+- current item remains fully visible
+- image receives subtle parallax of no more than 6 percent
+- animation must never feel jerky or over-scrubbed
+
+Use scrub between 0.5 and 0.8.
+
+Do not use scrub values above 1.2.
+
+Do not use elastic or bounce easing.
+
+Use power2.out, power3.out, sine.inOut or none for scroll-linked motion.
+
+MILESTONE VISUALS
+
+1975:
+Manual spice grinding in a small home workshop.
+
+1985:
+First LV Spices shop with sacks and spice jars outside.
+
+1995:
+Early factory with stainless-steel processing equipment and workers.
+
+2005:
+Modern automated production line with conveyors and packaging.
+
+2012:
+Quality-control laboratory with microscope, samples and testing equipment.
+
+2020:
+Large spice assortment representing wider product expansion and global business.
+
+2025:
+Premium artistic mandala made from whole spices and spice powders.
+
+Keep imagery realistic and documentary-like.
+
+Avoid obvious AI surrealism.
+
+Avoid impossible machinery.
+
+Avoid blue sci-fi lighting.
+
+SECTION 4 — FARM TO FACTORY
+
+Create a wide panoramic section.
+
+Left side:
+
+“From The Farms
+To Your Table”
+
+Small supporting text:
+
+“Direct sourcing. Careful processing. Consistent quality.”
+
+Right side:
+
+- Indian spice farm at golden hour
+- farmers harvesting chillies and turmeric
+- sacks of spices in the foreground
+- distant farmhouse or collection centre
+- realistic landscape
+
+SCROLL ANIMATION
+
+As the section enters:
+
+- landscape reveals from right to left
+- foreground spice sacks move slightly faster than the background
+- farmers move into focus through opacity and scale
+- a small route line draws from farm to processing facility
+- harvested spices visually transition into sorted spices
+- the next technology section emerges from the right side
+
+Do not create a complicated morph.
+
+Use masked image transitions and coordinated movement.
+
+SECTION 5 — SCIENCE BEHIND THE SPICE
+
+Create a premium horizontal process section showing:
+
+1. Cleaning and Sorting
+2. Cryogenic Grinding
+3. Quality Testing
+4. Sterilization and Packaging
+
+Use realistic isolated machinery or process illustrations on a white background.
+
+No sci-fi machinery.
+
+No fake holograms.
+
+No dramatic smoke.
+
+No excessive frost.
+
+The cryogenic machine should look industrial and realistic.
+
+PROCESS ANIMATION
+
+Desktop:
+
+- section may pin for a controlled horizontal storytelling sequence
+- keep total pinned distance reasonable
+- maximum approximately 250 to 300vh
+- move through four stages smoothly
+- only one stage should be emphasized at a time
+- previous stage reduces opacity
+- active stage scales slightly to 1
+- arrows draw between stages
+- labels appear below each machine
+- progress indicator moves from stage one to stage four
+
+Mobile:
+
+- do not use horizontal pinning
+- convert into a vertical stacked sequence
+- reveal each stage on scroll
+- avoid large horizontal translations
+- keep animations shorter
+
+Each stage should communicate visually:
+
+Cleaning:
+Raw spices enter, impurities separate.
+
+Cryogenic Grinding:
+Temperature lowers and spices enter the grinding chamber.
+
+Quality Testing:
+Sample moves toward microscope and testing station.
+
+Packaging:
+Finished spice jars or pouches move through sealing and final inspection.
+
+Use SVG arrows and simple transform animations.
+
+Avoid rendering animated canvas machinery.
+
+SECTION 6 — GLOBAL REACH
+
+Create a clean world-map section.
+
+Heading:
+
+“Trusted Worldwide”
+
+Tiny copy:
+
+“From India to 40+ countries.”
+
+Visual:
+
+- dotted world map
+- India highlighted
+- export routes moving toward key regions
+- cargo ship on the bottom-right
+- small destination markers
+- subtle geographic labels
+
+ANIMATION
+
+- world map fades in
+- India marker pulses once
+- route lines draw using SVG stroke-dashoffset
+- destination dots appear in sequence
+- cargo ship moves only a short distance from right to left
+- “40+ Countries” count animates from 0
+- avoid continuously looping all routes
+- route animation should play once when the section becomes visible
+
+Do not animate hundreds of map points individually.
+
+Use grouped SVG paths.
+
+SECTION 7 — WHAT SETS US APART
+
+Create a premium benefits section using these items:
+
+- Farm Direct
+- NABL Lab
+- 40+ Nations
+- Cryogenic
+- Sterilized
+- Private Label
+- BRC Tier 2
+- Traceable
+
+Do not use plain repetitive SaaS cards.
+
+Create a clean editorial grid with small icon objects.
+
+Each item should feel like a collectible museum label.
+
+ANIMATION
+
+On entering:
+
+- heading reveals through clipping
+- cards appear in staggered groups of two
+- each card moves upward by only 24px
+- use opacity and transform
+- no heavy blur
+- stagger between 60ms and 90ms
+
+On hover:
+
+- card translates upward 4px
+- icon rotates or shifts subtly by 3 to 5 degrees
+- border becomes slightly darker
+- tiny red accent line expands
+- shadow changes only slightly
+
+Do not use 3D tilt on mobile.
+
+Disable hover animations for touch devices.
+
+SECTION 8 — FINAL CTA
+
+Create an emotional closing section.
+
+Headline:
+
+“50 Years.”
+“Still Going.”
+
+Make the second line italic and brand red.
+
+Background visual:
+
+- three generations of the family together
+- inspecting or holding spices
+- warm sunset light
+- authentic smiles
+- premium documentary photography
+- spice farm or processing environment in the background
+
+CTA:
+
+“Partner With Us”
+
+FINAL ANIMATION
+
+- family photograph reveals using a soft left-to-right mask
+- “50 Years.” rises into place
+- “Still Going.” draws in slightly later
+- CTA fades upward
+- a subtle warm light moves through the image once
+- do not loop the final animation
+
+NAVIGATION
+
+Create a floating compact navigation similar to the reference.
+
+Menu items:
+
+- Home
+- Our Story
+- Technology
+- Products
+- Global Reach
+- Contact
+
+Navigation behaviour:
+
+- transparent or dark floating pill depending on the current section
+- active item uses brand red
+- navbar slightly reduces scale when scrolling down
+- navbar returns when scrolling up
+- use transform only
+- no excessive blur
+- on mobile use a clean expandable menu
+- ensure keyboard accessibility
+- include visible focus states
+
+LENIS AND GSAP IMPLEMENTATION
+
+Use a single global Lenis instance.
+
+Connect Lenis with GSAP correctly.
+
+Implementation behaviour:
+
+- Lenis handles smooth scrolling
+- ScrollTrigger listens to Lenis updates
+- GSAP ticker advances Lenis RAF
+- disable GSAP ticker lag smoothing only where appropriate
+- destroy Lenis during cleanup
+- avoid nested smooth-scroll wrappers
+- do not combine CSS scroll-behavior smooth with Lenis
+
+Create a reusable SmoothScrollProvider.
+
+Create reusable animation utilities for:
+
+- revealText
+- revealImage
+- parallaxImage
+- countUp
+- timelineProgress
+- routeDrawing
+
+COMPONENT STRUCTURE
+
+Use a clean component structure similar to:
+
+app/
+  about-us/
+    page.tsx
+
+components/
+  about/
+    AboutHero.tsx
+    OriginStory.tsx
+    JourneyTimeline.tsx
+    JourneyMilestone.tsx
+    FarmToFactory.tsx
+    TechnologyProcess.tsx
+    GlobalReach.tsx
+    BenefitsGrid.tsx
+    FinalStoryCTA.tsx
+
+components/
+  layout/
+    FloatingNavbar.tsx
+
+components/
+  providers/
+    SmoothScrollProvider.tsx
+
+lib/
+  gsap.ts
+  animation-utils.ts
+  constants.ts
+
+data/
+  journey.ts
+  benefits.ts
+
+Keep static milestone data in a typed data file.
+
+Do not write the complete page inside one giant component.
+
+RESPONSIVENESS
+
+Desktop:
+Use the complete cinematic alternating layout.
+
+Tablet:
+Reduce image dimensions and timeline spacing.
+Keep animations but shorten distances.
+
+Mobile:
+Use a clean vertical story.
+Do not force the desktop alternating layout.
+Years align consistently.
+Images become full-width.
+Disable complex parallax.
+Disable horizontal pinned process section.
+Reduce animation distances.
+Keep content immediately understandable.
+Preserve at least 16px side padding.
+Use 100svh instead of 100vh where required.
+Prevent horizontal overflow.
+
+REDUCED MOTION
+
+Respect prefers-reduced-motion.
+
+When reduced motion is enabled:
+
+- disable Lenis
+- remove scrubbed animations
+- show all content immediately
+- keep only small opacity transitions
+- disable parallax
+- disable counters or display final values directly
+- disable route drawing and show complete routes
+
+ACCESSIBILITY
+
+- use semantic sections
+- provide alt text for every image
+- maintain strong colour contrast
+- all buttons and links must be keyboard accessible
+- do not hide important information only inside animation
+- ensure the page remains understandable without JavaScript
+- do not trap scrolling
+- do not lock the page during loading
+- ensure screen readers receive meaningful milestone descriptions
+
+VISUAL QUALITY
+
+The output should feel custom designed for LV Spices.
+
+Do not create a generic template.
+
+Do not use generic stock-photo cards.
+
+Do not use random icons.
+
+Do not fill the screen with text.
+
+Do not put every section inside rounded cards.
+
+Do not use gradients everywhere.
+
+Do not use purple, cyan, green or pink neon.
+
+Do not create cartoon spices.
+
+Do not create fake floating 3D emojis.
+
+Do not use glassmorphism.
+
+Do not use giant blurred blobs.
+
+Do not create an over-designed loading screen.
+
+Do not make the animation more important than the story.
+
+FINAL EXPERIENCE
+
+The visitor should be able to understand this journey without reading paragraphs:
+
+small beginning
+→ first shop
+→ first factory
+→ modernization
+→ scientific processing
+→ global expansion
+→ 50 years of trust
+
+The page should feel calm, cinematic, emotionally rich and extremely smooth.
+
+It should look premium even when animations are paused.
+
+Generate:
+
+- complete responsive UI
+- production-ready Next.js code
+- TypeScript types
+- Tailwind styles
+- GSAP and ScrollTrigger animations
+- Lenis integration
+- desktop and mobile animation logic
+- reduced-motion behaviour
+- proper cleanup
+- reusable components
+- realistic placeholder image paths
+- clear comments only where technically necessary
+
+Do not provide pseudocode.
+
+Do not leave animation sections unfinished.
+
+Do not replace the timeline with a basic card grid.
+
+Do not simplify the page into static sections.
+
+Build the complete animated About Us experience based on the attached reference.

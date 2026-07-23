@@ -152,14 +152,7 @@ export default function ParallaxCard({
             aria-label={imageAlt}
             role="img"
           />
-          {/* Overlay so text stays readable */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(to bottom, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.72) 100%)',
-            }}
-          />
+          {/* Overlay so text stays readable (Removed by request to keep image clear) */}
         </div>
       )}
 

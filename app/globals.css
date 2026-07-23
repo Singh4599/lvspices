@@ -5,6 +5,10 @@
    TWO COLORS ONLY: #FFFFFF + #AC033B
    ═══════════════════════════════════════════ */
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 :root {
   --crimson: #AC033B;
   --white: #FFFFFF;
