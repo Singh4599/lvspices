@@ -242,10 +242,10 @@ export default function AnimatedCards({ cards, columns = 4 }: AnimatedCardsProps
 
   const gridCols =
     columns === 4
-      ? 'repeat(auto-fill, minmax(260px, 1fr))'
+      ? 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))'
       : columns === 3
-      ? 'repeat(auto-fill, minmax(300px, 1fr))'
-      : 'repeat(auto-fill, minmax(360px, 1fr))';
+      ? 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))'
+      : 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))';
 
   return (
     <>

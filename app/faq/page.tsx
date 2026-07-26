@@ -4,7 +4,6 @@ import { useState } from 'react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import ParallaxCard from '@/components/ui/ParallaxCard';
-import CurvedLoop from '@/components/ui/CurvedLoop';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -264,20 +263,6 @@ export default function FAQPage() {
           </div>
         </ScrollReveal>
       </section>
-
-      {/* ══ CURVED LOOP ════════════════════════════════════════ */}
-      <div style={{ position: 'relative', background: '#F8F6F1', paddingBottom: 'clamp(40px, 6vw, 80px)', paddingTop: 'clamp(40px, 6vw, 80px)' }}>
-        <CurvedLoop 
-          marqueeText="FREQUENTLY ASKED QUESTIONS • KNOWLEDGE BASE • "
-          speed={1.5}
-          curveAmount={250}
-          className="fill-[#111] uppercase font-mono tracking-widest"
-        />
-        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
-           <text style={{ fontSize: 'clamp(28px, 4vw, 56px)', fontFamily: 'var(--font-display)', color: CRIMSON, fontWeight: 800 }}>LV</text>
-           <text style={{ fontSize: 'clamp(9px, 1vw, 14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</text>
-        </div>
-      </div>
 
     </main>
   );
