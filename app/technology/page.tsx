@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from '@/lib/gsap';
-import PageHero from '@/components/ui/PageHero';
+import ScrollExpansionHero from '@/components/ui/ScrollExpansionHero';
 import ScrollReveal, { StaggerReveal, AnimatedStat } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import ParallaxCard from '@/components/ui/ParallaxCard';
@@ -13,15 +13,6 @@ const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
-
-const NAV_TABS = [
-  { id: 'seed-cleaning', label: 'Seed Cleaning' },
-  { id: 'milling', label: 'Milling' },
-  { id: 'roasting', label: 'Roasting' },
-  { id: 'steam-sterilization', label: 'Steam Sterilization' },
-  { id: 'cryogenic', label: 'Cryogenic Grinding' },
-  { id: 'cfg', label: 'CFG Technology' },
-];
 
 const millingLines = [
   {
@@ -50,38 +41,55 @@ const cryo = [
   { stat: '5-Log', label: 'Microbial Reduction' },
 ];
 
-export default function TechnologyPage() {
-  const [activeTab, setActiveTab] = useState('seed-cleaning');
-  const [activeMillingLine, setActiveMillingLine] = useState(0);
-  const [navSticky, setNavSticky] = useState(false);
-  const navRef = useRef<HTMLDivElement>(null);
+function TechImage({ src, alt }: { src: string; alt: string }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (navRef.current) setNavSticky(navRef.current.getBoundingClientRect().top <= 64);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: 'top 85%',
+          end: 'top 30%',
+          scrub: 0.65,
+        },
+      });
+
+      tl.fromTo('.gsap-img-inner',
+        { scale: 1.2, filter: 'brightness(0.7)' },
+        { scale: 1, filter: 'brightness(1)', duration: 1.1, ease: 'power2.out' }, 0
+      );
+    }, wrapperRef);
+
+    return () => ctx.revert();
   }, []);
 
-  const scrollTo = (id: string) => {
-    setActiveTab(id);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  return (
+    <div ref={wrapperRef} style={{ width: '100%', height: 'clamp(320px, 40vw, 520px)', overflow: 'hidden', borderRadius: 20, position: 'relative', border: '1px solid rgba(0,0,0,0.06)' }}>
+      <div className="gsap-img-inner" style={{ position: 'absolute', inset: -20 }}>
+        <Image src={src} alt={alt} fill style={{ objectFit: 'cover' }} />
+      </div>
+      <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 60px rgba(0,0,0,0.1)', pointerEvents: 'none' }} />
+    </div>
+  );
+}
+
+export default function TechnologyPage() {
+  const [activeMillingLine, setActiveMillingLine] = useState(0);
 
   return (
     <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
-      <PageHero
-        tag="Our Capabilities"
-        heading="Precision"
+      <ScrollExpansionHero
+        badge="Our Capabilities"
+        headingText="Precision"
         headingRed="Technology"
-        subCopy="LV Spices was among the first Indian exporters to adopt fully automated seed cleaning and cryogenic grinding. Innovation is in our DNA."
-        imageSrc="/images/factory.png"
-        imageAlt="LV Spices Technology"
-        overlay="gradient-up"
+        subText="LV Spices was among the first Indian exporters to adopt fully automated seed cleaning and cryogenic grinding. Innovation is in our DNA."
+        imageSrc="/images/tech_cfg.png"
         stats={[
           { value: '7+', label: 'Plants' },
           { value: '80k mts', label: 'Annual Capacity' },
@@ -89,42 +97,13 @@ export default function TechnologyPage() {
         ]}
       />
 
-      {/* ══ STICKY NAV ════════════════════════════════════════ */}
-      <div ref={navRef} style={{
-        position: 'sticky', top: 64, zIndex: 30,
-        background: navSticky ? 'rgba(0,0,0,0.97)' : '#0a0a0a',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-        transition: 'background 0.3s',
-      }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', overflowX: 'auto' }}>
-          {NAV_TABS.map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => scrollTo(tab.id)}
-              style={{
-                fontFamily: SANS, fontSize: 13, fontWeight: 500,
-                padding: '18px clamp(16px,2.5vw,36px)',
-                background: activeTab === tab.id ? CRIMSON : 'transparent',
-                color: activeTab === tab.id ? '#fff' : 'rgba(255,255,255,0.45)',
-                border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
-                transition: 'all 0.25s',
-                borderBottom: activeTab === tab.id ? `2px solid ${CRIMSON}` : '2px solid transparent',
-              }}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* ══ VELOCITY MARQUEE DIVIDER ══════════════════════════ */}
       <VelocityMarquee dark />
 
       {/* ══ PARALLAX SECTION ═════════════════════════════════ */}
       <div style={{ padding: 'clamp(40px, 6vw, 80px) clamp(24px, 5vw, 80px)', background: '#fff' }}>
         <ParallaxCard
-          imageSrc="/images/factory.png"
+          imageSrc="/images/tech_milling.png"
           tilt={false}
           parallaxStrength={0.2}
           style={{ height: 'clamp(300px, 40vh, 500px)', width: '100%', borderRadius: 24, border: 'none' }}
@@ -179,39 +158,26 @@ export default function TechnologyPage() {
       </section>
 
       {/* ══ SEED CLEANING ══════════════════════════════════════ */}
-      <section id="seed-cleaning" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)', background: '#fafafa' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <ScrollReveal fromY={30}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 12 }}>Step 01</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 12px' }}>Seed Cleaning</h2>
-            <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(0,0,0,0.45)', textAlign: 'center', margin: '0 0 48px', maxWidth: 620, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.7 }}>
-              This line has been consistently upgraded since the mid-90s — adapting to the latest global seed cleaning technology.
-            </p>
-          </ScrollReveal>
-
-          <div style={{ display: 'flex', gap: 'clamp(32px,5vw,72px)', alignItems: 'center', flexWrap: 'wrap' }}>
-            <ScrollReveal fromY={20} style={{ flex: '0 0 clamp(260px,40vw,480px)', borderRadius: 4, overflow: 'hidden', position: 'relative', height: 320 }}>
-              <Image src="/images/farm.png" alt="Seed Cleaning" fill style={{ objectFit: 'cover', transition: 'transform 0.6s' }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.04)'; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
-              />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(172,3,59,0.15), transparent)' }} />
-            </ScrollReveal>
-
-            <ScrollReveal fromY={20} delay={0.1} style={{ flex: 1, minWidth: 260 }}>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, marginBottom: 20 }}>
-                Different kinds of seeds can be separated when they differ in one or more physical characteristics. The line primarily removes farm admixtures, insect excreta, potential allergens, and ferrous/non-ferrous contaminants.
-              </p>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, marginBottom: 32 }}>
-                The Buhler line uses Sifters, De-Stoners, Spirals, Indent Cylinders, Gravity Separators, and the latest A+ Multivision Sortex with online Metal Detectors.
-              </p>
-              <div style={{ background: 'rgba(172,3,59,0.06)', border: '1px solid rgba(172,3,59,0.2)', borderRadius: 12, padding: '16px 20px' }}>
-                <div style={{ fontFamily: SANS, fontSize: 13, color: CRIMSON, fontWeight: 700, marginBottom: 4 }}>Processing Capacity</div>
-                <div style={{ fontFamily: SERIF, fontSize: 28, fontWeight: 700, color: '#111' }}>1 – 3 tons / hour</div>
-                <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginTop: 4 }}>Per spice seed intended for cleaning</div>
-              </div>
-            </ScrollReveal>
+      <section id="seed-cleaning" style={{ padding: 'clamp(60px,8vw,120px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)', background: '#fafafa' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', gap: 'clamp(40px, 8vw, 100px)', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: '1 1 500px' }}>
+             <TechImage src="/images/tech_seed_cleaning.png" alt="High-tech Seed Cleaning Optical Sorting" />
           </div>
+          <ScrollReveal fromY={20} style={{ flex: '1 1 400px' }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 12 }}>Step 01</div>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4.5vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 24px' }}>Seed Cleaning</h2>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, marginBottom: 20 }}>
+              This line has been consistently upgraded since the mid-90s — adapting to the latest global seed cleaning technology. Different kinds of seeds can be separated when they differ in one or more physical characteristics.
+            </p>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, marginBottom: 32 }}>
+              The line primarily removes farm admixtures, insect excreta, potential allergens, and ferrous/non-ferrous contaminants using Sifters, De-Stoners, Spirals, Gravity Separators, and the latest A+ Multivision Sortex with online Metal Detectors.
+            </p>
+            <div style={{ background: 'rgba(172,3,59,0.06)', border: '1px solid rgba(172,3,59,0.2)', borderRadius: 16, padding: '24px 28px' }}>
+              <div style={{ fontFamily: SANS, fontSize: 13, color: CRIMSON, fontWeight: 700, marginBottom: 8 }}>Processing Capacity</div>
+              <div style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3vw, 40px)', fontWeight: 700, color: '#111' }}>1 – 3 tons / hour</div>
+              <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginTop: 8 }}>Per spice seed intended for cleaning</div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -230,32 +196,24 @@ export default function TechnologyPage() {
       </div>
 
       {/* ══ MILLING ════════════════════════════════════════════ */}
-      <section id="milling" style={{ borderTop: '1px solid rgba(0,0,0,0.05)', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0 }}>
-          <Image src="/images/factory.png" alt="Milling" fill style={{ objectFit: 'cover', opacity: 0.08 }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0.9) 100%)' }} />
-        </div>
-
-        <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
-          <ScrollReveal fromY={30}>
+      <section id="milling" style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)', background: '#fff' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', gap: 'clamp(40px, 8vw, 100px)', alignItems: 'center', flexWrap: 'wrap-reverse' }}>
+          <ScrollReveal fromY={20} style={{ flex: '1 1 400px' }}>
             <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 12 }}>Step 02</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 20px' }}>Milling</h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.8, margin: '0 0 40px', maxWidth: 640, marginLeft: 'auto', marginRight: 'auto' }}>
-              Temperature deltas are critically controlled to prevent overheating — ensuring retention of flavour, negligible SHU loss, ASTA colour, and volatile oil. We have 3 Milling Lines, each for a specific product need.
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4.5vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 24px' }}>Milling</h2>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, margin: '0 0 40px' }}>
+              Temperature deltas are critically controlled to prevent overheating — ensuring retention of flavour, negligible SHU loss, ASTA colour, and volatile oil. We have 3 Milling Lines, each tailored for specific product needs.
             </p>
-          </ScrollReveal>
 
-          {/* Milling Line Tabs */}
-          <ScrollReveal fromY={20} delay={0.15}>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 32, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 8, marginBottom: 24, flexWrap: 'wrap' }}>
               {millingLines.map((line, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveMillingLine(i)}
                   style={{
-                    fontFamily: SANS, fontSize: 13, fontWeight: 500, padding: '10px 24px', borderRadius: 999,
-                    background: activeMillingLine === i ? CRIMSON : 'rgba(0,0,0,0.07)',
-                    border: `1px solid ${activeMillingLine === i ? CRIMSON : 'rgba(0,0,0,0.15)'}`,
+                    fontFamily: SANS, fontSize: 13, fontWeight: 600, padding: '12px 24px', borderRadius: 999,
+                    background: activeMillingLine === i ? CRIMSON : 'rgba(0,0,0,0.04)',
+                    border: `1px solid ${activeMillingLine === i ? CRIMSON : 'rgba(0,0,0,0.08)'}`,
                     color: activeMillingLine === i ? '#fff' : 'rgba(0,0,0,0.6)',
                     cursor: 'pointer', transition: 'all 0.2s',
                   }}
@@ -264,78 +222,73 @@ export default function TechnologyPage() {
             </div>
 
             <div style={{
-              background: '#111', border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: 20, padding: 'clamp(24px,3vw,48px)',
-              textAlign: 'left',
+              background: 'rgba(0,0,0,0.02)', border: '1px solid rgba(0,0,0,0.08)',
+              borderRadius: 20, padding: 'clamp(24px,3vw,32px)',
             }}>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.7)', lineHeight: 1.85, margin: 0 }}>
+              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,16px)', color: 'rgba(0,0,0,0.65)', lineHeight: 1.85, margin: 0 }}>
                 {millingLines[activeMillingLine].desc}
               </p>
             </div>
           </ScrollReveal>
+          
+          <div style={{ flex: '1 1 500px' }}>
+             <TechImage src="/images/tech_milling.png" alt="Industrial Stainless Steel Milling Equipment" />
+          </div>
         </div>
       </section>
 
       {/* ══ ROASTING ══════════════════════════════════════════ */}
-      <section id="roasting" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)', background: '#fafafa' }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
-          <ScrollReveal fromY={30}>
+      <section id="roasting" style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)', background: '#fafafa' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', gap: 'clamp(40px, 8vw, 100px)', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: '1 1 500px' }}>
+             <TechImage src="/images/tech_roasting.png" alt="Large Industrial Roasting Drums" />
+          </div>
+          
+          <ScrollReveal fromY={20} style={{ flex: '1 1 400px' }}>
             <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 12 }}>Step 03</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 20px' }}>Roasting</h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.8, margin: '0 0 40px' }}>
-              No Indian Spice Blend is complete without the special roasted flavour. We have a dedicated Roasting Line with a running capacity of 4000 mts/annum — perfectly achieving custom roasted blends to guarantee the extra special taste.
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4.5vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 24px' }}>Roasting</h2>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, margin: '0 0 40px' }}>
+              No Indian Spice Blend is complete without the special roasted flavour. Our dedicated Roasting Line perfectly achieves custom roasted blends to guarantee that extra special taste. It is the responsibility of our R&D Department to prepare recipes and meet specific requirements of custom roast blends.
             </p>
-          </ScrollReveal>
 
-          <ScrollReveal fromY={20} delay={0.15}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 24,
-              background: '#111', border: '1px solid rgba(172,3,59,0.25)',
-              borderRadius: 999, padding: '20px 40px', marginBottom: 40,
+              background: '#fff', border: '1px solid rgba(172,3,59,0.2)', boxShadow: '0 12px 32px rgba(0,0,0,0.04)',
+              borderRadius: 999, padding: '20px 40px',
             }}>
-              <span style={{ fontSize: 28 }}>🔥</span>
+              <span style={{ fontSize: 32 }}>🔥</span>
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontFamily: SERIF, fontSize: 32, fontWeight: 700, color: '#fff', lineHeight: 1 }}>4000 mts/annum</div>
-                <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>Dedicated Roasting Line Capacity</div>
+                <div style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3vw, 40px)', fontWeight: 700, color: '#111', lineHeight: 1 }}>4000 mts/yr</div>
+                <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginTop: 6 }}>Dedicated Roasting Line Capacity</div>
               </div>
             </div>
-          </ScrollReveal>
-
-          <ScrollReveal fromY={20} delay={0.2}>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.45)', lineHeight: 1.8 }}>
-              It is the responsibility of the R&D Department to prepare recipes, meet specific requirements of custom roast blends and run trials matching customer samples.
-            </p>
           </ScrollReveal>
         </div>
       </section>
 
       {/* ══ STEAM STERILIZATION ════════════════════════════════ */}
-      <section id="steam-sterilization" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <ScrollReveal fromY={30}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 12 }}>Step 04</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 16px' }}>Steam Sterilization</h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.8, textAlign: 'center', maxWidth: 680, margin: '0 auto 48px' }}>
+      <section id="steam-sterilization" style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)', background: '#fff' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', gap: 'clamp(40px, 8vw, 100px)', alignItems: 'center', flexWrap: 'wrap-reverse' }}>
+          <ScrollReveal fromY={20} style={{ flex: '1 1 400px' }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 12 }}>Step 04</div>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4.5vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 24px' }}>Steam Sterilization</h2>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, margin: '0 0 24px' }}>
               An environmental-friendly and extremely effective sterilization method yielding a validated 5-log microbial reduction without compromising organoleptic properties.
             </p>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, marginBottom: 32 }}>
+              The process uses high temperature, indirect contact and pre-heating, allowing for good retention of volatile oil and minimal colour changes. Very low micro-results are achieved — especially for seasonings requiring less than 10,000 TPC.
+            </p>
+            <div style={{
+              background: 'rgba(172,3,59,0.04)', border: '1px solid rgba(172,3,59,0.15)',
+              borderRadius: 16, padding: '20px 24px',
+              fontFamily: SANS, fontSize: 14, color: 'rgba(0,0,0,0.6)', lineHeight: 1.6,
+            }}>
+              <span style={{ color: CRIMSON, fontWeight: 700 }}>Post-sterilization packaging</span> takes place in a class 100,000 clean room utilising HEPA filters.
+            </div>
           </ScrollReveal>
-
-          <div style={{ display: 'flex', gap: 'clamp(32px,5vw,72px)', alignItems: 'center', flexWrap: 'wrap' }}>
-            <ScrollReveal fromY={20} style={{ flex: '0 0 clamp(260px,40vw,460px)', borderRadius: 4, overflow: 'hidden', position: 'relative', height: 300 }}>
-              <Image src="/images/cfg-bg.png" alt="Steam Sterilization" fill style={{ objectFit: 'cover' }} />
-            </ScrollReveal>
-            <ScrollReveal fromY={20} delay={0.1} style={{ flex: 1, minWidth: 260 }}>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.8, marginBottom: 20 }}>
-                The process uses high temperature, indirect contact and pre-heating, allowing for good retention of volatile oil and minimal colour changes. Very low micro-results are achieved — especially for seasonings requiring less than 10,000 TPC.
-              </p>
-              <div style={{
-                background: 'rgba(172,3,59,0.05)', border: '1px solid rgba(172,3,59,0.2)',
-                borderRadius: 12, padding: '16px 20px',
-                fontFamily: SANS, fontSize: 13, color: 'rgba(0,0,0,0.55)', lineHeight: 1.6,
-              }}>
-                <span style={{ color: CRIMSON, fontWeight: 700 }}>Post-sterilization packaging</span> takes place in a class 100,000 clean room utilising HEPA filters.
-              </div>
-            </ScrollReveal>
+          
+          <div style={{ flex: '1 1 500px' }}>
+             <TechImage src="/images/tech_sterilization.png" alt="Advanced Steam Sterilization Chambers" />
           </div>
         </div>
       </section>
@@ -344,68 +297,59 @@ export default function TechnologyPage() {
       <VelocityMarquee />
 
       {/* ══ CRYOGENIC GRINDING ════════════════════════════════ */}
-      <section id="cryogenic" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', background: '#111', color: '#fff' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <ScrollReveal fromY={30}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#D0375C', textAlign: 'center', marginBottom: 12 }}>Step 05</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#fff', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 16px' }}>Cryogenic Grinding</h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, textAlign: 'center', maxWidth: 640, margin: '0 auto 48px' }}>
+      <section id="cryogenic" style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px)', background: '#111', color: '#fff' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', gap: 'clamp(40px, 8vw, 100px)', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: '1 1 500px' }}>
+             <TechImage src="/images/cryo-dark.png" alt="Cryogenic Grinding" />
+          </div>
+          
+          <ScrollReveal fromY={20} style={{ flex: '1 1 400px' }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#D0375C', marginBottom: 12 }}>Step 05</div>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4.5vw,56px)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 24px' }}>Cryogenic Grinding</h2>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.85, margin: '0 0 48px' }}>
               Cryogenic grinding at -150°C preserves 40% more essential oils, colour, and aroma than conventional ambient grinding — making it the gold standard for premium spice processing.
             </p>
-          </ScrollReveal>
 
-          <div style={{ display: 'flex', gap: 'clamp(32px,5vw,72px)', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
-            <ScrollReveal fromY={20} style={{ flex: '0 0 clamp(260px,40vw,460px)', borderRadius: 4, overflow: 'hidden', position: 'relative', height: 320 }}>
-              <Image src="/images/cryo-dark.png" alt="Cryogenic Grinding" fill style={{ objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(172,3,59,0.2), transparent)' }} />
-            </ScrollReveal>
-            <StaggerReveal style={{ flex: 1, minWidth: 260, display: 'flex', flexDirection: 'column', gap: 16 }} stagger={0.1}>
+            <StaggerReveal style={{ display: 'flex', flexDirection: 'column', gap: 16 }} stagger={0.1}>
               {cryo.map(s => (
                 <div key={s.stat} style={{
-                  display: 'flex', alignItems: 'center', gap: 20,
+                  display: 'flex', alignItems: 'center', gap: 24,
                   background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
-                  borderRadius: 14, padding: '20px 24px',
+                  borderRadius: 16, padding: '24px 28px',
                   transition: 'all 0.3s',
                 }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(172,3,59,0.4)'; (e.currentTarget as HTMLElement).style.background = 'rgba(172,3,59,0.08)'; }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(172,3,59,0.5)'; (e.currentTarget as HTMLElement).style.background = 'rgba(172,3,59,0.1)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.04)'; }}
                 >
-                  <div style={{ fontFamily: SERIF, fontSize: 32, fontWeight: 700, color: '#D0375C', minWidth: 90 }}>{s.stat}</div>
-                  <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>{s.label}</div>
+                  <div style={{ fontFamily: SERIF, fontSize: 'clamp(32px, 3.5vw, 40px)', fontWeight: 700, color: '#D0375C', minWidth: 100 }}>{s.stat}</div>
+                  <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>{s.label}</div>
                 </div>
               ))}
             </StaggerReveal>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* ══ CFG TECHNOLOGY ════════════════════════════════════ */}
-      <section id="cfg" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <ScrollReveal fromY={30}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, textAlign: 'center', marginBottom: 12 }}>Step 06</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,56px)', fontWeight: 700, color: '#111', textAlign: 'center', letterSpacing: '-0.02em', margin: '0 0 16px' }}>CFG Technology</h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.8, textAlign: 'center', maxWidth: 640, margin: '0 auto 48px' }}>
+      <section id="cfg" style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px)', background: '#fff' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', gap: 'clamp(40px, 8vw, 100px)', alignItems: 'center', flexWrap: 'wrap-reverse' }}>
+          <ScrollReveal fromY={20} style={{ flex: '1 1 400px' }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 12 }}>Step 06</div>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,4.5vw,56px)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: '0 0 24px' }}>CFG Technology</h2>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, marginBottom: 24 }}>
               Our Continuous Flow Grinding (CFG) process is the most advanced spice processing technology in India — combining precision milling with inline quality monitoring.
             </p>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, marginBottom: 24 }}>
+              CFG eliminates batch-to-batch variation by continuously feeding, grinding, and classifying spices in a closed-loop system. Real-time sensor feedback adjusts process parameters automatically. The system is validated under FDA 21 CFR Part 117 FSMA standards and is GMP-compliant.
+            </p>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: '12px 24px', background: 'rgba(172,3,59,0.06)', border: '1px solid rgba(172,3,59,0.2)', borderRadius: 999 }}>
+              <span style={{ width: 10, height: 10, borderRadius: '50%', background: CRIMSON }} />
+              <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.15em', color: CRIMSON, fontWeight: 700 }}>FDA 21 CFR Validated</span>
+            </div>
           </ScrollReveal>
-
-          <div style={{ display: 'flex', gap: 'clamp(32px,5vw,72px)', alignItems: 'center', flexWrap: 'wrap' }}>
-            <ScrollReveal fromY={20} style={{ flex: '0 0 clamp(260px,40vw,460px)', borderRadius: 4, overflow: 'hidden', position: 'relative', height: 320 }}>
-              <Image src="/images/cfg-bg.png" alt="CFG Technology" fill style={{ objectFit: 'cover' }} />
-            </ScrollReveal>
-            <ScrollReveal fromY={20} delay={0.1} style={{ flex: 1, minWidth: 260 }}>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.8, marginBottom: 24 }}>
-                CFG eliminates batch-to-batch variation by continuously feeding, grinding, and classifying spices in a closed-loop system. Real-time sensor feedback adjusts process parameters automatically.
-              </p>
-              <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.8, marginBottom: 24 }}>
-                The system is validated under FDA 21 CFR Part 117 FSMA standards and is GMP-compliant — making LV Spices one of very few Indian processors capable of supplying direct to US and EU private label retailers.
-              </p>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '8px 20px', background: 'rgba(172,3,59,0.06)', border: '1px solid rgba(172,3,59,0.2)', borderRadius: 999 }}>
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: CRIMSON }} />
-                <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.15em', color: CRIMSON, fontWeight: 600 }}>FDA 21 CFR Validated</span>
-              </div>
-            </ScrollReveal>
+          
+          <div style={{ flex: '1 1 500px' }}>
+             <TechImage src="/images/tech_cfg.png" alt="CFG Technology Control Panel" />
           </div>
         </div>
       </section>

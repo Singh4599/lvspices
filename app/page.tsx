@@ -680,16 +680,16 @@ function VideoStep({
 
 function WhatWeDo() {
   const steps = [
-    { num: '01', title: 'Raw Material\nProcurement', video: '/videos/raw.mp4' },
-    { num: '02', title: 'Storage',                   video: '/videos/storing-spices.mp4' },
-    { num: '03', title: 'RM Inspection',              video: '/videos/rm-inspection.mp4' },
+    { num: '01', title: 'Raw Material\nProcurement', video: '/videos/raw-material-new.mp4' },
+    { num: '02', title: 'Storage',                   video: '/videos/storage-new.mp4' },
+    { num: '03', title: 'RM Inspection',              video: '/videos/inspection-new.mp4' },
     { num: '04', title: 'Cleaning &\nSorting',        video: '/videos/cleaning-sorting.mp4' },
-    { num: '05', title: 'Metal\nDetection',           video: '/videos/metal-detection.mp4' },
+    { num: '05', title: 'Metal\nDetection',           video: '/videos/metal-detction-new.mp4' },
     { num: '06', title: 'Roasting',                   video: '/videos/roasting.mp4' },
     { num: '07', title: 'Cryogenic\nGrinding',        video: '/videos/cryogenic-grinding-new.mp4' },
     { num: '08', title: 'Packaging\nLine',            video: '/videos/process.mp4' },
     { num: '09', title: 'Steam\nSterilization',       video: '/videos/steam-sterilization.mp4' },
-    { num: '10', title: 'Quality\nAssurance',         video: '/videos/quality-check.mp4' },
+    { num: '10', title: 'Quality\nAssurance',         video: '/videos/quality-check-new2.mp4' },
     { num: '11', title: 'Shipment\nClearance & Dispatch', video: '/videos/dispatch.mp4' },
   ];
 
@@ -744,10 +744,10 @@ function WhatWeDo() {
 /* RESOURCES */
 function Resources() {
   const resourceSteps = [
-    { num: '01', title: 'Inhouse Lab',                   video: '/videos/inhouse-lab.mp4' },
-    { num: '02', title: 'Cold Storage',                  video: '/videos/cold-storage.mp4' },
+    { num: '01', title: 'Inhouse Lab',                   video: '/videos/in-house-and-rd.mp4' },
+    { num: '02', title: 'Cold Storage',                  video: '/videos/raw-material-storage.mp4' },
     { num: '03', title: 'Product R&D',                   video: '/videos/product-rd.mp4' },
-    { num: '04', title: 'Private Label',                 video: '/videos/private-label.mp4' },
+    { num: '04', title: 'Private Label',                 video: '/videos/private-lable.mp4' },
     { num: '05', title: 'Customized\nSolution',          video: '/videos/customised.mp4' },
     { num: '06', title: 'Safety & Quality\nPractices',   video: '/videos/safety-quality.mp4' },
     { num: '07', title: 'Annual Export\nSpice Stock',    video: '/videos/annual-export.mp4' },

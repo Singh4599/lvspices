@@ -1,9 +1,13 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import PageHero from '@/components/ui/PageHero';
+import ScrollExpansionHero from '@/components/ui/ScrollExpansionHero';
 import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
+import ParallaxCard from '@/components/ui/ParallaxCard';
+import CurvedLoop from '@/components/ui/CurvedLoop';
+import { gsap } from '@/lib/gsap';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -45,19 +49,138 @@ const gmpItems = [
   { title: 'Documentation and Record-Keeping', desc: 'Data compliance including lab testing files, regular audits, and documenting all production, QC, and distribution records.' },
 ];
 
+function ProcessStep({ step, isLeft }: { step: any; isLeft: boolean }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: 'top 85%',
+          end: 'top 30%',
+          scrub: 0.65,
+        },
+      });
+
+      tl.fromTo('.gsap-img-wrap',
+        { clipPath: 'inset(15% 15% 15% 15%)' },
+        { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.1, ease: 'power2.out' }, 0
+      );
+      tl.fromTo('.gsap-img-inner',
+        { scale: 1.2 },
+        { scale: 1, duration: 1.1, ease: 'power2.out' }, 0
+      );
+    }, wrapperRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <ScrollReveal fromY={24} delay={0.05} style={{
+      display: 'flex',
+      justifyContent: isLeft ? 'flex-start' : 'flex-end',
+      marginBottom: 'clamp(48px, 8vw, 120px)',
+      position: 'relative',
+    }}>
+      {/* Connector dot */}
+      <div style={{
+        position: 'absolute', left: '50%', top: '50%',
+        width: 14, height: 14, borderRadius: '50%',
+        background: CRIMSON, border: '3px solid #fff',
+        boxShadow: `0 0 0 3px rgba(172,3,59,0.2)`,
+        transform: 'translate(-50%, -50%)', zIndex: 2,
+      }} />
+
+      <div ref={wrapperRef} style={{
+        width: '46%',
+        display: 'flex',
+        flexDirection: isLeft ? 'row' : 'row-reverse',
+        gap: 'clamp(20px, 3vw, 56px)', alignItems: 'center',
+      }}>
+        {/* Image */}
+        <div className="gsap-img-wrap" style={{
+          width: 'clamp(140px, 20vw, 360px)', height: 'clamp(100px, 15vw, 260px)',
+          borderRadius: 16, overflow: 'hidden', flexShrink: 0,
+          border: '1px solid rgba(0,0,0,0.08)', position: 'relative',
+        }}>
+          <div className="gsap-img-inner" style={{ position: 'absolute', inset: 0 }}>
+            <Image src={step.img} alt={step.title} fill style={{ objectFit: 'cover' }} />
+          </div>
+        </div>
+        {/* Text */}
+        <div style={{ textAlign: isLeft ? 'right' : 'left' }}>
+          <div style={{ fontFamily: MONO, fontSize: 'clamp(10px, 1vw, 14px)', letterSpacing: '0.2em', color: CRIMSON, marginBottom: 'clamp(6px, 1vw, 12px)' }}>STEP {step.num}</div>
+          <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 2vw, 36px)', fontWeight: 700, color: '#111', margin: '0 0 clamp(8px, 1.5vw, 16px)', lineHeight: 1.15 }}>{step.title}</h3>
+          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px, 1.1vw, 17px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.65, margin: 0 }}>{step.desc}</p>
+        </div>
+      </div>
+    </ScrollReveal>
+  );
+}
+
+function TiltCard({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isDesktop = typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDesktop) return;
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotateX = ((y - cy) / cy) * -8;
+    const rotateY = ((x - cx) / cx) * 8;
+    el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    el.style.boxShadow = `${-rotateY * 1.5}px ${rotateX * 1.5}px 32px rgba(172,3,59,0.18)`;
+    el.style.borderColor = 'rgba(172,3,59,0.4)';
+  };
+
+  const handleMouseLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+    el.style.boxShadow = 'none';
+    el.style.borderColor = 'rgba(0,0,0,0.07)';
+  };
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        background: '#fff',
+        border: '1px solid rgba(0,0,0,0.07)',
+        borderRadius: 12,
+        overflow: 'hidden',
+        transition: 'transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease',
+        willChange: 'transform',
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function HowWeOperatePage() {
   return (
     <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
 
-      {/* ══ HERO ══════════════════════════════════════════════ */}
-      <PageHero
-        tag="How We Operate"
-        heading="From Farm"
+      {/* ══ SCROLL EXPANSION HERO ════════════════════════════════ */}
+      <ScrollExpansionHero
+        badge="How We Operate"
+        headingText="From Farm"
         headingRed="To Your Table."
-        subCopy="State-of-the-art infrastructure spanning 2 lakh sq. ft. with a daily throughput exceeding 200 metric tonnes across all product categories."
+        subText="State-of-the-art infrastructure spanning 2 lakh sq. ft. with a daily throughput exceeding 200 metric tonnes across all product categories."
         imageSrc="/images/factory.png"
-        imageAlt="LV Spices Manufacturing Facility"
-        overlay="gradient-left"
         stats={[
           { value: '200 MT', label: 'Daily Throughput' },
           { value: '2L sqft', label: 'Plant Area' },
@@ -68,12 +191,12 @@ export default function HowWeOperatePage() {
       {/* ══ VELOCITY MARQUEE ══════════════════════════════════ */}
       <VelocityMarquee dark />
 
-      {/* ══ PROCESS STEPS — ZIGZAG ════════════════════════════ */}
-      <section style={{ padding: 'clamp(80px,10vw,130px) clamp(20px,5vw,80px)', maxWidth: 1100, margin: '0 auto' }}>
+      {/* ══ PROCESS STEPS — ZIGZAG ════════════════════════ */}
+      <section style={{ padding: 'clamp(80px,10vw,160px) clamp(20px,5vw,80px) clamp(20px,3vw,40px)', maxWidth: 1400, margin: '0 auto' }}>
         <ScrollReveal fromY={30}>
-          <div style={{ textAlign: 'center', marginBottom: 'clamp(48px, 6vw, 80px)' }}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 16 }}>Our Process</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(30px,4.5vw,60px)', fontWeight: 700, color: '#111', letterSpacing: '-0.03em', margin: 0 }}>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(56px, 8vw, 120px)' }}>
+            <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: '0.25em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 16 }}>Our Process</div>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px,5vw,72px)', fontWeight: 700, color: '#111', letterSpacing: '-0.03em', margin: 0 }}>
               8-Step Journey to Perfection
             </h2>
           </div>
@@ -83,53 +206,41 @@ export default function HowWeOperatePage() {
           {/* Vertical spine line */}
           <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, background: 'rgba(172,3,59,0.2)', transform: 'translateX(-50%)' }} />
 
-          {processSteps.map((step, i) => {
-            const isLeft = i % 2 === 0;
-            return (
-              <ScrollReveal key={step.num} fromY={24} delay={0.05} style={{
-                display: 'flex',
-                justifyContent: isLeft ? 'flex-start' : 'flex-end',
-                marginBottom: 'clamp(32px,5vw,60px)',
-                position: 'relative',
-              }}>
-                {/* Connector dot */}
-                <div style={{
-                  position: 'absolute', left: '50%', top: '50%',
-                  width: 14, height: 14, borderRadius: '50%',
-                  background: CRIMSON, border: '3px solid #fff',
-                  boxShadow: `0 0 0 3px rgba(172,3,59,0.2)`,
-                  transform: 'translate(-50%, -50%)', zIndex: 2,
-                }} />
-
-                <div style={{
-                  width: '46%',
-                  display: 'flex',
-                  flexDirection: isLeft ? 'row' : 'row-reverse',
-                  gap: 20, alignItems: 'center',
-                }}>
-                  {/* Image */}
-                  <div style={{
-                    width: 'clamp(100px,13vw,160px)', height: 'clamp(80px,10vw,120px)',
-                    borderRadius: 12, overflow: 'hidden', flexShrink: 0,
-                    border: '1px solid rgba(0,0,0,0.08)', position: 'relative',
-                  }}>
-                    <Image src={step.img} alt={step.title} fill style={{ objectFit: 'cover', transition: 'transform 0.4s' }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)'; }}
-                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
-                    />
-                  </div>
-                  {/* Text */}
-                  <div style={{ textAlign: isLeft ? 'right' : 'left' }}>
-                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.2em', color: CRIMSON, marginBottom: 6 }}>STEP {step.num}</div>
-                    <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(14px,1.5vw,20px)', fontWeight: 700, color: '#111', margin: '0 0 8px', lineHeight: 1.2 }}>{step.title}</h3>
-                    <p style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(0,0,0,0.52)', lineHeight: 1.65, margin: 0 }}>{step.desc}</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            );
-          })}
+          {processSteps.map((step, i) => (
+            <ProcessStep key={step.num} step={step} isLeft={i % 2 === 0} />
+          ))}
         </div>
       </section>
+
+      {/* ══ CURVED LOOP ════════════════════════════════════════ */}
+      <div style={{ position: 'relative', background: '#F8F6F1', paddingBottom: 'clamp(40px, 6vw, 80px)', paddingTop: 'clamp(16px, 2vw, 32px)' }}>
+        <CurvedLoop 
+          marqueeText="HOW WE OPERATE • 8-STEP PROCESS • TRACEABILITY • "
+          speed={1.5}
+          curveAmount={250}
+          className="fill-[#111] uppercase font-mono tracking-widest"
+        />
+        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
+           <text style={{ fontSize: 'clamp(28px, 4vw, 56px)', fontFamily: 'var(--font-display)', color: CRIMSON, fontWeight: 800 }}>LV</text>
+           <text style={{ fontSize: 'clamp(9px, 1vw, 14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</text>
+        </div>
+      </div>
+
+      {/* ══ PARALLAX SECTION ═════════════════════════════════ */}
+      <div style={{ padding: 'clamp(40px, 6vw, 80px) clamp(24px, 5vw, 80px)', background: '#fff' }}>
+        <ParallaxCard
+          imageSrc="/images/factory.png"
+          tilt={false}
+          parallaxStrength={0.2}
+          style={{ height: 'clamp(300px, 40vh, 500px)', width: '100%', borderRadius: 24, border: 'none' }}
+        >
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 100%)', zIndex: 1 }} />
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', padding: 'clamp(32px, 6vw, 80px)', position: 'relative', zIndex: 2 }}>
+            <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#ffb3c6', marginBottom: 16 }}>Our Commitment</div>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(36px, 5vw, 64px)', color: '#fff', margin: 0, lineHeight: 1.1, maxWidth: 600 }}>8-Step Journey to Perfection</h2>
+          </div>
+        </ParallaxCard>
+      </div>
 
       {/* ══ HEADLINE BANNER ════════════════════════════════════ */}
       <section style={{ padding: 'clamp(40px,5vw,72px) clamp(20px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.06)', borderBottom: '1px solid rgba(0,0,0,0.06)', background: '#fafafa' }}>
@@ -163,25 +274,15 @@ export default function HowWeOperatePage() {
             style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(240px,26vw,320px), 1fr))', gap: 'clamp(16px,2vw,24px)' }}
           >
             {infraItems.map((item) => (
-              <div key={item.title} style={{
-                background: '#fff', border: '1px solid rgba(0,0,0,0.07)',
-                borderRadius: 12, overflow: 'hidden',
-                transition: 'all 0.3s',
-              }}
-                onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = 'rgba(172,3,59,0.4)'; el.style.transform = 'translateY(-4px)'; el.style.boxShadow = '0 8px 32px rgba(172,3,59,0.1)'; }}
-                onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = 'rgba(0,0,0,0.07)'; el.style.transform = 'translateY(0)'; el.style.boxShadow = 'none'; }}
-              >
+              <TiltCard key={item.title}>
                 <div style={{ height: 160, overflow: 'hidden', position: 'relative' }}>
-                  <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover', opacity: 0.75, transition: 'transform 0.4s' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.06)'; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
-                  />
+                  <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover', opacity: 0.75, transition: 'transform 0.4s' }} />
                 </div>
                 <div style={{ padding: '18px 20px 24px' }}>
                   <h3 style={{ fontFamily: SANS, fontSize: 14, fontWeight: 700, color: '#111', margin: '0 0 8px' }}>{item.title}</h3>
                   <p style={{ fontFamily: SANS, fontSize: 12.5, color: 'rgba(0,0,0,0.52)', lineHeight: 1.65, margin: 0 }}>{item.desc}</p>
                 </div>
-              </div>
+              </TiltCard>
             ))}
           </StaggerReveal>
         </div>
@@ -222,6 +323,7 @@ export default function HowWeOperatePage() {
           </div>
         </div>
       </section>
+
 
     </main>
   );
