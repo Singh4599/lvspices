@@ -2373,7 +2373,7 @@ nav[aria-label="Breadcrumb"] {
   /* Column layout: text compact on top, big video below */
   .stacked-card-inner {
     flex-direction: column !important;
-    padding: 24px 20px 0 20px !important;
+    padding: 24px 20px 24px 20px !important;
     gap: 18px !important;
   }
 
@@ -2408,10 +2408,9 @@ nav[aria-label="Breadcrumb"] {
     width: 100% !important;
   }
 
-  /* Taller video on mobile using height override */
   .card-video-wrapper {
-    aspect-ratio: 4/3 !important;
-    border-radius: 0 0 16px 16px !important;
+    aspect-ratio: 16/9 !important;
+    border-radius: 16px !important;
     overflow: hidden !important;
   }
 }

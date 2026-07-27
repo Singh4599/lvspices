@@ -139,7 +139,7 @@ export default function FAQPage() {
 
           <ScrollReveal fromY={16} delay={0.25}>
             <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(0,0,0,0.5)', maxWidth: 520, margin: '0 auto 32px', lineHeight: 1.75 }}>
-              {totalFAQs} questions answered. Can't find what you need? Our export team replies within 24 hours.
+              {totalFAQs} questions answered about our spice manufacturing, bulk supply, OEM, private label, export quality, and custom blend services. Can&apos;t find what you need? Our export team replies within 24 hours.
             </p>
             <a href="/contact" style={{
               display: 'inline-block', fontFamily: SANS, fontSize: 14, fontWeight: 600,

@@ -5,9 +5,7 @@ import { MapPin, Mail, Phone } from 'lucide-react';
 import ScrollExpansionHero from '@/components/ui/ScrollExpansionHero';
 import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
-import { ShuffleGrid } from '@/components/ui/ShuffleGrid';
-import ParallaxCard from '@/components/ui/ParallaxCard';
-import CurvedLoop from '@/components/ui/CurvedLoop';
+import Phone3D from '@/components/ui/Phone3D';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -50,7 +48,7 @@ export default function ContactPage() {
         badge="Get in Touch"
         headingText="Let's build"
         headingRed="together."
-        subText="Whether you need a quotation, samples, or a custom private-label formulation — our export team responds within 24 hours."
+        subText="Bulk spice orders, OEM manufacturing, private label partnerships, or custom blend formulations — our export team responds within 24 hours. Serving importers in 40+ countries."
         imageSrc="/images/factory.png"
         stats={[
           { value: '24hr', label: 'Response Time' },
@@ -63,84 +61,84 @@ export default function ContactPage() {
       <VelocityMarquee dark />
 
       {/* ══ SPLIT CONTACT SECTION ══════════════════════════════ */}
-      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)' }}>
+      <section id="contact-form" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'clamp(40px,6vw,80px)' }}>
           
-          {/* Left: Form */}
-          <div>
+          {/* Left: Phone Gateway + Form */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
             <ScrollReveal fromY={24}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '32px' }}>
-                <div style={{ width: '36px', height: '1.5px', background: CRIMSON }} />
-                <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: CRIMSON }}>
-                  Send a Message
-                </span>
-              </div>
-            </ScrollReveal>
-
-            {formState === 'sent' ? (
-              <ScrollReveal fromY={16} style={{ padding: '60px', border: '1px solid rgba(172,3,59,0.15)', borderRadius: '20px', textAlign: 'center', background: 'rgba(172,3,59,0.025)' }}>
-                <div style={{ width: '64px', height: '64px', margin: '0 auto 24px', borderRadius: '50%', background: 'rgba(172,3,59,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#AC033B" strokeWidth="2"><path d="M20 6L9 17l-5-5" /></svg>
+              <Phone3D>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '32px' }}>
+                  <div style={{ width: '36px', height: '1.5px', background: CRIMSON }} />
+                  <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: CRIMSON }}>
+                    Send a Message
+                  </span>
                 </div>
-                <h3 style={{ fontFamily: SERIF, fontSize: '24px', fontWeight: 700, color: '#111', marginBottom: '12px' }}>Message Received</h3>
-                <p style={{ fontFamily: SANS, fontSize: '14px', color: 'rgba(0,0,0,0.5)', lineHeight: 1.7 }}>
-                  Our export team will reply within 24 business hours.<br />Check your spam folder if you don't hear from us.
-                </p>
-              </ScrollReveal>
-            ) : (
-              <ScrollReveal fromY={20}>
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Full Name *</label>
-                      <input required style={inputStyle} value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} placeholder="Your name" onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
-                    </div>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Email *</label>
-                      <input required type="email" style={inputStyle} value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} placeholder="you@company.com" onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
-                    </div>
-                  </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Company</label>
-                      <input style={inputStyle} value={formData.company} onChange={e => setFormData(p => ({ ...p, company: e.target.value }))} placeholder="Your company" onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
+                {formState === 'sent' ? (
+                  <div style={{ padding: '60px', border: '1px solid rgba(172,3,59,0.15)', borderRadius: '20px', textAlign: 'center', background: 'rgba(172,3,59,0.025)' }}>
+                    <div style={{ width: '64px', height: '64px', margin: '0 auto 24px', borderRadius: '50%', background: 'rgba(172,3,59,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#AC033B" strokeWidth="2"><path d="M20 6L9 17l-5-5" /></svg>
                     </div>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Country</label>
-                      <input style={inputStyle} value={formData.country} onChange={e => setFormData(p => ({ ...p, country: e.target.value }))} placeholder="United Kingdom" onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
+                    <h3 style={{ fontFamily: SERIF, fontSize: '24px', fontWeight: 700, color: '#111', marginBottom: '12px' }}>Message Received</h3>
+                    <p style={{ fontFamily: SANS, fontSize: '14px', color: 'rgba(0,0,0,0.5)', lineHeight: 1.7 }}>
+                      Our export team will reply within 24 business hours.<br />Check your spam folder if you don&apos;t hear from us.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Full Name *</label>
+                        <input required style={inputStyle} value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} placeholder="Your name" onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Email *</label>
+                        <input required type="email" style={inputStyle} value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} placeholder="you@company.com" onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
+                      </div>
                     </div>
-                  </div>
 
-                  <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Subject *</label>
-                    <select required style={{ ...inputStyle, cursor: 'pointer' }} value={formData.subject} onChange={e => setFormData(p => ({ ...p, subject: e.target.value }))} onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')}>
-                      {subjects.map(s => <option key={s}>{s}</option>)}
-                    </select>
-                  </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Company</label>
+                        <input style={inputStyle} value={formData.company} onChange={e => setFormData(p => ({ ...p, company: e.target.value }))} placeholder="Your company" onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Country</label>
+                        <input style={inputStyle} value={formData.country} onChange={e => setFormData(p => ({ ...p, country: e.target.value }))} placeholder="United Kingdom" onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
+                      </div>
+                    </div>
 
-                  <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Message *</label>
-                    <textarea required rows={5} style={{ ...inputStyle, resize: 'vertical' }} value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} placeholder="Tell us about your requirements — products, volumes, destination..." onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
-                  </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Subject *</label>
+                      <select required style={{ ...inputStyle, cursor: 'pointer' }} value={formData.subject} onChange={e => setFormData(p => ({ ...p, subject: e.target.value }))} onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')}>
+                        {subjects.map(s => <option key={s}>{s}</option>)}
+                      </select>
+                    </div>
 
-                  <button type="submit" disabled={formState === 'sending'} style={{
-                    padding: '16px 40px', background: formState === 'sending' ? 'rgba(172,3,59,0.6)' : CRIMSON, color: '#fff',
-                    border: 'none', borderRadius: '999px', fontSize: '14px', fontFamily: SANS, fontWeight: 600,
-                    letterSpacing: '0.04em', cursor: formState === 'sending' ? 'not-allowed' : 'pointer',
-                    alignSelf: 'flex-start', transition: 'all 0.25s',
-                  }}
-                    onMouseEnter={e => { if (formState !== 'sending') { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(172,3,59,0.3)'; } }}
-                    onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
-                  >
-                    {formState === 'sending' ? 'Sending...' : 'Send Message →'}
-                  </button>
-                </form>
-              </ScrollReveal>
-            )}
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: MONO, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: '8px' }}>Message *</label>
+                      <textarea required rows={5} style={{ ...inputStyle, resize: 'vertical' }} value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} placeholder="Tell us about your requirements — products, volumes, destination..." onFocus={e => (e.target.style.borderColor = CRIMSON)} onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.08)')} />
+                    </div>
+
+                    <button type="submit" disabled={formState === 'sending'} style={{
+                      padding: '16px 40px', background: formState === 'sending' ? 'rgba(172,3,59,0.6)' : CRIMSON, color: '#fff',
+                      border: 'none', borderRadius: '999px', fontSize: '14px', fontFamily: SANS, fontWeight: 600,
+                      letterSpacing: '0.04em', cursor: formState === 'sending' ? 'not-allowed' : 'pointer',
+                      alignSelf: 'flex-start', transition: 'all 0.25s',
+                    }}
+                      onMouseEnter={e => { if (formState !== 'sending') { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(172,3,59,0.3)'; } }}
+                      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
+                    >
+                      {formState === 'sending' ? 'Sending...' : 'Send Message →'}
+                    </button>
+                  </form>
+                )}
+              </Phone3D>
+            </ScrollReveal>
           </div>
 
-          {/* Right: Info & Visuals */}
+          {/* Right: Contact Info only */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             <ScrollReveal fromY={24} delay={0.1}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '8px' }}>
@@ -199,46 +197,11 @@ export default function ContactPage() {
                   </a>
                 </div>
               </div>
-
-              {/* Visual ShuffleGrid */}
-              <div style={{ position: 'relative', width: '100%', height: '240px', borderRadius: '20px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)' }}>
-                <ShuffleGrid />
-              </div>
             </StaggerReveal>
           </div>
 
         </div>
       </section>
-
-      {/* ══ PARALLAX SECTION ═════════════════════════════════ */}
-      <div style={{ padding: 'clamp(40px, 6vw, 80px) clamp(24px, 5vw, 80px)', background: '#fff' }}>
-        <ParallaxCard
-          imageSrc="/images/farm.png"
-          tilt={false}
-          parallaxStrength={0.2}
-          style={{ height: 'clamp(300px, 40vh, 500px)', width: '100%', borderRadius: 24, border: 'none' }}
-        >
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 100%)', zIndex: 1 }} />
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', padding: 'clamp(32px, 6vw, 80px)', position: 'relative', zIndex: 2 }}>
-            <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#ffb3c6', marginBottom: 16 }}>Our Commitment</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(36px, 5vw, 64px)', color: '#fff', margin: 0, lineHeight: 1.1, maxWidth: 600 }}>Get In Touch</h2>
-          </div>
-        </ParallaxCard>
-      </div>
-
-      {/* ══ CURVED LOOP ════════════════════════════════════════ */}
-      <div style={{ position: 'relative', background: '#F8F6F1', paddingBottom: 'clamp(40px, 6vw, 80px)', paddingTop: 'clamp(40px, 6vw, 80px)' }}>
-        <CurvedLoop 
-          marqueeText="CONTACT US • GLOBAL EXPORTS • REACH OUT • "
-          speed={1.5}
-          curveAmount={250}
-          className="fill-[#111] uppercase font-mono tracking-widest"
-        />
-        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
-           <text style={{ fontSize: 'clamp(28px, 4vw, 56px)', fontFamily: 'var(--font-display)', color: CRIMSON, fontWeight: 800 }}>LV</text>
-           <text style={{ fontSize: 'clamp(9px, 1vw, 14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</text>
-        </div>
-      </div>
 
     </main>
   );

@@ -111,7 +111,7 @@ export default function OriginStory() {
             </h2>
 
             <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(13px,1.1vw,16px)', color: '#6D6962', lineHeight: 1.8, maxWidth: 260, marginBottom: 32 }}>
-              A small beginning with big determination.
+              Founded in 1975, LV Spices grew from a small family-run operation into India&apos;s trusted spice manufacturer, supplier &amp; exporter — serving bulk buyers, OEM clients, and private label brands across 40+ countries.
             </p>
 
             {/* Watch Journey pill */}
@@ -161,7 +161,7 @@ export default function OriginStory() {
             {/* Caption overlay */}
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 24px 20px', background: 'linear-gradient(to top, rgba(17,17,17,0.65) 0%, transparent 100%)' }}>
               <span style={{ fontFamily: 'var(--font-sans)', fontSize: 12, letterSpacing: '0.1em', color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase' }}>
-                From a home kitchen to a trusted name.
+                From a home kitchen to India&apos;s trusted spice exporter.
               </span>
             </div>
           </div>

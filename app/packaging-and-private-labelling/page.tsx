@@ -100,7 +100,7 @@ export default function PrivateLabelPage() {
         badge="Private Labelling"
         headingText="Launch Your Own"
         headingRed="Spice Brand."
-        subText="From sourcing to design to packing — we build your brand end-to-end. Your customers see your brand. We handle everything behind the scenes."
+        subText="India's leading private label spice manufacturer \u2014 OEM, white label, and custom-branded spice packs for retail, HoReCa, and wholesale buyers. FSSC 22000 certified. Export-ready for 40+ countries."
         imageSrc="/images/products.png"
         stats={[
           { value: '500+', label: 'Products Available' },

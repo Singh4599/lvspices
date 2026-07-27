@@ -118,7 +118,7 @@ export default function Footer() {
               </span>
             </Link>
             <p style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, maxWidth: 300, marginBottom: 20 }}>
-              Premium, globally certified spices — engineered for scale, purity, and excellence.
+              India&apos;s Trusted Spice Manufacturer, Supplier &amp; Exporter | Bulk • OEM • Private Label • Custom Blends
             </p>
             {/* Socials */}
             <div style={{ display: 'flex', gap: 20 }}>
@@ -178,7 +178,7 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="font-sans leading-relaxed" style={{ fontSize: 14, marginTop: 16, maxWidth: 220, color: 'rgba(255,255,255,0.45)' }}>
-                Experience the luxury of premium, globally certified spices. Engineered for scale, purity, and excellence without compromise.
+                India&apos;s Trusted Spice Manufacturer, Supplier &amp; Exporter | Bulk • OEM • Private Label • Custom Blends
               </p>
             </div>
             {/* Links */}
@@ -216,7 +216,8 @@ export default function Footer() {
             </div>
           </div>
           {/* Desktop bottom bar */}
-          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '20px 8px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '16px 8px 24px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
             <div style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
               <span className="font-sans" style={{ fontSize: '12.5px', color: 'rgba(255,255,255,0.3)' }}>© {currentYear} LV Spices. All rights reserved.</span>
               <Link href="/privacy" className="font-sans hover:text-[#AC033B] transition-colors" style={{ fontSize: '12.5px', textDecoration: 'none', color: 'rgba(255,255,255,0.3)' }}>Privacy Policy</Link>
@@ -230,8 +231,9 @@ export default function Footer() {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               </a>
             </div>
-          </div>
-        </div>
+            </div>  {/* close flex row */}
+          </div>   {/* close bottom bar */}
+        </div>    {/* close footer-desktop */}
 
       </footer>
 

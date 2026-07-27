@@ -113,7 +113,7 @@ export default function BenefitsGrid() {
             </h2>
           </div>
           <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(13px,1.1vw,16px)', color: 'rgba(248,246,241,0.45)', lineHeight: 1.75, maxWidth: 300 }}>
-            Every detail engineered for the world's most demanding markets.
+            Why global importers, OEM manufacturers, and private label brands trust LV Spices as their certified spice manufacturer &amp; exporter from India.
           </p>
         </div>
 

@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { Home, Cog, Package, Mail } from "lucide-react";
 
 const NAV_ITEMS = [
-  { name: "Home",        url: "/#after-hero", icon: Home    },
+  { name: "Home",        url: "/#section-products",  icon: Home    },
 
   { name: "Products",   url: "/products",    icon: Package },
   { name: "Contact",    url: "/contact",     icon: Mail    },
@@ -18,7 +18,7 @@ export function FloatingNav() {
   const [isMobile, setIsMobile] = useState(false);
 
   const active = NAV_ITEMS.find((i) => {
-    if (i.name === "Home") return pathname === "/";
+    if (i.name === "Home") return pathname === "/" || pathname === "";
     return pathname.startsWith(i.url);
   })?.name ?? NAV_ITEMS[0].name;
 

@@ -71,12 +71,15 @@ export default function HomePage() {
       <div id="who-we-are-section"><WhoWeAre /></div>
       <Divider />
       {/* PRODUCT GALLERY */}
-      <section id="section-products" style={{ padding: 'clamp(16px,2vw,32px) 0 clamp(60px,8vw,80px)', overflow: 'hidden' }}>
+      <section id="section-products" style={{ padding: 'clamp(16px,2vw,32px) 0 clamp(60px,8vw,80px)', overflow: 'hidden', scrollMarginTop: '80px' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: '16px', textAlign: 'center', overflow: 'visible' }}>
           <ScrollReveal delay={0} fromY={60}>
             <h2 suppressHydrationWarning style={{ fontFamily: SERIF, fontSize: 'clamp(28px,6vw,96px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#111', margin: '16px 0 12px' }}>
-              Every spice. Every format.
+              Every spice. Every format. Every market.
             </h2>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.5)', maxWidth: 560, margin: '0 auto 12px', lineHeight: 1.7 }}>
+              India&apos;s trusted spice manufacturer, supplier &amp; exporter — serving bulk buyers, OEM clients, private label brands, and custom blend requirements across 40+ countries.
+            </p>
           </ScrollReveal>
         </div>
         <div style={{ height: 'clamp(340px, 55vw, 680px)', position: 'relative' }}>
@@ -101,6 +104,19 @@ export default function HomePage() {
       </section>
       <div id="section-what-we-do"><WhatWeDo /></div>
       <Divider />
+      {/* CURVED LOOP BREAK */}
+      <div style={{ position: 'relative', background: '#fff', paddingBottom: 'clamp(40px, 6vw, 80px)', paddingTop: 'clamp(40px, 6vw, 80px)' }}>
+        <CurvedLoop 
+          marqueeText="PREMIUM EXPORT QUALITY • FARM FRESH • QUALITY GUARANTEED • "
+          speed={1.5}
+          curveAmount={250}
+          className="fill-[#111] uppercase font-mono tracking-widest"
+        />
+        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
+           <text style={{ fontSize: 'clamp(28px, 4vw, 56px)', fontFamily: 'var(--font-display)', color: CRIMSON, fontWeight: 800 }}>LV</text>
+           <text style={{ fontSize: 'clamp(9px, 1vw, 14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</text>
+        </div>
+      </div>
       {/* RESOURCES */}
       <div id="section-resources"><Resources /></div>
       <Divider />
@@ -294,35 +310,21 @@ function Hero() {
 /* ═══ TICKER ═════════════════════════════════════════════ */
 function TickerBar() {
   return (
-    <>
-      <div style={{ background: '#fafafa', padding: 'clamp(16px, 3vw, 32px) 0', overflow: 'hidden' }}>
-        <VelocityMarquee dark={false} />
-      </div>
-      <div style={{ position: 'relative', background: '#F8F6F1', paddingBottom: 'clamp(40px, 6vw, 80px)', paddingTop: 'clamp(40px, 6vw, 80px)' }}>
-        <CurvedLoop 
-          marqueeText="PREMIUM EXPORT QUALITY • FARM FRESH • QUALITY GUARANTEED • "
-          speed={1.5}
-          curveAmount={250}
-          className="fill-[#111] uppercase font-mono tracking-widest"
-        />
-        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
-           <text style={{ fontSize: 'clamp(28px, 4vw, 56px)', fontFamily: 'var(--font-display)', color: CRIMSON, fontWeight: 800 }}>LV</text>
-           <text style={{ fontSize: 'clamp(9px, 1vw, 14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</text>
-        </div>
-      </div>
-    </>
+    <div style={{ background: '#fafafa', padding: 'clamp(16px, 3vw, 32px) 0', overflow: 'hidden' }}>
+      <VelocityMarquee dark={false} />
+    </div>
   );
 }
 
 /* ═══ STATS ══════════════════════════════════════════════ */
 function Stats() {
   const stats = [
-    { value: '50+', label: 'Years of Excellence' },
+    { value: '50+', label: 'Years of Spice Excellence' },
     { value: '500+', label: 'Product SKUs' },
-    { value: '40+', label: 'Countries Served' },
+    { value: '40+', label: 'Countries Exported To' },
     { value: '500+', label: 'Containers / Year' },
-    { value: '100%', label: 'Traceability' },
-    { value: 'Zero', label: 'Compromise' },
+    { value: '100%', label: 'Batch Traceability' },
+    { value: 'Zero', label: 'Compromise on Quality' },
   ];
 
   const statLogos = stats.map((s, i) => ({
@@ -490,7 +492,7 @@ function WhoWeAre() {
               margin: 0,
               fontWeight: 700
             }}>
-              Farm to Factory
+              Certified Spice Manufacturer &amp; Exporter — India
             </p>
           </div>
         </div>
@@ -771,17 +773,17 @@ function Resources() {
         }}>
           Why <span className="heading-accent" style={{ fontStyle: 'italic', color: CRIMSON }}>Choose</span> Us.
         </h2>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ width: 32, height: 1.5, background: CRIMSON }} />
-          <p style={{
-            fontFamily: MONO,
-            fontSize: 'clamp(10px, 1.2vw, 13px)',
-            color: 'rgba(0,0,0,0.45)',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            margin: 0,
-          }}>World-class Resources &amp; Infrastructure</p>
-        </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ width: 32, height: 1.5, background: CRIMSON }} />
+            <p style={{
+              fontFamily: MONO,
+              fontSize: 'clamp(10px, 1.2vw, 13px)',
+              color: 'rgba(0,0,0,0.45)',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              margin: 0,
+            }}>Trusted Bulk Spice Supplier &amp; Global Spice Exporter</p>
+          </div>
       </div>
 
       {/* Stacking cards */}

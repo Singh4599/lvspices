@@ -24,7 +24,10 @@ export function generatePageMeta({
   const ogImage = image || `${siteConfig.url}/og-image.jpg`;
 
   return {
-    title: pageTitle,
+    title: {
+      default: pageTitle,
+      template: `%s | India's Trusted Spice Manufacturer, Supplier & Exporter`,
+    },
     description: pageDescription,
     keywords: keywords || [...siteConfig.seo.keywords],
     authors: [{ name: siteConfig.name }],

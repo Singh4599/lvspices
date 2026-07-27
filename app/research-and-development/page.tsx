@@ -97,7 +97,7 @@ export default function ResearchAndDevelopmentPage() {
         badge="Innovation"
         headingText="Research &"
         headingRed="Development."
-        subText="A dedicated team working round-the-clock on new product formulations and process innovations — keeping LV Spices at the cutting edge of global flavour science."
+        subText="India&apos;s leading spice R&D team — developing custom spice blends, OEM seasonings, and private label formulations for food manufacturers, restaurant chains, and FMCG brands worldwide."
         imageSrc="/images/lab.png"
         stats={[
           { value: '425+', label: 'Blends Developed' },

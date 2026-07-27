@@ -13,6 +13,12 @@ import './globals.css';
 
 export const metadata: Metadata = {
   ...generatePageMeta(),
+  title: {
+    default: "LV Spices | India's Trusted Spice Manufacturer, Supplier & Exporter",
+    template: `%s | India's Trusted Spice Manufacturer, Supplier & Exporter`,
+  },
+  description:
+    "India's trusted spice manufacturer, supplier & exporter. Bulk spices, OEM, private label & custom blends. 50+ years of excellence. NABL, ISO 22000, FSSC 22000 certified. 500+ SKUs, 40+ countries.",
   icons: {
     icon: '/favicon.png',
     apple: '/favicon.png',

@@ -88,7 +88,7 @@ export default function TechnologyPage() {
         badge="Our Capabilities"
         headingText="Precision"
         headingRed="Technology"
-        subText="LV Spices was among the first Indian exporters to adopt fully automated seed cleaning and cryogenic grinding. Innovation is in our DNA."
+        subText="LV Spices is a certified spice manufacturer & exporter from India — among the first to adopt fully automated seed cleaning, cryogenic grinding, and steam sterilization for export-quality spice production."
         imageSrc="/images/tech_cfg.png"
         stats={[
           { value: '7+', label: 'Plants' },
@@ -125,10 +125,10 @@ export default function TechnologyPage() {
               Setting The Standard for<br />Spice Processing
             </h2>
             <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.8, marginBottom: 12 }}>
-              LV Spices was among the first Indian exporters to adopt fully automated seed cleaning and cryogenic grinding equipment. Our commitment to precision technology ensures we remain a trusted global processing hub.
+              LV Spices is India&apos;s trusted spice manufacturer &amp; exporter — among the first to adopt fully automated seed cleaning and cryogenic grinding. Our FSSC 22000, HACCP, and Halal certified processing ensures export-quality spices for bulk buyers, OEM manufacturers, and private label brands worldwide.
             </p>
             <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.8, margin: '0 0 56px' }}>
-              Spread across 7+ units with a built-up area of 100,000 sq. ft., we produce over 80,000 mts annually. Our automated systems reduce human intervention and ensure maximum safety and product integrity.
+              Spread across 7+ units with a built-up area of 100,000 sq. ft., we produce over 80,000 mts annually — supplying clean-label, preservative-free spices and custom seasoning blends to 40+ countries globally.
             </p>
           </ScrollReveal>
 
