@@ -57,10 +57,10 @@ export default function TechProcessHorizontal() {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced || !sectionRef.current || !containerRef.current) return;
 
-    // Use mm.add for responsive logic
+    // Enable horizontal scroll on all screen sizes
     let ctx = gsap.matchMedia();
     
-    ctx.add("(min-width: 900px)", () => {
+    ctx.add("(min-width: 0px)", () => {
       // Horizontal Scroll Animation
       const sections = gsap.utils.toArray('.process-panel');
       
@@ -131,7 +131,7 @@ export default function TechProcessHorizontal() {
             }}
           >
             {/* Background Step Number Watermark */}
-            <div style={{
+            <div className="step-watermark" style={{
               position: 'absolute',
               top: '50%',
               left: '5%',
@@ -147,7 +147,7 @@ export default function TechProcessHorizontal() {
               {step.id}
             </div>
 
-            <div style={{ display: 'flex', width: '100%', height: '100%', maxWidth: 1600, margin: '0 auto', gap: 'clamp(40px, 8vw, 120px)', alignItems: 'center', zIndex: 10, position: 'relative' }}>
+            <div className="panel-inner" style={{ display: 'flex', width: '100%', height: '100%', maxWidth: 1600, margin: '0 auto', gap: 'clamp(40px, 8vw, 120px)', alignItems: 'center', zIndex: 10, position: 'relative' }}>
               
               {/* Text Side */}
               <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column' }}>
@@ -156,22 +156,22 @@ export default function TechProcessHorizontal() {
                   <span style={{ width: 40, height: 1, background: '#AC033B' }} />
                 </div>
                 
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px, 6vw, 90px)', fontWeight: 800, margin: '0 0 24px', lineHeight: 1.05, letterSpacing: '-0.03em', color: '#111' }}>
+                <h3 className="panel-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px, 6vw, 90px)', fontWeight: 800, margin: '0 0 24px', lineHeight: 1.05, letterSpacing: '-0.03em', color: '#111' }}>
                   {step.title}
                 </h3>
                 
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(16px, 1.4vw, 20px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.8, maxWidth: 480, margin: '0 0 40px' }}>
+                <p className="panel-desc" style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(14px, 1.4vw, 20px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.8, maxWidth: 480, margin: '0 0 40px' }}>
                   {step.desc}
                 </p>
 
-                <div style={{ padding: '16px 24px', background: '#fff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 12, display: 'inline-block', alignSelf: 'flex-start', boxShadow: '0 10px 40px rgba(0,0,0,0.03)' }}>
+                <div className="panel-metric" style={{ padding: '16px 24px', background: '#fff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 12, display: 'inline-block', alignSelf: 'flex-start', boxShadow: '0 10px 40px rgba(0,0,0,0.03)' }}>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: 4 }}>Key Metric</div>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 700, color: '#111', letterSpacing: '0.05em' }}>{step.stat}</div>
                 </div>
               </div>
 
               {/* Image Side */}
-              <div style={{ flex: '1 1 500px', height: '70vh', position: 'relative', borderRadius: 24, overflow: 'hidden', boxShadow: '0 30px 80px rgba(0,0,0,0.1)' }}>
+              <div className="panel-img-wrap" style={{ flex: '1 1 500px', height: '70vh', position: 'relative', borderRadius: 24, overflow: 'hidden', boxShadow: '0 30px 80px rgba(0,0,0,0.1)' }}>
                 <div className="panel-image" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
                   <Image src={step.img} alt={step.title} fill style={{ objectFit: 'cover' }} />
                   {/* Subtle Gradient Overlay */}
@@ -184,27 +184,38 @@ export default function TechProcessHorizontal() {
         ))}
       </div>
 
-      {/* Mobile Styles (Stack normally instead of horizontal scroll) */}
+      {/* Mobile Styles - Keep horizontal scroll but stack text and image internally */}
       <style>{`
         @media (max-width: 900px) {
-          .horizontal-container {
-            flex-direction: column !important;
-            width: 100% !important;
-            height: auto !important;
-          }
           .process-panel {
-            width: 100% !important;
-            height: auto !important;
-            min-height: 100vh;
-            padding: 80px 24px !important;
+            padding: 120px 24px 40px !important; /* Space for navbar */
           }
-          .process-panel > div:last-child {
+          .panel-inner {
             flex-direction: column !important;
-            gap: 40px !important;
+            gap: 24px !important;
+            justify-content: flex-start !important;
           }
-          .process-panel > div:last-child > div:last-child {
-            height: 50vh !important;
+          .panel-inner > div:first-child {
+            flex: 0 0 auto !important; /* Text side doesn't grow */
+          }
+          .panel-title {
+            margin-bottom: 12px !important;
+          }
+          .panel-desc {
+            margin-bottom: 24px !important;
+          }
+          .panel-img-wrap {
+            height: 40vh !important; /* Smaller image on mobile */
             width: 100% !important;
+            flex: 1 1 auto !important;
+          }
+          .step-watermark {
+            font-size: 70vw !important;
+            top: 10% !important;
+            left: -5% !important;
+          }
+          .panel-metric {
+            padding: 12px 16px !important;
           }
         }
       `}</style>

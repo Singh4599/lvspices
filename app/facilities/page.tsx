@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
+import FactoryBlueprint from '@/components/facilities/FactoryBlueprint';
 
 /* ─────────────────────────────────────────────────
    Design tokens
@@ -247,31 +248,8 @@ function ProcessTimeline() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8,1fr)', gap: 8 }} className="ptl-grid">
-          <style>{`
-            @media(max-width:900px){.ptl-grid{grid-template-columns:repeat(4,1fr) !important;gap:16px !important;}}
-            @media(max-width:520px){.ptl-grid{grid-template-columns:repeat(2,1fr) !important;gap:20px !important;}}
-            .ptl-step:hover .ptl-img{transform:scale(1.08) !important;}
-          `}</style>
-          {PROCESS_STEPS.map((step, i) => (
-            <div key={step.n} className="ptl-step" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', opacity: 0 }}>
-              {i < PROCESS_STEPS.length - 1 && (
-                <div style={{ position: 'absolute', top: 44, left: '50%', width: '100%', zIndex: 0, pointerEvents: 'none' }}>
-                  <svg width="100%" height="2" style={{ overflow: 'visible' }}>
-                    <line x1="0" y1="1" x2="100%" y2="1" stroke={CR} strokeWidth="1" strokeDasharray="5 5" />
-                  </svg>
-                </div>
-              )}
-              <div style={{ width: 88, height: 88, borderRadius: '50%', overflow: 'hidden', border: `2px solid ${CR}`, position: 'relative', zIndex: 1, flexShrink: 0, background: '#ede9e4' }}>
-                <Image src={step.img} alt={step.label} fill sizes="88px" className="ptl-img" style={{ objectFit: 'cover', transition: 'transform 0.45s ease' }} />
-              </div>
-              <div style={{ textAlign: 'center', marginTop: 12, padding: '0 2px' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: CR, marginBottom: 6 }}>{step.n}</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: INK, lineHeight: 1.2, marginBottom: 4 }}>{step.label}</div>
-                <div style={{ fontFamily: 'var(--font-sans)', fontSize: 10, color: WARM_GRAY, lineHeight: 1.4 }}>{step.sub}</div>
-              </div>
-            </div>
-          ))}
+        <div style={{ marginTop: 24, opacity: 0 }} className="ptl-step">
+          <FactoryBlueprint />
         </div>
       </div>
     </section>

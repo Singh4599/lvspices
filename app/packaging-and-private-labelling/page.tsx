@@ -6,6 +6,7 @@ import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 import ScrollExpansionHero from '@/components/ui/ScrollExpansionHero';
+import PrivateLabelProcessHorizontal from '@/components/packaging/PrivateLabelProcessHorizontal';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -21,14 +22,6 @@ const features = [
   { icon: '💻', title: 'IT & Tech Support', desc: 'Our in-house IT team can set up your product listings, barcode systems, EAN registration, and ordering workflows.' },
 ];
 
-const steps = [
-  { num: '01', title: 'You Share Your Brand Vision', desc: 'Tell us your brand story, target market, pack sizes, and the products you want to launch. A one-page brief is enough to start.' },
-  { num: '02', title: 'Design Team Creates Artwork', desc: 'Concepts, mockups, and final print-ready files — built by our in-house design team. Multiple revisions included at no extra cost.' },
-  { num: '03', title: 'You Approve the Design', desc: 'Iterate as much as you need. We only move forward once you sign off on the final artwork and compliance checks are complete.' },
-  { num: '04', title: 'We Source & Pack Your Products', desc: 'Pan-India sourcing from certified farms, processing at our plant, your brand on every pack. Full QA from raw material to finished goods.' },
-  { num: '05', title: 'Quality Check & Compliance', desc: 'Lab-tested batches, labels validated for destination market, full COA for each lot. Zero-defect dispatch policy.' },
-  { num: '06', title: 'Shipped Under Your Brand', desc: 'Container loaded, all export documentation (Certificate of Origin, APEDA, phyto-sanitary) prepared and tracking handed over.' },
-];
 
 const productCats = [
   { icon: '🌶️', name: 'Spices', count: '150+ SKUs' },
@@ -149,34 +142,8 @@ export default function PrivateLabelPage() {
         </div>
       </section>
 
-      {/* ══ HOW IT WORKS — DARK ══════════════════════════════════ */}
-      <section style={{ padding: 'clamp(80px,10vw,130px) clamp(24px,5vw,80px)', background: '#111' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 'clamp(48px,8vw,100px)', flexWrap: 'wrap', alignItems: 'flex-start' }}>
-          <ScrollReveal fromY={24} style={{ flex: '0 0 clamp(220px,28vw,360px)' }}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#D0375C', marginBottom: 16 }}>How It Works</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4.5vw,56px)', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', margin: '0 0 20px', lineHeight: 1.05 }}>
-              Vision to<br />Shipped<br /><em style={{ color: '#D0375C' }}>Container.</em>
-            </h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.5)', lineHeight: 1.85, margin: 0 }}>
-              Six steps, one partner. From the moment you share your brief to the day your container lands at destination — we manage everything.
-            </p>
-          </ScrollReveal>
-          <div style={{ flex: 1, minWidth: 280 }}>
-            {steps.map((step, i) => (
-              <ScrollReveal key={step.num} fromY={20} delay={i * 0.05} style={{ display: 'flex', gap: 20, paddingBottom: i < steps.length - 1 ? 36 : 0 }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                  <div style={{ width: 46, height: 46, borderRadius: '50%', background: CRIMSON, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: MONO, fontSize: 12, fontWeight: 700, color: '#fff', boxShadow: '0 4px 16px rgba(172,3,59,0.3)' }}>{step.num}</div>
-                  {i < steps.length - 1 && <div style={{ width: 1, flex: 1, background: 'rgba(172,3,59,0.2)', marginTop: 8 }} />}
-                </div>
-                <div style={{ paddingTop: 10 }}>
-                  <h3 style={{ fontFamily: SANS, fontSize: 15, fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>{step.title}</h3>
-                  <p style={{ fontFamily: SANS, fontSize: 13.5, color: 'rgba(255,255,255,0.48)', lineHeight: 1.75, margin: 0 }}>{step.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ══ HOW IT WORKS ════════════════════════════════════════ */}
+      <PrivateLabelProcessHorizontal />
 
       {/* ══ PRODUCT CATEGORIES ══════════════════════════════════ */}
       <section style={{ padding: 'clamp(80px,10vw,130px) clamp(24px,5vw,80px)', background: '#fafafa' }}>

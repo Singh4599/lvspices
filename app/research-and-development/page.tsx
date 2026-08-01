@@ -7,6 +7,7 @@ import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 import ScrollExpansionHero from '@/components/ui/ScrollExpansionHero';
 import { gsap } from '@/lib/gsap';
+import RnDProcessHorizontal from '@/components/research/RnDProcessHorizontal';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -22,12 +23,7 @@ const focusAreas = [
   { icon: '🤝', title: 'Custom Blend Formulation', desc: 'Working with global FMCG manufacturers and restaurant chains to develop signature spice blends meeting exact sensory, nutritional, and regulatory specifications.' },
 ];
 
-const sensorySteps = [
-  { num: '01', title: 'Sample Preparation', desc: 'Blind samples of new formulations prepared under controlled conditions — identical in presentation to remove all visual bias from evaluators.' },
-  { num: '02', title: 'Panel Evaluation', desc: 'Trained panellists score aroma, colour, heat level, mouthfeel, aftertaste, and overall acceptance against a validated reference standard.' },
-  { num: '03', title: 'Scoring & Analysis', desc: 'Statistical analysis using spider charts and Quantitative Descriptive Analysis (QDA) pinpoints improvement areas with scientific precision.' },
-  { num: '04', title: 'Consumer Validation', desc: 'For private label blends, scaled consumer trials confirm market acceptability before final production sign-off and launch.' },
-];
+
 
 const milestones = [
   { val: 425, suffix: '+', label: 'Spice Blends Developed' },
@@ -164,27 +160,8 @@ export default function ResearchAndDevelopmentPage() {
       {/* ══ VELOCITY DIVIDER ════════════════════════════════════ */}
       <VelocityMarquee reverse />
 
-      {/* ══ SENSORY TESTING — DARK ══════════════════════════════ */}
-      <section style={{ padding: 'clamp(80px,10vw,130px) clamp(24px,5vw,80px)', background: '#111' }}>
-        <div style={{ maxWidth: 1300, margin: '0 auto' }}>
-          <ScrollReveal fromY={24} style={{ textAlign: 'center', marginBottom: 'clamp(40px,5vw,64px)' }}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#D0375C', marginBottom: 14 }}>Sensory Science</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4.5vw,60px)', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', margin: '0 0 20px' }}>Sensory Testing Protocol</h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.5)', maxWidth: 600, margin: '0 auto', lineHeight: 1.8 }}>
-              Before any new formulation enters production, it passes through a four-stage sensory evaluation panel — eliminating subjectivity with science.
-            </p>
-          </ScrollReveal>
-          <StaggerReveal stagger={0.09} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))', gap: 'clamp(14px,1.8vw,24px)' }}>
-            {sensorySteps.map(step => (
-              <TiltCard key={step.num} dark>
-                <div style={{ width: 40, height: 40, borderRadius: '50%', background: `linear-gradient(135deg, ${CRIMSON}, #6B0025)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: MONO, fontSize: 12, fontWeight: 700, color: '#fff', marginBottom: 18 }}>{step.num}</div>
-                <h3 style={{ fontFamily: SANS, fontSize: 14, fontWeight: 700, color: '#fff', margin: '0 0 10px' }}>{step.title}</h3>
-                <p style={{ fontFamily: SANS, fontSize: 12.5, color: 'rgba(255,255,255,0.48)', lineHeight: 1.75, margin: 0 }}>{step.desc}</p>
-              </TiltCard>
-            ))}
-          </StaggerReveal>
-        </div>
-      </section>
+      {/* ══ SENSORY TESTING ════════════════════════════════════ */}
+      <RnDProcessHorizontal />
 
       {/* ══ PARTNERSHIPS ════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(80px,10vw,130px) clamp(24px,5vw,80px)', textAlign: 'center' }}>

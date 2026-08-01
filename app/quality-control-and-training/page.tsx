@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+
 import PageHero from '@/components/ui/PageHero';
 import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
@@ -13,12 +13,7 @@ const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
 
-const TABS = [
-  { id: 'pesticide-testing', label: 'Pesticide Testing' },
-  { id: 'allergen-controls', label: 'Allergen Controls' },
-  { id: 'quality-control', label: 'Quality Control' },
-  { id: 'training', label: 'Training' },
-];
+
 
 const allergenSteps = [
   'A dedicated Sourcing Director shortlists suppliers and ensures raw materials are free from allergen cross-contamination.',
@@ -49,12 +44,7 @@ const qcChecklist = [
 ];
 
 export default function QualityControlAndTrainingPage() {
-  const [activeTab, setActiveTab] = useState('pesticide-testing');
 
-  const scrollTo = (id: string) => {
-    setActiveTab(id);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
 
   return (
     <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
@@ -75,26 +65,7 @@ export default function QualityControlAndTrainingPage() {
         ]}
       />
 
-      {/* ══ STICKY NAV ════════════════════════════════════════ */}
-      <div style={{
-        position: 'sticky', top: 64, zIndex: 30,
-        background: '#0a0a0a', backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-      }}>
-        <div style={{ maxWidth: 1000, margin: '0 auto', display: 'flex', overflowX: 'auto' }}>
-          {TABS.map(tab => (
-            <button key={tab.id} onClick={() => scrollTo(tab.id)} style={{
-              fontFamily: SANS, fontSize: 13, fontWeight: 500,
-              padding: '18px clamp(20px,3vw,48px)', flex: 1,
-              background: activeTab === tab.id ? CRIMSON : 'transparent',
-              color: activeTab === tab.id ? '#fff' : 'rgba(255,255,255,0.45)',
-              border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
-              borderBottom: activeTab === tab.id ? `2px solid ${CRIMSON}` : '2px solid transparent',
-              transition: 'all 0.25s',
-            }}>{tab.label}</button>
-          ))}
-        </div>
-      </div>
+
 
       {/* ══ VELOCITY MARQUEE ══════════════════════════════════ */}
       <VelocityMarquee dark />
