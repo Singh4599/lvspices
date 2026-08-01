@@ -145,8 +145,8 @@ export default function FAQMindMap({ faqData }: { faqData: { category: string; f
     const ctx = gsap.context(() => {
       // Entrance
       gsap.from('.fmm-line-base', { strokeDashoffset: 200, strokeDasharray: 200, duration: 1.5, ease: 'power3.inOut', stagger: 0.1 });
-      gsap.from('.fmm-node-g', { scale: 0, opacity: 0, duration: 1, ease: 'elastic.out(1, 0.5)', stagger: 0.1, transformOrigin: 'center' }, '-=1');
-      gsap.from('.fmm-panel', { y: 40, opacity: 0, duration: 1, ease: 'expo.out', clearProps: 'all' }, '+=0.2');
+      gsap.from('.fmm-node-g', { scale: 0, opacity: 0, duration: 1, ease: 'elastic.out(1, 0.5)', stagger: 0.1, transformOrigin: 'center', delay: 0.5 });
+      gsap.from('.fmm-panel', { y: 40, opacity: 0, duration: 1, ease: 'expo.out', clearProps: 'all', delay: 1.2 });
 
       // Continuous floating animation for nodes
       nodesRef.current.forEach((node, i) => {

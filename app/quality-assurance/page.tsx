@@ -162,7 +162,7 @@ function QATimeline() {
       {/* Vertical line */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, paddingTop: 6 }}>
         <div style={{ position: 'relative', width: 2, flex: 1, background: 'rgba(0,0,0,0.06)' }}>
-          <div className="timeline-line-fill" style={{ position: 'absolute', inset: 0, background: CR, transformOrigin: 'top', scaleY: 0 }} />
+          <div className="timeline-line-fill" style={{ position: 'absolute', inset: 0, background: CR, transformOrigin: 'top', transform: 'scaleY(0)' }} />
         </div>
       </div>
 
