@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { MapPin, Mail, Phone } from 'lucide-react';
-import ScrollExpansionHero from '@/components/ui/ScrollExpansionHero';
+import ContactHero from '@/components/contact/ContactHero';
 import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import Phone3D from '@/components/ui/Phone3D';
@@ -44,18 +44,7 @@ export default function ContactPage() {
     <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
 
       {/* ══ SCROLL EXPANSION HERO ════════════════════════════════ */}
-      <ScrollExpansionHero
-        badge="Get in Touch"
-        headingText="Let's build"
-        headingRed="together."
-        subText="Bulk spice orders, OEM manufacturing, private label partnerships, or custom blend formulations — our export team responds within 24 hours. Serving importers in 40+ countries."
-        imageSrc="/images/factory.png"
-        stats={[
-          { value: '24hr', label: 'Response Time' },
-          { value: '50+', label: 'Countries Served' },
-          { value: 'B2B', label: 'Specialist' },
-        ]}
-      />
+      <ContactHero />
 
       {/* ══ VELOCITY MARQUEE ══════════════════════════════════ */}
       <VelocityMarquee dark />

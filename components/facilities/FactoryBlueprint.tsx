@@ -182,7 +182,7 @@ export default function FactoryBlueprint() {
                           <path d="M 20,40 L 140,40 M 20,60 L 140,60 M 20,80 L 140,80" strokeDasharray="2 4" />
                           {/* Scanner sweep line */}
                           <line x1="30" y1="10" x2="30" y2="90" stroke={CRIMSON} strokeWidth="2" className="scan-sweep" />
-                          <Fan cx="100" cy="30" r="10" color={INK_L} fast={true} />
+                          <Fan cx={100} cy={30} r={10} color={INK_L} fast={true} />
                         </g>
                       )}
 
@@ -191,7 +191,7 @@ export default function FactoryBlueprint() {
                         <g stroke={INK} strokeWidth="1.5">
                           <rect x="10" y="10" width="140" height="100" rx="8" fill="#E8F4FB" />
                           <circle cx="80" cy="60" r="30" fill="none" stroke={BLUE} strokeWidth="2" />
-                          <Fan cx="80" cy="60" r="20" color={BLUE} fast={true} />
+                          <Fan cx={80} cy={60} r={20} color={BLUE} fast={true} />
                           <text x="80" y="100" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="10" fill={BLUE} fontWeight="700" stroke="none">-196°C</text>
                         </g>
                       )}

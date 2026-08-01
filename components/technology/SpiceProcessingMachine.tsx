@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-const INK    = '#5C3D1E';
-const INK_L  = 'rgba(92,61,30,0.28)';
+const INK    = '#1A0800';
+const INK_L  = '#1A0800';
 const CRIMSON = '#AC033B';
 
 interface StationData {
@@ -221,7 +221,7 @@ export default function SpiceProcessingMachine() {
                   <text x="165" y="300" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="8" fill={INK} letterSpacing=".1em">VIBRO</text>
                   <text x="165" y="312" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="8" fill={INK} letterSpacing=".1em">CLEANER</text>
                   <Gear cx={232} cy={280} r={18} cls="gear-cw" />
-                  <text x="165" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="8.5" fill={active===0?STATIONS[0].accent:INK_L} letterSpacing=".07em">SEED CLEANING</text>
+                  <text x="165" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="9.5" fontWeight="700" fill={active===0?STATIONS[0].accent:INK_L} letterSpacing=".07em">SEED CLEANING</text>
                 </g>
 
                 <path d="M232,290 L268,290" stroke={INK_L} strokeWidth="1.5" strokeDasharray="5 3" markerEnd="url(#arr)" />
@@ -241,7 +241,7 @@ export default function SpiceProcessingMachine() {
                   <line x1="280" y1="320" x2="381" y2="328" stroke={INK_L} strokeWidth="1" strokeDasharray="3 3" />
                   {[0,1,2].map(i=>(<rect key={i} x="387" y={302+i*12} width="9" height="6" rx="2" fill={INK} fillOpacity=".2" stroke={INK} strokeWidth="1" />))}
                   <text x="274" y="238" fontFamily="Georgia,serif" fontSize="11" fill={CRIMSON} fontWeight="700">02</text>
-                  <text x="332" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="8.5" fill={active===1?STATIONS[1].accent:INK_L} letterSpacing=".07em">OPTICAL SORTER</text>
+                  <text x="332" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="9.5" fontWeight="700" fill={active===1?STATIONS[1].accent:INK_L} letterSpacing=".07em">OPTICAL SORTER</text>
                 </g>
 
                 <path d="M395,290 L436,290" stroke={INK_L} strokeWidth="1.5" strokeDasharray="5 3" markerEnd="url(#arr)" />
@@ -263,7 +263,7 @@ export default function SpiceProcessingMachine() {
                   <path d="M452,272 Q447,262 452,252" fill="none" stroke={INK_L} strokeWidth="1.5" markerEnd="url(#arr)" />
                   <text x="457" y="263" fontFamily="Georgia,serif" fontSize="11" fill={CRIMSON} fontWeight="700">03</text>
                   <text x="510" y="290" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="7.5" fill={INK} letterSpacing=".1em">ROASTING</text>
-                  <text x="510" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="8.5" fill={active===2?STATIONS[2].accent:INK_L} letterSpacing=".07em">DRUM ROASTER</text>
+                  <text x="510" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="9.5" fontWeight="700" fill={active===2?STATIONS[2].accent:INK_L} letterSpacing=".07em">DRUM ROASTER</text>
                 </g>
 
                 <path d="M568,290 L608,290" stroke={INK_L} strokeWidth="1.5" strokeDasharray="5 3" markerEnd="url(#arr)" />
@@ -292,7 +292,7 @@ export default function SpiceProcessingMachine() {
                   <circle cx="673" cy="292" r="3" fill={INK} />
                   <text x="673" y="312" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="7" fill={INK_L}>PSI</text>
                   <text x="620" y="248" fontFamily="Georgia,serif" fontSize="11" fill={CRIMSON} fontWeight="700">04</text>
-                  <text x="673" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="8.5" fill={active===3?STATIONS[3].accent:INK_L} letterSpacing=".05em">STEAM STERILIZER</text>
+                  <text x="673" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="9.5" fontWeight="700" fill={active===3?STATIONS[3].accent:INK_L} letterSpacing=".05em">STEAM STERILIZER</text>
                 </g>
 
                 <path d="M734,290 L774,290" stroke={INK_L} strokeWidth="1.5" strokeDasharray="5 3" markerEnd="url(#arr)" />
@@ -311,7 +311,7 @@ export default function SpiceProcessingMachine() {
                   <text x="748" y="244" fontFamily="'Courier New',monospace" fontSize="7.5" fill="#1A5FAB">LN₂</text>
                   {[0,1,2,3].map(i=>(<text key={i} x={795+i*22} y="336" fontSize="9" fill="#A8CCE8" opacity=".65">✦</text>))}
                   <text x="788" y="240" fontFamily="Georgia,serif" fontSize="11" fill={CRIMSON} fontWeight="700">05</text>
-                  <text x="840" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="8.5" fill={active===4?STATIONS[4].accent:INK_L} letterSpacing=".05em">CRYO GRINDER</text>
+                  <text x="840" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="9.5" fontWeight="700" fill={active===4?STATIONS[4].accent:INK_L} letterSpacing=".05em">CRYO GRINDER</text>
                 </g>
 
                 <path d="M902,290 L942,290" stroke={INK_L} strokeWidth="1.5" strokeDasharray="5 3" markerEnd="url(#arr)" />
@@ -332,7 +332,7 @@ export default function SpiceProcessingMachine() {
                   <Gear cx={1100} cy={230} r={10} cls="gear-fast2" />
                   <text x="990" y="346" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="7" fill={INK_L} letterSpacing=".05em">CONTINUOUS FLOW GRINDING</text>
                   <text x="955" y="236" fontFamily="Georgia,serif" fontSize="11" fill={CRIMSON} fontWeight="700">06</text>
-                  <text x="1022" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="8.5" fill={active===5?STATIONS[5].accent:INK_L} letterSpacing=".05em">CFG TECHNOLOGY</text>
+                  <text x="1022" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="9.5" fontWeight="700" fill={active===5?STATIONS[5].accent:INK_L} letterSpacing=".05em">CFG TECHNOLOGY</text>
                 </g>
 
                 {/* ── OUTPUT JAR ── */}

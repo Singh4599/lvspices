@@ -1,175 +1,88 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import Image from 'next/image';
 import ScrollReveal, { StaggerReveal, AnimatedStat } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import CurvedLoop from '@/components/ui/CurvedLoop';
-import ScrollExpansionHero from '@/components/ui/ScrollExpansionHero';
-import { gsap } from '@/lib/gsap';
+import RnDHero from '@/components/research/RnDHero';
 import RnDProcessHorizontal from '@/components/research/RnDProcessHorizontal';
+import RnDLabDiagram from '@/components/research/RnDLabDiagram';
 
-const CRIMSON = '#AC033B';
+const CR   = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
-const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
-const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
-
-const focusAreas = [
-  { icon: '🌶️', title: 'New Product Development', desc: 'Our R&D team develops 50+ new formulations annually — from fusion spice blends to functional food ingredients — driven by market intelligence and customer briefs.' },
-  { icon: '🧪', title: 'Flavour Science & Innovation', desc: 'GC-MS flavour profiling and advanced sensory panels allow us to analyse and recreate complex flavour systems for private label and export customers worldwide.' },
-  { icon: '⚗️', title: 'Process Optimisation', desc: 'Continuous R&D into milling parameters, roasting profiles, and blending ratios to improve colour, pungency, and shelf life without compromise on any dimension.' },
-  { icon: '🌿', title: 'Functional Ingredients', desc: 'Research into curcumin bioavailability, piperine enhancement, and antioxidant-rich spice extracts for nutraceutical, pharmaceutical, and health-food applications.' },
-  { icon: '📦', title: 'Packaging & Shelf Life', desc: 'Accelerated shelf life studies, nitrogen-flush trials, and modified atmosphere packaging research to extend product life across diverse climate zones globally.' },
-  { icon: '🤝', title: 'Custom Blend Formulation', desc: 'Working with global FMCG manufacturers and restaurant chains to develop signature spice blends meeting exact sensory, nutritional, and regulatory specifications.' },
-];
-
-
+const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
+const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
 
 const milestones = [
-  { val: 425, suffix: '+', label: 'Spice Blends Developed' },
-  { val: 50, suffix: '+', label: 'New Formulations / Year' },
-  { val: 12, suffix: '', label: 'R&D Scientists' },
-  { val: 3, suffix: '', label: 'Dedicated R&D Labs' },
+  { val: 425, suffix: '+', label: 'Blends Developed' },
+  { val: 50,  suffix: '+', label: 'New Formulations / Year' },
+  { val: 12,  suffix: '',  label: 'R&D Scientists' },
+  { val: 3,   suffix: '',  label: 'Dedicated R&D Labs' },
 ];
 
 const partnerships = ['CFTRI, Mysore', 'Spices Board of India', 'IIFPT, Thanjavur', 'Global Flavour Houses', 'NABL Accredited Labs', 'IIT Food Tech Division'];
-
-function ZoomImage({ src, alt }: { src: string; alt: string }) {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const ctx = gsap.context(() => {
-      gsap.timeline({ scrollTrigger: { trigger: wrapRef.current, start: 'top 85%', end: 'top 20%', scrub: 0.8 } })
-        .fromTo('.ri', { scale: 1.25, filter: 'brightness(0.6)' }, { scale: 1, filter: 'brightness(1)', ease: 'power2.out' })
-        .fromTo('.ro', { opacity: 0.6 }, { opacity: 0.2 }, '<');
-    }, wrapRef);
-    return () => ctx.revert();
-  }, []);
-  return (
-    <div ref={wrapRef} style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', borderRadius: 24 }}>
-      <div className="ri" style={{ position: 'absolute', inset: -20 }}>
-        <Image src={src} alt={alt} fill style={{ objectFit: 'cover' }} />
-      </div>
-      <div className="ro" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,77,140,0.25), rgba(0,0,0,0.4))', zIndex: 1 }} />
-    </div>
-  );
-}
-
-function TiltCard({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isD = typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isD) return;
-    const el = ref.current; if (!el) return;
-    const r = el.getBoundingClientRect();
-    const rx = ((e.clientY - r.top - r.height / 2) / r.height) * -9;
-    const ry = ((e.clientX - r.left - r.width / 2) / r.width) * 9;
-    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.025)`;
-    el.style.boxShadow = dark ? `${-ry * 1.5}px ${rx * 1.5}px 36px rgba(172,3,59,0.25)` : `${-ry * 1.5}px ${rx * 1.5}px 36px rgba(0,0,0,0.1)`;
-  };
-  const onLeave = () => {
-    const el = ref.current; if (!el) return;
-    el.style.transform = 'perspective(900px) rotateX(0) rotateY(0) scale(1)';
-    el.style.boxShadow = 'none';
-  };
-  return (
-    <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}
-      style={{
-        background: dark ? 'rgba(255,255,255,0.04)' : '#fafafa',
-        border: `1px solid ${dark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)'}`,
-        borderRadius: 16, padding: '28px 24px', willChange: 'transform', transition: 'transform 0.12s, box-shadow 0.12s',
-      }}>
-      {children}
-    </div>
-  );
-}
 
 export default function ResearchAndDevelopmentPage() {
   return (
     <main style={{ background: '#fff', minHeight: '100vh', color: '#111', overflowX: 'hidden' }}>
 
-      {/* ══ SCROLL EXPANSION HERO ════════════════════════════════ */}
-      <ScrollExpansionHero
-        badge="Innovation"
-        headingText="Research &"
-        headingRed="Development."
-        subText="India&apos;s leading spice R&D team — developing custom spice blends, OEM seasonings, and private label formulations for food manufacturers, restaurant chains, and FMCG brands worldwide."
-        imageSrc="/images/lab.png"
-        stats={[
-          { value: '425+', label: 'Blends Developed' },
-          { value: '50+', label: 'New / Year' },
-          { value: '12', label: 'Scientists' },
-        ]}
-      />
+      {/* ══ HERO ═════════════════════════════════════════════ */}
+      <RnDHero />
 
       {/* ══ VELOCITY MARQUEE ════════════════════════════════════ */}
       <VelocityMarquee dark />
 
-      {/* ══ INTRO SECTION ════════════════════════════════════════ */}
-      <section style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 'clamp(48px,8vw,100px)', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
-          <div style={{ flex: '1 1 460px', height: 'clamp(360px,42vw,540px)', minWidth: 0 }}>
-            <ZoomImage src="/images/lab.png" alt="R&D Lab" />
-          </div>
-          <ScrollReveal fromY={24} style={{ flex: '1 1 340px', minWidth: 0 }}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 16 }}>Innovation Hub</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4.5vw,60px)', fontWeight: 800, color: '#111', letterSpacing: '-0.03em', margin: '0 0 24px', lineHeight: 1.05 }}>
-              Product Research<br />&amp; New<br /><em style={{ color: CRIMSON, fontStyle: 'italic' }}>Development.</em>
-            </h2>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,16px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, margin: '0 0 16px' }}>
-              Spices are an integral part of our food. In India, it is almost impossible to imagine food without them. LV Spices has always had a dedicated team working round-the-clock to increase the demands of customers by developing new and improved products.
-            </p>
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,16px)', color: 'rgba(0,0,0,0.55)', lineHeight: 1.85, margin: 0 }}>
-              With our fully agile blends developed in-house, it has always been our mission to ensure blends are conceptualised and formulated as per the required taste, keeping in mind regulatory requirements for allergens and pesticide limits.
-            </p>
-            <div style={{ display: 'flex', gap: 'clamp(20px,4vw,48px)', marginTop: 36, flexWrap: 'wrap' }}>
-              {milestones.map(m => (
-                <div key={m.label} style={{ textAlign: 'center' }}>
-                  <div style={{ fontFamily: SERIF, fontSize: 'clamp(22px,2.8vw,36px)', fontWeight: 800, color: '#111', letterSpacing: '-0.04em', lineHeight: 1 }}>
-                    <AnimatedStat value={m.val} suffix={m.suffix} label={m.label} />
-                  </div>
-                  <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginTop: 8 }}>{m.label}</div>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ══ FOCUS AREAS — TILT CARDS ════════════════════════════ */}
-      <section style={{ padding: 'clamp(80px,10vw,130px) clamp(24px,5vw,80px)', background: '#fafafa', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+      {/* ══ INTERACTIVE R&D LAB DIAGRAM ═════════════════════════ */}
+      <section style={{ padding: 'clamp(64px,8vw,120px) clamp(20px,5vw,72px)', background: '#fff' }}>
         <div style={{ maxWidth: 1300, margin: '0 auto' }}>
-          <ScrollReveal fromY={30} style={{ textAlign: 'center', marginBottom: 'clamp(48px,6vw,72px)' }}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 14 }}>What We Research</div>
-            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4.5vw,60px)', fontWeight: 800, color: '#111', letterSpacing: '-0.03em', margin: 0 }}>
-              R&amp;D Focus <em style={{ color: CRIMSON, fontStyle: 'italic' }}>Areas</em>
+          <ScrollReveal fromY={24} style={{ textAlign: 'center', marginBottom: 'clamp(40px,6vw,64px)' }}>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: CR, marginBottom: 14 }}>
+              Our Process
+            </div>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4.5vw,60px)', fontWeight: 800, color: '#111', letterSpacing: '-0.03em', margin: '0 0 18px', lineHeight: 1.05 }}>
+              The R&D Lab — <em style={{ color: CR, fontStyle: 'italic' }}>Explored</em>
             </h2>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,17px)', color: 'rgba(0,0,0,0.52)', maxWidth: 560, margin: '0 auto', lineHeight: 1.8 }}>
+              Six interconnected stations take a flavour idea from concept to commercially-validated formulation. Click any station to see what happens inside.
+            </p>
           </ScrollReveal>
-          <StaggerReveal stagger={0.07} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: 'clamp(14px,1.8vw,24px)' }}>
-            {focusAreas.map(area => (
-              <TiltCard key={area.title}>
-                <div style={{ fontSize: 30, marginBottom: 18, display: 'inline-flex', width: 52, height: 52, alignItems: 'center', justifyContent: 'center', borderRadius: 14, background: 'rgba(172,3,59,0.07)', border: '1px solid rgba(172,3,59,0.15)' }}>{area.icon}</div>
-                <h3 style={{ fontFamily: SANS, fontSize: 14.5, fontWeight: 700, color: '#111', margin: '0 0 10px' }}>{area.title}</h3>
-                <p style={{ fontFamily: SANS, fontSize: 13, color: 'rgba(0,0,0,0.52)', lineHeight: 1.75, margin: 0 }}>{area.desc}</p>
-              </TiltCard>
-            ))}
-          </StaggerReveal>
+
+          <RnDLabDiagram />
         </div>
       </section>
 
-      {/* ══ VELOCITY DIVIDER ════════════════════════════════════ */}
-      <VelocityMarquee reverse />
+      {/* ══ STATS ════════════════════════════════════════════════ */}
+      <section style={{ padding: 'clamp(48px,7vw,96px) clamp(20px,5vw,80px)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', gap: 'clamp(24px,6vw,80px)', justifyContent: 'center', flexWrap: 'wrap' }}>
+          {milestones.map(m => (
+            <div key={m.label} style={{ textAlign: 'center' }}>
+              <div style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4vw,52px)', fontWeight: 800, color: '#111', letterSpacing: '-0.04em', lineHeight: 1 }}>
+                <AnimatedStat value={m.val} suffix={m.suffix} label={m.label} />
+              </div>
+              <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginTop: 8 }}>{m.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      {/* ══ SENSORY TESTING ════════════════════════════════════ */}
+      {/* ══ CURVED LOOP DIVIDER ══════════════════════════════════ */}
+      <div style={{ position: 'relative', background: '#fff', paddingTop: 'clamp(16px,2vw,32px)', paddingBottom: 'clamp(40px,6vw,80px)' }}>
+        <CurvedLoop marqueeText="INNOVATION • RESEARCH • 425+ BLENDS • NEW DEVELOPMENT • FLAVOUR SCIENCE • " speed={1.5} curveAmount={250} className="fill-[#111] uppercase font-mono tracking-widest" />
+        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
+          <span style={{ fontSize: 'clamp(28px,4vw,56px)', fontFamily: 'var(--font-display)', color: CR, fontWeight: 800 }}>LV</span>
+          <span style={{ fontSize: 'clamp(9px,1vw,14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</span>
+        </div>
+      </div>
+
+      {/* ══ HORIZONTAL SCROLL — SENSORY TESTING PROCESS ═════════ */}
       <RnDProcessHorizontal />
 
       {/* ══ PARTNERSHIPS ════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(80px,10vw,130px) clamp(24px,5vw,80px)', textAlign: 'center' }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
           <ScrollReveal fromY={24}>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: CRIMSON, marginBottom: 14 }}>Partnerships</div>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: CR, marginBottom: 14 }}>Partnerships</div>
             <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px,4.5vw,60px)', fontWeight: 800, color: '#111', letterSpacing: '-0.03em', margin: '0 0 20px' }}>
-              Academic &amp;<br /><em style={{ color: CRIMSON, fontStyle: 'italic' }}>Industry Tie-ups</em>
+              Academic &amp;<br /><em style={{ color: CR, fontStyle: 'italic' }}>Industry Tie-ups</em>
             </h2>
             <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.85, margin: '0 0 48px' }}>
               Our R&D division collaborates with leading research institutions. Joint research covers functional ingredients, novel extraction methods, and sustainable processing technologies.
@@ -177,8 +90,9 @@ export default function ResearchAndDevelopmentPage() {
           </ScrollReveal>
           <StaggerReveal stagger={0.07} style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             {partnerships.map(partner => (
-              <div key={partner} style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, padding: '12px 24px', borderRadius: 999, background: 'rgba(172,3,59,0.06)', border: '1px solid rgba(172,3,59,0.18)', color: '#111', transition: 'all 0.25s', cursor: 'default' }}
-                onMouseEnter={e => { const el = e.currentTarget; el.style.background = CRIMSON; el.style.color = '#fff'; el.style.borderColor = CRIMSON; }}
+              <div key={partner}
+                style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, padding: '12px 24px', borderRadius: 999, background: 'rgba(172,3,59,0.06)', border: '1px solid rgba(172,3,59,0.18)', color: '#111', transition: 'all 0.25s', cursor: 'default' }}
+                onMouseEnter={e => { const el = e.currentTarget; el.style.background = CR; el.style.color = '#fff'; el.style.borderColor = CR; }}
                 onMouseLeave={e => { const el = e.currentTarget; el.style.background = 'rgba(172,3,59,0.06)'; el.style.color = '#111'; el.style.borderColor = 'rgba(172,3,59,0.18)'; }}>
                 {partner}
               </div>
@@ -186,15 +100,6 @@ export default function ResearchAndDevelopmentPage() {
           </StaggerReveal>
         </div>
       </section>
-
-      {/* ══ CURVED LOOP ══════════════════════════════════════════ */}
-      <div style={{ position: 'relative', background: '#F8F6F1', paddingTop: 'clamp(16px,2vw,32px)', paddingBottom: 'clamp(40px,6vw,80px)' }}>
-        <CurvedLoop marqueeText="INNOVATION • RESEARCH • 425+ BLENDS • NEW DEVELOPMENT • " speed={1.5} curveAmount={250} className="fill-[#111] uppercase font-mono tracking-widest" />
-        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
-          <text style={{ fontSize: 'clamp(28px,4vw,56px)', fontFamily: 'var(--font-display)', color: CRIMSON, fontWeight: 800 }}>LV</text>
-          <text style={{ fontSize: 'clamp(9px,1vw,14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</text>
-        </div>
-      </div>
 
       {/* ══ CTA ══════════════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px)', background: '#111', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
@@ -210,7 +115,8 @@ export default function ResearchAndDevelopmentPage() {
             <p style={{ fontFamily: SANS, fontSize: 'clamp(15px,1.3vw,18px)', color: 'rgba(255,255,255,0.65)', maxWidth: 540, margin: '0 auto 48px', lineHeight: 1.75 }}>
               Share your product brief with our R&D team. We'll formulate, test, and validate a blend tailored to your sensory and regulatory needs.
             </p>
-            <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: CRIMSON, color: '#fff', fontFamily: SANS, fontWeight: 700, fontSize: 15, padding: '18px 40px', borderRadius: 999, textDecoration: 'none', transition: 'transform 0.2s, box-shadow 0.2s', boxShadow: '0 8px 32px rgba(172,3,59,0.3)' }}
+            <a href="/contact"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: CR, color: '#fff', fontFamily: SANS, fontWeight: 700, fontSize: 15, padding: '18px 40px', borderRadius: 999, textDecoration: 'none', transition: 'transform 0.2s, box-shadow 0.2s', boxShadow: '0 8px 32px rgba(172,3,59,0.3)' }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; }}>
               Start a Conversation →

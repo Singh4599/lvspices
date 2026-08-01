@@ -40,7 +40,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-[#111]">
+      <body className="min-h-full flex flex-col bg-white text-[#111]" suppressHydrationWarning>
         <ClientEffects />
         <SmoothScrollProvider>
           <PageTransition />

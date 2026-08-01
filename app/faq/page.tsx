@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import ParallaxCard from '@/components/ui/ParallaxCard';
+import FAQMindMap from '@/components/faq/FAQMindMap';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -65,48 +66,7 @@ const faqCategories = [
   },
 ];
 
-function AccordionItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
-  return (
-    <div style={{
-      border: `1px solid ${isOpen ? 'rgba(172,3,59,0.35)' : 'rgba(0,0,0,0.07)'}`,
-      borderRadius: 14, overflow: 'hidden', transition: 'border-color 0.25s', marginBottom: 10,
-    }}>
-      <button onClick={onToggle} style={{
-        width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16,
-        padding: '20px 24px',
-        background: isOpen ? 'rgba(172,3,59,0.04)' : '#fff',
-        border: 'none', cursor: 'pointer', textAlign: 'left', transition: 'background 0.25s',
-      }}>
-        <span style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', fontWeight: 600, color: '#111', lineHeight: 1.4 }}>{q}</span>
-        <span style={{
-          width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-          background: isOpen ? CRIMSON : 'rgba(0,0,0,0.08)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: isOpen ? '#fff' : '#111', fontSize: 18, fontWeight: 300, transition: 'all 0.25s',
-        }}>
-          {isOpen ? '−' : '+'}
-        </span>
-      </button>
-
-      {isOpen && (
-        <div style={{ padding: '0 24px 20px' }}>
-          <p style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,14.5px)', color: 'rgba(0,0,0,0.52)', lineHeight: 1.8, margin: 0 }}>{a}</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function FAQPage() {
-  const [openItems, setOpenItems] = useState<Record<string, boolean>>({ '0-0': true });
-  const [activeCategory, setActiveCategory] = useState('All');
-
-  const toggle = (key: string) => setOpenItems(prev => ({ ...prev, [key]: !prev[key] }));
-
-  const filteredCategories = activeCategory === 'All'
-    ? faqCategories
-    : faqCategories.filter(c => c.category === activeCategory);
-
   const totalFAQs = faqCategories.reduce((acc, c) => acc + c.faqs.length, 0);
 
   return (
@@ -175,58 +135,9 @@ export default function FAQPage() {
       </div>
 
       {/* ══ FAQ BODY ══════════════════════════════════════════ */}
-      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,6vw,100px)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 'clamp(40px,6vw,100px)', flexWrap: 'wrap' }}>
-
-          {/* Sticky left panel */}
-          <ScrollReveal fromY={20} style={{ flex: '0 0 clamp(200px,24vw,300px)', position: 'sticky', top: 100, height: 'fit-content' }}>
-            <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', marginBottom: 12 }}>Filter by topic</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              {['All', ...faqCategories.map(c => c.category)].map(cat => (
-                <button key={cat} onClick={() => setActiveCategory(cat)} style={{
-                  fontFamily: SANS, fontSize: 12.5, fontWeight: 500,
-                  padding: '9px 14px', borderRadius: 8, textAlign: 'left',
-                  background: activeCategory === cat ? 'rgba(172,3,59,0.08)' : 'transparent',
-                  border: `1px solid ${activeCategory === cat ? 'rgba(172,3,59,0.3)' : 'transparent'}`,
-                  color: activeCategory === cat ? CRIMSON : 'rgba(0,0,0,0.55)',
-                  cursor: 'pointer', transition: 'all 0.2s',
-                }}>{cat}</button>
-              ))}
-            </div>
-            <div style={{ marginTop: 28, padding: '16px', background: 'rgba(0,0,0,0.03)', borderRadius: 12, border: '1px solid rgba(0,0,0,0.06)' }}>
-              <div style={{ fontFamily: SERIF, fontSize: 28, fontWeight: 700, color: '#111', lineHeight: 1 }}>{totalFAQs}</div>
-              <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginTop: 6 }}>Questions Answered</div>
-            </div>
-          </ScrollReveal>
-
-          {/* Right — FAQ accordion */}
-          <div style={{ flex: 1, minWidth: 280 }}>
-            <ScrollReveal fromY={20}>
-              <div style={{ fontFamily: SERIF, fontSize: 'clamp(18px,2vw,28px)', fontWeight: 700, color: '#111', marginBottom: 36, lineHeight: 1.2 }}>
-                Questions About Our Spices?<br />
-                <span style={{ color: CRIMSON }}>Answered.</span>
-              </div>
-            </ScrollReveal>
-
-            {filteredCategories.map((cat, ci) => (
-              <ScrollReveal key={cat.category} fromY={16} delay={ci * 0.05}>
-                <div style={{ marginBottom: 40 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: CRIMSON, flexShrink: 0 }} />
-                    <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)' }}>
-                      {cat.category}
-                    </div>
-                    <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.06)' }} />
-                  </div>
-
-                  {cat.faqs.map((faq, fi) => {
-                    const key = `${ci}-${fi}`;
-                    return <AccordionItem key={key} q={faq.q} a={faq.a} isOpen={!!openItems[key]} onToggle={() => toggle(key)} />;
-                  })}
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,6vw,80px)', background: '#fff' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+          <FAQMindMap faqData={faqCategories} />
         </div>
       </section>
 

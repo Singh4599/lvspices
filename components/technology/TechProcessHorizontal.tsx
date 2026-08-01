@@ -1,8 +1,8 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
+import Image from 'next/image';
 
 const steps = [
   {
@@ -10,42 +10,42 @@ const steps = [
     title: 'Seed Cleaning',
     desc: 'The line primarily removes farm admixtures, insect excreta, potential allergens, and ferrous/non-ferrous contaminants using Sifters, De-Stoners, Spirals, Gravity Separators, and the latest A+ Multivision Sortex with online Metal Detectors.',
     stat: '1–3 TONS/HR',
-    img: '/images/tech_seed_cleaning.png'
+    img: '/images/seedcleaner.png'
   },
   {
     id: '02',
     title: 'Milling',
     desc: 'Temperature deltas are critically controlled to prevent overheating — ensuring retention of flavour, negligible SHU loss, ASTA colour, and volatile oil. We have 3 Milling Lines, each tailored for specific product needs.',
     stat: 'ZERO SHU LOSS',
-    img: '/images/tech_milling.png'
+    img: '/images/milling.png'
   },
   {
     id: '03',
     title: 'Roasting',
     desc: 'No Indian Spice Blend is complete without the special roasted flavour. Our dedicated Roasting Line perfectly achieves custom roasted blends to guarantee that extra special taste.',
     stat: '4000 MTS/YR',
-    img: '/images/tech_roasting.png'
+    img: '/images/roasting.png'
   },
   {
     id: '04',
     title: 'Steam Sterilization',
     desc: 'An environmental-friendly and extremely effective sterilization method yielding a validated 5-log microbial reduction. The process uses high temperature, indirect contact and pre-heating.',
     stat: '5-LOG REDUCTION',
-    img: '/images/tech_sterilization.png'
+    img: '/images/steamsterlization.png'
   },
   {
     id: '05',
     title: 'Cryogenic Grinding',
     desc: 'Cryogenic grinding at -150°C preserves 40% more essential oils, colour, and aroma than conventional ambient grinding — making it the gold standard for premium spice processing.',
     stat: '-150°C TEMP',
-    img: '/images/cryo-dark.png'
+    img: '/images/cryogenic.png'
   },
   {
     id: '06',
     title: 'CFG Technology',
     desc: 'Continuous Flow Grinding (CFG) process is the most advanced spice processing technology in India. It eliminates batch-to-batch variation by continuously feeding, grinding, and classifying spices in a closed-loop system.',
     stat: 'FSMA VALIDATED',
-    img: '/images/tech_cfg.png'
+    img: '/images/cfg.png'
   }
 ];
 
@@ -170,13 +170,19 @@ export default function TechProcessHorizontal() {
                 </div>
               </div>
 
-              {/* Image Side */}
-              <div className="panel-img-wrap" style={{ flex: '1 1 500px', height: '70vh', position: 'relative', borderRadius: 24, overflow: 'hidden', boxShadow: '0 30px 80px rgba(0,0,0,0.1)' }}>
-                <div className="panel-image" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
-                  <Image src={step.img} alt={step.title} fill style={{ objectFit: 'cover' }} />
-                  {/* Subtle Gradient Overlay */}
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.1), transparent)', pointerEvents: 'none' }} />
-                </div>
+              {/* Real Photo */}
+              <div className="panel-img-wrap" style={{ flex: '1 1 500px', height: '70vh', position: 'relative', borderRadius: 24, overflow: 'hidden', boxShadow: '0 30px 80px rgba(0,0,0,0.12)' }}>
+                <Image
+                  src={step.img}
+                  alt={step.title}
+                  fill
+                  className="panel-image"
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width:900px) 90vw, 50vw"
+                  priority={i < 2}
+                />
+                {/* Subtle gradient overlay for text contrast */}
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(172,3,59,0.06) 0%, transparent 60%)', pointerEvents: 'none' }} />
               </div>
 
             </div>

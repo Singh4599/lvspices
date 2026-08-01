@@ -36,29 +36,24 @@ export default function Phone3D({ children }: { children?: React.ReactNode }) {
 
   const handleReset = () => { setShowForm(false); setDialCount(0); };
 
-  // 10 holes in a ring, 0 at 10-o'clock, clockwise
-  const R = 70;
+  // 10 holes in a ring, clockwise from top-leftish
+  const R = 72;
   const holes = Array.from({ length: 10 }, (_, i) => ({
     d: ['0','1','2','3','4','5','6','7','8','9'][i],
-    deg: -120 + i * 36,
+    deg: -126 + i * 36, // -126 is roughly 10:30 o'clock
   }));
+
+  const OUTLINE = '#2a3328';
+  const FILL_MAIN = '#f4eedb';
+  const FILL_SHADE = '#e6dbc3';
+  const GRID_COLOR = 'rgba(160, 170, 160, 0.2)';
 
   return (
     <div style={{
       width: '100%',
       minHeight: showForm ? 'auto' : 620,
       borderRadius: 24,
-      // Aged paper background
-      background: 'radial-gradient(ellipse at 30% 20%, #fdf8ec 0%, #f5edda 50%, #ede0c4 100%)',
-      backgroundImage: `
-        radial-gradient(ellipse at 30% 20%, #fdf8ec 0%, #f5edda 50%, #ede0c4 100%)
-      `,
-      border: '1px solid rgba(160,130,80,0.2)',
-      boxShadow: `
-        0 1px 3px rgba(0,0,0,0.04) inset,
-        0 24px 60px -20px rgba(0,0,0,0.1),
-        0 0 0 1px rgba(255,255,255,0.6) inset
-      `,
+      background: '#fdfbf7', // Paper background
       overflow: 'hidden',
       position: 'relative',
       display: 'flex',
@@ -68,25 +63,20 @@ export default function Phone3D({ children }: { children?: React.ReactNode }) {
       transition: 'min-height 0.5s cubic-bezier(0.16,1,0.3,1)',
     }}>
 
-      {/* Aged paper grid overlay */}
+      {/* Grid Paper Background */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
         backgroundImage: `
-          linear-gradient(rgba(100,80,40,0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(100,80,40,0.06) 1px, transparent 1px)
+          linear-gradient(${GRID_COLOR} 1px, transparent 1px),
+          linear-gradient(90deg, ${GRID_COLOR} 1px, transparent 1px)
         `,
-        backgroundSize: '28px 28px',
-      }}/>
-
-      {/* Subtle vignette */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse at center, transparent 60%, rgba(160,120,60,0.12) 100%)',
+        backgroundSize: '40px 40px',
+        backgroundPosition: 'center',
       }}/>
 
       {/* ── FORM ── */}
       {showForm && (
-        <div style={{ width: '100%', padding: '44px 36px', animation: 'phoneFormIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards' }}>
+        <div style={{ width: '100%', padding: '44px 36px', animation: 'phoneFormIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards', position: 'relative', zIndex: 10 }}>
           <style>{`
             @keyframes phoneFormIn{
               from{opacity:0;transform:translateY(20px) scale(0.97);filter:blur(4px)}
@@ -110,9 +100,10 @@ export default function Phone3D({ children }: { children?: React.ReactNode }) {
           {/* Label */}
           <p style={{
             fontFamily: "'Courier New', monospace",
-            fontSize: 11.5, fontWeight: 700,
+            fontSize: 14, fontWeight: 700,
             letterSpacing: '0.28em', textTransform: 'uppercase',
-            color: 'rgba(80,60,30,0.5)', margin: '0 0 18px 0',
+            color: 'rgba(80,90,80,0.7)', margin: '0 0 -10px 0',
+            zIndex: 2,
           }}>DIAL YOUR NUMBER</p>
 
           {/* SVG Phone */}
@@ -122,92 +113,50 @@ export default function Phone3D({ children }: { children?: React.ReactNode }) {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
-            <svg width="310" height="400" viewBox="-10 -10 320 410" style={{
+            <svg width="340" height="420" viewBox="0 0 340 420" style={{
               overflow: 'visible',
               filter: hovered && !spinning
-                ? 'drop-shadow(0 20px 40px rgba(0,0,0,0.22)) drop-shadow(0 4px 8px rgba(0,0,0,0.12))'
-                : 'drop-shadow(0 10px 24px rgba(0,0,0,0.14)) drop-shadow(0 2px 4px rgba(0,0,0,0.06))',
+                ? 'drop-shadow(0 24px 32px rgba(0,0,0,0.12)) drop-shadow(0 8px 12px rgba(0,0,0,0.06))'
+                : 'drop-shadow(0 12px 20px rgba(0,0,0,0.08)) drop-shadow(0 4px 6px rgba(0,0,0,0.04))',
               transition: 'filter 0.35s ease',
             }}>
-
+              
               <defs>
-                {/* Pencil sketch displacement */}
-                <filter id="sk1">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="3" result="n"/>
-                  <feDisplacementMap in="SourceGraphic" in2="n" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+                {/* Sketchy turbulence filter to make lines look hand-drawn */}
+                <filter id="sketch">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
                 </filter>
-                <filter id="sk2">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="7" result="n"/>
-                  <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
-                </filter>
-
-                {/* Diagonal hatch — fine */}
-                <pattern id="hatch-fine" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-                  <line x1="0" y1="0" x2="0" y2="7" stroke="#7a8878" strokeWidth="0.6" opacity="0.55"/>
+                
+                {/* Dial hatching */}
+                <pattern id="hatch-dial" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(100,110,100,0.25)" strokeWidth="0.8"/>
                 </pattern>
-                {/* Cross-hatch shadow — for body shading */}
-                <pattern id="hatch-cross" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-                  <line x1="0" y1="0" x2="0" y2="7" stroke="#5a5040" strokeWidth="0.5" opacity="0.25"/>
-                  <line x1="0" y1="0" x2="7" y2="0" stroke="#5a5040" strokeWidth="0.5" opacity="0.15"/>
+                
+                {/* Base shading hatch */}
+                <pattern id="hatch-shade" width="6" height="6" patternTransform="rotate(-45)" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(0,0,0,0.2)" strokeWidth="0.6"/>
                 </pattern>
-
-                {/* Body gradient — warm aged ivory */}
-                <linearGradient id="gBody" x1="0%" y1="0%" x2="90%" y2="100%">
-                  <stop offset="0%"   stopColor="#fdf8ef"/>
-                  <stop offset="35%"  stopColor="#f5e9cc"/>
-                  <stop offset="75%"  stopColor="#e8d4af"/>
-                  <stop offset="100%" stopColor="#d8c49a"/>
-                </linearGradient>
-
-                {/* Handset gradient */}
-                <linearGradient id="gHand" x1="0%" y1="0%" x2="100%" y2="80%">
-                  <stop offset="0%"   stopColor="#fdf8ef"/>
-                  <stop offset="50%"  stopColor="#f0e4c8"/>
-                  <stop offset="100%" stopColor="#d8c49a"/>
-                </linearGradient>
-
-                {/* Cord gradient */}
-                <linearGradient id="gCord" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%"   stopColor="#d8c49a"/>
-                  <stop offset="40%"  stopColor="#f5e9cc"/>
-                  <stop offset="100%" stopColor="#d8c49a"/>
-                </linearGradient>
-
-                {/* Dial disc gradient */}
-                <radialGradient id="gDial" cx="40%" cy="35%" r="65%">
-                  <stop offset="0%"   stopColor="#f8f2e4"/>
-                  <stop offset="100%" stopColor="#e0d0b0"/>
-                </radialGradient>
-
-                {/* Hole gradient */}
-                <radialGradient id="gHole" cx="35%" cy="30%" r="70%">
-                  <stop offset="0%"   stopColor="#ffffff"/>
-                  <stop offset="100%" stopColor="#f0e8d8"/>
-                </radialGradient>
               </defs>
 
               {/* ═══════════════════════════════════
-                  CURLY CORD — spring-like coils
+                  CURLY CORD (Left side)
                   ═══════════════════════════════════ */}
-              <g filter="url(#sk1)">
-                {Array.from({ length: 7 }).map((_, i) => {
-                  const yOff = 80 + i * 25;
-                  const xOff = 42 + (i % 2 === 0 ? 0 : 5);
+              <g filter="url(#sketch)">
+                {Array.from({ length: 9 }).map((_, i) => {
+                  const y = 140 + i * 22;
+                  const x = 50 + Math.sin(i * 0.8) * 8;
                   return (
-                    <g key={i}>
-                      {/* Coil shadow */}
-                      <path
-                        d={`M ${xOff-16} ${yOff} Q ${xOff} ${yOff - 14}, ${xOff+16} ${yOff} Q ${xOff} ${yOff + 14}, ${xOff-16} ${yOff}`}
-                        fill="#dac8a0" stroke="rgba(0,0,0,0.12)" strokeWidth="6" transform="translate(3,4)"/>
-                      {/* Coil fill */}
-                      <path
-                        d={`M ${xOff-16} ${yOff} Q ${xOff} ${yOff - 14}, ${xOff+16} ${yOff} Q ${xOff} ${yOff + 14}, ${xOff-16} ${yOff}`}
-                        fill="url(#gCord)" stroke="#1c1c14" strokeWidth="1.8"/>
-                      {/* Highlight on coil top */}
-                      <path
-                        d={`M ${xOff-10} ${yOff-2} Q ${xOff} ${yOff - 10}, ${xOff+10} ${yOff-2}`}
-                        fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.3" strokeLinecap="round"/>
-                    </g>
+                    <path key={i} d={`M ${x+20} ${y-10} C ${x-30} ${y-15}, ${x-30} ${y+15}, ${x+20} ${y+10}`} 
+                          fill="none" stroke={OUTLINE} strokeWidth="4.5" strokeLinecap="round" />
+                  );
+                })}
+                {Array.from({ length: 9 }).map((_, i) => {
+                  const y = 140 + i * 22;
+                  const x = 50 + Math.sin(i * 0.8) * 8;
+                  return (
+                    <path key={'inner'+i} d={`M ${x+20} ${y-10} C ${x-30} ${y-15}, ${x-30} ${y+15}, ${x+20} ${y+10}`} 
+                          fill="none" stroke={FILL_MAIN} strokeWidth="2.5" strokeLinecap="round" />
                   );
                 })}
               </g>
@@ -215,261 +164,153 @@ export default function Phone3D({ children }: { children?: React.ReactNode }) {
               {/* ═══════════════════════════════════
                   PHONE BODY
                   ═══════════════════════════════════ */}
+              <g filter="url(#sketch)">
+                {/* Back shading */}
+                <path d="M 95 100 C 130 85, 210 85, 245 100 C 270 140, 275 160, 285 220 C 305 320, 290 380, 250 395 C 170 410, 70 390, 50 370 C 40 300, 60 160, 95 100 Z" 
+                      fill="rgba(0,0,0,0.06)" transform="translate(6, 10)" />
+                
+                {/* Main Body Path */}
+                <path d="M 95 100 C 130 85, 210 85, 245 100 C 270 140, 275 160, 285 220 C 305 320, 290 380, 250 395 C 170 410, 70 390, 50 370 C 40 300, 60 160, 95 100 Z" 
+                      fill={FILL_MAIN} stroke={OUTLINE} strokeWidth="4.5" strokeLinejoin="round" />
 
-              {/* Body ambient shadow */}
-              <rect x="60" y="88" width="196" height="254" rx="32"
-                fill="rgba(0,0,0,0.12)" filter="blur(14px)" transform="translate(6,14)"/>
-
-              {/* Body fill */}
-              <rect x="60" y="88" width="196" height="254" rx="32"
-                fill="url(#gBody)" stroke="#1c1c14" strokeWidth="3.5"
-                filter="url(#sk1)"/>
-
-              {/* Cross-hatch shading on body right-bottom for depth */}
-              <rect x="140" y="180" width="116" height="162" rx="0"
-                fill="url(#hatch-cross)" opacity="0.9"
-                style={{ clipPath: 'inset(0 0 0 0 round 32px)' }}/>
-
-              {/* Body inner rim highlight */}
-              <rect x="64" y="92" width="188" height="246" rx="29"
-                fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2"
-                filter="url(#sk2)"/>
-
-              {/* Body bottom edge — darker for thickness/depth */}
-              <path d="M 76 332 Q 60 342 92 342 L 224 342 Q 256 342 240 332"
-                fill="#c8b48a" stroke="#1c1c14" strokeWidth="2"
-                filter="url(#sk2)"/>
-
-              {/* Subtle form-line detail on body (vintage phone had a ridge) */}
-              <path d="M 66 165 Q 158 175 250 165"
-                fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="3"
-                filter="url(#sk2)"/>
-
-              {/* Handset rest notches on top */}
-              <path d="M 90 98 Q 158 68 226 98"
-                fill="none" stroke="#1c1c14" strokeWidth="2.8" strokeLinecap="round"
-                filter="url(#sk1)"/>
-              <path d="M 105 94 Q 158 74 211 94"
-                fill="none" stroke="rgba(255,255,255,0.55)" strokeWidth="1.4"
-                strokeLinecap="round" filter="url(#sk2)"/>
+                {/* Body Shading (bottom) */}
+                <path d="M 60 360 C 150 375, 240 380, 285 340 C 280 370, 250 395, 170 405 C 80 395, 50 370, 60 360 Z" 
+                      fill="url(#hatch-shade)" opacity="0.6" />
+                
+                {/* Handset Rest */}
+                <path d="M 105 95 C 140 120, 200 120, 235 95" fill="none" stroke={OUTLINE} strokeWidth="4" strokeLinecap="round" />
+                <path d="M 105 110 C 140 140, 200 140, 235 110" fill="none" stroke={OUTLINE} strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
+              </g>
 
               {/* ═══════════════════════════════════
                   HANDSET
                   ═══════════════════════════════════ */}
-              <g filter="url(#sk1)">
+              <g filter="url(#sketch)">
                 {/* Handset shadow */}
-                <path d="M 62 56 Q 85 22 130 18 L 180 18 Q 225 22 244 54 L 246 84 Q 224 60 158 58 Q 88 58 68 82 Z"
-                  fill="rgba(0,0,0,0.13)" transform="translate(4,7)"/>
-                {/* Handset body */}
-                <path d="M 62 56 Q 85 22 130 18 L 180 18 Q 225 22 244 54 L 246 84 Q 224 60 158 58 Q 88 58 68 82 Z"
-                  fill="url(#gHand)" stroke="#1c1c14" strokeWidth="3.5"/>
-                {/* Highlight */}
-                <path d="M 70 55 Q 88 25 130 21 L 180 21 Q 222 25 240 54"
-                  fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="2.2" strokeLinecap="round"/>
-                {/* Shading line under top curve */}
-                <path d="M 72 58 Q 89 32 130 26 L 180 26 Q 220 32 238 58"
-                  fill="none" stroke="rgba(0,0,0,0.06)" strokeWidth="4" strokeLinecap="round"/>
-              </g>
-
-              {/* Handset coiled cord (top connecting) */}
-              {[0,1,2,3,4].map(i => (
-                <g key={i} filter="url(#sk2)">
-                  <ellipse cx={138 + i*9} cy={62 + (i%2)*4} rx={5} ry={8}
-                    fill="url(#gCord)" stroke="#1c1c14" strokeWidth={1.5}
-                    transform={`rotate(-12 ${138+i*9} ${62+(i%2)*4})`}/>
-                </g>
-              ))}
-
-              {/* Earpiece */}
-              <g filter="url(#sk2)">
-                <ellipse cx="70" cy="56" rx="23" ry="17"
-                  fill="#e8d8b8" stroke="#1c1c14" strokeWidth="2.8"
-                  transform="rotate(-22 70 56)"/>
-                <ellipse cx="68" cy="54" rx="23" ry="17"
-                  fill="url(#gHand)" stroke="#1c1c14" strokeWidth="2.8"
-                  transform="rotate(-22 68 54)"/>
-                {/* Highlight rim */}
-                <ellipse cx="66" cy="52" rx="23" ry="17"
-                  fill="none" stroke="rgba(255,255,255,0.65)" strokeWidth="1.2"
-                  transform="rotate(-22 66 52)"/>
-                {/* Speaker dots (5x grid) */}
-                {[[-7,-5],[-1,-7],[5,-5],[-7,0],[5,0],[-7,5],[0,6],[5,5]].map(([dx,dy],i) => (
-                  <circle key={i} cx={68+dx} cy={54+dy} r="1.6" fill="#1c1c14" opacity="0.65"/>
-                ))}
-              </g>
-
-              {/* Red accent mark */}
-              <g filter="url(#sk2)">
-                <path d="M 54 48 Q 62 44 66 49 Q 60 54 54 48"
-                  fill="#a83232" opacity="0.9"/>
-                <path d="M 57 49 Q 62 46 64 49"
-                  fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
-              </g>
-              {/* Black nub / hook */}
-              <circle cx="80" cy="70" r="4.5" fill="#1c1c14" filter="url(#sk2)"/>
-              <circle cx="78" cy="68" r="1.8" fill="rgba(255,255,255,0.35)"/>
-
-              {/* Mouthpiece */}
-              <g filter="url(#sk2)">
-                <ellipse cx="246" cy="60" rx="23" ry="17"
-                  fill="#e8d8b8" stroke="#1c1c14" strokeWidth="2.8"
-                  transform="rotate(22 246 60)"/>
-                <ellipse cx="244" cy="58" rx="23" ry="17"
-                  fill="url(#gHand)" stroke="#1c1c14" strokeWidth="2.8"
-                  transform="rotate(22 244 58)"/>
-                <ellipse cx="242" cy="56" rx="23" ry="17"
-                  fill="none" stroke="rgba(255,255,255,0.65)" strokeWidth="1.2"
-                  transform="rotate(22 242 56)"/>
-                {[[-7,-5],[-1,-7],[5,-5],[-7,0],[5,0],[-7,5],[0,6],[5,5]].map(([dx,dy],i) => (
-                  <circle key={i} cx={244+dx} cy={58+dy} r="1.6" fill="#1c1c14" opacity="0.65"/>
-                ))}
+                <path d="M 100 100 C 110 50, 130 50, 170 40 C 210 45, 235 60, 250 90 C 255 100, 275 130, 260 140 C 245 150, 210 105, 180 100 C 140 90, 110 120, 90 120 C 70 120, 80 110, 100 100 Z"
+                      fill="rgba(0,0,0,0.15)" transform="translate(4, 12)" />
+                
+                {/* Handset Handle */}
+                <path d="M 125 55 C 150 45, 190 45, 215 65 C 225 75, 240 95, 220 100 C 190 90, 150 85, 120 90 C 105 95, 95 85, 105 70 Z" 
+                      fill={FILL_MAIN} stroke={OUTLINE} strokeWidth="4.5" strokeLinejoin="round" />
+                
+                {/* Left Earpiece (Speaker) */}
+                <ellipse cx="110" cy="75" rx="35" ry="25" fill={FILL_SHADE} stroke={OUTLINE} strokeWidth="4.5" transform="rotate(-30 110 75)" />
+                <ellipse cx="110" cy="75" rx="25" ry="15" fill={FILL_MAIN} stroke={OUTLINE} strokeWidth="2.5" transform="rotate(-30 110 75)" />
+                
+                {/* Red Mark */}
+                <path d="M 115 58 C 122 55, 128 58, 126 62 C 120 66, 112 62, 115 58 Z" fill="#c64747" stroke={OUTLINE} strokeWidth="1.5" />
+                
+                {/* Speaker Holes */}
+                <circle cx="106" cy="75" r="2" fill={OUTLINE} />
+                <circle cx="114" cy="75" r="2" fill={OUTLINE} />
+                <circle cx="110" cy="70" r="2" fill={OUTLINE} />
+                <circle cx="110" cy="80" r="2" fill={OUTLINE} />
+                <circle cx="110" cy="75" r="2" fill={OUTLINE} />
+                
+                {/* Right Mouthpiece */}
+                <ellipse cx="230" cy="115" rx="30" ry="22" fill={FILL_SHADE} stroke={OUTLINE} strokeWidth="4.5" transform="rotate(-40 230 115)" />
+                <ellipse cx="230" cy="115" rx="20" ry="12" fill={FILL_MAIN} stroke={OUTLINE} strokeWidth="2.5" transform="rotate(-40 230 115)" />
+                
+                <circle cx="226" cy="115" r="2" fill={OUTLINE} />
+                <circle cx="234" cy="115" r="2" fill={OUTLINE} />
+                <circle cx="230" cy="111" r="2" fill={OUTLINE} />
+                <circle cx="230" cy="119" r="2" fill={OUTLINE} />
+                <circle cx="230" cy="115" r="2" fill={OUTLINE} />
               </g>
 
               {/* ═══════════════════════════════════
                   DIAL PLATE
                   ═══════════════════════════════════ */}
-
-              {/* Outer ring shadow */}
-              <circle cx="155" cy="244" r="110"
-                fill="rgba(0,0,0,0.10)" filter="blur(10px)" transform="translate(3,8)"/>
-
-              {/* Outer decorative ring */}
-              <circle cx="155" cy="244" r="110"
-                fill="#d8c89a" stroke="#1c1c14" strokeWidth="4.5"
-                filter="url(#sk1)"/>
-              {/* Outer ring inner bevel */}
-              <circle cx="155" cy="244" r="110"
-                fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="3"
-                transform="translate(-2,-2)"/>
-              <circle cx="155" cy="244" r="110"
-                fill="none" stroke="rgba(0,0,0,0.18)" strokeWidth="5"
-                transform="translate(2,3)"/>
-
-              {/* Small tick marks on outer rim */}
-              {Array.from({ length: 40 }).map((_, i) => {
-                const a = (i / 40) * 360;
-                const rad = (a * Math.PI) / 180;
-                const x1 = 155 + Math.cos(rad) * 103;
-                const y1 = 244 + Math.sin(rad) * 103;
-                const x2 = 155 + Math.cos(rad) * 108;
-                const y2 = 244 + Math.sin(rad) * 108;
-                return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#1c1c14" strokeWidth="0.7" opacity="0.4"/>;
-              })}
-
-              {/* ── Rotating wheel ── */}
-              <g ref={wheelRef} style={{ transformOrigin: '155px 244px' }}>
-
-                {/* Dial disc */}
-                <circle cx="155" cy="244" r="103"
-                  fill="url(#gDial)" stroke="#1c1c14" strokeWidth="2"
-                  filter="url(#sk1)"/>
-                {/* Hatch fill */}
-                <circle cx="155" cy="244" r="103" fill="url(#hatch-fine)" opacity="1"/>
-
-                {/* Crosshair construction lines */}
-                <line x1="52" y1="244" x2="258" y2="244" stroke="#7a8878" strokeWidth="0.8" opacity="0.4"/>
-                <line x1="155" y1="141" x2="155" y2="347" stroke="#7a8878" strokeWidth="0.8" opacity="0.4"/>
-                <line x1="82" y1="171" x2="228" y2="317" stroke="#7a8878" strokeWidth="0.7" opacity="0.3"/>
-                <line x1="228" y1="171" x2="82" y2="317" stroke="#7a8878" strokeWidth="0.7" opacity="0.3"/>
-
-                {/* ── Digit holes ── */}
-                {holes.map(({ d, deg }) => {
-                  const rad = (deg * Math.PI) / 180;
-                  const cx  = 155 + Math.cos(rad) * R;
-                  const cy  = 244 + Math.sin(rad) * R;
+              <g transform="translate(170, 260)">
+                
+                {/* Outer Ring */}
+                <circle cx="0" cy="0" r="115" fill={FILL_MAIN} stroke={OUTLINE} strokeWidth="4.5" filter="url(#sketch)" />
+                <circle cx="0" cy="0" r="115" fill="url(#hatch-dial)" />
+                <circle cx="0" cy="0" r="105" fill="none" stroke={OUTLINE} strokeWidth="1.5" opacity="0.3" filter="url(#sketch)" />
+                
+                {/* Outer Dial ticks */}
+                {Array.from({ length: 20 }).map((_, i) => {
+                  const rad = (i * 18 * Math.PI) / 180;
                   return (
-                    <g key={d}>
-                      {/* Hole depth shadow */}
-                      <circle cx={cx+1.5} cy={cy+2.5} r="22"
-                        fill="rgba(0,0,0,0.2)" filter="url(#sk2)"/>
-                      {/* Hole body */}
-                      <circle cx={cx} cy={cy} r="21"
-                        fill="url(#gHole)" stroke="#1c1c14" strokeWidth="2.8"
-                        filter="url(#sk2)"/>
-                      {/* Inner bottom shadow */}
-                      <path d={`M ${cx-19} ${cy+4} A 20 20 0 0 0 ${cx+19} ${cy+4}`}
-                        fill="none" stroke="rgba(0,0,0,0.18)" strokeWidth="6"/>
-                      {/* Top gloss */}
-                      <path d={`M ${cx-13} ${cy-13} A 16 16 0 0 1 ${cx+13} ${cy-13}`}
-                        fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="2.8" strokeLinecap="round"/>
-                      {/* Number */}
-                      <text x={cx} y={cy}
-                        fill="#1c1c14" fontSize="21"
-                        fontFamily="'Georgia', 'Times New Roman', serif"
-                        fontWeight="700"
-                        textAnchor="middle" dominantBaseline="central"
-                        style={{ pointerEvents: 'none', fontStyle: 'normal' }}
-                        filter="url(#sk2)"
-                      >{d}</text>
-                    </g>
+                    <line key={'tick'+i} 
+                          x1={Math.cos(rad)*105} y1={Math.sin(rad)*105} 
+                          x2={Math.cos(rad)*115} y2={Math.sin(rad)*115} 
+                          stroke={OUTLINE} strokeWidth="1.5" opacity="0.4" />
                   );
                 })}
 
-                {/* Center hub shadow */}
-                <circle cx="157" cy="246" r="16"
-                  fill="rgba(0,0,0,0.18)" filter="url(#sk2)"/>
-                {/* Center hub */}
-                <circle cx="155" cy="244" r="15"
-                  fill="url(#gBody)" stroke="#1c1c14" strokeWidth="2.5"
-                  filter="url(#sk2)"/>
-                <circle cx="153" cy="242" r="15"
-                  fill="none" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5"/>
-                {/* Orange pivot dot */}
-                <circle cx="155" cy="244" r="6" fill="#e8a838"/>
-                <circle cx="153" cy="242" r="2.2" fill="rgba(255,255,255,0.6)"/>
+                {/* ── Rotating Wheel ── */}
+                <g ref={wheelRef}>
+                  
+                  {/* Dial Disc Base */}
+                  <circle cx="0" cy="0" r="95" fill="transparent" />
+                  
+                  {/* Connecting lines between holes (sketchy touch) */}
+                  <circle cx="0" cy="0" r={R} fill="none" stroke={OUTLINE} strokeWidth="1" strokeDasharray="6 6" opacity="0.3" />
 
-              </g>
-              {/* end rotating wheel */}
+                  {/* Holes & Numbers */}
+                  {holes.map(({ d, deg }) => {
+                    const rad = (deg * Math.PI) / 180;
+                    const cx  = Math.cos(rad) * R;
+                    const cy  = Math.sin(rad) * R;
+                    return (
+                      <g key={d} filter="url(#sketch)">
+                        {/* Number Background */}
+                        <circle cx={cx} cy={cy} r="18" fill="#fff" stroke={OUTLINE} strokeWidth="3.5" />
+                        
+                        {/* Number Text - Hand-drawn style */}
+                        <text x={cx} y={cy + 1}
+                          fill={OUTLINE} fontSize="24"
+                          fontFamily="'Caveat', 'Kalam', 'Comic Sans MS', cursive, sans-serif"
+                          fontWeight="700"
+                          textAnchor="middle" dominantBaseline="central"
+                          style={{ pointerEvents: 'none' }}
+                        >{d}</text>
+                      </g>
+                    );
+                  })}
 
-              {/* ── Finger stop ── */}
-              <g filter="url(#sk1)">
-                {/* Shadow */}
-                <path d="M 252 300 C 272 298, 282 278, 265 260"
-                  fill="none" stroke="rgba(0,0,0,0.18)" strokeWidth="10"
-                  strokeLinecap="round" transform="translate(3,4)"/>
-                {/* Arm */}
-                <path d="M 252 300 C 272 298, 282 278, 265 260"
-                  fill="none" stroke="#1c1c14" strokeWidth="6"
-                  strokeLinecap="round"/>
-                {/* Gloss */}
-                <path d="M 252 298 C 270 296, 279 278, 266 262"
-                  fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2"
-                  strokeLinecap="round"/>
-                {/* Anchor dot */}
-                <circle cx="252" cy="300" r="5.5" fill="#1c1c14"/>
-                <circle cx="250" cy="298" r="2" fill="rgba(255,255,255,0.45)"/>
+                  {/* Center Dot */}
+                  <circle cx="0" cy="0" r="12" fill={FILL_MAIN} stroke={OUTLINE} strokeWidth="3.5" filter="url(#sketch)" />
+                  <circle cx="0" cy="0" r="4" fill="#e29b38" />
+
+                </g>
+
+                {/* ── Finger Stop ── */}
+                <g filter="url(#sketch)">
+                  {/* Finger stop curve starting from near 4 ending downwards */}
+                  <path d="M 85 45 C 100 60, 95 90, 80 100" fill="none" stroke={OUTLINE} strokeWidth="7" strokeLinecap="round" />
+                  <path d="M 85 45 C 100 60, 95 90, 80 100" fill="none" stroke="#404c3e" strokeWidth="3" strokeLinecap="round" />
+                </g>
               </g>
 
             </svg>
           </div>
 
           {/* Progress dots */}
-          <div style={{ display: 'flex', gap: 10, margin: '4px 0 20px', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: 10, margin: '20px 0 20px', alignItems: 'center' }}>
             {[0,1,2].map(i => (
               <div key={i} style={{
                 width: 9, height: 9, borderRadius: '50%',
-                background: i < dialCount ? '#c88a0a' : 'rgba(100,80,40,0.15)',
-                boxShadow: i < dialCount ? '0 0 12px rgba(200,138,10,0.6), inset 0 1px 1px rgba(255,255,255,0.3)' : 'none',
+                background: i < dialCount ? '#8c9c88' : 'rgba(140,156,136,0.2)',
+                boxShadow: i < dialCount ? '0 0 12px rgba(140,156,136,0.4)' : 'none',
                 transition: 'all 0.5s cubic-bezier(0.34,1.56,0.64,1)',
-                transform: i < dialCount ? 'scale(1.25)' : 'scale(1)',
+                transform: i < dialCount ? 'scale(1.2)' : 'scale(1)',
               }}/>
             ))}
           </div>
 
           {/* CTA */}
-          <div style={{ textAlign: 'center', maxWidth: 270 }}>
-            <svg width="38" height="28" viewBox="0 0 38 28" style={{ display: 'block', margin: '0 auto 8px' }}>
-              <path d="M 8 6 Q 26 10, 30 22" fill="none" stroke="#c88a0a" strokeWidth="1.8" strokeLinecap="round"/>
-              <path d="M 26 18 L 30 22 L 24 24" fill="none" stroke="#c88a0a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+          <div style={{ textAlign: 'center', maxWidth: 270, zIndex: 2 }}>
             <p style={{
               fontFamily: "'Georgia', 'Times New Roman', serif",
               fontStyle: 'italic', fontSize: 14.5,
-              color: '#b87c08', lineHeight: 1.55, margin: 0,
+              color: 'rgba(80,90,80,0.7)', lineHeight: 1.55, margin: 0,
             }}>
               Go on, tap a few of these{' '}
               <span style={{ fontStyle: 'normal' }}>–</span>{' '}
-              we&apos;ll handle the dramatic spinning.
+              we'll handle the dramatic spinning.
             </p>
           </div>
 
