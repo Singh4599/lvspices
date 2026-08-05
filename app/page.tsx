@@ -177,7 +177,7 @@ function Hero() {
     const isMob = window.innerWidth <= 768;
 
     // Video source (all-intra encoded for fast seeking)
-    video.src = isMob ? '/videos/hero-mobile.mp4?v=6' : '/videos/hero-desktop-v2.mp4';
+    video.src = isMob ? '/videos/hero-mobile.mp4?v=6' : '/videos/hero-desktop-v3.mp4';
     video.load();
 
     // Canvas
