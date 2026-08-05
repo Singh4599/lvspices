@@ -7,6 +7,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import ParallaxCard from '@/components/ui/ParallaxCard';
 import CurvedLoop from '@/components/ui/CurvedLoop';
+import ScovilleScale from '@/components/chilli/ScovilleScale';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -151,6 +152,9 @@ export default function ChilliSpecialityPage() {
           </div>
         </ParallaxCard>
       </div>
+
+      {/* ══ SCOVILLE SCALE INTERACTIVE ═══════════════════════ */}
+      <ScovilleScale />
 
       {/* ══ CURVED LOOP ════════════════════════════════════════ */}
       <div style={{ position: 'relative', background: '#F8F6F1', paddingBottom: 'clamp(60px, 8vw, 120px)', paddingTop: 'clamp(60px, 8vw, 120px)' }}>

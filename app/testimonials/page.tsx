@@ -5,6 +5,7 @@ import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 import TestimonialHero from '@/components/testimonials/TestimonialHero';
+import WorldTestimonialsMap from '@/components/testimonials/WorldTestimonialsMap';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -86,6 +87,9 @@ export default function TestimonialsPage() {
 
       {/* ══ VELOCITY MARQUEE ════════════════════════════════════ */}
       <VelocityMarquee dark />
+
+      {/* ══ WORLD MAP TESTIMONIALS ══════════════════════════════ */}
+      <WorldTestimonialsMap />
 
       {/* ══ FEATURED TESTIMONIAL ═════════════════════════════════ */}
       <section style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px)' }}>

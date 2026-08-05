@@ -5,6 +5,7 @@ import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 import ScrollExpansionHero from '@/components/ui/ScrollExpansionHero';
+import BrandConstellation from '@/components/brands/BrandConstellation';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -141,6 +142,9 @@ export default function BrandsPage() {
 
       {/* ══ VELOCITY MARQUEE ════════════════════════════════════ */}
       <VelocityMarquee dark />
+
+      {/* ══ BRAND CONSTELLATION SVG ══════════════════ */}
+      <BrandConstellation brands={brands} />
 
       {/* ══ CATEGORY BREAKDOWN VISUAL ════════════════════════════ */}
       <section style={{ padding: 'clamp(80px,10vw,130px) clamp(24px,5vw,80px)' }}>

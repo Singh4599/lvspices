@@ -6,6 +6,7 @@ import ContactHero from '@/components/contact/ContactHero';
 import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import Phone3D from '@/components/ui/Phone3D';
+import OfficeBlueprintSVG from '@/components/contact/OfficeBlueprintSVG';
 
 const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -48,6 +49,9 @@ export default function ContactPage() {
 
       {/* ══ VELOCITY MARQUEE ══════════════════════════════════ */}
       <VelocityMarquee dark />
+
+      {/* ══ OFFICE BLUEPRINT SVG ═════════════════ */}
+      <OfficeBlueprintSVG />
 
       {/* ══ SPLIT CONTACT SECTION ══════════════════════════════ */}
       <section id="contact-form" style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)' }}>
