@@ -2414,3 +2414,15 @@ nav[aria-label="Breadcrumb"] {
     overflow: hidden !important;
   }
 }
+
+/* ═══════════════════════════════════════════
+   TECH TURBINE HERO
+   ═══════════════════════════════════════════ */
+.th-hero-section { min-height: 100svh; }
+.th-3d-wrapper { height: 70vh; }
+.th-3d-inner { position: absolute; top: -60px; bottom: -60px; left: 0px; right: 0px; }
+@media (max-width: 768px) {
+  .th-hero-section { min-height: 85svh !important; }
+  .th-3d-wrapper { height: 280px !important; width: 95% !important; margin: 0 auto; }
+  .th-3d-inner { top: -42px !important; bottom: -42px !important; left: 0px !important; right: 0px !important; }
+}

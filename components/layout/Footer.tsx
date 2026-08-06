@@ -21,6 +21,9 @@ const sections = [
     title: 'Company',
     links: [
       { label: 'About Us', href: '/about-us' },
+      { label: 'Our Services', href: '/our-services' },
+      { label: 'Our Team', href: '/our-team' },
+      { label: 'IPM', href: '/ipm' },
       { label: 'How We Operate', href: '/how-we-operate' },
       { label: 'Facilities', href: '/facilities' },
       { label: 'Career', href: '/career' },
@@ -32,13 +35,19 @@ const sections = [
     links: [
       { label: 'Technology', href: '/technology' },
       { label: 'Quality Assurance', href: '/quality-assurance' },
-      { label: 'Quality Control & Training', href: '/quality-control-and-training' },
+      { label: 'Quality Control', href: '/quality-control-and-training' },
+      { label: 'Certifications', href: '/certifications' },
+      { label: 'Analytical Lab', href: '/analytical' },
+      { label: 'Process Chart', href: '/process-chart' },
       { label: 'Research & Development', href: '/research-and-development' },
     ],
   },
   {
-    title: 'Quick Links',
+    title: 'Resources',
     links: [
+      { label: 'Spice Diary', href: '/spice-diary' },
+      { label: 'Spice School', href: '/spice-school' },
+      { label: 'Explore World', href: '/explore-world' },
       { label: 'Private Label', href: '/packaging-and-private-labelling' },
       { label: 'Contact Us', href: '/contact' },
       { label: 'FAQ', href: '/faq' },

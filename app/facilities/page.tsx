@@ -1,5 +1,6 @@
 'use client';
 
+import TechTurbineHero from '@/components/technology/TechTurbineHero';
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -86,112 +87,7 @@ function SectionLabel({ text }: { text: string }) {
    S01 — HERO
 ═══════════════════════════════════════════════ */
 function Hero() {
-  const secRef   = useRef<HTMLElement>(null);
-  const headRef  = useRef<HTMLDivElement>(null);
-  const imgRef   = useRef<HTMLDivElement>(null);
-  const tagRef   = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const bgRef    = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      tl.fromTo(tagRef.current,  { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0.2);
-      tl.fromTo(headRef.current!.children, { y: '110%' }, { y: '0%', duration: 1.1, stagger: 0.09 }, 0.35);
-      tl.fromTo(imgRef.current,
-        { clipPath: 'inset(10% 6% 10% 6% round 40px)', scale: 1.06 },
-        { clipPath: 'inset(0% 0% 0% 0% round 32px)', scale: 1, duration: 1.6, ease: 'power2.out' }, 0.15);
-      tl.fromTo(statsRef.current, { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.0);
-      tl.fromTo('.hero-chips > div', { y: 24, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.15 }, 1.1);
-
-      // 3-layer parallax
-      ScrollTrigger.create({
-        trigger: secRef.current,
-        start: 'top top', end: '+=90%', scrub: 1.3,
-        onUpdate: (self) => {
-          const p = self.progress;
-          if (bgRef.current)    gsap.set(bgRef.current,    { opacity: 1 - p });
-          if (imgRef.current)   gsap.set(imgRef.current,   { scale: 1 + p * 0.06, x: p * -24 });
-          if (headRef.current)  gsap.set(headRef.current,  { opacity: 1 - p * 1.8 });
-          if (statsRef.current) gsap.set(statsRef.current, { opacity: 1 - p * 2.4 });
-          if (tagRef.current)   gsap.set(tagRef.current,   { opacity: 1 - p * 3.0 });
-        },
-      });
-    }, secRef);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section ref={secRef} style={{ background: OFF_WHITE, position: 'relative', overflow: 'hidden', paddingTop: 'clamp(100px,10vw,120px)', paddingBottom: 'clamp(80px,8vw,120px)' }}>
-      <div ref={bgRef} style={{ position: 'absolute', inset: '-10%', pointerEvents: 'none', zIndex: 0 }}>
-        <div style={{ position: 'absolute', top: '8%', right: '-4%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(172,3,59,0.055) 0%, transparent 68%)' }} />
-        <div style={{ position: 'absolute', bottom: '4%', left: '-6%', width: 440, height: 440, borderRadius: '50%', background: 'radial-gradient(circle, rgba(172,3,59,0.04) 0%, transparent 68%)' }} />
-      </div>
-
-      <div style={{ maxWidth: 1400, margin: '0 auto', width: '100%', padding: '0 clamp(24px,5vw,88px)', position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '5fr 6fr', gap: 'clamp(36px,5vw,72px)', alignItems: 'center' }} className="hero-split">
-          <style>{`
-            @media(max-width:860px){.hero-split{grid-template-columns:1fr !important;}}
-            @media(max-width:860px){.hero-chips{display:none !important;}}
-          `}</style>
-
-          <div>
-            <div ref={tagRef} style={{ marginBottom: 36, opacity: 0 }}>
-              <SectionLabel text="Our Facilities" />
-            </div>
-            <div ref={headRef}>
-              <div style={{ overflow: 'hidden' }}>
-                <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px,6.5vw,104px)', fontWeight: 800, color: INK, lineHeight: 0.92, letterSpacing: '-0.04em', margin: 0 }}>World-Class</h1>
-              </div>
-              <div style={{ overflow: 'hidden' }}>
-                <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px,6.5vw,104px)', fontWeight: 700, fontStyle: 'italic', color: CR, lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0 }}>Infrastructure.</h1>
-              </div>
-              <div style={{ overflow: 'hidden' }}>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(20px,2.8vw,42px)', fontWeight: 400, fontStyle: 'italic', color: WARM_GRAY, lineHeight: 1.25, letterSpacing: '-0.02em', margin: '14px 0 0' }}>Engineered For Purity.</h2>
-              </div>
-            </div>
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(14px,1.1vw,17px)', color: WARM_GRAY, lineHeight: 1.85, maxWidth: 400, margin: 'clamp(20px,3vw,40px) 0 0' }}>
-              Seven manufacturing plants. One uncompromising standard. Every gram produced under the most rigorous food-safety protocols on Earth.
-            </p>
-            <div ref={statsRef} style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 18px', marginTop: 40, opacity: 0 }}>
-              {['100% Traceability', 'BRC Grade AA', 'ISO 22000:2018', 'NABL Lab'].map((s, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#fff', borderRadius: 100, padding: '8px 18px', boxShadow: '0 2px 12px rgba(26,25,21,0.06)' }}>
-                  <div style={{ width: 5, height: 5, borderRadius: '50%', background: CR }} />
-                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: INK, fontWeight: 500 }}>{s}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ position: 'relative', paddingBottom: 'clamp(40px,5vw,64px)', display: 'flex', justifyContent: 'center' }}>
-            {/* Image capped like About Us — maxWidth 520px, 3/4 ratio */}
-            <div ref={imgRef} style={{ position: 'relative', width: '100%', maxWidth: 380, aspectRatio: '3/4', borderRadius: 28, overflow: 'hidden', clipPath: 'inset(10% 6% 10% 6% round 32px)' }}>
-              <Image src="/images/fac_hero.png" alt="LV Spices Manufacturing Floor" fill priority sizes="(max-width:860px) 100vw, 520px" style={{ objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 55%, rgba(26,25,21,0.16) 100%)' }} />
-            </div>
-            <div className="hero-chips">
-              {/* Bottom-left chip */}
-              <div style={{ position: 'absolute', bottom: '8%', left: '-4%', background: '#fff', borderRadius: 14, padding: '14px 18px', boxShadow: '0 12px 36px rgba(26,25,21,0.1)', minWidth: 120 }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px,2vw,26px)', fontWeight: 800, color: INK, lineHeight: 1 }}>11,000+</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: WARM_GRAY, marginTop: 5 }}>Sq Ft Area</div>
-              </div>
-              {/* Top-right chip */}
-              <div style={{ position: 'absolute', top: '16%', right: '-4%', background: CR, borderRadius: 14, padding: '14px 18px', boxShadow: '0 12px 36px rgba(172,3,59,0.22)' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px,2vw,26px)', fontWeight: 800, color: '#fff', lineHeight: 1 }}>7+</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', marginTop: 5 }}>Plants</div>
-              </div>
-              {/* Mid-right chip */}
-              <div style={{ position: 'absolute', bottom: '30%', right: '-5%', background: '#fff', borderRadius: 14, padding: '14px 18px', boxShadow: '0 12px 36px rgba(26,25,21,0.08)' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(15px,1.6vw,22px)', fontWeight: 800, color: CR, lineHeight: 1 }}>NABL</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: WARM_GRAY, marginTop: 5 }}>Accredited</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <TechTurbineHero badgeText="Facilities" marqueeText="FACILITIES" />;
 }
 
 /* ═══════════════════════════════════════════════

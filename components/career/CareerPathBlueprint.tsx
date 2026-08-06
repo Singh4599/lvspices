@@ -75,6 +75,16 @@ const CSS = `
   .cpb-card:hover { transform:translateY(-3px); box-shadow:0 20px 48px rgba(0,0,0,0.1); }
   .cpb-card { transition:transform 0.25s ease, box-shadow 0.25s ease; }
 
+  /* Mobile card grid replaces SVG on small screens */
+  .cpb-svg-wrap { display:block; }
+  .cpb-mobile-grid { display:none; }
+  @media(max-width:700px){
+    .cpb-svg-wrap { display:none; }
+    .cpb-mobile-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:16px; }
+  }
+  @media(max-width:400px){
+    .cpb-mobile-grid { grid-template-columns:1fr; }
+  }
   @media(max-width:680px){
     .cpb-detail { flex-direction:column !important; gap:16px !important; }
     .cpb-detail-left { width:100% !important; border-right:none !important; border-bottom:1px solid rgba(0,0,0,0.07) !important; padding-right:0 !important; padding-bottom:16px !important; }
@@ -260,8 +270,8 @@ export default function CareerPathBlueprint() {
         {/* Blueprint Card */}
         <div style={{ background: '#FDFCF9', border: '1.5px solid rgba(0,0,0,0.06)', borderRadius: 20, overflow: 'hidden' }}>
 
-          {/* SVG Blueprint */}
-          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', cursor: 'grab' }}>
+          {/* SVG Blueprint — hidden on mobile */}
+          <div className="cpb-svg-wrap" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', cursor: 'grab' }}>
             <svg
               viewBox={`0 0 ${SVG_W} ${SVG_H}`}
               width={SVG_W} height={SVG_H}
@@ -276,6 +286,15 @@ export default function CareerPathBlueprint() {
                 <pattern id="cpb-grid" width="20" height="20" patternUnits="userSpaceOnUse">
                   <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,0,0,0.04)" strokeWidth="0.5"/>
                 </pattern>
+                {/* Per-card clipPaths to contain scaled illustrations */}
+                {STAGES.map((_, idx) => {
+                  const p = positions[idx];
+                  return (
+                    <clipPath key={idx} id={`cpb-illu-clip-${idx}`}>
+                      <rect x={p.x + 2} y={p.y + 26} width={GW - 4} height={GH - 64}/>
+                    </clipPath>
+                  );
+                })}
               </defs>
 
               {/* Grid background */}
@@ -346,11 +365,17 @@ export default function CareerPathBlueprint() {
                       {String(i + 1).padStart(2, '0')}
                     </text>
 
-                    {/* Illustration viewBox [0 0 165 100] inside room */}
-                    <g transform={`translate(${pos.x + 10}, ${pos.y + 30})`}>
-                      <svg width={GW - 20} height={100} viewBox="0 0 165 100">
+                    {/* Illustration — SVG-native scale+clipPath (no CSS overflow issues) */}
+                    <g clipPath={`url(#cpb-illu-clip-${i})`}>
+                      {/*
+                        Transform breakdown:
+                        1. translate to center of card's illustration area
+                        2. scale(1.3) to enlarge
+                        3. translate back by half of original 165x100 illu space
+                      */}
+                      <g transform={`translate(${pos.x + GW/2}, ${pos.y + 26 + (GH - 64)/2}) scale(1.3) translate(-82.5, -50)`}>
                         <StageIllu i={i} accent={stage.accent}/>
-                      </svg>
+                      </g>
                     </g>
 
                     {/* Stage name */}
@@ -383,6 +408,43 @@ export default function CareerPathBlueprint() {
                 );
               })}
             </svg>
+          </div>
+
+          {/* Mobile card grid — shown only on small screens */}
+          <div className="cpb-mobile-grid">
+            {STAGES.map((stage, i) => {
+              const isActive = active === i;
+              return (
+                <div
+                  key={stage.id}
+                  onClick={() => toggle(i)}
+                  style={{
+                    background: isActive ? `${stage.accent}0f` : '#fff',
+                    border: `1.5px solid ${isActive ? stage.accent : 'rgba(0,0,0,0.08)'}`,
+                    borderRadius: 16,
+                    padding: '16px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
+                    <span style={{ fontFamily: 'monospace', fontSize: 8, fontWeight: 700, color: stage.accent, letterSpacing: '0.1em' }}>{stage.gate}</span>
+                    <span style={{ fontFamily: 'monospace', fontSize: 10, fontWeight: 700, color: stage.accent }}>{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                  <div style={{ marginBottom: 10 }}>
+                    <svg width="100%" viewBox="0 0 165 100" style={{ overflow: 'hidden', maxHeight: 90, display: 'block' }}>
+                      <StageIllu i={i} accent={stage.accent}/>
+                    </svg>
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-display,Georgia,serif)', fontSize: 13, fontWeight: 800, color: INK, letterSpacing: '-0.02em', textAlign: 'center' }}>{stage.name}</div>
+                  {isActive && (
+                    <div style={{ marginTop: 8, background: stage.accent, color: '#fff', fontFamily: 'monospace', fontSize: 9, fontWeight: 700, padding: '4px 10px', borderRadius: 999, textAlign: 'center' }}>
+                      {stage.stat} · {stage.statLabel}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           {/* Detail Panel */}
