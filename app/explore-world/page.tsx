@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import TechTurbineHero from '@/components/technology/TechTurbineHero';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
+import { ComposableMap, ZoomableGroup, Geographies, Geography, Marker, Line } from 'react-simple-maps';
+
+const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 const CR    = '#AC033B';
 const INK   = '#1A1915';
@@ -154,7 +157,7 @@ const CSS = `
     to   { opacity:1; transform: translateY(0); }
   }
   @keyframes ew-line-draw {
-    from { stroke-dashoffset: 800; }
+    from { stroke-dashoffset: 1000; }
     to   { stroke-dashoffset: 0; }
   }
   @keyframes ew-country-hover {
@@ -279,103 +282,90 @@ export default function ExploreWorldPage() {
                 border: '1.5px solid rgba(0,0,0,0.07)',
                 position: 'relative', height: 400,
               }}>
-                <svg
-                  viewBox={`0 0 ${mapW} ${mapH}`}
-                  style={{ width: '100%', height: '100%', display: 'block' }}
-                >
-                  {/* Ocean background */}
-                  <rect width={mapW} height={mapH} fill="#E8F0F8"/>
+                <ComposableMap projection="geoMercator" projectionConfig={{ scale: 120 }} width={800} height={400} style={{ width: '100%', height: '100%', display: 'block' }}>
+                  <ZoomableGroup 
+                    center={selected ? [selected.lng, selected.lat] : [77, 20]} 
+                    zoom={selected ? 3 : 1}
+                    filterZoomEvent={(e: any) => {
+                      if (e.type === "wheel") return false;
+                      return true;
+                    }}
+                  >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) =>
+                        geographies.map((geo) => (
+                          <Geography
+                            key={geo.rsmKey}
+                            geography={geo}
+                            fill="#D4D8DC"
+                            stroke="#FFFFFF"
+                            strokeWidth={0.5}
+                            style={{
+                              default: { outline: "none" },
+                              hover: { fill: "#C0C5CB", outline: "none" },
+                              pressed: { outline: "none" },
+                            }}
+                          />
+                        ))
+                      }
+                    </Geographies>
 
-                  <g style={{
-                    transform: selected 
-                      ? `translate(${mapW/2 - lngLatToXY(selected.lng, selected.lat, mapW, mapH).x * 1.6}px, ${mapH/2 - lngLatToXY(selected.lng, selected.lat, mapW, mapH).y * 1.6}px) scale(1.6)`
-                      : 'translate(0px, 0px) scale(1)',
-                    transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
-                    transformOrigin: '0 0'
-                  }}>
-                  {/* Grid lines */}
-                  {Array.from({ length: 7 }, (_, i) => (
-                    <line key={`h${i}`} x1={0} y1={(i + 1) * (mapH / 8)} x2={mapW} y2={(i + 1) * (mapH / 8)} stroke="rgba(0,0,0,0.05)" strokeWidth="1"/>
-                  ))}
-                  {Array.from({ length: 11 }, (_, i) => (
-                    <line key={`v${i}`} x1={(i + 1) * (mapW / 12)} y1={0} x2={(i + 1) * (mapW / 12)} y2={mapH} stroke="rgba(0,0,0,0.05)" strokeWidth="1"/>
-                  ))}
-
-                  {/* Continents — simplified shapes */}
-                  {/* North America */}
-                  <ellipse cx={155} cy={125} rx={80} ry={70} fill="#D4D8DC" opacity="0.7"/>
-                  {/* South America */}
-                  <ellipse cx={200} cy={280} rx={50} ry={70} fill="#D4D8DC" opacity="0.7"/>
-                  {/* Europe */}
-                  <ellipse cx={400} cy={100} rx={45} ry={40} fill="#D4D8DC" opacity="0.7"/>
-                  {/* Africa */}
-                  <ellipse cx={410} cy={240} rx={60} ry={80} fill="#D4D8DC" opacity="0.7"/>
-                  {/* Asia */}
-                  <ellipse cx={560} cy={120} rx={110} ry={70} fill="#D4D8DC" opacity="0.7"/>
-                  {/* India subcontinent */}
-                  <ellipse cx={530} cy={185} rx={28} ry={35} fill="#CACED4" opacity="0.9"/>
-                  {/* Australia */}
-                  <ellipse cx={625} cy={290} rx={55} ry={40} fill="#D4D8DC" opacity="0.7"/>
-
-                  {/* Connection lines from India to other dots */}
-                  {COUNTRIES.filter(c => c.code !== 'IN').map(c => {
-                    const from = lngLatToXY(77, 20, mapW, mapH);
-                    const to   = lngLatToXY(c.lng, c.lat, mapW, mapH);
-                    const isSelected = selected?.code === c.code;
-                    const length = Math.sqrt(Math.pow(to.x - from.x, 2) + Math.pow(to.y - from.y, 2));
-
-                    return (
-                      <line
-                        key={`line-${c.code}`}
-                        x1={from.x} y1={from.y} x2={to.x} y2={to.y}
-                        stroke={isSelected ? CR : 'rgba(172,3,59,0.1)'}
-                        strokeWidth={isSelected ? 1.5 : 0.8}
-                        strokeDasharray={isSelected ? length : '4 3'}
-                        strokeDashoffset={0}
-                        opacity={isSelected ? 1 : 0.4}
-                        style={{ 
-                          transition: 'stroke 0.3s, stroke-width 0.3s, opacity 0.3s',
-                          animation: isSelected ? 'ew-line-draw 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards' : 'none'
-                        }}
-                      />
-                    );
-                  })}
-
-                  {/* Country dots */}
-                  {COUNTRIES.map(c => {
-                    const { x, y } = lngLatToXY(c.lng, c.lat, mapW, mapH);
-                    const isSelected = selected?.code === c.code;
-                    return (
-                      <g key={c.code} onClick={() => setSelected(c)} style={{ cursor: 'pointer' }}>
-                        {/* Pulse ring */}
-                        {isSelected && (
-                          <circle cx={x} cy={y} r={14}
-                            fill="none" stroke={CR} strokeWidth="1.5" opacity="0.4"
-                            style={{ animation: 'ew-dot-ring 1.5s ease-out infinite' }}/>
-                        )}
-                        {/* Main dot */}
-                        <circle
-                          cx={x} cy={y}
-                          r={isSelected ? 8 : 6}
-                          fill={isSelected ? CR : c.code === 'IN' ? GOLD : 'rgba(172,3,59,0.6)'}
-                          stroke="#fff" strokeWidth="2"
-                          style={{ transition: 'r 0.25s, fill 0.25s' }}
+                    {/* Connection lines from India to other dots */}
+                    {COUNTRIES.filter(c => c.code !== 'IN').map(c => {
+                      const isSelected = selected?.code === c.code;
+                      return (
+                        <Line
+                          key={`line-${c.code}`}
+                          from={[77, 20]}
+                          to={[c.lng, c.lat]}
+                          stroke={isSelected ? CR : 'rgba(172,3,59,0.1)'}
+                          strokeWidth={isSelected ? 1.5 : 0.8}
+                          strokeDasharray={isSelected ? "1000" : "4 3"}
+                          strokeDashoffset={0}
+                          opacity={isSelected ? 1 : 0.4}
+                          style={{ 
+                            transition: 'stroke 0.3s, stroke-width 0.3s, opacity 0.3s',
+                            animation: isSelected ? 'ew-line-draw 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards' : 'none'
+                          }}
                         />
-                        {/* Country code label */}
-                        <text x={x} y={y - 14}
-                          fill={isSelected ? CR : 'rgba(0,0,0,0.5)'}
-                          fontSize={isSelected ? 9 : 7}
-                          fontWeight={isSelected ? 700 : 500}
-                          textAnchor="middle"
-                          style={{ fontFamily: 'monospace', pointerEvents: 'none', transition: 'font-size 0.2s' }}
-                        >
-                          {c.code}
-                        </text>
-                      </g>
-                    );
-                  })}
-                  </g>
-                </svg>
+                      );
+                    })}
+
+                    {/* Country dots */}
+                    {COUNTRIES.map(c => {
+                      const isSelected = selected?.code === c.code;
+                      return (
+                        <Marker key={c.code} coordinates={[c.lng, c.lat]} onClick={() => setSelected(c)}>
+                          <g style={{ cursor: 'pointer' }}>
+                            {/* Pulse ring */}
+                            {isSelected && (
+                              <circle r={14}
+                                fill="none" stroke={CR} strokeWidth="1.5" opacity="0.4"
+                                style={{ animation: 'ew-dot-ring 1.5s ease-out infinite' }}/>
+                            )}
+                            {/* Main dot */}
+                            <circle
+                              r={isSelected ? 8 : 6}
+                              fill={isSelected ? CR : c.code === 'IN' ? GOLD : 'rgba(172,3,59,0.6)'}
+                              stroke="#fff" strokeWidth="2"
+                              style={{ transition: 'r 0.25s, fill 0.25s' }}
+                            />
+                            {/* Country code label */}
+                            <text y={-14}
+                              fill={isSelected ? CR : 'rgba(0,0,0,0.5)'}
+                              fontSize={isSelected ? 9 : 7}
+                              fontWeight={isSelected ? 700 : 500}
+                              textAnchor="middle"
+                              style={{ fontFamily: 'monospace', pointerEvents: 'none', transition: 'font-size 0.2s' }}
+                            >
+                              {c.code}
+                            </text>
+                          </g>
+                        </Marker>
+                      );
+                    })}
+                  </ZoomableGroup>
+                </ComposableMap>
 
                 {/* Map legend */}
                 <div style={{
