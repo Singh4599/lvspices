@@ -154,7 +154,7 @@ const CSS = `
     to   { opacity:1; transform: translateY(0); }
   }
   @keyframes ew-line-draw {
-    from { stroke-dashoffset: 200; }
+    from { stroke-dashoffset: 800; }
     to   { stroke-dashoffset: 0; }
   }
   @keyframes ew-country-hover {
@@ -286,6 +286,13 @@ export default function ExploreWorldPage() {
                   {/* Ocean background */}
                   <rect width={mapW} height={mapH} fill="#E8F0F8"/>
 
+                  <g style={{
+                    transform: selected 
+                      ? `translate(${mapW/2 - lngLatToXY(selected.lng, selected.lat, mapW, mapH).x * 1.6}px, ${mapH/2 - lngLatToXY(selected.lng, selected.lat, mapW, mapH).y * 1.6}px) scale(1.6)`
+                      : 'translate(0px, 0px) scale(1)',
+                    transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+                    transformOrigin: '0 0'
+                  }}>
                   {/* Grid lines */}
                   {Array.from({ length: 7 }, (_, i) => (
                     <line key={`h${i}`} x1={0} y1={(i + 1) * (mapH / 8)} x2={mapW} y2={(i + 1) * (mapH / 8)} stroke="rgba(0,0,0,0.05)" strokeWidth="1"/>
@@ -314,15 +321,22 @@ export default function ExploreWorldPage() {
                   {COUNTRIES.filter(c => c.code !== 'IN').map(c => {
                     const from = lngLatToXY(77, 20, mapW, mapH);
                     const to   = lngLatToXY(c.lng, c.lat, mapW, mapH);
+                    const isSelected = selected?.code === c.code;
+                    const length = Math.sqrt(Math.pow(to.x - from.x, 2) + Math.pow(to.y - from.y, 2));
+
                     return (
                       <line
                         key={`line-${c.code}`}
                         x1={from.x} y1={from.y} x2={to.x} y2={to.y}
-                        stroke={selected?.code === c.code ? CR : 'rgba(172,3,59,0.1)'}
-                        strokeWidth={selected?.code === c.code ? 1.5 : 0.8}
-                        strokeDasharray="4 3"
-                        opacity={selected?.code === c.code ? 1 : 0.4}
-                        style={{ transition: 'stroke 0.3s, stroke-width 0.3s, opacity 0.3s' }}
+                        stroke={isSelected ? CR : 'rgba(172,3,59,0.1)'}
+                        strokeWidth={isSelected ? 1.5 : 0.8}
+                        strokeDasharray={isSelected ? length : '4 3'}
+                        strokeDashoffset={0}
+                        opacity={isSelected ? 1 : 0.4}
+                        style={{ 
+                          transition: 'stroke 0.3s, stroke-width 0.3s, opacity 0.3s',
+                          animation: isSelected ? 'ew-line-draw 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards' : 'none'
+                        }}
                       />
                     );
                   })}
@@ -360,6 +374,7 @@ export default function ExploreWorldPage() {
                       </g>
                     );
                   })}
+                  </g>
                 </svg>
 
                 {/* Map legend */}
