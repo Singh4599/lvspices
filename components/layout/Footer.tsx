@@ -13,13 +13,13 @@ const sections = [
     links: [
       { label: 'All Products', href: '/products' },
       { label: 'Chilli Speciality', href: '/chilli-speciality' },
-      { label: 'Brands', href: '/brands' },
       { label: 'E-Brochure', href: '/e-brochure' },
     ],
   },
   {
     title: 'Company',
     links: [
+      { label: 'Overview', href: '/overview' },
       { label: 'About Us', href: '/about-us' },
       { label: 'Our Services', href: '/our-services' },
       { label: 'Our Team', href: '/our-team' },

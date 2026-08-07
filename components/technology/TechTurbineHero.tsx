@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Script from 'next/script';
 
 const CR = '#AC033B';
 
@@ -53,6 +54,7 @@ export default function TechTurbineHero({
   marqueeText?: string;
 }) {
   const [scrollY, setScrollY] = useState(0);
+  const ModelViewer = 'model-viewer' as any;
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -130,21 +132,27 @@ export default function TechTurbineHero({
               transform: `translateY(${scrollY * 0.3}px) scale(${Math.max(0.8, 1 - scrollY / 1500)})`
             }}
           >
-            {/* Negative margins to push Sketchfab UI out of view */}
-            <div className="th-3d-inner" style={{ pointerEvents: 'auto', zIndex: 1 }}>
-              <iframe 
-                title="Shipping container" 
-                frameBorder="0" 
-                allowFullScreen 
-                style={{ width: '100%', height: '100%' }}
-                allow="autoplay; fullscreen; xr-spatial-tracking" 
-                xr-spatial-tracking="true"
-                execution-while-out-of-viewport="true"
-                execution-while-not-rendered="true"
-                web-share="true"
-                src="https://sketchfab.com/models/d44556df94ac4e7f94ad43e4e9b297f5/embed?autostart=1&transparent=1&ui_theme=light&ui_watermark=0&ui_infos=0&ui_controls=0&ui_annotations=0&ui_hint=0&dnt=1&scrollwheel=0&autospin=0.2"
-              >
-              </iframe>
+            {/* Live 3D Model Render */}
+            <div className="th-3d-inner" style={{ pointerEvents: 'auto', zIndex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" strategy="lazyOnload" />
+              <ModelViewer
+                src="/truck-model.glb"
+                alt="3D Delivery Truck"
+                camera-controls
+                disable-zoom
+                auto-rotate
+                rotation-per-second="3deg"
+                camera-orbit="-30deg 80deg auto"
+                shadow-intensity="1"
+                environment-image="neutral"
+                style={{
+                  width: '100%',
+                  height: '500px',
+                  maxWidth: '800px',
+                  filter: 'drop-shadow(0 25px 25px rgba(0,0,0,0.15))',
+                  transform: 'scale(1.5)'
+                }}
+              />
             </div>
           </div>
         </div>

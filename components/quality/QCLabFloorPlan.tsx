@@ -388,31 +388,43 @@ export default function QCLabFloorPlan() {
       </div>
 
       {/* ── MOBILE CARD LIST ──────────────────────────────────── */}
-      <div className="qc-mob" style={{ display:'flex', flexDirection:'column', gap:10, marginTop:0 }}>
-        {ROOMS.map(room => (
-          <div key={room.id}
-            onClick={() => toggle(room.id)}
-            style={{
-              background:'#fff',
-              border:`1.5px solid ${active===room.id ? room.accent : WALL}`,
-              borderRadius:14,
-              padding:'14px 16px',
-              cursor:'pointer',
-              transition:'border-color .2s',
-            }}
-          >
-            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: active===room.id ? 10 : 0 }}>
-              <div>
-                <div style={{ fontFamily:"'Courier New',monospace", fontSize:9, letterSpacing:'.12em', color:room.accent, fontWeight:700, marginBottom:4 }}>{room.gate}</div>
-                <div style={{ fontFamily:'Georgia,serif', fontSize:15, fontWeight:700, color:INK }}>{room.name}</div>
+      <div className="qc-mob" style={{ padding: '0 10px', marginTop: 24 }}>
+        <div style={{ position: 'relative' }}>
+          <div style={{ position: 'absolute', left: 24, top: 0, bottom: 0, width: 2, background: 'rgba(0,0,0,0.1)' }} />
+          
+          {ROOMS.map((room) => (
+            <div key={room.id} style={{ position: 'relative', paddingLeft: 60, marginBottom: 48 }}>
+              <div style={{ 
+                position: 'absolute', left: 8, top: 0, width: 34, height: 34, borderRadius: '50%', 
+                background: '#fff', border: `3px solid ${room.accent}`, zIndex: 2,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 800, color: room.accent
+              }}>
+                {String(room.id + 1).padStart(2, '0')}
               </div>
-              <div style={{ fontFamily:"'Courier New',monospace", fontSize:11, fontWeight:700, color:room.accent, marginLeft:8, textAlign:'right' }}>{room.stat}</div>
+              
+              <div style={{ 
+                background: '#fff', borderRadius: 16, overflow: 'hidden', 
+                border: '1px solid rgba(0,0,0,0.1)', boxShadow: '0 8px 24px rgba(0,0,0,0.06)' 
+              }}>
+                <div style={{ padding: 20 }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: room.accent, marginBottom: 4, fontWeight: 700 }}>
+                    {room.gate}
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-display,Georgia,serif)', fontSize: 20, fontWeight: 800, color: INK, marginBottom: 12 }}>
+                    {room.name}
+                  </div>
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'baseline', marginBottom: 16 }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 20, fontWeight: 800, color: room.accent, lineHeight: 1 }}>{room.stat}</span>
+                  </div>
+                  <p style={{ fontFamily: 'var(--font-sans,system-ui)', fontSize: 14, color: 'rgba(0,0,0,0.6)', lineHeight: 1.6, margin: 0 }}>
+                    {room.desc}
+                  </p>
+                </div>
+              </div>
             </div>
-            {active===room.id && (
-              <p style={{ fontFamily:'system-ui', fontSize:13, color:'rgba(0,0,0,0.6)', lineHeight:1.75, margin:0 }}>{room.desc}</p>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

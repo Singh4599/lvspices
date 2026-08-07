@@ -5,6 +5,8 @@ import TechTurbineHero from '@/components/technology/TechTurbineHero';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import CurvedLoop from '@/components/ui/CurvedLoop';
+import ProcessChartFlow from '@/components/technology/ProcessChartFlow';
+import ConceptFlow from '@/components/technology/ConceptFlow';
 
 const CR    = '#AC033B';
 const INK   = '#1A1915';
@@ -246,11 +248,6 @@ function StepNode({ step, isDecision, isOptional, sideNote, leftNote, rightFlow,
 }
 
 export default function ProcessChartPage() {
-  const [activeTab, setActiveTab] = useState<'ground' | 'seeds'>('ground');
-  const [activeStep, setActiveStep] = useState<number | null>(null);
-
-  const currentSteps = activeTab === 'ground' ? GROUND_SPICE_STEPS : WHOLE_SEEDS_STEPS;
-
   return (
     <main style={{ background: '#fff', minHeight: '100vh', color: INK }}>
       <style>{CSS}</style>
@@ -269,92 +266,10 @@ export default function ProcessChartPage() {
             <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.2vw,17px)', color: 'rgba(0,0,0,0.52)', maxWidth: 600, margin: '0 auto 40px', lineHeight: 1.8 }}>
               Every step of our manufacturing process is documented, traceable, and audited. Click any step to understand exactly what happens inside our facility.
             </p>
-
-            {/* Tab selector */}
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-              <button className={`pc-tab ${activeTab === 'ground' ? 'active' : ''}`} onClick={() => { setActiveTab('ground'); setActiveStep(null); }}>
-                Ground Spices / Powder
-              </button>
-              <button className={`pc-tab ${activeTab === 'seeds' ? 'active' : ''}`} onClick={() => { setActiveTab('seeds'); setActiveStep(null); }}>
-                Natural Whole Seeds
-              </button>
-            </div>
           </ScrollReveal>
 
-          {/* Main flowchart area */}
-          <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start' }}>
+          <ProcessChartFlow />
 
-            {/* LEFT: The flowchart nodes */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-              {currentSteps.map((s, i) => (
-                <div key={s.step} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: 560 }}>
-                  {i > 0 && <StepConnector />}
-                  <StepNode
-                    step={s.label}
-                    isDecision={(s as any).isDecision ?? false}
-                    isOptional={(s as any).isOptional ?? false}
-                    sideNote={(s as any).sideNote}
-                    leftNote={(s as any).leftNote}
-                    rightFlow={(s as any).rightFlow}
-                    desc={s.desc}
-                    stepNum={s.step}
-                    active={activeStep === i}
-                    onClick={() => setActiveStep(prev => prev === i ? null : i)}
-                  />
-                </div>
-              ))}
-
-              {/* Dispatch footer */}
-              <div style={{ marginTop: 32, textAlign: 'center' }}>
-                <StepConnector />
-                <div style={{
-                  background: INK, color: '#fff',
-                  fontFamily: MONO, fontSize: 10, fontWeight: 700,
-                  letterSpacing: '0.14em', textTransform: 'uppercase',
-                  padding: '16px 32px', borderRadius: 12,
-                }}>
-                  🚢 Dispatch · Nhava Sheva / JNPT / Mundra
-                </div>
-              </div>
-            </div>
-
-            {/* RIGHT: Step detail panel (sticky) */}
-            <div style={{
-              width: 320, flexShrink: 0,
-              position: 'sticky', top: 100,
-              background: '#fff',
-              border: '1.5px solid rgba(0,0,0,0.08)',
-              borderRadius: 20, padding: 28,
-              boxShadow: '0 8px 40px rgba(0,0,0,0.06)',
-              transition: 'opacity 0.3s',
-              opacity: activeStep !== null ? 1 : 0.4,
-              minHeight: 200,
-            }}>
-              {activeStep !== null ? (
-                <>
-                  <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: CR, marginBottom: 12 }}>
-                    Step {String(currentSteps[activeStep].step).padStart(2, '0')}
-                  </div>
-                  <h3 style={{ fontFamily: SERIF, fontSize: 20, fontWeight: 800, color: INK, margin: '0 0 16px', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
-                    {currentSteps[activeStep].label}
-                  </h3>
-                  <p style={{ fontFamily: SANS, fontSize: 14, color: 'rgba(0,0,0,0.6)', lineHeight: 1.8, margin: 0 }}>
-                    {currentSteps[activeStep].desc}
-                  </p>
-                </>
-              ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 180, gap: 12 }}>
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="20" r="19" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5"/>
-                    <path d="M14 20h12M20 14v12" stroke="rgba(0,0,0,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
-                  <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', textAlign: 'center' }}>
-                    Click any step<br />to learn more
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -370,100 +285,7 @@ export default function ProcessChartPage() {
             </h2>
           </ScrollReveal>
 
-          {/* Concept nodes grid */}
-          <div className="pc-concept-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20, maxWidth: 900, margin: '0 auto' }}>
-            {/* Raw materials */}
-            <div style={{ gridColumn: '2 / 3', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              <div style={{ fontFamily: MONO, fontSize: 10, color: GOLD, letterSpacing: '0.1em', textTransform: 'uppercase', textAlign: 'center' }}>Raw Materials "FARMS"</div>
-              <div style={{ width: 2, height: 40, background: GOLD, opacity: 0.4 }}/>
-            </div>
-
-            {/* Row 1: Drying | Center | Folding Shipping */}
-            <div style={{ gridColumn: '1/2', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <ScrollReveal fromY={20}>
-                <ConceptNode n={1} label="Drying" subs={['Sun Drying', 'Industrial Drying']} color="#1A6B3E"/>
-              </ScrollReveal>
-            </div>
-            <div style={{ gridColumn: '2/3', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <ScrollReveal fromY={0}>
-                <div style={{
-                  width: 90, height: 90, borderRadius: '50%',
-                  background: GOLD, display: 'flex', flexDirection: 'column',
-                  alignItems: 'center', justifyContent: 'center', gap: 4,
-                }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 3C8.5 3 5.5 5.5 5 9M12 3C15.5 3 18.5 5.5 19 9M12 3v18" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
-                    <circle cx="12" cy="12" r="3" fill="#fff" opacity="0.4"/>
-                  </svg>
-                  <span style={{ fontFamily: MONO, fontSize: 8, fontWeight: 700, color: '#fff', letterSpacing: '0.1em' }}>CONCEPT</span>
-                </div>
-              </ScrollReveal>
-            </div>
-            <div style={{ gridColumn: '3/4', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <ScrollReveal fromY={20}>
-                <ConceptNode n={7} label="Folding Shipping" subs={[]} color="#1A6B3E"/>
-              </ScrollReveal>
-            </div>
-            <div style={{ gridColumn: '4/5', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <ScrollReveal fromY={20}>
-                <ConceptNode n={6} label="Fumigation" subs={[]} color="#8FA87E"/>
-              </ScrollReveal>
-            </div>
-
-            {/* Row 2: Process | (center) | Storing */}
-            <div style={{ gridColumn: '1/2' }}>
-              <ScrollReveal fromY={20}>
-                <ConceptNode n={2} label="Process" subs={['Examination', 'Breaking Machine', 'Sifting', 'Delta Cleaner', 'Cylinder Separator', 'Gravity Table', 'Metal Detector', 'Sortex']} color="#1A6B3E"/>
-              </ScrollReveal>
-            </div>
-            <div style={{ gridColumn: '2/3' }}/>
-            <div style={{ gridColumn: '3/4' }}>
-              <ScrollReveal fromY={20}>
-                <ConceptNode n={5} label="Storing" subs={[]} color="#A8BF9A"/>
-              </ScrollReveal>
-            </div>
-            <div style={{ gridColumn: '4/5' }}>
-              <ScrollReveal fromY={20}>
-                <ConceptNode n={4} label="Packing" subs={[]} color="#8FA87E"/>
-              </ScrollReveal>
-            </div>
-
-            {/* Row 3: Quality Control */}
-            <div style={{ gridColumn: '1/2' }}>
-              <ScrollReveal fromY={20}>
-                <ConceptNode n={3} label="Quality Control" subs={['Our In-House Lab', 'Ministry of Agriculture Research', 'Euro Fins Germany']} color="#1A6B3E"/>
-              </ScrollReveal>
-            </div>
-          </div>
-
-          {/* Mobile concept list */}
-          <div className="pc-concept-mobile" style={{ display: 'none' }}>
-            <StaggerReveal stagger={0.1}>
-              {CONCEPT_NODES.map(node => (
-                <div key={node.n} style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: `1.5px solid ${node.color}40`,
-                  borderRadius: 16, padding: '20px 24px', marginBottom: 12,
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: node.sub.length > 0 ? 12 : 0 }}>
-                    <span style={{
-                      width: 36, height: 36, borderRadius: '50%',
-                      background: node.color, display: 'flex', alignItems: 'center',
-                      justifyContent: 'center', fontFamily: MONO, fontSize: 12, fontWeight: 800, color: '#fff', flexShrink: 0,
-                    }}>{node.n}</span>
-                    <h3 style={{ fontFamily: SERIF, fontSize: 18, fontWeight: 700, color: '#fff', margin: 0 }}>{node.label}</h3>
-                  </div>
-                  {node.sub.length > 0 && (
-                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', paddingLeft: 48 }}>
-                      {node.sub.map(s => (
-                        <span key={s} style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(255,255,255,0.5)', background: 'rgba(255,255,255,0.08)', padding: '3px 10px', borderRadius: 999 }}>{s}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </StaggerReveal>
-          </div>
+          <ConceptFlow />
         </div>
       </section>
 
@@ -479,40 +301,4 @@ export default function ProcessChartPage() {
   );
 }
 
-function ConceptNode({ n, label, subs, color }: { n: number; label: string; subs: string[]; color: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div
-      onClick={() => subs.length > 0 && setOpen(o => !o)}
-      style={{ cursor: subs.length > 0 ? 'pointer' : 'default' }}
-    >
-      <div style={{
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-      }}>
-        <div style={{
-          width: 72, height: 72, borderRadius: '50%',
-          background: color, display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center', gap: 2,
-          boxShadow: open ? `0 0 0 4px ${color}40` : 'none',
-          transition: 'box-shadow 0.2s',
-        }}>
-          <span style={{ fontFamily: MONO, fontSize: 16, fontWeight: 800, color: '#fff' }}>{n}</span>
-        </div>
-        <span style={{ fontFamily: SERIF, fontSize: 13, fontWeight: 700, color: '#fff', textAlign: 'center', lineHeight: 1.2 }}>{label}</span>
-        {subs.length > 0 && (
-          <span style={{ fontFamily: MONO, fontSize: 8, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.1em' }}>{open ? '▲ CLOSE' : '▼ EXPAND'}</span>
-        )}
-      </div>
-      {open && subs.length > 0 && (
-        <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'center' }}>
-          {subs.map((s, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ fontFamily: MONO, fontSize: 8, color: 'rgba(255,255,255,0.35)' }}>{i + 1}</span>
-              <span style={{ fontFamily: SANS, fontSize: 11, color: 'rgba(255,255,255,0.65)' }}>{s}</span>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
+

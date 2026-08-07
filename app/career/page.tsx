@@ -64,14 +64,7 @@ export default function CareerPage() {
       {/* ══ BENEFITS ═════════════════════════════════════════ */}
       <CareerBenefits />
 
-      {/* ══ CURVED LOOP ══════════════════════════════════════ */}
-      <div style={{ position: 'relative', background: '#F8F6F1', paddingTop: 'clamp(16px,2vw,32px)', paddingBottom: 'clamp(40px,6vw,80px)' }}>
-        <CurvedLoop marqueeText="CAREERS • JOIN OUR TEAM • 500+ PROFESSIONALS • GROW WITH US • " speed={1.5} curveAmount={250} className="fill-[#111] uppercase font-mono tracking-widest" />
-        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
-          <span style={{ fontSize: 'clamp(28px,4vw,56px)', fontFamily: 'var(--font-display)', color: CR, fontWeight: 800 }}>LV</span>
-          <span style={{ fontSize: 'clamp(9px,1vw,14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</span>
-        </div>
-      </div>
+
 
       {/* ══ APPLICATION FORM ═════════════════════════════════ */}
       <CareerForm />

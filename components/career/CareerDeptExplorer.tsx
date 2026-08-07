@@ -85,6 +85,27 @@ const CONNECT = [
   { x1:C2+W/2, y1:R0+H, x2:C2+W/2, y2:R1 },
 ];
 
+/* ── Mobile Layout (1x6 vertical flow) ─── */
+const M_W = 240, M_H = 170, M_GAP = 40;
+const M_C0 = 30;
+const M_SVG_W = M_W + 60;
+const M_SVG_H = 6 * (M_H + M_GAP) + 20;
+
+const M_POS = DEPTS.map((d, i) => ({
+  id: d.id,
+  x: M_C0,
+  y: 20 + i * (M_H + M_GAP),
+  w: M_W,
+  h: M_H
+}));
+
+const M_CONNECT = DEPTS.slice(0, 5).map((d, i) => ({
+  x1: M_C0 + M_W / 2,
+  y1: 20 + M_H + i * (M_H + M_GAP),
+  x2: M_C0 + M_W / 2,
+  y2: 20 + M_H + i * (M_H + M_GAP) + M_GAP
+}));
+
 const CSS = `
   @keyframes cd-pulse { 0%,100%{opacity:.25} 50%{opacity:1} }
   @keyframes cd-dash  { to{stroke-dashoffset:-32} }
@@ -95,8 +116,8 @@ const CSS = `
   .cd-blink { animation: cd-blink 1.4s ease-in-out infinite; }
   .cd-slide { animation: cd-slide .35s ease both; }
   .cd-dept  { cursor:pointer; }
-  @media (min-width:700px) { .cd-mob { display:none !important; } }
-  @media (max-width:699px) { .cd-desk { display:none !important; } }
+  @media (min-width:900px) { .cd-mob { display:none !important; } }
+  @media (max-width:899px) { .cd-desk { display:none !important; } }
 `;
 
 /* ── Simple illustrations per dept ──── */
@@ -186,6 +207,59 @@ function DeptIllus({ id, acc }: { id:number; acc:string }) {
   }
 }
 
+function DeptSvgView({ POS, CONNECT, SVG_W, SVG_H, active, hov, toggle, setHov }: any) {
+  return (
+    <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} style={{ width:'100%', height:'auto', display:'block' }}>
+      <defs>
+        <pattern id="cdGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke={INK_LL} strokeWidth=".5"/>
+        </pattern>
+      </defs>
+      <rect width={SVG_W} height={SVG_H} fill="url(#cdGrid)"/>
+      {CONNECT.map((c:any,i:number)=>(
+        <g key={i}>
+          <line x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2} stroke="rgba(0,0,0,0.03)" strokeWidth="10" strokeLinecap="round"/>
+          <line x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2} stroke={CR} strokeWidth="2" strokeLinecap="round" className="cd-dash"/>
+        </g>
+      ))}
+      {POS.map((p:any) => {
+        const dept = DEPTS[p.id-1];
+        const isAct = active===p.id, isHov = hov===p.id;
+        const dim   = active!==null && !isAct;
+        return (
+          <g key={p.id} className="cd-dept"
+            style={{ opacity: dim ? 0.22 : 1, transition:'opacity .25s' }}
+            onClick={()=>toggle(p.id)}
+            onMouseEnter={()=>setHov(p.id)}
+            onMouseLeave={()=>setHov(null)}
+          >
+            <rect x={p.x+2} y={p.y+3} width={p.w} height={p.h} rx="8" fill="rgba(0,0,0,0.04)"/>
+            <rect x={p.x} y={p.y} width={p.w} height={p.h} rx="8"
+              fill={isAct ? '#fff' : 'rgba(255,255,255,0.84)'}
+              stroke={isAct ? dept.accent : isHov ? dept.accent : '#D6CFC8'}
+              strokeWidth={isAct ? 2.5 : 1.5}/>
+            <rect x={p.x} y={p.y} width={p.w} height={LABEL_H} rx="8" fill={isAct ? dept.accent : 'rgba(0,0,0,0.04)'}/>
+            <rect x={p.x} y={p.y+LABEL_H-4} width={p.w} height={4} fill={isAct ? dept.accent : 'rgba(0,0,0,0.04)'}/>
+            <text x={p.x+10} y={p.y+16} fontFamily="'Courier New',monospace" fontSize="9" fontWeight="700"
+              fill={isAct ? '#fff' : INK_L} letterSpacing=".1em">{dept.code}</text>
+            {isAct && <circle cx={p.x+p.w-12} cy={p.y+12} r="4" fill="#fff" fillOpacity=".65" className="cd-blink"/>}
+            <svg x={p.x+1} y={p.y+LABEL_H} width={p.w-2} height={p.h-LABEL_H-44} overflow="hidden"
+              viewBox="0 0 160 100" preserveAspectRatio="xMidYMid meet" opacity={isAct ? 1 : 0.72}>
+              <DeptIllus id={p.id} acc={dept.accent}/>
+            </svg>
+            <text x={p.x+p.w/2} y={p.y+p.h-28} textAnchor="middle" fontFamily="Georgia,serif"
+              fontSize="11" fontWeight="700" fill={isAct ? dept.accent : INK}>{dept.name}</text>
+            <text x={p.x+p.w/2} y={p.y+p.h-14} textAnchor="middle" fontFamily="'Courier New',monospace"
+              fontSize="8" fontWeight="700" fill={dept.accent}>{dept.headcount}</text>
+            <circle cx={p.x} cy={p.y} r="13" fill={CR}/>
+            <text x={p.x} y={p.y+4} textAnchor="middle" fontFamily="Georgia,serif" fontSize="10" fontWeight="700" fill="#fff">{p.id}</text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 export default function CareerDeptExplorer() {
   const [active, setActive] = useState<number|null>(null);
   const [hov,    setHov]    = useState<number|null>(null);
@@ -197,14 +271,15 @@ export default function CareerDeptExplorer() {
     <div style={{ width:'100%' }}>
       <style>{CSS}</style>
 
-      {/* ── DESKTOP ──────────────────────── */}
-      <div className="cd-desk" style={{ background:'#F8F6F1', border:'1.5px solid #D6CFC8', borderRadius:20, overflow:'hidden' }}>
+      {/* ── SHARED WRAPPER ──────────────────────── */}
+      <div style={{ background:'#F8F6F1', border:'1.5px solid #D6CFC8', borderRadius:20, overflow:'hidden' }}>
 
+        {/* HEADER */}
         <div style={{ padding:'13px 24px', borderBottom:'1.5px solid #D6CFC8', display:'flex', alignItems:'center', justifyContent:'space-between', background:'#fff' }}>
           <div style={{ display:'flex', alignItems:'center', gap:8 }}>
             <div style={{ width:7, height:7, borderRadius:'50%', background:CR }} className="cd-pulse"/>
             <span style={{ fontFamily:'monospace', fontSize:10, letterSpacing:'.16em', textTransform:'uppercase', color:INK_L }}>
-              Departments — Click to Explore
+              Departments
             </span>
           </div>
           <span style={{ fontFamily:'monospace', fontSize:9, color:INK_L }}>
@@ -212,71 +287,17 @@ export default function CareerDeptExplorer() {
           </span>
         </div>
 
+        {/* SVG VIEWS (Desk & Mob switch via CSS) */}
         <div style={{ overflowX:'auto', WebkitOverflowScrolling:'touch' }}>
-          <div style={{ minWidth:560, padding:'16px 16px 0' }}>
-            <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} style={{ width:'100%', height:'auto', display:'block' }}>
-              <defs>
-                <pattern id="cdGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke={INK_LL} strokeWidth=".5"/>
-                </pattern>
-              </defs>
-              <rect width={SVG_W} height={SVG_H} fill="url(#cdGrid)"/>
-
-              {/* connections */}
-              {CONNECT.map((c,i)=>(
-                <g key={i}>
-                  <line x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2} stroke="rgba(0,0,0,0.03)" strokeWidth="10" strokeLinecap="round"/>
-                  <line x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2} stroke={CR} strokeWidth="2" strokeLinecap="round" className="cd-dash"/>
-                </g>
-              ))}
-
-              {/* departments */}
-              {POS.map(p => {
-                const dept = DEPTS[p.id-1];
-                const isAct = active===p.id, isHov = hov===p.id;
-                const dim   = active!==null && !isAct;
-                return (
-                  <g key={p.id} className="cd-dept"
-                    style={{ opacity: dim ? 0.22 : 1, transition:'opacity .25s' }}
-                    onClick={()=>toggle(p.id)}
-                    onMouseEnter={()=>setHov(p.id)}
-                    onMouseLeave={()=>setHov(null)}
-                  >
-                    <rect x={p.x+2} y={p.y+3} width={p.w} height={p.h} rx="8" fill="rgba(0,0,0,0.04)"/>
-                    <rect x={p.x} y={p.y} width={p.w} height={p.h} rx="8"
-                      fill={isAct ? '#fff' : 'rgba(255,255,255,0.84)'}
-                      stroke={isAct ? dept.accent : isHov ? dept.accent : '#D6CFC8'}
-                      strokeWidth={isAct ? 2.5 : 1.5}/>
-                    {/* label strip */}
-                    <rect x={p.x} y={p.y} width={p.w} height={LABEL_H} rx="8" fill={isAct ? dept.accent : 'rgba(0,0,0,0.04)'}/>
-                    <rect x={p.x} y={p.y+LABEL_H-4} width={p.w} height={4} fill={isAct ? dept.accent : 'rgba(0,0,0,0.04)'}/>
-                    <text x={p.x+10} y={p.y+16} fontFamily="'Courier New',monospace" fontSize="9" fontWeight="700"
-                      fill={isAct ? '#fff' : INK_L} letterSpacing=".1em">{dept.code}</text>
-                    {isAct && <circle cx={p.x+p.w-12} cy={p.y+12} r="4" fill="#fff" fillOpacity=".65" className="cd-blink"/>}
-
-                    {/* illustration */}
-                    <svg x={p.x+1} y={p.y+LABEL_H} width={p.w-2} height={p.h-LABEL_H-44} overflow="hidden"
-                      viewBox="0 0 160 100" preserveAspectRatio="xMidYMid meet" opacity={isAct ? 1 : 0.72}>
-                      <DeptIllus id={p.id} acc={dept.accent}/>
-                    </svg>
-
-                    {/* icon + name */}
-                    <text x={p.x+p.w/2} y={p.y+p.h-28} textAnchor="middle" fontFamily="Georgia,serif"
-                      fontSize="11" fontWeight="700" fill={isAct ? dept.accent : INK}>{dept.name}</text>
-                    <text x={p.x+p.w/2} y={p.y+p.h-14} textAnchor="middle" fontFamily="'Courier New',monospace"
-                      fontSize="8" fontWeight="700" fill={dept.accent}>{dept.headcount}</text>
-
-                    {/* number badge */}
-                    <circle cx={p.x} cy={p.y} r="13" fill={CR}/>
-                    <text x={p.x} y={p.y+4} textAnchor="middle" fontFamily="Georgia,serif" fontSize="10" fontWeight="700" fill="#fff">{p.id}</text>
-                  </g>
-                );
-              })}
-            </svg>
+          <div className="cd-desk" style={{ minWidth:560, padding:'16px 16px 0' }}>
+            <DeptSvgView POS={POS} CONNECT={CONNECT} SVG_W={SVG_W} SVG_H={SVG_H} active={active} hov={hov} toggle={toggle} setHov={setHov} />
+          </div>
+          <div className="cd-mob" style={{ width:'100%', padding:'16px 16px 0' }}>
+            <DeptSvgView POS={M_POS} CONNECT={M_CONNECT} SVG_W={M_SVG_W} SVG_H={M_SVG_H} active={active} hov={hov} toggle={toggle} setHov={setHov} />
           </div>
         </div>
 
-        {/* detail panel */}
+        {/* DETAIL PANEL (Shared) */}
         <div style={{ minHeight:140, borderTop:'1.5px solid #D6CFC8', background:'#fff', padding:'24px 28px', display:'flex', alignItems:'flex-start' }}>
           {aD===null ? (
             <div style={{ fontFamily:'Georgia,serif', fontSize:15, color:INK_L, fontStyle:'italic', margin:'0 auto', alignSelf:'center' }}>
@@ -307,31 +328,6 @@ export default function CareerDeptExplorer() {
             </div>
           )}
         </div>
-      </div>
-
-      {/* ── MOBILE CARDS ─────────────────── */}
-      <div className="cd-mob" style={{ display:'flex', flexDirection:'column', gap:12 }}>
-        {DEPTS.map(d=>(
-          <div key={d.id} onClick={()=>toggle(d.id)}
-            style={{ background:'#fff', border:`1.5px solid ${active===d.id ? d.accent : '#D6CFC8'}`, borderRadius:14, padding:'16px 18px', cursor:'pointer', transition:'all .2s' }}>
-            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:8 }}>
-              <div style={{ display:'flex', gap:8, alignItems:'center' }}>
-                <span style={{ fontSize:22 }}>{d.icon}</span>
-                <div style={{ fontFamily:'monospace', fontSize:9, letterSpacing:'.12em', color:d.accent, fontWeight:700 }}>{d.code}</div>
-              </div>
-              <div style={{ fontFamily:'monospace', fontSize:10, color:d.accent, fontWeight:700 }}>{d.headcount}</div>
-            </div>
-            <div style={{ fontFamily:'Georgia,serif', fontSize:15, fontWeight:700, color:INK, marginBottom: active===d.id ? 10 : 0 }}>{d.name}</div>
-            {active===d.id && (
-              <>
-                <p style={{ fontFamily:'system-ui', fontSize:13, color:'rgba(0,0,0,0.6)', lineHeight:1.7, margin:'0 0 10px' }}>{d.desc}</p>
-                <div style={{ display:'flex', flexWrap:'wrap', gap:5 }}>
-                  {d.roles.map(r=><span key={r} style={{ fontFamily:'system-ui', fontSize:11, background:'rgba(0,0,0,0.04)', color:INK, border:'1px solid rgba(0,0,0,0.08)', borderRadius:8, padding:'4px 10px' }}>{r}</span>)}
-                </div>
-              </>
-            )}
-          </div>
-        ))}
       </div>
     </div>
   );

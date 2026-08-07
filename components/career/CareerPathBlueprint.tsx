@@ -78,21 +78,16 @@ const CSS = `
   /* Mobile card grid replaces SVG on small screens */
   .cpb-svg-wrap { display:block; }
   .cpb-mobile-grid { display:none; }
-  @media(max-width:700px){
+  @media(max-width:900px){
     .cpb-svg-wrap { display:none; }
-    .cpb-mobile-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:16px; }
-  }
-  @media(max-width:400px){
-    .cpb-mobile-grid { grid-template-columns:1fr; }
-  }
-  @media(max-width:680px){
+    .cpb-mobile-grid { display:flex; flex-direction:column; gap:16px; padding:16px; }
     .cpb-detail { flex-direction:column !important; gap:16px !important; }
     .cpb-detail-left { width:100% !important; border-right:none !important; border-bottom:1px solid rgba(0,0,0,0.07) !important; padding-right:0 !important; padding-bottom:16px !important; }
   }
 `;
 
 /* --- Layout maths -------------------------------------------- */
-const GW = 185, GH = 180, GAP = 66;
+const GW = 260, GH = 240, GAP = 160;
 const COLS = 3;
 /* Snake path: 0→1→2 right, drop to row 2, 5→4→3 right-to-left */
 const posGrid = [
@@ -348,18 +343,18 @@ export default function CareerPathBlueprint() {
 
                     {/* Gate badge */}
                     <text
-                      x={pos.x + 12} y={pos.y + 20}
-                      fontFamily="monospace" fontSize="7.5" fontWeight="700"
+                      x={pos.x + 16} y={pos.y + 24}
+                      fontFamily="monospace" fontSize="9" fontWeight="700"
                       fill={stage.accent} letterSpacing="0.1em"
                     >
                       {stage.gate}
                     </text>
 
                     {/* Stage number circle (top right) */}
-                    <circle cx={pos.x + GW - 18} cy={pos.y + 18} r={10} fill={`${stage.accent}15`}/>
+                    <circle cx={pos.x + GW - 24} cy={pos.y + 24} r={14} fill={`${stage.accent}15`}/>
                     <text
-                      x={pos.x + GW - 18} y={pos.y + 22}
-                      textAnchor="middle" fontFamily="monospace" fontSize="9" fontWeight="700"
+                      x={pos.x + GW - 24} y={pos.y + 29}
+                      textAnchor="middle" fontFamily="monospace" fontSize="11" fontWeight="700"
                       fill={stage.accent}
                     >
                       {String(i + 1).padStart(2, '0')}
@@ -370,19 +365,19 @@ export default function CareerPathBlueprint() {
                       {/*
                         Transform breakdown:
                         1. translate to center of card's illustration area
-                        2. scale(1.3) to enlarge
+                        2. scale(1.7) to enlarge
                         3. translate back by half of original 165x100 illu space
                       */}
-                      <g transform={`translate(${pos.x + GW/2}, ${pos.y + 26 + (GH - 64)/2}) scale(1.3) translate(-82.5, -50)`}>
+                      <g transform={`translate(${pos.x + GW/2}, ${pos.y + 26 + (GH - 64)/2}) scale(1.7) translate(-82.5, -50)`}>
                         <StageIllu i={i} accent={stage.accent}/>
                       </g>
                     </g>
 
                     {/* Stage name */}
                     <text
-                      x={pos.x + GW / 2} y={pos.y + GH - 32}
+                      x={pos.x + GW / 2} y={pos.y + GH - 40}
                       textAnchor="middle" fontFamily="var(--font-display,Georgia,serif)"
-                      fontSize="12" fontWeight="800" fill={INK} letterSpacing="-0.02em"
+                      fontSize="16" fontWeight="800" fill={INK} letterSpacing="-0.02em"
                     >
                       {stage.name}
                     </text>
@@ -391,13 +386,13 @@ export default function CareerPathBlueprint() {
                     {(isHov || isActive) && (
                       <g style={{ animation: 'cpb-up 0.3s ease forwards' }}>
                         <rect
-                          x={pos.x + GW / 2 - 36} y={pos.y + GH - 24}
-                          width={72} height={18} rx={9}
+                          x={pos.x + GW / 2 - 46} y={pos.y + GH - 30}
+                          width={92} height={22} rx={11}
                           fill={stage.accent}
                         />
                         <text
-                          x={pos.x + GW / 2} y={pos.y + GH - 12}
-                          textAnchor="middle" fontFamily="monospace" fontSize="7.5" fontWeight="700"
+                          x={pos.x + GW / 2} y={pos.y + GH - 15}
+                          textAnchor="middle" fontFamily="monospace" fontSize="8.5" fontWeight="700"
                           fill="#fff"
                         >
                           {stage.stat} · {stage.statLabel}

@@ -163,13 +163,18 @@ export default function WorldTestimonialsMap() {
 
       {/* ── Animated ring stats grid ─────────────────── */}
       <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
-        gap: 'clamp(24px,4vw,56px)',
-        maxWidth: 900, margin: '0 auto clamp(64px,8vw,96px)',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: 'clamp(32px, 4vw, 56px)',
+        maxWidth: 1000, margin: '0 auto clamp(64px,8vw,96px)',
         padding: '0 clamp(24px,5vw,80px)',
       }}>
-        {STATS.map((s, i) => <RingStat key={i} stat={s} delay={i * 180} />)}
+        {STATS.map((s, i) => (
+          <div key={i} style={{ flex: '1 1 140px', minWidth: 140, maxWidth: 200 }}>
+            <RingStat stat={s} delay={i * 180} />
+          </div>
+        ))}
       </div>
 
       {/* ── Quote cards auto-scroll track ───────────── */}

@@ -8,6 +8,11 @@ import TechProcessHorizontal from '@/components/technology/TechProcessHorizontal
 import SpiceProcessingMachine from '@/components/technology/SpiceProcessingMachine';
 
 
+const CR    = '#AC033B';
+const INK   = '#1A1915';
+const SERIF = 'var(--font-display), Georgia, serif';
+const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
+const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
 
 export default function TechnologyPage() {
   return (
@@ -42,3 +47,4 @@ export default function TechnologyPage() {
     </main>
   );
 }
+

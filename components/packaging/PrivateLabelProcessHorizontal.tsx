@@ -7,45 +7,31 @@ import { gsap, ScrollTrigger } from '@/lib/gsap';
 const steps = [
   {
     id: '01',
-    title: 'Brand Vision',
-    desc: 'Tell us your brand story, target market, pack sizes, and the products you want to launch. A simple one-page brief is enough for our team to get started.',
-    stat: 'FAST ONBOARDING',
-    img: '/images/spice_portrait.png'
+    title: 'Brand-to-Pack Translation',
+    desc: 'We collaborate with partners to translate brand intent into compliant, production-ready packaging. Our structured approach supports efficient white labeling food products, maintaining brand clarity while ensuring manufacturability at scale.',
+    stat: 'BRAND CLARITY',
+    img: '/images/private-label/product-1.png'
   },
   {
     id: '02',
-    title: 'Artwork & Design',
-    desc: 'Concepts, mockups, and final print-ready files — built by our in-house design team. Multiple revisions are included at no extra cost to ensure perfection.',
-    stat: 'IN-HOUSE DESIGN',
-    img: '/images/fac_lab.png'
+    title: 'Market-Specific Compliance Design',
+    desc: 'Packaging and labelling are aligned with market-specific regulatory frameworks, supporting smooth entry across international markets. This compliance-driven approach strengthens execution for private labeling of spices and multi-market distribution.',
+    stat: 'COMPLIANCE',
+    img: '/images/private-label/product-2.png'
   },
   {
     id: '03',
-    title: 'Final Approval',
-    desc: 'Iterate as much as you need. We only move forward to printing and packing once you sign off on the final artwork and regulatory compliance checks are complete.',
-    stat: '100% COMPLIANT',
-    img: '/images/lab.png'
+    title: 'Packaging Aligned with Production',
+    desc: 'Our packaging workflows are coordinated with blending and processing schedules to support repeat supply programs, traceability, and accuracy - critical for brands relying on private labeling food products.',
+    stat: 'SCALABLE EXECUTION',
+    img: '/images/private-label/product-3.png'
   },
   {
     id: '04',
-    title: 'Source & Pack',
-    desc: 'Pan-India sourcing from certified farms, processing at our plant, and your brand on every pack. We handle everything from 50g pouches to 25kg bulk bags.',
-    stat: 'FSSC 22000 PLANT',
-    img: '/images/fac_pack.png'
-  },
-  {
-    id: '05',
-    title: 'Quality Check',
-    desc: 'Lab-tested batches, labels validated for the destination market, and a full Certificate of Analysis (COA) for each lot. We strictly maintain a zero-defect policy.',
-    stat: 'ZERO DEFECTS',
-    img: '/images/fac_sorting.png'
-  },
-  {
-    id: '06',
-    title: 'Shipped & Delivered',
-    desc: 'Container loaded securely. All export documentation (Certificate of Origin, APEDA, Phyto-sanitary) is prepared and handed over for smooth customs clearance.',
-    stat: 'GLOBAL SHIPPING',
-    img: '/images/fac_warehouse.png'
+    title: 'Shelf-Ready Delivery',
+    desc: 'All packs are delivered retail or bulk-ready, supporting brands seeking reliable white label spice manufacturers capable of consistent quality and scalable execution for fast into-shelf ready delivery.',
+    stat: 'RETAIL READY',
+    img: '/images/private-label/product-4.png'
   }
 ];
 
@@ -60,7 +46,7 @@ export default function PrivateLabelProcessHorizontal() {
     // Use mm.add for responsive logic
     let ctx = gsap.matchMedia();
     
-    ctx.add("(min-width: 900px)", () => {
+    ctx.add("all", () => {
       // Horizontal Scroll Animation
       const sections = gsap.utils.toArray('.pl-process-panel');
       
@@ -152,7 +138,7 @@ export default function PrivateLabelProcessHorizontal() {
               {/* Text Side */}
               <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12, marginBottom: 32 }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.25em', color: '#AC033B', fontWeight: 700 }}>STAGE {step.id} / 06</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.25em', color: '#AC033B', fontWeight: 700 }}>STAGE {step.id} / 0{steps.length}</span>
                   <span style={{ width: 40, height: 1, background: '#AC033B' }} />
                 </div>
                 
@@ -184,27 +170,21 @@ export default function PrivateLabelProcessHorizontal() {
         ))}
       </div>
 
-      {/* Mobile Styles (Stack normally instead of horizontal scroll) */}
+      {/* Mobile Styles Tweak */}
       <style>{`
         @media (max-width: 900px) {
-          .horizontal-container {
-            flex-direction: column !important;
-            width: 100% !important;
-            height: auto !important;
-          }
-          .pl-process-panel {
-            width: 100% !important;
-            height: auto !important;
-            min-height: 100vh;
-            padding: 80px 24px !important;
-          }
           .pl-process-panel > div:last-child {
             flex-direction: column !important;
-            gap: 40px !important;
+            gap: 20px !important;
+            justify-content: center;
+          }
+          .pl-process-panel > div:last-child > div:first-child {
+            flex: 0 0 auto !important;
           }
           .pl-process-panel > div:last-child > div:last-child {
-            height: 50vh !important;
+            height: 35vh !important;
             width: 100% !important;
+            flex: 0 0 auto !important;
           }
         }
       `}</style>
