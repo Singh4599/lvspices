@@ -346,6 +346,13 @@ export default function SpiceDiaryFlow() {
                 </div>
               </div>
             </div>
+            
+            {station.image && (
+              <div style={{ marginBottom: 24, border: `2px solid ${INK}`, boxShadow: `4px 4px 0px ${RED}`, background: '#f5f5f5' }}>
+                <img src={station.image} alt={station.name} style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block' }} />
+              </div>
+            )}
+            
             <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:0 }}>
               {station.desc}
             </p>
