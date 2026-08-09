@@ -601,8 +601,8 @@ export default function OperationsMap() {
                       </p>
                     </div>
                   </div>
-
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
