@@ -96,12 +96,13 @@ function NavDropdown({
         href={item.href || '#'}
         onClick={e => { if (hasChildren && !item.href) e.preventDefault(); }}
         style={{
-          display: 'flex', alignItems: 'center', gap: 4,
-          padding: '6px 14px',
-          fontSize: 14, fontWeight: 600,
+          display: 'flex', alignItems: 'center', gap: 5,
+          padding: '8px 18px',
+          fontSize: 15.5, fontWeight: 700,
           color: '#111',
           textDecoration: 'none',
           whiteSpace: 'nowrap',
+          letterSpacing: '-0.01em',
           transition: 'color 0.18s',
         }}
         onMouseEnter={e => { if (!hasChildren) (e.currentTarget as HTMLElement).style.color = '#AC033B'; }}
@@ -273,7 +274,7 @@ export default function Navbar() {
         boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.1)' : 'none',
         transition: 'box-shadow 0.3s, border-color 0.3s',
       }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 24px', height: 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 24px', height: 72, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
@@ -297,32 +298,70 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Right: CTA + Hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            {/* CTA — desktop */}
+          {/* Right: 365 Brand + Buy Now + Hamburger */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+
+            {/* 365 Spicery brand badge — desktop */}
+            <a
+              href="https://365spicery.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="desktop-nav"
+              style={{
+                display: 'flex', alignItems: 'center', gap: 8,
+                padding: '5px 14px 5px 6px',
+                border: '1.5px solid rgba(172,3,59,0.18)',
+                borderRadius: 999,
+                textDecoration: 'none',
+                transition: 'border-color 0.2s, background 0.2s',
+                background: 'rgba(172,3,59,0.03)',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.borderColor = '#AC033B';
+                (e.currentTarget as HTMLElement).style.background = 'rgba(172,3,59,0.07)';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(172,3,59,0.18)';
+                (e.currentTarget as HTMLElement).style.background = 'rgba(172,3,59,0.03)';
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/365spicery.webp"
+                alt="365 Spicery"
+                style={{ width: 30, height: 30, objectFit: 'contain', borderRadius: '50%', border: '1px solid rgba(172,3,59,0.1)' }}
+              />
+              <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.05em', color: '#AC033B', whiteSpace: 'nowrap' }}>
+                365 Spicery
+              </span>
+            </a>
+
+            {/* Buy Now — desktop */}
             <Link
-              href="/contact"
+              href="/products"
               className="desktop-nav"
               style={{
                 display: 'flex', alignItems: 'center', gap: 6,
                 background: '#AC033B', color: '#fff',
-                padding: '10px 22px', borderRadius: 999,
-                fontSize: 12.5, fontWeight: 700, letterSpacing: '0.08em',
+                padding: '11px 24px', borderRadius: 999,
+                fontSize: 13, fontWeight: 700, letterSpacing: '0.07em',
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
-                boxShadow: '0 2px 12px rgba(172,3,59,0.25)',
-                transition: 'background 0.2s, box-shadow 0.2s',
+                boxShadow: '0 2px 14px rgba(172,3,59,0.28)',
+                transition: 'background 0.2s, box-shadow 0.2s, transform 0.15s',
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.background = '#8e0231';
-                (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 18px rgba(172,3,59,0.4)';
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(172,3,59,0.42)';
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)';
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.background = '#AC033B';
-                (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 12px rgba(172,3,59,0.25)';
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 14px rgba(172,3,59,0.28)';
+                (e.currentTarget as HTMLElement).style.transform = 'none';
               }}
             >
-              Get Quote
+              Buy Now
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -412,9 +451,25 @@ export default function Navbar() {
           </div>
 
           {/* Quick links */}
-          <div style={{ padding: '12px 16px', background: '#f8f8f8', borderTop: '1px solid rgba(0,0,0,0.06)', flexShrink: 0 }}>
+          <div style={{ padding: '12px 16px', background: '#f8f8f8', borderTop: '1px solid rgba(0,0,0,0.06)', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {/* 365 Spicery badge — mobile */}
+            <a
+              href="https://365spicery.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMobileOpen(false)}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                border: '1.5px solid rgba(172,3,59,0.22)', borderRadius: 10, padding: '11px',
+                textDecoration: 'none', background: 'rgba(172,3,59,0.03)',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/365spicery.webp" alt="365 Spicery" style={{ width: 28, height: 28, objectFit: 'contain', borderRadius: '50%' }} />
+              <span style={{ fontSize: 13, fontWeight: 700, color: '#AC033B', letterSpacing: '0.04em' }}>365 Spicery</span>
+            </a>
             <Link
-              href="/contact"
+              href="/products"
               onClick={() => setIsMobileOpen(false)}
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
@@ -423,7 +478,7 @@ export default function Navbar() {
                 textDecoration: 'none',
               }}
             >
-              Get a Free Quote
+              Buy Now
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
