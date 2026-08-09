@@ -156,11 +156,12 @@ function Divider() {
 }
 
 /* ═══ HERO ═══════════════════════════════════════════════
-   Video scrubbing — proper implementation:
-   • requestVideoFrameCallback: draw ONLY when new frame is ready
-   • Native scroll (bypasses Lenis delay for instant response)
-   • fastSeek() for fastest browser seeking
-   • canplaythrough gate so scroll starts only when buffered
+   Canvas video scrubbing — GSAP on all devices.
+   Mobile optimisations:
+   • RAF-gated seekTo (one seek per animation frame max)
+   • Smaller scroll distance on mobile (less distance = less work)
+   • RVFC loop ONLY when actively seeking (not spinning idle)
+   • Lower minimum seek delta on mobile (skip tiny moves)
    ════════════════════════════════════════════════════════ */
 function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -176,12 +177,11 @@ function Hero() {
 
     const isMob = window.innerWidth <= 768;
 
-    // Video source (all-intra encoded for fast seeking)
     video.src = isMob ? '/videos/hero-mobile-v3.mp4' : '/videos/hero-desktop-v4.mp4';
     video.load();
 
-    // Canvas
-    const ctx = canvas.getContext('2d', { alpha: false })!;
+    // Use willReadFrequently: false — we're only writing, never reading pixels
+    const ctx = canvas.getContext('2d', { alpha: false, willReadFrequently: false })!;
 
     const resize = () => {
       canvas.width  = window.innerWidth;
@@ -201,36 +201,56 @@ function Hero() {
                     cx, cy, video.videoWidth * r, video.videoHeight * r);
     };
 
-    // requestVideoFrameCallback — fires exactly when a new frame is decoded and ready.
-    // This is the correct API for canvas video rendering (no stale-frame problem).
-    // Falls back to 'seeked' event on browsers without it.
     let destroyed = false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const anyVid = video as any;
     const hasRVFC: boolean = typeof anyVid.requestVideoFrameCallback === 'function';
 
-    const scheduleRVFC = () => {
-      if (destroyed || !hasRVFC) return;
-      anyVid.requestVideoFrameCallback(() => { drawFrame(); scheduleRVFC(); });
-    };
-    scheduleRVFC();
-
-    const onSeeked = () => drawFrame();
-    if (!hasRVFC) video.addEventListener('seeked', onSeeked);
-
-    // Seek using fastSeek() where available (much faster than currentTime setter)
-    const seekTo = (t: number) => {
-      if (typeof anyVid.fastSeek === 'function') {
-        anyVid.fastSeek(t);
+    // ── RVFC: draw exactly once per decoded frame ──
+    // We only register a callback when a seek has been issued, not in a permanent loop.
+    // This avoids burning GPU every vsync when the user isn't scrolling.
+    let pendingDraw = false;
+    const requestDraw = () => {
+      if (pendingDraw) return;
+      pendingDraw = true;
+      if (hasRVFC) {
+        anyVid.requestVideoFrameCallback(() => { drawFrame(); pendingDraw = false; });
       } else {
-        video.currentTime = t;
+        // fallback: draw on seeked event (registered below)
+        pendingDraw = false;
       }
     };
 
-    const SCROLL_DISTANCE = isMob ? 2000 : 3000;
+    const onSeeked = () => { drawFrame(); pendingDraw = false; };
+    if (!hasRVFC) video.addEventListener('seeked', onSeeked);
+
+    // ── RAF-gated seek: at most ONE seek per animation frame ──
+    let rafPending = false;
+    let pendingSeekT = -1;
+    let lastSeekT    = -1;
+    // Larger delta on mobile = skip micro-movements = far fewer seeks
+    const MIN_DELTA = isMob ? 0.1 : 0.033; // ~3fps mobile gate vs ~30fps desktop gate
+
+    const seekTo = (t: number) => {
+      pendingSeekT = t;
+      if (rafPending) return;           // already have a frame queued, just update target
+      rafPending = true;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        const target = pendingSeekT;
+        if (Math.abs(target - lastSeekT) < MIN_DELTA) return; // delta too small, skip
+        lastSeekT = target;
+        if (typeof anyVid.fastSeek === 'function') anyVid.fastSeek(target);
+        else video.currentTime = target;
+        requestDraw(); // ask for one frame draw after seek
+      });
+    };
+
+    // Mobile gets shorter scroll so the video completes sooner and CPU pressure is lower
+    const SCROLL_DISTANCE = isMob ? 1500 : 3000;
+
     let scrollTriggerInstance: ReturnType<typeof ScrollTrigger.create> | null = null;
     let duration = 0;
-    let lastSeekT = -1;
     let setupDone = false;
 
     const setupScroll = () => {
@@ -248,18 +268,13 @@ function Hero() {
         anticipatePin: 1,
         onUpdate(self) {
           const t = self.progress * (duration - 0.05);
-          // Only seek when frame actually changes (~1 frame at 15fps = 0.066s)
-          if (Math.abs(t - lastSeekT) > 0.033) {
-            lastSeekT = t;
-            seekTo(t);
-          }
+          seekTo(t); // RAF-gated, won't flood the CPU
         },
       });
     };
 
-    // Enable scroll once browser has buffered enough data
     video.addEventListener('canplaythrough', setupScroll, { once: true });
-    video.addEventListener('loadeddata', () => setTimeout(setupScroll, 500), { once: true });
+    video.addEventListener('loadeddata', () => setTimeout(setupScroll, 300), { once: true });
     video.addEventListener('loadedmetadata', () => { resize(); drawFrame(); });
 
     return () => {
@@ -268,6 +283,7 @@ function Hero() {
       if (!hasRVFC) video.removeEventListener('seeked', onSeeked);
       scrollTriggerInstance?.kill();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
