@@ -14,6 +14,7 @@ import dynamic from 'next/dynamic';
 import FloatingSpiceObject from '@/components/animation/FloatingSpiceObject';
 import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import CurvedLoop from '@/components/ui/CurvedLoop';
+import GlobalPresenceMap from '@/components/home/GlobalPresenceMap';
 
 const PinnedVideoSection = dynamic(
   () => import('@/components/animation/PinnedVideoSection'),
@@ -117,6 +118,9 @@ export default function HomePage() {
            <text style={{ fontSize: 'clamp(9px, 1vw, 14px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.18em', marginTop: 4 }}>SPICES</text>
         </div>
       </div>
+      {/* GLOBAL PRESENCE MAP */}
+      <GlobalPresenceMap />
+      <Divider />
       {/* RESOURCES */}
       <div id="section-resources"><Resources /></div>
       <Divider />
