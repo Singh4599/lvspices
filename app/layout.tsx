@@ -5,7 +5,7 @@ import SmoothScrollProvider from '@/components/animation/SmoothScrollProvider';
 import ScrollProgress from '@/components/animation/ScrollProgress';
 import PageTransition from '@/components/animation/PageTransition';
 import Loader from '@/components/ui/Loader';
-import { FloatingNav } from '@/components/ui/FloatingNav';
+import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import NoiseOverlay from '@/components/layout/NoiseOverlay';
 import ClientEffects from '@/components/animation/ClientEffects';
@@ -47,8 +47,8 @@ export default function RootLayout({
           <Loader />
           <ScrollProgress />
           <NoiseOverlay />
-          <FloatingNav />
-          <main className="flex-1" style={{ position: 'relative', zIndex: 1 }}>{children}</main>
+          <Navbar />
+          <main className="flex-1" style={{ position: 'relative', zIndex: 1, paddingTop: 104 }}>{children}</main>
           <Footer />
         </SmoothScrollProvider>
       </body>
