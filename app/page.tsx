@@ -187,19 +187,35 @@ function Hero() {
       // Use section's actual rendered size — NOT window.innerWidth/Height.
       // On iOS Safari, window.innerHeight ≠ 100svh (address bar offset),
       // causing the canvas buffer to mismatch the CSS size → top/bottom black bars.
-      canvas.width  = section.clientWidth  || window.innerWidth;
-      canvas.height = section.clientHeight || window.innerHeight;
+      const dpr = window.devicePixelRatio || 1;
+      const w = section.clientWidth || window.innerWidth;
+      const h = section.clientHeight || window.innerHeight;
+      
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      
+      // Keep canvas visual size same as section via CSS
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      
+      ctx.scale(dpr, dpr);
     };
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', () => { resize(); drawFrame(); });
 
     const drawFrame = () => {
       if (!video.videoWidth) return;
-      const hR = canvas.width  / video.videoWidth;
-      const vR = canvas.height / video.videoHeight;
+      
+      const w = section.clientWidth || window.innerWidth;
+      const h = section.clientHeight || window.innerHeight;
+
+      const hR = w / video.videoWidth;
+      const vR = h / video.videoHeight;
       const r  = Math.max(hR, vR);
-      const cx = (canvas.width  - video.videoWidth  * r) / 2;
-      const cy = (canvas.height - video.videoHeight * r) / 2;
+      
+      const cx = (w - video.videoWidth * r) / 2;
+      const cy = (h - video.videoHeight * r) / 2;
+      
       ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight,
                     cx, cy, video.videoWidth * r, video.videoHeight * r);
     };
@@ -232,7 +248,7 @@ function Hero() {
     let pendingSeekT = -1;
     let lastSeekT    = -1;
     // Larger delta on mobile = skip micro-movements = far fewer seeks
-    const MIN_DELTA = isMob ? 0.1 : 0.033; // ~3fps mobile gate vs ~30fps desktop gate
+    const MIN_DELTA = isMob ? 0.033 : 0.016; // ~30fps mobile gate vs ~60fps desktop gate
 
     const seekTo = (t: number) => {
       pendingSeekT = t;
@@ -265,7 +281,7 @@ function Hero() {
 
       scrollTriggerInstance = ScrollTrigger.create({
         trigger: section,
-        start:  'top top',
+        start:  'top 68px',
         end:    `+=${SCROLL_DISTANCE}`,
         pin:    true,
         anticipatePin: 1,
