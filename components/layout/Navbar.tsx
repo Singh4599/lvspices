@@ -331,12 +331,12 @@ export default function Navbar() {
                 src="/images/365spicery.webp"
                 alt="365 Spicery"
                 style={{
-                  height: 48,
+                  height: 58,
                   width: 'auto',
                   objectFit: 'contain',
                   display: 'block',
-                  borderRadius: 6,
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                  borderRadius: 8,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
                 }}
               />
             </a>
@@ -474,7 +474,7 @@ export default function Navbar() {
               <img
                 src="/images/365spicery.webp"
                 alt="365 Spicery"
-                style={{ width: 'auto', height: 42, borderRadius: 4, display: 'block' }}
+                style={{ width: 'auto', height: 52, borderRadius: 6, display: 'block' }}
               />
             </a>
             <a
