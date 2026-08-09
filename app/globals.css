@@ -2,7 +2,7 @@
 
 /* ═══════════════════════════════════════════
    LV SPICES — Design System
-   TWO COLORS ONLY: #FFFFFF + #AC033B
+   TWO COLORS ONLY: #FFFFFF + '#111111'
    ═══════════════════════════════════════════ */
 
 @keyframes spin {
@@ -10,7 +10,7 @@
 }
 
 :root {
-  --crimson: #AC033B;
+  --crimson: '#111111';
   --white: #FFFFFF;
   --black: #000000;
   --bg: #ffffff;
@@ -20,17 +20,17 @@
   --text-primary: #FFFFFF;
   --text-secondary: rgba(255,255,255,0.5);
   --text-tertiary: rgba(255,255,255,0.25);
-  --crimson-rgb: 172, 3, 59;
-  --crimson-hover: #8e0231;
-  --crimson-light: rgba(172, 3, 59, 0.12);
-  --crimson-glow: rgba(172, 3, 59, 0.2);
+  --crimson-rgb: 17, 17, 17;
+  --crimson-hover: #333333;
+  --crimson-light: rgba(17, 17, 17, 0.12);
+  --crimson-glow: rgba(17, 17, 17, 0.2);
 }
 
 @theme inline {
-  --color-crimson: #AC033B;
-  --color-crimson-hover: #8e0231;
-  --color-crimson-light: rgba(172, 3, 59, 0.08);
-  --color-crimson-glow: rgba(172, 3, 59, 0.15);
+  --color-crimson: '#111111';
+  --color-crimson-hover: #333333;
+  --color-crimson-light: rgba(17, 17, 17, 0.08);
+  --color-crimson-glow: rgba(17, 17, 17, 0.15);
   --color-white: #FFFFFF;
   --color-black: #000000;
 
@@ -88,8 +88,8 @@
 }
 
 @keyframes pulse-crimson {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(172, 3, 59, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(172, 3, 59, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(17, 17, 17, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(17, 17, 17, 0); }
 }
 
 @keyframes float {
@@ -125,7 +125,7 @@
 
 html {
   background: #ffffff;
-  color: #111111;
+  color: '#111111';
   scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -149,7 +149,7 @@ html.lenis, html.lenis body {
 
 body {
   background: #ffffff;
-  color: #111111;
+  color: '#111111';
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   line-height: 1.7;
   min-height: 100vh;
@@ -358,7 +358,7 @@ a, button { min-height: 44px; }
 
 .glass-card-accent:hover {
   transform: translateY(-3px);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(172,3,59,0.15);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(17,17,17,0.15);
 }
 
 /* ═══════════════════════════════════════════
@@ -392,7 +392,7 @@ a, button { min-height: 44px; }
    ═══════════════════════════════════════════ */
 
 .section-alt {
-  background: rgba(172, 3, 59, 0.025);
+  background: rgba(17, 17, 17, 0.025);
 }
 
 /* Global section heading breathing */
@@ -574,7 +574,7 @@ nav[aria-label="Breadcrumb"] {
 @media (min-width: 480px) {
   .region-row { flex-direction: row; justify-content: space-between; align-items: baseline; padding: 18px 0; }
 }
-.region-name { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #AC033B; font-weight: 600; }
+.region-name { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: '#111111'; font-weight: 600; }
 .region-spices { font-size: 14px; color: rgba(255,255,255,0.4); }
 
 .compound-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 44px; padding-top: 36px; border-top: 1px solid rgba(255,255,255,0.08); }
@@ -590,7 +590,7 @@ nav[aria-label="Breadcrumb"] {
 .cryo-box { padding: 24px; margin-bottom: 16px; }
 @media (min-width: 768px) { .cryo-box { padding: 32px; margin-bottom: 20px; } }
 .cryo-box--light { background: rgba(255,255,255,0.05); }
-.cryo-box--dark { background: #AC033B; margin-bottom: 40px; }
+.cryo-box--dark { background: '#111111'; margin-bottom: 40px; }
 .cryo-label { font-family: var(--font-mono), monospace; font-size: 10px; letter-spacing: 0.22em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 20px; }
 .cryo-label--light { color: rgba(255,255,255,0.55); }
 
@@ -612,7 +612,7 @@ nav[aria-label="Breadcrumb"] {
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn-primary {
   display: inline-flex; align-items: center; gap: 10px;
-  background: #AC033B; color: #fff;
+  background: '#111111'; color: #fff;
   padding: 14px 24px; font-size: 11px; letter-spacing: 0.18em;
   text-transform: uppercase; text-decoration: none; transition: opacity 0.2s;
 }
@@ -631,7 +631,7 @@ nav[aria-label="Breadcrumb"] {
 
 .product-card { display: block; background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); padding: 32px 24px; text-decoration: none; border: 1px solid rgba(255,255,255,0.08); border-bottom: 3px solid transparent; transition: border-color 0.25s, background 0.25s; color: #fff; }
 @media (min-width: 768px) { .product-card { padding: 48px 36px; } }
-.product-card:hover { border-bottom-color: #AC033B; background: rgba(255,255,255,0.07); }
+.product-card:hover { border-bottom-color: '#111111'; background: rgba(255,255,255,0.07); }
 
 /* ═══════════════════════════════════════════
    INFRASTRUCTURE PAGE — Luxury Layout
@@ -720,7 +720,7 @@ nav[aria-label="Breadcrumb"] {
 
 .infrastructure-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 56px rgba(0,0,0,0.6), 0 0 30px rgba(172,3,59,0.12);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.6), 0 0 30px rgba(17,17,17,0.12);
 }
 
 /* ── Technology Pages: Responsive Grids ────────────────── */
@@ -1273,10 +1273,10 @@ nav[aria-label="Breadcrumb"] {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-    rgba(172, 3, 59, 0.03) 0%,
+    rgba(17, 17, 17, 0.03) 0%,
     transparent 40%,
     transparent 60%,
-    rgba(172, 3, 59, 0.02) 100%
+    rgba(17, 17, 17, 0.02) 100%
   );
   pointer-events: none;
   z-index: 2;
@@ -1308,7 +1308,7 @@ nav[aria-label="Breadcrumb"] {
 .pvh-label-line {
   width: 36px;
   height: 1.5px;
-  background: #AC033B;
+  background: '#111111';
   flex-shrink: 0;
 }
 
@@ -1327,7 +1327,7 @@ nav[aria-label="Breadcrumb"] {
 }
 
 .pvh-headline-accent {
-  color: #AC033B;
+  color: '#111111';
   font-weight: 500;
 }
 
@@ -1363,9 +1363,9 @@ nav[aria-label="Breadcrumb"] {
 }
 
 .pvh-chip-primary {
-  background: rgba(172, 3, 59, 0.07);
-  border: 1px solid rgba(172, 3, 59, 0.18);
-  color: #AC033B;
+  background: rgba(17, 17, 17, 0.07);
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  color: '#111111';
 }
 
 .pvh-chip-secondary {
@@ -1388,7 +1388,7 @@ nav[aria-label="Breadcrumb"] {
   align-items: center;
   justify-content: center;
   padding: 16px 48px;
-  background: #AC033B;
+  background: '#111111';
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
@@ -1400,7 +1400,7 @@ nav[aria-label="Breadcrumb"] {
 
 .pvh-btn-primary:hover {
   transform: scale(1.03);
-  box-shadow: 0 8px 32px rgba(172, 3, 59, 0.25);
+  box-shadow: 0 8px 32px rgba(17, 17, 17, 0.25);
 }
 
 .pvh-btn-outline {
@@ -1421,8 +1421,8 @@ nav[aria-label="Breadcrumb"] {
 
 .pvh-btn-outline:hover {
   transform: scale(1.03);
-  border-color: #AC033B;
-  color: #AC033B;
+  border-color: '#111111';
+  color: '#111111';
 }
 
 /* ── Stats ── */
@@ -1438,7 +1438,7 @@ nav[aria-label="Breadcrumb"] {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #AC033B;
+  color: '#111111';
   margin-bottom: 4px;
   font-size: 1.2rem;
 }
@@ -2038,7 +2038,7 @@ nav[aria-label="Breadcrumb"] {
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #AC033B;
+  color: '#111111';
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -2046,7 +2046,7 @@ nav[aria-label="Breadcrumb"] {
 .wwd-card-line {
   height: 1px;
   width: 32px;
-  background: #AC033B;
+  background: '#111111';
 }
 
 .wwd-card:hover .wwd-card-bg {
@@ -2171,16 +2171,16 @@ nav[aria-label="Breadcrumb"] {
     min-height: unset !important;
     aspect-ratio: 16/10 !important;
     border-radius: 12px !important;
-    border: 1px solid rgba(172,3,59,0.2) !important;
-    border-right: 1px solid rgba(172,3,59,0.2) !important;
-    border-left: 1px solid rgba(172,3,59,0.2) !important;
+    border: 1px solid rgba(17,17,17,0.2) !important;
+    border-right: 1px solid rgba(17,17,17,0.2) !important;
+    border-left: 1px solid rgba(17,17,17,0.2) !important;
   }
 
   /* Override the "order:1 = right border" rule — not needed on mobile */
   .canvas-col[style*="order: 1"] > div,
   .canvas-col[style*="order:1"] > div {
-    border-right: 1px solid rgba(172,3,59,0.2) !important;
-    border-left: 1px solid rgba(172,3,59,0.2) !important;
+    border-right: 1px solid rgba(17,17,17,0.2) !important;
+    border-left: 1px solid rgba(17,17,17,0.2) !important;
   }
 
 

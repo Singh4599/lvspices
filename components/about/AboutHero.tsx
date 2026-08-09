@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 export default function AboutHero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -235,7 +235,7 @@ export default function AboutHero() {
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
           {/* Background decorative circle */}
-          <div style={{ position: 'absolute', width: '80%', aspectRatio: '1/1', borderRadius: '50%', background: 'radial-gradient(circle, rgba(172,3,59,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', width: '80%', aspectRatio: '1/1', borderRadius: '50%', background: 'radial-gradient(circle, rgba(17,17,17,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
           {/* Bowl image */}
           <div

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 const CSS = `
   @keyframes bf-open {
@@ -18,8 +18,8 @@ const CSS = `
     50%{transform:translateY(-10px) rotate(-2deg)}
   }
   @keyframes bf-glow {
-    0%,100%{box-shadow:0 24px 80px rgba(172,3,59,0.15),0 8px 32px rgba(0,0,0,0.2)}
-    50%{box-shadow:0 32px 100px rgba(172,3,59,0.28),0 12px 48px rgba(0,0,0,0.25)}
+    0%,100%{box-shadow:0 24px 80px rgba(17,17,17,0.15),0 8px 32px rgba(0,0,0,0.2)}
+    50%{box-shadow:0 32px 100px rgba(17,17,17,0.28),0 12px 48px rgba(0,0,0,0.25)}
   }
   @keyframes bf-shimmer {
     0%{left:-100%} 100%{left:200%}

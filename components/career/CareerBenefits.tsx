@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 const perks = [
   { icon: '🌱', title: 'Career Growth', desc: 'Rapid career progression with structured mentorship from industry leaders and clear promotion pathways.' },

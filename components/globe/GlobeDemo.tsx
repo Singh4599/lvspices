@@ -32,33 +32,33 @@ const globeConfig = {
 // All arcs start from Mumbai HQ — India (19.076, 72.877)
 const sampleArcs = [
   // Mumbai → London
-  { order: 1, startLat: 19.076, startLng: 72.877, endLat: 51.505, endLng: -0.09, arcAlt: 0.3, color: "#AC033B" },
+  { order: 1, startLat: 19.076, startLng: 72.877, endLat: 51.505, endLng: -0.09, arcAlt: 0.3, color: '#111111' },
   // Mumbai → New York
-  { order: 2, startLat: 19.076, startLng: 72.877, endLat: 40.712, endLng: -74.006, arcAlt: 0.4, color: "#AC033B" },
+  { order: 2, startLat: 19.076, startLng: 72.877, endLat: 40.712, endLng: -74.006, arcAlt: 0.4, color: '#111111' },
   // Mumbai → Dubai
-  { order: 3, startLat: 19.076, startLng: 72.877, endLat: 25.204, endLng: 55.270, arcAlt: 0.15, color: "#AC033B" },
+  { order: 3, startLat: 19.076, startLng: 72.877, endLat: 25.204, endLng: 55.270, arcAlt: 0.15, color: '#111111' },
   // Mumbai → Singapore
-  { order: 4, startLat: 19.076, startLng: 72.877, endLat: 1.352, endLng: 103.820, arcAlt: 0.2, color: "#AC033B" },
+  { order: 4, startLat: 19.076, startLng: 72.877, endLat: 1.352, endLng: 103.820, arcAlt: 0.2, color: '#111111' },
   // Mumbai → Sydney
-  { order: 5, startLat: 19.076, startLng: 72.877, endLat: -33.868, endLng: 151.209, arcAlt: 0.4, color: "#AC033B" },
+  { order: 5, startLat: 19.076, startLng: 72.877, endLat: -33.868, endLng: 151.209, arcAlt: 0.4, color: '#111111' },
   // Mumbai → Frankfurt
-  { order: 6, startLat: 19.076, startLng: 72.877, endLat: 50.110, endLng: 8.682, arcAlt: 0.3, color: "#AC033B" },
+  { order: 6, startLat: 19.076, startLng: 72.877, endLat: 50.110, endLng: 8.682, arcAlt: 0.3, color: '#111111' },
   // Mumbai → Toronto
-  { order: 7, startLat: 19.076, startLng: 72.877, endLat: 43.653, endLng: -79.383, arcAlt: 0.45, color: "#AC033B" },
+  { order: 7, startLat: 19.076, startLng: 72.877, endLat: 43.653, endLng: -79.383, arcAlt: 0.45, color: '#111111' },
   // Mumbai → Nairobi
-  { order: 8, startLat: 19.076, startLng: 72.877, endLat: -1.286, endLng: 36.817, arcAlt: 0.2, color: "#AC033B" },
+  { order: 8, startLat: 19.076, startLng: 72.877, endLat: -1.286, endLng: 36.817, arcAlt: 0.2, color: '#111111' },
   // Mumbai → Riyadh
-  { order: 9, startLat: 19.076, startLng: 72.877, endLat: 24.688, endLng: 46.724, arcAlt: 0.12, color: "#AC033B" },
+  { order: 9, startLat: 19.076, startLng: 72.877, endLat: 24.688, endLng: 46.724, arcAlt: 0.12, color: '#111111' },
   // Mumbai → Amsterdam
-  { order: 10, startLat: 19.076, startLng: 72.877, endLat: 52.377, endLng: 4.907, arcAlt: 0.28, color: "#AC033B" },
+  { order: 10, startLat: 19.076, startLng: 72.877, endLat: 52.377, endLng: 4.907, arcAlt: 0.28, color: '#111111' },
   // Mumbai → Tokyo
-  { order: 11, startLat: 19.076, startLng: 72.877, endLat: 35.681, endLng: 139.767, arcAlt: 0.22, color: "#AC033B" },
+  { order: 11, startLat: 19.076, startLng: 72.877, endLat: 35.681, endLng: 139.767, arcAlt: 0.22, color: '#111111' },
   // Mumbai → Los Angeles
-  { order: 12, startLat: 19.076, startLng: 72.877, endLat: 34.052, endLng: -118.244, arcAlt: 0.42, color: "#AC033B" },
+  { order: 12, startLat: 19.076, startLng: 72.877, endLat: 34.052, endLng: -118.244, arcAlt: 0.42, color: '#111111' },
   // Mumbai → Johannesburg
-  { order: 13, startLat: 19.076, startLng: 72.877, endLat: -26.204, endLng: 28.047, arcAlt: 0.22, color: "#AC033B" },
+  { order: 13, startLat: 19.076, startLng: 72.877, endLat: -26.204, endLng: 28.047, arcAlt: 0.22, color: '#111111' },
   // Mumbai → Paris
-  { order: 14, startLat: 19.076, startLng: 72.877, endLat: 48.856, endLng: 2.352, arcAlt: 0.28, color: "#AC033B" },
+  { order: 14, startLat: 19.076, startLng: 72.877, endLat: 48.856, endLng: 2.352, arcAlt: 0.28, color: '#111111' },
 ];
 
 export function GlobeDemo() {

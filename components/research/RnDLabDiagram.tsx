@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-const CR    = '#AC033B';
-const BLUE  = '#1A5FAB';
-const GREEN = '#2E6B3E';
+const CR    = '#111111';
+const BLUE  = '#333333';
+const GREEN = '#111111';
 const INK   = '#1A1818';
 const INK_L = 'rgba(26,24,24,0.3)';
 const INK_LL = 'rgba(26,24,24,0.08)';
@@ -24,7 +24,7 @@ const STATIONS: Station[] = [
   { id:3, icon:'⚗️', name:'Process Optimisation',   stat:'0 SHU Loss',       accent:'#6B2D00', desc:'Iterative refinement of cryogenic and water-cooled milling parameters. We optimise rotor speeds and cooling deltas to ensure negligible degradation of essential oils, preserving maximum ASTA colour and intrinsic heat (SHU).' },
   { id:4, icon:'🌿', name:'Functional Ingredients',  stat:'Bioavailability+', accent:GREEN,    desc:'Cutting-edge research into bioactive extraction and bioavailability enhancement (e.g., Curcumin complexes). Developed in strategic partnership with premier institutions like CFTRI and IIT Food Tech Division for the nutraceutical sector.' },
   { id:5, icon:'📊', name:'Sensory Panel Room',      stat:'QDA Driven',       accent:'#5E2D79', desc:'Quantitative Descriptive Analysis (QDA) conducted by certified sensory panellists. Objective scoring of aroma intensity, colour vibrancy, pungency, mouthfeel, and aftertaste using statistically robust spider chart mapping.' },
-  { id:6, icon:'✅', name:'Consumer Validation',     stat:'Market Ready',     accent:'#0A4D6E', desc:'Pre-commercialisation consumer acceptability trials for major FMCG and Private Label NPDs (New Product Developments). Protocols include blind triangle testing, preference mapping, and purchase intent scaling before final FSMA sign-off.' },
+  { id:6, icon:'✅', name:'Consumer Validation',     stat:'Market Ready',     accent:'#444444', desc:'Pre-commercialisation consumer acceptability trials for major FMCG and Private Label NPDs (New Product Developments). Protocols include blind triangle testing, preference mapping, and purchase intent scaling before final FSMA sign-off.' },
 ];
 
 /* ── CSS ───────────────────────────────────────────────── */

@@ -18,57 +18,42 @@ const navItems: NavItem[] = [
     children: [
       { label: 'Overview', href: '/overview' },
       { label: 'About Us', href: '/about-us' },
-      { label: 'Our Story', href: '/story' },
-      { label: 'Mission & Vision', href: '/mission' },
+      { label: 'Our Services', href: '/our-services' },
       { label: 'Our Team', href: '/our-team' },
+      { label: 'IPM', href: '/ipm' },
       { label: 'How We Operate', href: '/how-we-operate' },
       { label: 'Facilities', href: '/facilities' },
       { label: 'Career', href: '/career' },
       { label: 'Testimonials', href: '/testimonials' },
-      { label: 'Global Network', href: '/global-network' },
-      { label: 'Sustainability', href: '/sustainability' },
     ],
   },
   {
     label: 'Technology & QA',
     children: [
       { label: 'Technology', href: '/technology' },
-      { label: 'Cryogenic Grinding', href: '/technology/cryogenic-grinding' },
-      { label: 'Steam Sterilization', href: '/technology/steam-sterilization' },
-      { label: 'Process Chart', href: '/technology/process-flow' },
-      { label: 'Quality Assurance', href: '/technology/quality-assurance' },
-      { label: 'Quality Control & Training', href: '/quality-control-and-training' },
+      { label: 'Quality Assurance', href: '/quality-assurance' },
+      { label: 'Quality Control', href: '/quality-control-and-training' },
       { label: 'Certifications', href: '/certifications' },
       { label: 'Analytical Lab', href: '/analytical' },
-      { label: 'CFG Science & R&D', href: '/technology/cfg-science' },
-      { label: 'Infrastructure', href: '/technology/infrastructure' },
-      { label: 'IPM', href: '/ipm' },
+      { label: 'Process Chart', href: '/process-chart' },
+      { label: 'Research & Development', href: '/research-and-development' },
     ],
   },
   {
     label: 'Products',
     children: [
       { label: 'All Products', href: '/products' },
-      { label: 'Spices & Seasoning', href: '/products/spices-seasoning' },
-      { label: 'Curry Powder', href: '/products/curry-powder' },
-      { label: 'Snack Seasoning', href: '/products/snack-seasoning' },
-      { label: 'Agri Products', href: '/products/agri-products' },
-      { label: 'Organic', href: '/products/organic' },
-      { label: 'Chilli Speciality', href: '/products/chilli-speciality' },
-      { label: 'Dehydrated', href: '/products/dehydrated' },
-      { label: 'Botanical Powders', href: '/products/botanical-powders' },
-      { label: 'Herbal Teas', href: '/products/herbal-teas' },
+      { label: 'Chilli Speciality', href: '/chilli-speciality' },
+      { label: 'E-Brochure', href: '/e-brochure' },
     ],
   },
   {
     label: 'Resources',
     children: [
-      { label: 'E-Brochure', href: '/catalog' },
-      { label: 'Private Label', href: '/packaging-and-private-labelling' },
-      { label: 'Our Services', href: '/our-services' },
       { label: 'Spice Diary', href: '/spice-diary' },
       { label: 'Spice School', href: '/spice-school' },
       { label: 'Explore World', href: '/explore-world' },
+      { label: 'Private Label', href: '/packaging-and-private-labelling' },
       { label: 'FAQ', href: '/faq' },
     ]
   },
@@ -105,7 +90,7 @@ function NavDropdown({
           letterSpacing: '-0.01em',
           transition: 'color 0.18s',
         }}
-        onMouseEnter={e => { if (!hasChildren) (e.currentTarget as HTMLElement).style.color = '#AC033B'; }}
+        onMouseEnter={e => { if (!hasChildren) (e.currentTarget as HTMLElement).style.color = '#111111'; }}
         onMouseLeave={e => { if (!hasChildren) (e.currentTarget as HTMLElement).style.color = '#111'; }}
       >
         {item.label}
@@ -113,7 +98,7 @@ function NavDropdown({
           <svg
             width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" strokeWidth="2.5"
-            style={{ transition: 'transform 0.2s', transform: isOpen ? 'rotate(180deg)' : 'none', color: '#AC033B' }}
+            style={{ transition: 'transform 0.2s', transform: isOpen ? 'rotate(180deg)' : 'none', color: '#111111' }}
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
@@ -129,7 +114,7 @@ function NavDropdown({
           minWidth: 240,
           background: '#fff',
           boxShadow: '0 8px 32px rgba(0,0,0,0.14)',
-          borderTop: '2px solid #AC033B',
+          borderTop: '2px solid #111111',
           borderRadius: '0 0 8px 8px',
           overflow: 'hidden',
           opacity: isOpen ? 1 : 0,
@@ -154,8 +139,8 @@ function NavDropdown({
                 transition: 'background 0.15s, color 0.15s',
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = '#fff5f7';
-                (e.currentTarget as HTMLElement).style.color = '#AC033B';
+                (e.currentTarget as HTMLElement).style.background = '#f5f5f5';
+                (e.currentTarget as HTMLElement).style.color = '#111111';
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.background = '#fff';
@@ -191,7 +176,7 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
             {item.label}
             <svg
               width="14" height="14" viewBox="0 0 24 24" fill="none"
-              stroke="#AC033B" strokeWidth="2.5"
+              stroke='#111111' strokeWidth="2.5"
               style={{ transition: 'transform 0.2s', transform: open ? 'rotate(180deg)' : 'none', flexShrink: 0 }}
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -210,7 +195,7 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
                     textDecoration: 'none',
                   }}
                 >
-                  <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#AC033B', flexShrink: 0 }} />
+                  <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#111111', flexShrink: 0 }} />
                   {child.label}
                 </Link>
               ))}
@@ -280,7 +265,7 @@ export default function Navbar() {
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
             <Image src="/logo.png" alt="LV Spices" width={48} height={48} style={{ objectFit: 'contain' }} priority />
             <div style={{ lineHeight: 1.1 }}>
-              <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: '0.08em', color: '#AC033B' }}>LV SPICES</div>
+              <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: '0.08em', color: '#111111' }}>LV SPICES</div>
               <div style={{ fontSize: 9, fontWeight: 500, letterSpacing: '0.12em', color: '#888', textTransform: 'uppercase' }}>Since 1985</div>
             </div>
           </Link>
@@ -349,22 +334,22 @@ export default function Navbar() {
               className="desktop-nav"
               style={{
                 display: 'flex', alignItems: 'center', gap: 6,
-                background: '#AC033B', color: '#fff',
+                background: '#111111', color: '#fff',
                 padding: '11px 24px', borderRadius: 999,
                 fontSize: 13, fontWeight: 700, letterSpacing: '0.07em',
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
-                boxShadow: '0 2px 14px rgba(172,3,59,0.28)',
+                boxShadow: '0 2px 14px rgba(17,17,17,0.28)',
                 transition: 'background 0.2s, box-shadow 0.2s, transform 0.15s',
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = '#8e0231';
-                (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(172,3,59,0.42)';
+                (e.currentTarget as HTMLElement).style.background = '#333333';
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(17,17,17,0.42)';
                 (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)';
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = '#AC033B';
-                (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 14px rgba(172,3,59,0.28)';
+                (e.currentTarget as HTMLElement).style.background = '#111111';
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 14px rgba(17,17,17,0.28)';
                 (e.currentTarget as HTMLElement).style.transform = 'none';
               }}
             >
@@ -432,7 +417,7 @@ export default function Navbar() {
             <Link href="/" onClick={() => setIsMobileOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
               <Image src="/logo.png" alt="LV Spices" width={38} height={38} style={{ objectFit: 'contain' }} />
               <div>
-                <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.1em', color: '#AC033B' }}>LV SPICES</div>
+                <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.1em', color: '#111111' }}>LV SPICES</div>
                 <div style={{ fontSize: 9, color: '#aaa', letterSpacing: '0.08em' }}>SINCE 1985</div>
               </div>
             </Link>
@@ -484,9 +469,9 @@ export default function Navbar() {
               onClick={() => setIsMobileOpen(false)}
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-                background: '#AC033B', color: '#fff', padding: '10px 20px',
+                background: '#111111', color: '#fff', padding: '10px 20px',
                 borderRadius: 999, fontSize: 13, fontWeight: 700, letterSpacing: '0.04em',
-                textDecoration: 'none', boxShadow: '0 2px 10px rgba(172,3,59,0.3)',
+                textDecoration: 'none', boxShadow: '0 2px 10px rgba(17,17,17,0.3)',
               }}
             >
               Buy Now

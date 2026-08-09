@@ -8,7 +8,7 @@ import TechProcessHorizontal from '@/components/technology/TechProcessHorizontal
 import SpiceProcessingMachine from '@/components/technology/SpiceProcessingMachine';
 
 
-const CR    = '#AC033B';
+const CR    = '#111111';
 const INK   = '#1A1915';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
@@ -36,7 +36,7 @@ export default function TechnologyPage() {
       {/* ══ CURVED LOOP ════════════════════════════════════════ */}
       <div style={{ background: '#fff', overflow: 'hidden', paddingBottom: 'clamp(24px, 3vw, 40px)', paddingTop: 'clamp(24px, 3vw, 40px)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none', zIndex: 10, marginBottom: 'clamp(8px, 1.5vw, 16px)' }}>
-           <div style={{ fontSize: 'clamp(20px, 3vw, 36px)', fontFamily: 'var(--font-display)', color: '#AC033B', fontWeight: 800, lineHeight: 1 }}>LV</div>
+           <div style={{ fontSize: 'clamp(20px, 3vw, 36px)', fontFamily: 'var(--font-display)', color: '#111111', fontWeight: 800, lineHeight: 1 }}>LV</div>
            <div style={{ fontSize: 'clamp(7px, 0.8vw, 10px)', fontFamily: 'var(--font-mono)', color: '#111', letterSpacing: '0.22em', marginTop: 4 }}>SPICES</div>
         </div>
         <div style={{ width: '100%' }}>

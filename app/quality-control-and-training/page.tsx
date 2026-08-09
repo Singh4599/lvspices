@@ -5,7 +5,7 @@ import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import QCLabFloorPlan from '@/components/quality/QCLabFloorPlan';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';

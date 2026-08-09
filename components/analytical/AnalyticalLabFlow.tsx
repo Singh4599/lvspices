@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-const RED   = '#AC033B';
+const RED   = '#111111';
 const INK   = '#1A1915';
-const INK_L = '#4A4A4A';
+const INK_L = '#666666';
 
 interface LabTest {
   n: number;
@@ -23,7 +23,7 @@ interface LabTest {
 
 const TESTS: LabTest[] = [
   // CHEMICAL
-  { n: 1, category: 'CHEMICAL', id: 'color', name: 'Colour in Chilli', emoji: '🌶', color: '#C0392B', tag: 'ASTA', desc: 'Precise spectrophotometric measurement of extractable colour (chlorophylls, carotenoids) in Capsicum species using globally recognized ASTA 20.1 methods to guarantee vibrant, consistent B2B product profiles.', extraLabel1: 'Method', extraValue1: 'ASTA 20.1', extraLabel2: 'Range', extraValue2: '80–200 ASTA' },
+  { n: 1, category: 'CHEMICAL', id: 'color', name: 'Colour in Chilli', emoji: '🌶', color: '#111111', tag: 'ASTA', desc: 'Precise spectrophotometric measurement of extractable colour (chlorophylls, carotenoids) in Capsicum species using globally recognized ASTA 20.1 methods to guarantee vibrant, consistent B2B product profiles.', extraLabel1: 'Method', extraValue1: 'ASTA 20.1', extraLabel2: 'Range', extraValue2: '80–200 ASTA' },
   { n: 2, category: 'CHEMICAL', id: 'capsaicin', name: 'Capsaicin (Heat)', emoji: '🔥', color: '#E67E22', tag: 'Pungency', desc: 'Quantitative High-Performance Liquid Chromatography (HPLC) profiling of capsaicinoids to precisely calibrate Scoville Heat Units (SHU), ensuring uniform pungency for demanding culinary formulations.', extraLabel1: 'Method', extraValue1: 'HPLC (ASTA 21.3)', extraLabel2: 'Range', extraValue2: '0.1–2.0%' },
   { n: 3, category: 'CHEMICAL', id: 'moisture', name: 'Moisture', emoji: '💧', color: '#2980B9', tag: 'Stability', desc: 'Accurate moisture and volatile matter determination via vacuum oven methods, critical for preventing microbial proliferation and maximizing shelf-life stability in bulk spice commodities.', extraLabel1: 'Method', extraValue1: 'Vacuum Oven', extraLabel2: 'Limit', extraValue2: '≤ 12% w/w' },
   { n: 4, category: 'CHEMICAL', id: 'totalash', name: 'Total Ash', emoji: '⚗️', color: '#7F8C8D', tag: 'Purity', desc: 'Gravimetric determination of total mineral ash following complete incineration. A critical quality index proving the absolute absence of inorganic adulterants or extraneous mineral matter.', extraLabel1: 'Method', extraValue1: 'Gravimetric', extraLabel2: 'Limit', extraValue2: '≤ 8% w/w' },
@@ -34,9 +34,9 @@ const TESTS: LabTest[] = [
   { n: 9, category: 'CHEMICAL', id: 'particle', name: 'Particle Size', emoji: '🔬', color: '#16A085', tag: 'Sieve', desc: 'Advanced Particle Size Distribution (PSD) analysis via mechanical sieve shakers to ensure precise granulation thresholds, enabling optimal dispersion and solubility in industrial food processing.', extraLabel1: 'Method', extraValue1: 'Ro-Tap Sieve', extraLabel2: 'Range', extraValue2: 'Micron Specific' },
   
   // MICROBIOLOGY
-  { n: 10, category: 'MICROBIOLOGY', id: 'salmonella', name: 'Salmonella spp.', emoji: '🦠', color: '#C0392B', tag: 'Pathogen', desc: 'Stringent zero-tolerance detection of Salmonella using ISO 6579 / BAM methods. Represents a non-negotiable critical control point in preventing pathogenic adulteration in ready-to-eat supply chains.', extraLabel1: 'Standard', extraValue1: 'Absent / 25g', extraLabel2: 'Severity', extraValue2: 'Critical' },
+  { n: 10, category: 'MICROBIOLOGY', id: 'salmonella', name: 'Salmonella spp.', emoji: '🦠', color: '#111111', tag: 'Pathogen', desc: 'Stringent zero-tolerance detection of Salmonella using ISO 6579 / BAM methods. Represents a non-negotiable critical control point in preventing pathogenic adulteration in ready-to-eat supply chains.', extraLabel1: 'Standard', extraValue1: 'Absent / 25g', extraLabel2: 'Severity', extraValue2: 'Critical' },
   { n: 11, category: 'MICROBIOLOGY', id: 'moulds', name: 'Yeast & Mould', emoji: '🍄', color: '#E67E22', tag: 'Fungi', desc: 'Quantitative enumeration of viable yeast and mould colonies. Direct correlation to storage hygiene, raw material integrity, and long-term biodeterioration prevention.', extraLabel1: 'Standard', extraValue1: '≤ 10⁴ CFU/g', extraLabel2: 'Severity', extraValue2: 'High' },
-  { n: 12, category: 'MICROBIOLOGY', id: 'ecoli', name: 'E. Coli', emoji: '🔴', color: '#C0392B', tag: 'Pathogen', desc: 'Strict screening for Escherichia coli utilizing ISO 16649 guidelines, acting as the primary indicator for faecal contamination and safeguarding against severe foodborne illness.', extraLabel1: 'Standard', extraValue1: 'Absent / g', extraLabel2: 'Severity', extraValue2: 'Critical' },
+  { n: 12, category: 'MICROBIOLOGY', id: 'ecoli', name: 'E. Coli', emoji: '🔴', color: '#111111', tag: 'Pathogen', desc: 'Strict screening for Escherichia coli utilizing ISO 16649 guidelines, acting as the primary indicator for faecal contamination and safeguarding against severe foodborne illness.', extraLabel1: 'Standard', extraValue1: 'Absent / g', extraLabel2: 'Severity', extraValue2: 'Critical' },
   { n: 13, category: 'MICROBIOLOGY', id: 'coliforms', name: 'Coliforms', emoji: '🔵', color: '#2980B9', tag: 'Indicator', desc: 'Detection and Most Probable Number (MPN) enumeration of Coliform bacteria. Serves as a vital proxy for assessing overall plant sanitation and processing hygiene efficacy.', extraLabel1: 'Standard', extraValue1: '≤ 10 MPN/g', extraLabel2: 'Severity', extraValue2: 'Moderate' },
   { n: 14, category: 'MICROBIOLOGY', id: 'tvc', name: 'Total Plate Count', emoji: '🧫', color: '#2980B9', tag: 'Bioburden', desc: 'Aerobic Plate Count (APC) assessment to determine the total bioburden of the spice matrix, validating the 5-log microbial reduction achieved by our advanced steam sterilization lines.', extraLabel1: 'Standard', extraValue1: '≤ 10⁵ CFU/g', extraLabel2: 'Severity', extraValue2: 'Moderate' },
   { n: 15, category: 'MICROBIOLOGY', id: 'others', name: 'Staph. Aureus', emoji: '⚠️', color: '#1ABC9C', tag: 'Pathogen', desc: 'Targeted screening for enterotoxin-producing coagulase-positive Staphylococci, ensuring strict personnel hygiene standards and mitigating cross-contamination during handling.', extraLabel1: 'Standard', extraValue1: 'Absent / g', extraLabel2: 'Severity', extraValue2: 'High' },

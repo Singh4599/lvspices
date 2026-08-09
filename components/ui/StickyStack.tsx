@@ -75,7 +75,7 @@ export default function StickyStack({ children, cardCount }: StickyStackProps) {
           const activeIdx = Math.min(cardCount - 1, Math.floor(progress * cardCount));
           const isActiveDot = i === activeIdx;
           dotEl.style.width = isActiveDot ? '28px' : '8px';
-          dotEl.style.background = isActiveDot ? '#AC033B' : 'rgba(255,255,255,0.2)';
+          dotEl.style.background = isActiveDot ? '#111111' : 'rgba(255,255,255,0.2)';
         }
       });
 
@@ -167,7 +167,7 @@ export default function StickyStack({ children, cardCount }: StickyStackProps) {
                 width: i === 0 ? 28 : 8,
                 height: 8,
                 borderRadius: 4,
-                background: i === 0 ? '#AC033B' : 'rgba(255,255,255,0.2)',
+                background: i === 0 ? '#111111' : 'rgba(255,255,255,0.2)',
                 transition: 'all 0.4s cubic-bezier(0.22,1,0.36,1)',
               }}
             />

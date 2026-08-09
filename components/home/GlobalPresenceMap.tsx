@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const SERIF   = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS    = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO    = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -103,7 +103,7 @@ function PinIcon({ size, hovered }: { size: number; hovered: boolean }) {
       style={{
         display: 'block',
         filter: hovered
-          ? `drop-shadow(0 0 6px ${CRIMSON}cc)`
+          ? `drop-shadow(0 0 6px #1a56dbcc)`
           : `drop-shadow(0 2px 3px rgba(0,0,0,0.22))`,
         transform: hovered ? 'scale(1.35) translateY(-3px)' : 'scale(1)',
         transition: 'transform 0.2s cubic-bezier(0.34,1.56,0.64,1), filter 0.2s',
@@ -112,7 +112,7 @@ function PinIcon({ size, hovered }: { size: number; hovered: boolean }) {
       {/* Teardrop body */}
       <path
         d="M12 0C7.03 0 3 4.03 3 9c0 7.25 9 21 9 21s9-13.75 9-21c0-4.97-4.03-9-9-9z"
-        fill={CRIMSON}
+        fill="#1a56db"
       />
       {/* Inner white circle */}
       <circle cx="12" cy="9" r="4" fill="white" />
@@ -155,7 +155,7 @@ export default function GlobalPresenceMap() {
       {/* Radial warm tint */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 70% 55% at 50% 60%, rgba(172,3,59,0.04) 0%, transparent 70%)',
+        background: 'radial-gradient(ellipse 70% 55% at 50% 60%, rgba(17,17,17,0.04) 0%, transparent 70%)',
       }} />
 
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(16px,4vw,48px)' }}>
@@ -179,7 +179,7 @@ export default function GlobalPresenceMap() {
             margin: '0 0 12px',
           }}>
             Global{' '}
-            <span style={{ fontStyle: 'italic', color: CRIMSON }}>Presence.</span>
+            <span style={{ color: '#111' }}>Presence.</span>
           </h2>
           <p style={{
             fontFamily: SANS,
@@ -263,7 +263,7 @@ export default function GlobalPresenceMap() {
                 pointerEvents: 'none',
                 whiteSpace: 'nowrap',
                 zIndex: 100,
-                boxShadow: '0 4px 20px rgba(172,3,59,0.45)',
+                boxShadow: '0 4px 20px rgba(17,17,17,0.45)',
                 animation: 'gpTooltipIn 0.12s ease',
               }}
             >

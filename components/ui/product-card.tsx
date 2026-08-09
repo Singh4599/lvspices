@@ -58,14 +58,14 @@ export const ProductHighlightCard = React.forwardRef<HTMLDivElement, ProductHigh
 
         {/* Icon */}
         {categoryIcon && (
-          <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[rgba(172,3,59,0.06)] border border-[rgba(172,3,59,0.1)] flex items-center justify-center text-[#AC033B] mx-auto mb-6 relative z-10">
+          <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[rgba(17,17,17,0.06)] border border-[rgba(17,17,17,0.1)] flex items-center justify-center text-[#111111] mx-auto mb-6 relative z-10">
             {categoryIcon}
           </div>
         )}
 
         {/* Category label */}
         {category && (
-          <p className="font-mono text-[9.5px] md:text-[10px] tracking-[0.25em] uppercase text-[#AC033B] mb-4 relative z-10">
+          <p className="font-mono text-[9.5px] md:text-[10px] tracking-[0.25em] uppercase text-[#111111] mb-4 relative z-10">
             {category}
           </p>
         )}
@@ -87,7 +87,7 @@ export const ProductHighlightCard = React.forwardRef<HTMLDivElement, ProductHigh
           <ul className="space-y-3 relative z-10 inline-block text-left mt-2">
             {bullets.map((item, i) => (
               <li key={i} className="flex items-start gap-2.5 text-[12px] md:text-[13px] text-white/60 leading-relaxed">
-                <span className="text-[#AC033B] font-bold mt-0.5 shrink-0">—</span>
+                <span className="text-[#111111] font-bold mt-0.5 shrink-0">—</span>
                 <span>{item}</span>
               </li>
             ))}

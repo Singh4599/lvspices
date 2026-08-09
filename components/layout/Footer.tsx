@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 
 const sections = [
   {
@@ -96,7 +96,7 @@ function DesktopCol({ title, links }: { title: string; links: { label: string; h
       <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         {links.map((l) => (
           <Link key={l.label} href={l.href}
-            className="font-sans hover:text-[#AC033B] transition-colors"
+            className="font-sans hover:text-[#111111] transition-colors"
             style={{ fontSize: '11.5px', textDecoration: 'none', whiteSpace: 'nowrap', lineHeight: 1, display: 'flex', alignItems: 'center', height: 18, color: 'rgba(255,255,255,0.5)' }}
           >
             {l.label}
@@ -198,7 +198,7 @@ export default function Footer() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                   {sections[0].links.map((l) => (
                     <Link key={l.label} href={l.href}
-                      className="font-sans hover:text-[#AC033B] transition-colors"
+                      className="font-sans hover:text-[#111111] transition-colors"
                       style={{ fontSize: '11.5px', textDecoration: 'none', whiteSpace: 'nowrap', lineHeight: 1, display: 'flex', alignItems: 'center', height: 18, color: 'rgba(255,255,255,0.5)' }}
                     >{l.label}</Link>
                   ))}
@@ -211,10 +211,10 @@ export default function Footer() {
               <div className="col-span-2 md:col-span-1">
                 <h4 className="font-mono uppercase font-bold" style={{ fontSize: 11, letterSpacing: '0.2em', marginBottom: 10, color: 'rgba(255,255,255,0.4)' }}>Contact</h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                  <a href={`tel:${siteConfig.contact.phone}`} className="font-sans hover:text-[#AC033B] transition-colors" style={{ fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(255,255,255,0.5)' }}>
+                  <a href={`tel:${siteConfig.contact.phone}`} className="font-sans hover:text-[#111111] transition-colors" style={{ fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(255,255,255,0.5)' }}>
                     <Phone className="w-4 h-4 shrink-0" />{siteConfig.contact.phone}
                   </a>
-                  <a href={`mailto:${siteConfig.contact.email}`} className="font-sans hover:text-[#AC033B] transition-colors" style={{ fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(255,255,255,0.5)' }}>
+                  <a href={`mailto:${siteConfig.contact.email}`} className="font-sans hover:text-[#111111] transition-colors" style={{ fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(255,255,255,0.5)' }}>
                     <Mail className="w-4 h-4 shrink-0" />{siteConfig.contact.email}
                   </a>
                   <div className="font-sans" style={{ fontSize: 13, display: 'flex', alignItems: 'flex-start', gap: 10, color: 'rgba(255,255,255,0.5)' }}>
@@ -229,14 +229,14 @@ export default function Footer() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
             <div style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
               <span className="font-sans" style={{ fontSize: '12.5px', color: 'rgba(255,255,255,0.3)' }}>© {currentYear} LV Spices. All rights reserved.</span>
-              <Link href="/privacy" className="font-sans hover:text-[#AC033B] transition-colors" style={{ fontSize: '12.5px', textDecoration: 'none', color: 'rgba(255,255,255,0.3)' }}>Privacy Policy</Link>
-              <Link href="/terms" className="font-sans hover:text-[#AC033B] transition-colors" style={{ fontSize: '12.5px', textDecoration: 'none', color: 'rgba(255,255,255,0.3)' }}>Terms & Conditions</Link>
+              <Link href="/privacy" className="font-sans hover:text-[#111111] transition-colors" style={{ fontSize: '12.5px', textDecoration: 'none', color: 'rgba(255,255,255,0.3)' }}>Privacy Policy</Link>
+              <Link href="/terms" className="font-sans hover:text-[#111111] transition-colors" style={{ fontSize: '12.5px', textDecoration: 'none', color: 'rgba(255,255,255,0.3)' }}>Terms & Conditions</Link>
             </div>
             <div style={{ display: 'flex', gap: 18, alignItems: 'center' }}>
-              <a href={siteConfig.social.linkedin || '#'} target="_blank" rel="nofollow noopener" aria-label="LinkedIn" className="hover:text-[#AC033B] transition-colors" style={{ color: 'rgba(255,255,255,0.3)' }}>
+              <a href={siteConfig.social.linkedin || '#'} target="_blank" rel="nofollow noopener" aria-label="LinkedIn" className="hover:text-[#111111] transition-colors" style={{ color: 'rgba(255,255,255,0.3)' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               </a>
-              <a href={siteConfig.social.twitter || '#'} target="_blank" rel="nofollow noopener" aria-label="Twitter (X)" className="hover:text-[#AC033B] transition-colors" style={{ color: 'rgba(255,255,255,0.3)' }}>
+              <a href={siteConfig.social.twitter || '#'} target="_blank" rel="nofollow noopener" aria-label="Twitter (X)" className="hover:text-[#111111] transition-colors" style={{ color: 'rgba(255,255,255,0.3)' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               </a>
             </div>
@@ -248,7 +248,7 @@ export default function Footer() {
 
       {/* WhatsApp floating */}
       <a href={`https://wa.me/${siteConfig.contact.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"
-        style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 70, width: 56, height: 56, borderRadius: '50%', background: CRIMSON, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 30px rgba(172,3,59,0.35)', transition: 'transform 0.25s' }}
+        style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 70, width: 56, height: 56, borderRadius: '50%', background: CRIMSON, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 30px rgba(17,17,17,0.35)', transition: 'transform 0.25s' }}
         onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.1) translateY(-2px)'; }}
         onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1) translateY(0)'; }}
       >

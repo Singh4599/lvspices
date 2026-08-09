@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from '@/lib/gsap';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 
 const PRODUCTS = [
   { id: 'chilli',    name: 'Red Chilli Powder',  icon: '🌶️' },
@@ -15,7 +15,7 @@ const PRODUCTS = [
 ];
 
 const PALETTES = [
-  { name: 'Crimson',  bg: '#AC033B', text: '#fff', accent: '#FFD700', border: '#7A0029' },
+  { name: 'Crimson',  bg: '#111111', text: '#fff', accent: '#FFD700', border: '#7A0029' },
   { name: 'Midnight', bg: '#1a1a2e', text: '#fff', accent: '#e94560', border: '#16213e' },
   { name: 'Forest',   bg: '#2D6A4F', text: '#fff', accent: '#B7E4C7', border: '#1B4332' },
   { name: 'Gold',     bg: '#C8973E', text: '#fff', accent: '#fff3cd', border: '#A07830' },
@@ -281,11 +281,11 @@ export default function LabelRevealHero() {
         .plb-size { padding:9px 15px; border-radius:8px; border:2px solid rgba(0,0,0,0.1);
           background:#fff; cursor:pointer; font-family:var(--font-mono); font-size:11px;
           font-weight:700; color:#555; transition:all 0.2s; }
-        .plb-size.on { border-color:${CRIMSON}; color:${CRIMSON}; background:rgba(172,3,59,0.04); }
+        .plb-size.on { border-color:${CRIMSON}; color:${CRIMSON}; background:rgba(17,17,17,0.04); }
         .plb-prod { padding:10px 8px; border-radius:12px; border:2px solid rgba(0,0,0,0.08);
           background:#fff; cursor:pointer; transition:all 0.2s; display:flex;
           flex-direction:column; align-items:center; gap:4px; }
-        .plb-prod.on { border-color:${CRIMSON}; background:rgba(172,3,59,0.04); }
+        .plb-prod.on { border-color:${CRIMSON}; background:rgba(17,17,17,0.04); }
         .hero-layout { display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,6vw,100px); align-items:center; }
         @media(max-width:700px){
           .hero-layout { grid-template-columns:1fr; text-align:center; }
@@ -305,7 +305,7 @@ export default function LabelRevealHero() {
             <div>
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
-                background: 'rgba(172,3,59,0.07)', border: '1px solid rgba(172,3,59,0.2)',
+                background: 'rgba(17,17,17,0.07)', border: '1px solid rgba(17,17,17,0.2)',
                 borderRadius: 999, padding: '6px 18px', marginBottom: 24
               }}>
                 <span style={{ width: 5, height: 5, borderRadius: '50%', background: CRIMSON, display: 'inline-block' }}/>
@@ -343,10 +343,10 @@ export default function LabelRevealHero() {
                 fontFamily: 'var(--font-sans)', fontSize: 15, fontWeight: 600,
                 background: CRIMSON, color: '#fff', padding: '16px 36px', borderRadius: 999,
                 border: 'none', cursor: 'pointer', transition: 'all 0.25s',
-                boxShadow: '0 8px 24px rgba(172,3,59,0.2)'
+                boxShadow: '0 8px 24px rgba(17,17,17,0.2)'
               }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 16px 40px rgba(172,3,59,0.35)'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(172,3,59,0.2)'; }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 16px 40px rgba(17,17,17,0.35)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(17,17,17,0.2)'; }}
               >
                 ✦ Create Your Label →
               </button>
@@ -487,7 +487,7 @@ export default function LabelRevealHero() {
             flex: 1, textAlign: 'center', fontFamily: 'var(--font-sans)', fontSize: 14,
             fontWeight: 600, background: CRIMSON, color: '#fff', padding: '15px 20px',
             borderRadius: 999, textDecoration: 'none', transition: 'all 0.25s',
-            boxShadow: '0 6px 20px rgba(172,3,59,0.2)'
+            boxShadow: '0 6px 20px rgba(17,17,17,0.2)'
           }}>
             Get {brand.trim() || 'This'} Made →
           </a>

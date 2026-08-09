@@ -48,9 +48,9 @@ export function AnimatedSectionHeader({
             initial={reduced ? false : { scaleX: 0 }}
             animate={inView ? { scaleX: 1 } : {}}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            style={{ width: '40px', height: '1px', background: '#AC033B', transformOrigin: 'left' }}
+            style={{ width: '40px', height: '1px', background: '#111111', transformOrigin: 'left' }}
           />
-          <span className="font-mono uppercase text-[#AC033B]" style={{ fontSize: '11px', letterSpacing: '0.28em' }}>
+          <span className="font-mono uppercase text-[#111111]" style={{ fontSize: '11px', letterSpacing: '0.28em' }}>
             {eyebrow}
           </span>
           {center && (
@@ -58,7 +58,7 @@ export function AnimatedSectionHeader({
               initial={reduced ? false : { scaleX: 0 }}
               animate={inView ? { scaleX: 1 } : {}}
               transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
-              style={{ width: '40px', height: '1px', background: '#AC033B', transformOrigin: 'right' }}
+              style={{ width: '40px', height: '1px', background: '#111111', transformOrigin: 'right' }}
             />
           )}
         </motion.div>

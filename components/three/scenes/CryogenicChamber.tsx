@@ -60,7 +60,7 @@ function Chamber() {
         <mesh>
           <cylinderGeometry args={[0.85, 0.85, 2.8, 32, 1, true]} />
           <meshStandardMaterial
-            color="#AC033B"
+            color='#111111'
             transparent
             opacity={0.05}
             side={THREE.DoubleSide}
@@ -70,19 +70,19 @@ function Chamber() {
         {/* Top ring */}
         <mesh position={[0, 1.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[1, 0.05, 8, 32]} />
-          <meshStandardMaterial color="#AC033B" metalness={0.8} roughness={0.2} />
+          <meshStandardMaterial color='#111111' metalness={0.8} roughness={0.2} />
         </mesh>
 
         {/* Bottom ring */}
         <mesh position={[0, -1.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[1, 0.05, 8, 32]} />
-          <meshStandardMaterial color="#AC033B" metalness={0.8} roughness={0.2} />
+          <meshStandardMaterial color='#111111' metalness={0.8} roughness={0.2} />
         </mesh>
 
         {/* Mid ring */}
         <mesh position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[1.02, 0.03, 8, 32]} />
-          <meshStandardMaterial color="#AC033B" metalness={0.6} roughness={0.3} opacity={0.5} transparent />
+          <meshStandardMaterial color='#111111' metalness={0.6} roughness={0.3} opacity={0.5} transparent />
         </mesh>
       </group>
 
@@ -95,7 +95,7 @@ function Chamber() {
           />
         </bufferGeometry>
         <pointsMaterial
-          color="#AC033B"
+          color='#111111'
           size={0.02}
           transparent
           opacity={0.3}
@@ -107,7 +107,7 @@ function Chamber() {
 
       {/* Temperature HUD */}
       <Html position={[1.8, 0, 0]} center>
-        <div className="font-mono text-[14px] font-bold text-[#AC033B] whitespace-nowrap opacity-80">
+        <div className="font-mono text-[14px] font-bold text-[#111111] whitespace-nowrap opacity-80">
           -40°C
         </div>
       </Html>
@@ -137,7 +137,7 @@ export default function CryogenicChamber({ className = '' }: CryogenicChamberPro
         <Suspense fallback={null}>
           <ambientLight intensity={0.6} color="#FFFFFF" />
           <pointLight position={[3, 3, 3]} intensity={0.4} color="#FFFFFF" />
-          <pointLight position={[-2, -1, 2]} intensity={0.2} color="#AC033B" />
+          <pointLight position={[-2, -1, 2]} intensity={0.2} color='#111111' />
           <Chamber />
         </Suspense>
       </Canvas>

@@ -79,9 +79,9 @@ export default async function ProductCategoryPage({ params }: Props) {
           {/* Left Content - Perfectly Centered */}
           <div className="flex flex-col items-center justify-center p-10 md:p-16 lg:p-24 relative z-10 text-center min-w-0">
             <div className="w-full max-w-[540px] flex flex-col items-center">
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '24px', padding: '8px 18px', background: 'rgba(172,3,59,0.06)', borderRadius: '40px' }}>
-                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#AC033B' }} />
-                <span className="font-mono uppercase text-[#AC033B]" style={{ fontSize: '10px', letterSpacing: '0.22em' }}>Manufacturing</span>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '24px', padding: '8px 18px', background: 'rgba(17,17,17,0.06)', borderRadius: '40px' }}>
+                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#111111' }} />
+                <span className="font-mono uppercase text-[#111111]" style={{ fontSize: '10px', letterSpacing: '0.22em' }}>Manufacturing</span>
               </div>
               
               <h2
@@ -89,7 +89,7 @@ export default async function ProductCategoryPage({ params }: Props) {
                 style={{ fontSize: 'clamp(2.2rem, 3.5vw, 3.2rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
               >
                 Need a custom <br/>
-                <span className="text-[#AC033B]">specification?</span>
+                <span className="text-[#111111]">specification?</span>
               </h2>
               
               <p className="text-white/60 mb-10 text-lg" style={{ lineHeight: 1.7 }}>

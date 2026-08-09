@@ -201,7 +201,7 @@ export default function ScrollVideoScrub({
               width: 36,
               height: 36,
               border: '3px solid rgba(255,255,255,0.12)',
-              borderTopColor: '#AC033B',
+              borderTopColor: '#111111',
               borderRadius: '50%',
               animation: 'scrub-spin 0.7s linear infinite',
             }}

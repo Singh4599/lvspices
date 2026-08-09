@@ -29,7 +29,7 @@ interface AnimatedHeroProps {
 
 // Particle configs
 const PARTICLE_COLORS = {
-  spice: ['#AC033B', '#e8975c', '#c8a96e', '#AC033B'],
+  spice: ['#111111', '#e8975c', '#c8a96e', '#111111'],
   leaf: ['#2d8f4e', '#5ab870', '#91c788', '#3aad5e'],
   frost: ['#a8d4f5', '#deeffe', '#7fb3e8', '#c5e4fb'],
   none: [],
@@ -184,9 +184,9 @@ export default function AnimatedHero({
             variants={itemVariants}
             style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '28px' }}
           >
-            <div style={{ width: '36px', height: '1.5px', background: '#AC033B', flexShrink: 0 }} />
+            <div style={{ width: '36px', height: '1.5px', background: '#111111', flexShrink: 0 }} />
             <span
-              className="font-mono uppercase text-[#AC033B]"
+              className="font-mono uppercase text-[#111111]"
               style={{ fontSize: '11px', letterSpacing: '0.28em' }}
             >
               {eyebrow}
@@ -225,12 +225,12 @@ export default function AnimatedHero({
               {stats.map((s) => (
                 <div key={s.label}>
                   {s.icon && (
-                    <div className="text-[#AC033B]" style={{ marginBottom: '8px', opacity: 0.7 }}>
+                    <div className="text-[#111111]" style={{ marginBottom: '8px', opacity: 0.7 }}>
                       {s.icon}
                     </div>
                   )}
                   <div
-                    className="font-mono font-bold text-[#AC033B]"
+                    className="font-mono font-bold text-[#111111]"
                     style={{ fontSize: 'clamp(1.4rem, 2.2vw, 2rem)', lineHeight: 1, marginBottom: '4px' }}
                   >
                     {s.numeric !== undefined ? (

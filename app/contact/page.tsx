@@ -9,7 +9,7 @@ import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import Phone3D from '@/components/ui/Phone3D';
 import OfficeBlueprintSVG from '@/components/contact/OfficeBlueprintSVG';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -111,9 +111,9 @@ export default function ContactPage() {
                 </div>
 
                 {formState === 'sent' ? (
-                  <div style={{ padding: '60px', border: '1px solid rgba(172,3,59,0.15)', borderRadius: '20px', textAlign: 'center', background: 'rgba(172,3,59,0.025)' }}>
-                    <div style={{ width: '64px', height: '64px', margin: '0 auto 24px', borderRadius: '50%', background: 'rgba(172,3,59,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#AC033B" strokeWidth="2"><path d="M20 6L9 17l-5-5" /></svg>
+                  <div style={{ padding: '60px', border: '1px solid rgba(17,17,17,0.15)', borderRadius: '20px', textAlign: 'center', background: 'rgba(17,17,17,0.025)' }}>
+                    <div style={{ width: '64px', height: '64px', margin: '0 auto 24px', borderRadius: '50%', background: 'rgba(17,17,17,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke='#111111' strokeWidth="2"><path d="M20 6L9 17l-5-5" /></svg>
                     </div>
                     <h3 style={{ fontFamily: SERIF, fontSize: '24px', fontWeight: 700, color: '#111', marginBottom: '12px' }}>Message Received</h3>
                     <p style={{ fontFamily: SANS, fontSize: '14px', color: 'rgba(0,0,0,0.5)', lineHeight: 1.7 }}>
@@ -157,12 +157,12 @@ export default function ContactPage() {
                     </div>
 
                     <button type="submit" disabled={formState === 'sending'} style={{
-                      padding: '16px 40px', background: formState === 'sending' ? 'rgba(172,3,59,0.6)' : CRIMSON, color: '#fff',
+                      padding: '16px 40px', background: formState === 'sending' ? 'rgba(17,17,17,0.6)' : CRIMSON, color: '#fff',
                       border: 'none', borderRadius: '999px', fontSize: '14px', fontFamily: SANS, fontWeight: 600,
                       letterSpacing: '0.04em', cursor: formState === 'sending' ? 'not-allowed' : 'pointer',
                       alignSelf: 'flex-start', transition: 'all 0.25s',
                     }}
-                      onMouseEnter={e => { if (formState !== 'sending') { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(172,3,59,0.3)'; } }}
+                      onMouseEnter={e => { if (formState !== 'sending') { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(17,17,17,0.3)'; } }}
                       onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
                     >
                       {formState === 'sending' ? 'Sending...' : 'Send Message →'}
@@ -188,7 +188,7 @@ export default function ContactPage() {
               {/* Address Card */}
               <div style={{ padding: '32px', background: 'rgba(0,0,0,0.02)', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '20px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
-                  <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(172,3,59,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: CRIMSON }}>
+                  <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(17,17,17,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: CRIMSON }}>
                     <MapPin size={20} />
                   </div>
                   <h3 style={{ fontFamily: SERIF, fontSize: '20px', fontWeight: 700, color: '#111' }}>Our Address</h3>
@@ -204,7 +204,7 @@ export default function ContactPage() {
               {/* Contact Card */}
               <div style={{ padding: '32px', background: 'rgba(0,0,0,0.02)', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '20px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
-                  <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(172,3,59,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: CRIMSON }}>
+                  <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(17,17,17,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: CRIMSON }}>
                     <Mail size={20} />
                   </div>
                   <h3 style={{ fontFamily: SERIF, fontSize: '20px', fontWeight: 700, color: '#111' }}>Contact Us</h3>

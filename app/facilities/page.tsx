@@ -12,7 +12,7 @@ import FactoryBlueprint from '@/components/facilities/FactoryBlueprint';
 /* ─────────────────────────────────────────────────
    Design tokens
 ───────────────────────────────────────────────── */
-const CR        = '#AC033B';
+const CR        = '#111111';
 const OFF_WHITE = '#F8F6F2';
 const INK       = '#1A1915';
 const WARM_GRAY = '#8A8580';

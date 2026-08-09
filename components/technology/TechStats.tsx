@@ -3,7 +3,7 @@
 import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import CountUp from '@/components/animation/CountUp';
 
-const CR = '#AC033B';
+const CR = '#111111';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';

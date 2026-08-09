@@ -7,7 +7,7 @@ import CurvedLoop from '@/components/ui/CurvedLoop';
 import TestimonialHero from '@/components/testimonials/TestimonialHero';
 import WorldTestimonialsMap from '@/components/testimonials/WorldTestimonialsMap';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -51,8 +51,8 @@ function TiltTestimonialCard({ item }: { item: typeof gridTestimonials[0] }) {
     const rx = ((e.clientY - r.top - r.height / 2) / r.height) * -8;
     const ry = ((e.clientX - r.left - r.width / 2) / r.width) * 8;
     el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.025)`;
-    el.style.borderColor = 'rgba(172,3,59,0.4)';
-    el.style.background = 'rgba(172,3,59,0.08)';
+    el.style.borderColor = 'rgba(17,17,17,0.4)';
+    el.style.background = 'rgba(17,17,17,0.08)';
   };
   const onLeave = () => {
     const el = ref.current; if (!el) return;
@@ -72,7 +72,7 @@ function TiltTestimonialCard({ item }: { item: typeof gridTestimonials[0] }) {
       </p>
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 18, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
         <div style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, color: '#fff' }}>{item.author}</div>
-        <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', background: 'rgba(172,3,59,0.25)', color: '#D0375C', borderRadius: 999, padding: '4px 10px' }}>Verified Client</div>
+        <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', background: 'rgba(17,17,17,0.25)', color: '#D0375C', borderRadius: 999, padding: '4px 10px' }}>Verified Client</div>
       </div>
     </div>
   );
@@ -105,7 +105,7 @@ export default function TestimonialsPage() {
             </p>
           </ScrollReveal>
           <ScrollReveal fromY={16} delay={0.2}>
-            <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 6, padding: '16px 28px', background: 'rgba(172,3,59,0.06)', border: '1px solid rgba(172,3,59,0.18)', borderRadius: 12 }}>
+            <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 6, padding: '16px 28px', background: 'rgba(17,17,17,0.06)', border: '1px solid rgba(17,17,17,0.18)', borderRadius: 12 }}>
               <div style={{ fontFamily: SANS, fontSize: 15, fontWeight: 700, color: '#111' }}>{featuredTestimonial.author}</div>
               <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', color: 'rgba(0,0,0,0.45)', textTransform: 'uppercase' }}>{featuredTestimonial.role}</div>
             </div>
@@ -157,7 +157,7 @@ export default function TestimonialsPage() {
           <StaggerReveal stagger={0.06} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}>
             {certifications.map(cert => (
               <div key={cert.name} style={{ background: '#fafafa', border: '1px solid rgba(0,0,0,0.08)', borderRadius: 16, padding: '24px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 110, transition: 'all 0.25s', cursor: 'default' }}
-                onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = CRIMSON; el.style.background = 'rgba(172,3,59,0.05)'; el.style.transform = 'translateY(-4px)'; el.style.boxShadow = '0 10px 30px rgba(172,3,59,0.1)'; }}
+                onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = CRIMSON; el.style.background = 'rgba(17,17,17,0.05)'; el.style.transform = 'translateY(-4px)'; el.style.boxShadow = '0 10px 30px rgba(17,17,17,0.1)'; }}
                 onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = 'rgba(0,0,0,0.08)'; el.style.background = '#fafafa'; el.style.transform = 'translateY(0)'; el.style.boxShadow = 'none'; }}>
                 <div style={{ fontFamily: SERIF, fontSize: 16, fontWeight: 700, color: '#111', marginBottom: 8, textAlign: 'center' }}>{cert.name}</div>
                 <div style={{ fontFamily: SANS, fontSize: 11, color: 'rgba(0,0,0,0.45)', textAlign: 'center', lineHeight: 1.4 }}>{cert.label}</div>

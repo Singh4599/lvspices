@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 const CSS = `
   @keyframes th-marquee-fwd {
@@ -100,14 +100,14 @@ export default function TechTurbineHero({
       {/* ── AMBIENT RADIAL GLOW ───────────────────────────── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 55% 45% at 50% 52%, rgba(172,3,59,0.04) 0%, transparent 70%)',
+        background: 'radial-gradient(ellipse 55% 45% at 50% 52%, rgba(17,17,17,0.04) 0%, transparent 70%)',
       }} />
 
       {/* ── CONTENT ──────────────────────────────────────── */}
       <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%', height: '100%', gap: '24px' }}>
 
         {/* Badge */}
-        <div className="th-in" style={{ animationDelay: '0.05s', display: 'inline-flex', alignItems: 'center', gap: 8, border: `1px solid rgba(172,3,59,0.2)`, borderRadius: 999, padding: '7px 20px', background: 'rgba(172,3,59,0.05)' }}>
+        <div className="th-in" style={{ animationDelay: '0.05s', display: 'inline-flex', alignItems: 'center', gap: 8, border: `1px solid rgba(17,17,17,0.2)`, borderRadius: 999, padding: '7px 20px', background: 'rgba(17,17,17,0.05)' }}>
           <span style={{ width: 6, height: 6, borderRadius: '50%', background: CR, boxShadow: `0 0 10px ${CR}` }} />
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.28em', textTransform: 'uppercase', color: CR }}>{badgeText}</span>
         </div>

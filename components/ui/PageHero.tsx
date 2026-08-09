@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
@@ -155,7 +155,7 @@ export default function PageHero({
         {/* Tag pill */}
         <div ref={tagRef} style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
-          background: 'rgba(172,3,59,0.2)', border: '1px solid rgba(172,3,59,0.5)',
+          background: 'rgba(17,17,17,0.2)', border: '1px solid rgba(17,17,17,0.5)',
           borderRadius: 999, padding: '6px 18px', marginBottom: 22,
           backdropFilter: 'blur(8px)',
           opacity: 0,

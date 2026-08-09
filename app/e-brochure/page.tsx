@@ -5,7 +5,7 @@ import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import BookFlip from '@/components/ebrochure/BookFlip';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -52,7 +52,7 @@ export default function EBrochurePage() {
               <ScrollReveal key={i} fromY={20} delay={i * 0.1}>
                 <div
                   style={{ background: '#fafafa', border: '1px solid rgba(0,0,0,0.07)', borderRadius: 20, padding: 'clamp(24px,3vw,36px)', transition: 'all 0.25s', cursor: 'default', height: '100%' }}
-                  onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-5px)'; el.style.boxShadow = '0 16px 48px rgba(0,0,0,0.08)'; el.style.borderColor = 'rgba(172,3,59,0.25)'; }}
+                  onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-5px)'; el.style.boxShadow = '0 16px 48px rgba(0,0,0,0.08)'; el.style.borderColor = 'rgba(17,17,17,0.25)'; }}
                   onMouseLeave={e => { const el = e.currentTarget; el.style.transform = ''; el.style.boxShadow = ''; el.style.borderColor = 'rgba(0,0,0,0.07)'; }}
                 >
                   <div style={{ fontSize: 32, marginBottom: 16 }}>{h.icon}</div>

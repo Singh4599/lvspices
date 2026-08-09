@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-const RED   = '#AC033B';
+const RED   = '#111111';
 const INK   = '#1A1915';
-const INK_L = '#4A4A4A';
+const INK_L = '#666666';
 
 interface ProcessStep {
   n: number;
@@ -19,24 +19,24 @@ interface ProcessStep {
 
 const GROUND_SPICE_STEPS: ProcessStep[] = [
   { n: 1, label: 'Raw Material Receipt', emoji: '📦', color: '#1A6B3E', tag: 'Sourcing', desc: 'Strategic procurement of premium raw spices directly from designated APMCs and producing centres during peak harvest windows, ensuring maximum volatile oil retention and ASTA color integrity.', extraLabel1: 'Note', extraValue1: 'Sourced directly from APMCs' },
-  { n: 2, label: 'Inspection', emoji: '🔬', color: '#C0392B', tag: 'Quality', desc: 'Rigorous multi-point quality sampling and in-house laboratory testing against ASTA/ISO standards. Non-compliant raw material is immediately quarantined and returned to supplier, ensuring zero defect entry.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
+  { n: 2, label: 'Inspection', emoji: '🔬', color: '#111111', tag: 'Quality', desc: 'Rigorous multi-point quality sampling and in-house laboratory testing against ASTA/ISO standards. Non-compliant raw material is immediately quarantined and returned to supplier, ensuring zero defect entry.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
   { n: 3, label: 'Unloading & Segregation', emoji: '🏗️', color: '#2980B9', tag: 'Logistics', desc: 'Post-approval unloading via mechanized conveyors. Material is intelligently segregated into ambient dry storage or temperature-controlled cold storage based on specific commodity moisture and volatile profiles.', extraLabel1: 'Destinations', extraValue1: 'Dry / Cold Storage' },
   { n: 4, label: 'Issue to Production', emoji: '📋', color: '#F39C12', tag: 'Planning', desc: 'Formally documented issuance to the manufacturing floor using our ERP system. Guarantees 100% forward and backward traceability for every processed batch.', extraLabel1: 'System', extraValue1: 'ERP Traceability' },
   { n: 5, label: 'Weighing', emoji: '⚖️', color: '#8E44AD', tag: 'Process', desc: 'Highly calibrated digital weighing of all constituent batches before processing begins, eliminating human variance and ensuring absolute adherence to proprietary client formulations.' },
   { n: 6, label: 'Pre-Mixing', emoji: '🔄', color: '#27AE60', tag: 'Process', desc: 'For bespoke spice blends, raw whole ingredients undergo a precise pre-mixing phase in ribbon blenders, guaranteeing a homogenous feed into the milling line.', extraLabel1: 'Type', extraValue1: 'Optional' },
   { n: 7, label: 'Automated Feeding', emoji: '⚙️', color: '#D35400', tag: 'Process', desc: 'Material is pneumatically or mechanically conveyed via enclosed bucket elevators into the milling circuit, preventing cross-contamination and maintaining a continuous, controlled feed rate.', extraLabel1: 'Machine', extraValue1: 'Bucket Conveyor' },
-  { n: 8, label: 'Primary Grinding', emoji: '🌪️', color: '#C0392B', tag: 'Grinding', desc: 'First-stage pulverization utilizing high-capacity hammer or pin mills equipped with water-cooling jackets to prevent heat degradation of essential oils and delicate flavour profiles.', extraLabel1: 'Machine', extraValue1: 'Water-Cooled Mill' },
-  { n: 9, label: 'Secondary Grinding', emoji: '🌪️', color: '#C0392B', tag: 'Grinding', desc: 'For premium applications requiring sub-500 micron consistency, a second controlled milling pass is executed, achieving precise Particle Size Distribution (PSD) targets.', extraLabel1: 'Type', extraValue1: 'Optional' },
-  { n: 10, label: 'Micro-Milling', emoji: '🌪️', color: '#C0392B', tag: 'Grinding', desc: 'Ultra-fine micro-milling for specialized industrial applications (e.g., instant soups, extruded snacks) requiring maximum powder fineness, solubility, and rapid flavour release.', extraLabel1: 'Type', extraValue1: 'Optional' },
+  { n: 8, label: 'Primary Grinding', emoji: '🌪️', color: '#111111', tag: 'Grinding', desc: 'First-stage pulverization utilizing high-capacity hammer or pin mills equipped with water-cooling jackets to prevent heat degradation of essential oils and delicate flavour profiles.', extraLabel1: 'Machine', extraValue1: 'Water-Cooled Mill' },
+  { n: 9, label: 'Secondary Grinding', emoji: '🌪️', color: '#111111', tag: 'Grinding', desc: 'For premium applications requiring sub-500 micron consistency, a second controlled milling pass is executed, achieving precise Particle Size Distribution (PSD) targets.', extraLabel1: 'Type', extraValue1: 'Optional' },
+  { n: 10, label: 'Micro-Milling', emoji: '🌪️', color: '#111111', tag: 'Grinding', desc: 'Ultra-fine micro-milling for specialized industrial applications (e.g., instant soups, extruded snacks) requiring maximum powder fineness, solubility, and rapid flavour release.', extraLabel1: 'Type', extraValue1: 'Optional' },
   { n: 11, label: 'Final Blending', emoji: '🧪', color: '#2980B9', tag: 'Process', desc: 'Ground ingredients are homogenized in large-capacity SS304/SS316 stainless steel ribbon or paddle blenders. Essential oleoresins or liquid extracts are evenly dispersed if mandated by the recipe.', extraLabel1: 'Additives', extraValue1: 'Oil (if blended)' },
   { n: 12, label: 'Vibroseiving', emoji: '🎛️', color: '#8E44AD', tag: 'Filtration', desc: 'In-line gyration vibro-sifters equipped with precisely calibrated stainless steel mesh screens strictly enforce the final particle size and exclude any agglomerated lumps.', extraLabel1: 'Machine', extraValue1: 'Vibro-Sifter' },
-  { n: 13, label: 'Final QA Inspection', emoji: '🔬', color: '#C0392B', tag: 'Quality', desc: 'Comprehensive batch release testing (Microbiology, Chemical, Physical). The batch only proceeds to packing upon explicit sign-off from the QA Head. Packaging materials undergo parallel inspection.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
+  { n: 13, label: 'Final QA Inspection', emoji: '🔬', color: '#111111', tag: 'Quality', desc: 'Comprehensive batch release testing (Microbiology, Chemical, Physical). The batch only proceeds to packing upon explicit sign-off from the QA Head. Packaging materials undergo parallel inspection.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
   { n: 14, label: 'Pack Weighing', emoji: '⚖️', color: '#8E44AD', tag: 'Packing', desc: 'Cleared bulk product is metered through automated dosing weighers, ensuring exactly calibrated net weights for every industrial or retail packing unit.' },
   { n: 15, label: 'Bulk Filling', emoji: '🛍️', color: '#27AE60', tag: 'Packing', desc: 'Automated packing into food-grade, multi-wall Kraft paper bags, PP bags, or custom aseptic liners (25kg / 50kg) depending on client transit specifications.' },
   { n: 16, label: 'Hermetic Sealing', emoji: '🎗️', color: '#D35400', tag: 'Packing', desc: 'Inner liners are hermetically heat-sealed or securely tied to create a moisture-proof and oxygen-barrier microenvironment, safeguarding product shelf life.' },
   { n: 17, label: 'Bag Stitching', emoji: '🧵', color: '#F39C12', tag: 'Packing', desc: 'Outer bags are securely machine-stitched. Traceability labels containing lot number, manufacturing date, expiry, and batch codes are automatically affixed to each bag.' },
   { n: 18, label: 'Warehouse Storage', emoji: '🏭', color: '#1A6B3E', tag: 'Logistics', desc: 'Finished goods are safely palletized and stored in our pest-controlled, FSMA-compliant warehouse. Export containers are comprehensively fumigated prior to loading.', extraLabel1: 'Note', extraValue1: 'Container Fumigation' },
-  { n: 19, label: 'Vehicle Inspection', emoji: '🚚', color: '#C0392B', tag: 'Quality', desc: 'A mandatory 7-point hygiene, structural, and odour inspection is conducted on all shipping containers and trucks prior to authorizing loading operations.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
+  { n: 19, label: 'Vehicle Inspection', emoji: '🚚', color: '#111111', tag: 'Quality', desc: 'A mandatory 7-point hygiene, structural, and odour inspection is conducted on all shipping containers and trucks prior to authorizing loading operations.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
   { n: 20, label: 'Loading & Dispatch', emoji: '🚢', color: '#2980B9', tag: 'Dispatch', desc: 'Containers are lined with protective polysheets and craft paper. Stuffed under continuous CCTV surveillance, then sealed for dispatch to global ports (Nhava Sheva, Mundra).', extraLabel1: 'Ports', extraValue1: 'JNPT / Mundra' },
 ];
 
@@ -49,7 +49,7 @@ const WHOLE_SEEDS_STEPS: ProcessStep[] = [
   { n: 6, label: 'Gravity Separation', emoji: '🎛️', color: '#27AE60', tag: 'Process', desc: 'Advanced specific-gravity separator tables isolate and remove light, immature, or damaged seeds that survived initial screening, elevating the batch to pure export-grade density.' },
   { n: 7, label: 'Optical Sorting', emoji: '🌈', color: '#E74C3C', tag: 'Quality', desc: 'State-of-the-art Z-Series optical color sorters utilize high-resolution cameras to detect and instantly eject microscopically discoloured or defective seeds, ensuring 99.99% visual purity.', extraLabel1: 'Machine', extraValue1: 'Z-Series Sortex' },
   { n: 8, label: 'Export Packing', emoji: '🛍️', color: '#D35400', tag: 'Packing', desc: 'The pristine sorted product is automatically weighed and packed into virgin jute, PP, or vacuum-sealed bags. Every unit receives an indelible ERP-generated traceability barcode.' },
-  { n: 9, label: 'Independent Sampling', emoji: '🔬', color: '#C0392B', tag: 'Quality', desc: 'Final comprehensive consignment sampling executed precisely to SGS and ASTA methodologies. Complete Certificate of Analysis (COA) is generated and validated prior to shipment release.', extraLabel1: 'Report', extraValue1: 'Pre-Shipment COA' },
+  { n: 9, label: 'Independent Sampling', emoji: '🔬', color: '#111111', tag: 'Quality', desc: 'Final comprehensive consignment sampling executed precisely to SGS and ASTA methodologies. Complete Certificate of Analysis (COA) is generated and validated prior to shipment release.', extraLabel1: 'Report', extraValue1: 'Pre-Shipment COA' },
   { n: 10, label: 'Container Prep', emoji: '🚢', color: '#2980B9', tag: 'Dispatch', desc: 'Shipping containers are thoroughly cleaned, lined with moisture-barrier polysheets and kraft paper, stuffed under supervision, and formally sealed for global dispatch (Nhava Sheva/Mundra).', extraLabel1: 'Ports', extraValue1: 'JNPT / Mundra' },
 ];
 
@@ -90,8 +90,8 @@ const CSS = `
     letter-spacing: 0.1em; text-transform: uppercase;
     color: rgba(0,0,0,0.5);
   }
-  .pc-tab:hover { border-color: #AC033B; color: #AC033B; }
-  .pc-tab.active { background: #AC033B; border-color: #AC033B; color: #fff; }
+  .pc-tab:hover { border-color: '#111111'; color: '#111111'; }
+  .pc-tab.active { background: '#111111'; border-color: '#111111'; color: #fff; }
 `;
 
 function MachineFactory({ index, x, y, step, isActive, isHov, toggle, setHov }: {

@@ -8,7 +8,7 @@ import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 
-const CR    = '#AC033B';
+const CR    = '#111111';
 const INK   = '#1A1915';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
@@ -160,13 +160,13 @@ const CERTS: Cert[] = [
 const CATEGORIES = ['All', 'Food Safety', 'International', 'Export', 'Dietary', 'Organic', 'Traceability', 'Legal'];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Food Safety': '#2E6B3E',
-  'International': '#1A5FAB',
-  'Export': '#7B4E1B',
-  'Dietary': '#AC033B',
-  'Organic': '#2E6B3E',
-  'Traceability': '#0A4D6E',
-  'Legal': '#4A4A4A',
+  'Food Safety': '#111111',
+  'International': '#333333',
+  'Export': '#555555',
+  'Dietary': '#111111',
+  'Organic': '#111111',
+  'Traceability': '#444444',
+  'Legal': '#666666',
 };
 
 const CSS = `
@@ -196,7 +196,7 @@ const CSS = `
     border-bottom: 1px solid rgba(0,0,0,0.07);
     transition: background 0.2s;
   }
-  .cert-item:hover { background: rgba(172,3,59,0.02); }
+  .cert-item:hover { background: rgba(17,17,17,0.02); }
 
   .cert-trigger {
     display: flex; align-items: center; gap: 20px;
@@ -239,7 +239,7 @@ const CSS = `
 
   .cert-progress {
     height: 2px;
-    background: linear-gradient(to right, #AC033B, rgba(172,3,59,0.3));
+    background: linear-gradient(to right, '#111111', rgba(17,17,17,0.3));
     animation: cert-counter-line 0.6s ease-out forwards;
   }
 

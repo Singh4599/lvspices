@@ -8,7 +8,7 @@ const VIDEO_SRC = '/product-loop.mp4';
 
 // Particle configs
 const PARTICLE_COLORS = {
-  spice: ['#AC033B', '#e8975c', '#c8a96e', '#AC033B'],
+  spice: ['#111111', '#e8975c', '#c8a96e', '#111111'],
   leaf: ['#2d8f4e', '#5ab870', '#91c788', '#3aad5e'],
   frost: ['#a8d4f5', '#deeffe', '#7fb3e8', '#c5e4fb'],
   none: [],
@@ -167,19 +167,19 @@ export default function ProductVideoHero({
             marginBottom: '28px',
           }}
         >
-          <div style={{ width: '36px', height: '1.5px', background: '#AC033B', flexShrink: 0 }} />
+          <div style={{ width: '36px', height: '1.5px', background: '#111111', flexShrink: 0 }} />
           <span
             className="font-mono"
             style={{
               fontSize: '11px',
               letterSpacing: '0.28em',
-              color: '#AC033B',
+              color: '#111111',
               textTransform: 'uppercase',
             }}
           >
             Category {String(categoryIndex + 1).padStart(2, '0')}
           </span>
-          <div style={{ width: '36px', height: '1.5px', background: '#AC033B', flexShrink: 0 }} />
+          <div style={{ width: '36px', height: '1.5px', background: '#111111', flexShrink: 0 }} />
         </div>
 
         {/* Headline */}
@@ -200,7 +200,7 @@ export default function ProductVideoHero({
           <span
             className="font-serif"
             style={{
-              color: '#AC033B',
+              color: '#111111',
               fontWeight: 500,
               fontStyle: 'italic',
             }}
@@ -263,7 +263,7 @@ export default function ProductVideoHero({
                 style={{
                   fontSize: '1.6rem',
                   fontWeight: 800,
-                  color: '#AC033B',
+                  color: '#111111',
                   lineHeight: 1,
                   marginBottom: '6px',
                 }}
@@ -307,7 +307,7 @@ export default function ProductVideoHero({
               alignItems: 'center',
               justifyContent: 'center',
               padding: '16px 48px',
-              background: '#AC033B',
+              background: '#111111',
               color: '#ffffff',
               fontSize: '14px',
               fontWeight: 600,
@@ -318,7 +318,7 @@ export default function ProductVideoHero({
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'scale(1.03)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(172,3,59,0.25)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(17,17,17,0.25)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'scale(1)';
@@ -347,8 +347,8 @@ export default function ProductVideoHero({
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'scale(1.03)';
-              e.currentTarget.style.borderColor = '#AC033B';
-              e.currentTarget.style.color = '#AC033B';
+              e.currentTarget.style.borderColor = '#111111';
+              e.currentTarget.style.color = '#111111';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'scale(1)';

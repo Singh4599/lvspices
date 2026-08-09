@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 export default function FarmToFactory() {
   const sectionRef = useRef<HTMLElement>(null);

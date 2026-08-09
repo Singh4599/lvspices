@@ -11,7 +11,7 @@ interface ProductPackProps {
 }
 
 export default function ProductPack({
-  color = '#AC033B',
+  color = '#111111',
   size = [1, 1.4, 0.4],
 }: ProductPackProps) {
   const groupRef = useRef<THREE.Group>(null);

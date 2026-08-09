@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-const RED = '#AC033B';
+const RED = '#111111';
 const INK = '#1A1915';
-const INK_L = '#4A4A4A';
+const INK_L = '#666666';
 
 const CSS = `
   @keyframes ob-draw { from { stroke-dashoffset: 800; opacity: 0 } to { stroke-dashoffset: 0; opacity: 1 } }
@@ -143,7 +143,7 @@ export default function OfficeBlueprintSVG() {
                   >
                     <rect
                       x={room.x} y={room.y} width={room.w} height={room.h}
-                      fill={isActive ? 'rgba(172,3,59,0.06)' : '#fff'}
+                      fill={isActive ? 'rgba(17,17,17,0.06)' : '#fff'}
                       stroke={isActive ? RED : INK}
                       strokeWidth={isActive ? 2 : 1}
                       filter={isActive ? 'url(#ob-glow)' : 'none'}

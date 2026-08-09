@@ -86,7 +86,7 @@ export function FloatingNav() {
                     position: "absolute",
                     inset: 0,
                     borderRadius: 9999,
-                    background: "#AC033B",
+                    background: '#111111',
                     zIndex: -1,
                   }}
                   initial={false}
@@ -107,14 +107,14 @@ export function FloatingNav() {
                     width: 32,
                     height: 4,
                     borderRadius: "9999px 9999px 0 0",
-                    background: "#AC033B",
+                    background: '#111111',
                     zIndex: 10,
                   }}
                 >
                   <span style={{
                     position: "absolute",
                     width: 48, height: 20,
-                    background: "rgba(172,3,59,0.3)",
+                    background: "rgba(17,17,17,0.3)",
                     borderRadius: "50%",
                     filter: "blur(8px)",
                     top: -4, left: -8,

@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 
-const INK    = '#2C1200';
+const INK    = '#111111';
 const INK_L  = '#6B3A1F';
 const INK_LL = 'rgba(44,18,0,0.28)';
-const CRIMSON = '#AC033B';
-const GREEN   = '#2E6B3E';
-const BLUE    = '#1A5FAB';
+const CRIMSON = '#111111';
+const GREEN   = '#111111';
+const BLUE    = '#333333';
 
 /* ─── Data for 8 operations ──────────────────────────────────────── */
 interface NodeData {
@@ -21,10 +21,10 @@ interface NodeData {
 
 const NODES: NodeData[] = [
   { id:1, icon:'🌾', name:'Farm Sourcing',         stat:'6 States',         accent: GREEN,   desc:'We source raw materials directly from 10,000+ partnered farmers across 6 major Indian states. Our strict "Farm to Shelf" procurement policy ensures 100% GPS-tagged traceability, ethical agricultural practices, and pesticide-free cultivation.' },
-  { id:2, icon:'🚚', name:'Inbound Logistics',     stat:'48 Hr Turnaround', accent:'#7B4E1B', desc:'Quality begins in transit. We utilize a dedicated fleet of temperature-controlled vehicles to prevent moisture or fungal development. Every shipment is secured with tamper-evident seals and tracked via real-time telematics.' },
+  { id:2, icon:'🚚', name:'Inbound Logistics',     stat:'48 Hr Turnaround', accent:'#555555', desc:'Quality begins in transit. We utilize a dedicated fleet of temperature-controlled vehicles to prevent moisture or fungal development. Every shipment is secured with tamper-evident seals and tracked via real-time telematics.' },
   { id:3, icon:'🔬', name:'360° QC Intake',        stat:'200+ Tests',       accent: BLUE,    desc:'Uncompromising quality control. Every batch undergoes rigorous screening at our NABL-accredited laboratory for 200+ parameters, including pesticide residues, heavy metals, aflatoxins, and ASTA colour values before entering our facility.' },
   { id:4, icon:'🧹', name:'Automated Cleaning',    stat:'99.9% Purity',     accent:'#5E4A00', desc:'We guarantee 99.9% physical purity using a multi-stage European automated line. Vibro Sifters, De-Stoners, Gravity Tables, and advanced Multivision Sortex machines eliminate all foreign matter and impurities with surgical precision.' },
-  { id:5, icon:'❄️', name:'Cryogenic Grinding',   stat:'−196 °C',          accent:'#0A4D6E', desc:'Unlike conventional ambient grinding that burns off flavor, our proprietary liquid-nitrogen cryogenic grinding at −196°C preserves 40% more natural essential oils, volatile aromatics, and vibrant ASTA color in every spice.' },
+  { id:5, icon:'❄️', name:'Cryogenic Grinding',   stat:'−196 °C',          accent:'#444444', desc:'Unlike conventional ambient grinding that burns off flavor, our proprietary liquid-nitrogen cryogenic grinding at −196°C preserves 40% more natural essential oils, volatile aromatics, and vibrant ASTA color in every spice.' },
   { id:6, icon:'♨️', name:'Steam Sterilization',  stat:'5-Log Reduction',  accent:'#5E0A0A', desc:'Ensuring absolute microbial safety. Our indirect high-temperature steam sterilization delivers a validated 5-log pathogen reduction. The entire process is certified to FDA 21 CFR 117, FSSC 22000, and strict EU compliance standards.' },
   { id:7, icon:'📦', name:'Hygienic Packaging',    stat:'50g to 25 kg',     accent:'#1B4A2E', desc:'Spices are packed in Class 100,000 HEPA-filtered clean rooms using automated nitrogen flushing to extend shelf life. We offer flexible B2B packaging solutions ranging from retail-ready 50g sachets to 25kg bulk export sacks.' },
   { id:8, icon:'🚢', name:'Global Export',         stat:'40+ Countries',    accent: CRIMSON, desc:'Seamless international distribution. Our in-house export team handles comprehensive documentation including COA, FSSAI, Phytosanitary, and Halal/Kosher certificates, enabling fast, compliant FCL/LCL shipping to 40+ countries globally.' },
@@ -98,7 +98,7 @@ function Flame({ x, y }: { x:number; y:number }) {
   return (
     <g className="flame-a">
       <path d={`M${x},${y} C${x-3},${y-8} ${x+3},${y-14} ${x},${y-20}`}
-        fill="none" stroke="#E8760A" strokeWidth="2" strokeLinecap="round" />
+        fill="none" stroke='#111111' strokeWidth="2" strokeLinecap="round" />
     </g>
   );
 }
@@ -324,7 +324,7 @@ function ShipSVG({ active, hov }: { active:boolean; hov:boolean }) {
       {/* Deck */}
       <rect x="1155" y="155" width="120" height="13" rx="3" fill="#EDE0C4" stroke={INK} strokeWidth="1.5" />
       {/* Containers */}
-      <rect x="1160" y="178" width="28" height="22" rx="3" fill="rgba(172,3,59,0.15)" stroke={CRIMSON} strokeWidth="1.5" />
+      <rect x="1160" y="178" width="28" height="22" rx="3" fill="rgba(17,17,17,0.15)" stroke={CRIMSON} strokeWidth="1.5" />
       <rect x="1195" y="178" width="28" height="22" rx="3" fill="rgba(26,95,171,0.15)" stroke={BLUE} strokeWidth="1.5" />
       <rect x="1230" y="178" width="28" height="22" rx="3" fill="rgba(46,107,62,0.15)" stroke={GREEN} strokeWidth="1.5" />
       {/* Chimney */}
@@ -687,7 +687,7 @@ export default function OperationsMap() {
                                 <g className="ship-anim">
                                   <path d="M 8,36 Q 5,36 4,42 L 4,54 Q 5,58 10,59 L 70,59 Q 75,58 76,54 L 76,42 Q 75,36 72,36 Z" fill="#F5EDD8" stroke={INK} strokeWidth="1.6" />
                                   <rect x="6" y="31" width="68" height="7" rx="2" fill="#EDE0C4" stroke={INK} strokeWidth="1.2" />
-                                  <rect x="12" y="40" width="14" height="11" rx="1.5" fill="rgba(172,3,59,0.15)" stroke={CRIMSON} strokeWidth="1" />
+                                  <rect x="12" y="40" width="14" height="11" rx="1.5" fill="rgba(17,17,17,0.15)" stroke={CRIMSON} strokeWidth="1" />
                                   <rect x="32" y="40" width="14" height="11" rx="1.5" fill="rgba(26,95,171,0.15)" stroke={BLUE} strokeWidth="1" />
                                   <rect x="52" y="40" width="14" height="11" rx="1.5" fill="rgba(46,107,62,0.15)" stroke={GREEN} strokeWidth="1" />
                                   <rect x="36" y="14" width="8" height="18" rx="2" fill={INK} fillOpacity=".18" stroke={INK} strokeWidth="1" />

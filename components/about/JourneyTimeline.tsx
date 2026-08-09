@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { milestones } from '@/data/journey';
 import JourneyMilestone from './JourneyMilestone';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 export default function JourneyTimeline() {
   return (

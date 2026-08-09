@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 const STAGES = [
   { id: 'cleaning',   label: 'Cleaning & Sorting',       detail: 'Raw spices enter. Impurities separate.', img: '/images/factory.png',        alt: 'Industrial cleaning and sorting machinery', number: '01' },

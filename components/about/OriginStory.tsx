@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 export default function OriginStory() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -78,7 +78,7 @@ export default function OriginStory() {
               fontSize: 'clamp(80px,14vw,200px)',
               fontWeight: 800,
               color: 'transparent',
-              WebkitTextStroke: `1px rgba(172,3,59,0.18)`,
+              WebkitTextStroke: `1px rgba(17,17,17,0.18)`,
               lineHeight: 1,
               letterSpacing: '-0.05em',
               clipPath: 'inset(100% 0 0 0)',
@@ -121,14 +121,14 @@ export default function OriginStory() {
                 alignItems: 'center',
                 gap: 12,
                 background: 'none',
-                border: `1.5px solid rgba(172,3,59,0.35)`,
+                border: `1.5px solid rgba(17,17,17,0.35)`,
                 borderRadius: 40,
                 padding: '10px 20px 10px 14px',
                 cursor: 'pointer',
                 transition: 'border-color 0.2s, background 0.2s',
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = CR; (e.currentTarget as HTMLElement).style.background = 'rgba(172,3,59,0.04)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(172,3,59,0.35)'; (e.currentTarget as HTMLElement).style.background = 'none'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = CR; (e.currentTarget as HTMLElement).style.background = 'rgba(17,17,17,0.04)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(17,17,17,0.35)'; (e.currentTarget as HTMLElement).style.background = 'none'; }}
               aria-label="Watch journey video"
             >
               <div style={{ width: 28, height: 28, borderRadius: '50%', background: CR, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>

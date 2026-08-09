@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 /* ── constants ──────────────────────────────────────────────────────────── */
-const CR    = '#AC033B';
+const CR    = '#111111';
 const GREEN = '#1A6B3E';
 const GOLD  = '#B5861A';
 const INK   = '#1A1915';
@@ -55,7 +55,7 @@ const SPICE_MACHINES: Machine[] = [
     id: 'cleaning',
     label: 'Seed Cleaning',
     sub: 'Stage 01',
-    color: '#1A5FAB',
+    color: '#333333',
     icon: (
       <svg viewBox="0 0 48 48" fill="none" width="36" height="36">
         <rect x="8" y="12" width="32" height="28" rx="4" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1"/>
@@ -129,7 +129,7 @@ const SPICE_MACHINES: Machine[] = [
     id: 'sterilizer',
     label: 'Steam Sterilizer',
     sub: 'Stage 04',
-    color: '#0A4D6E',
+    color: '#444444',
     icon: (
       <svg viewBox="0 0 48 48" fill="none" width="36" height="36">
         <rect x="10" y="14" width="28" height="24" rx="4" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1"/>
@@ -155,7 +155,7 @@ const SPICE_MACHINES: Machine[] = [
     id: 'cryo',
     label: 'Cryo Grinder',
     sub: 'Stage 05',
-    color: '#1A5FAB',
+    color: '#333333',
     icon: (
       <svg viewBox="0 0 48 48" fill="none" width="36" height="36">
         <rect x="8" y="8" width="32" height="32" rx="6" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.08"/>

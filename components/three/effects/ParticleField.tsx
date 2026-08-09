@@ -15,7 +15,7 @@ interface ParticleFieldProps {
 
 export default function ParticleField({
   count = 5000,
-  color = '#AC033B',
+  color = '#111111',
   size = 0.02,
   radius = 5,
   speed = 0.1,

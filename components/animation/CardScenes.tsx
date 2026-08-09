@@ -52,13 +52,13 @@ export function SpiceParticles() {
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'radial-gradient(ellipse at 40% 60%, rgba(172,3,59,0.4) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse at 40% 60%, rgba(17,17,17,0.4) 0%, transparent 65%)',
       }} />
 
       {/* Particles */}
       {particles.map((_, i) => {
         const size = 3 + (i % 5) * 2;
-        const colors = ['#AC033B', '#e8975c', '#c8a96e', '#d4a843', '#AC033B', '#f5c842'];
+        const colors = ['#111111', '#e8975c', '#c8a96e', '#d4a843', '#111111', '#f5c842'];
         const color = colors[i % colors.length];
         return (
           <div
@@ -83,9 +83,9 @@ export function SpiceParticles() {
 
       {/* Large blurred orbs */}
       {[
-        { x: '20%', y: '30%', size: 120, color: '#AC033B' },
+        { x: '20%', y: '30%', size: 120, color: '#111111' },
         { x: '70%', y: '60%', size: 80, color: '#c8a96e' },
-        { x: '50%', y: '80%', size: 60, color: '#AC033B' },
+        { x: '50%', y: '80%', size: 60, color: '#111111' },
       ].map((orb, i) => (
         <div
           key={i}
@@ -138,13 +138,13 @@ export function FactoryGrid() {
           100% { transform: scaleY(0.3); }
         }
         @keyframes fg-glow {
-          0%, 100% { box-shadow: 0 0 8px #AC033B60; }
-          50% { box-shadow: 0 0 24px #AC033Baa; }
+          0%, 100% { box-shadow: 0 0 8px '#111111'60; }
+          50% { box-shadow: 0 0 24px '#111111'aa; }
         }
         .fg-bar {
           width: 6px;
           border-radius: 3px;
-          background: linear-gradient(to top, #AC033B, #e8603c);
+          background: linear-gradient(to top, '#111111', #e8603c);
           transform-origin: bottom;
           animation: fg-bar var(--fg-dur, 2s) var(--fg-del, 0s) ease-in-out infinite;
         }
@@ -192,8 +192,8 @@ export function FactoryGrid() {
           { v: '24/7', l: 'Ops' },
         ].map(s => (
           <div key={s.l} className="fg-stat" style={{
-            background: 'rgba(172,3,59,0.15)',
-            border: '1px solid rgba(172,3,59,0.3)',
+            background: 'rgba(17,17,17,0.15)',
+            border: '1px solid rgba(17,17,17,0.3)',
             borderRadius: '8px',
             padding: '8px 14px',
           }}>
@@ -249,7 +249,7 @@ export function IndiaMap() {
         .im-pulse-ring {
           position: absolute;
           border-radius: 50%;
-          border: 1.5px solid #AC033B;
+          border: 1.5px solid '#111111';
           animation: im-ripple 2s ease-out infinite;
         }
         .im-dot {
@@ -262,21 +262,21 @@ export function IndiaMap() {
         <path
           d="M180,100 L220,90 L260,95 L300,110 L330,130 L350,160 L360,190 L365,220 L355,250 L340,270 L320,295 L310,320 L315,350 L305,380 L290,410 L270,430 L250,445 L240,460 L230,445 L210,420 L200,395 L195,370 L185,340 L180,310 L175,280 L170,250 L175,220 L170,190 L160,165 L155,140 L165,115 Z"
           fill="none"
-          stroke="rgba(172,3,59,0.15)"
+          stroke="rgba(17,17,17,0.15)"
           strokeWidth="1.5"
           strokeDasharray="800"
           style={{ animation: 'im-line 3s ease-out forwards' }}
         />
         <path
           d="M180,100 L220,90 L260,95 L300,110 L330,130 L350,160 L360,190 L365,220 L355,250 L340,270 L320,295 L310,320 L315,350 L305,380 L290,410 L270,430 L250,445 L240,460 L230,445 L210,420 L200,395 L195,370 L185,340 L180,310 L175,280 L170,250 L175,220 L170,190 L160,165 L155,140 L165,115 Z"
-          fill="rgba(172,3,59,0.04)"
+          fill="rgba(17,17,17,0.04)"
         />
 
         {/* Origin dots on SVG */}
         {origins.map((o) => (
           <g key={o.label}>
-            <circle cx={o.x} cy={o.y} r="4" fill="#AC033B" className="im-dot" style={{ animationDelay: o.delay }} />
-            <circle cx={o.x} cy={o.y} r="8" fill="none" stroke="#AC033B" strokeWidth="1" className="im-pulse-ring" style={{ animationDelay: o.delay }} />
+            <circle cx={o.x} cy={o.y} r="4" fill='#111111' className="im-dot" style={{ animationDelay: o.delay }} />
+            <circle cx={o.x} cy={o.y} r="8" fill="none" stroke='#111111' strokeWidth="1" className="im-pulse-ring" style={{ animationDelay: o.delay }} />
             <text x={o.x + 12} y={o.y + 4} fontSize="9" fill="rgba(255,255,255,0.4)" fontFamily="monospace">{o.label}</text>
           </g>
         ))}
@@ -322,8 +322,8 @@ export function MoleculeOrbit() {
         @keyframes mo-spin-r { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
         @keyframes mo-spin-60 { from { transform: rotate(60deg); } to { transform: rotate(420deg); } }
         @keyframes mo-pulse-core {
-          0%, 100% { box-shadow: 0 0 20px #7c3aed, 0 0 40px #7c3aed40; transform: scale(1); }
-          50% { box-shadow: 0 0 35px #AC033B, 0 0 70px #AC033B40; transform: scale(1.08); }
+          0%, 100% { box-shadow: 0 0 20px #333333, 0 0 40px #33333340; transform: scale(1); }
+          50% { box-shadow: 0 0 35px '#111111', 0 0 70px '#111111'40; transform: scale(1.08); }
         }
         @keyframes mo-label-fade { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
         .mo-ring { position: absolute; border-radius: 50%; border: 1px solid; }
@@ -350,10 +350,10 @@ export function MoleculeOrbit() {
         {/* Ring 1 */}
         <div className="mo-ring" style={{
           width: '100%', height: '100%',
-          borderColor: 'rgba(172,3,59,0.4)',
+          borderColor: 'rgba(17,17,17,0.4)',
           animation: 'mo-spin 6s linear infinite',
         }}>
-          <div className="mo-electron" style={{ background: '#AC033B', boxShadow: '0 0 8px #AC033B' }} />
+          <div className="mo-electron" style={{ background: '#111111', boxShadow: '0 0 8px #111111' }} />
         </div>
 
         {/* Ring 2 */}
@@ -364,7 +364,7 @@ export function MoleculeOrbit() {
           transform: 'rotate(60deg)',
           animation: 'mo-spin-r 4s linear infinite',
         }}>
-          <div className="mo-electron" style={{ background: '#7c3aed', boxShadow: '0 0 8px #7c3aed' }} />
+          <div className="mo-electron" style={{ background: '#333333', boxShadow: '0 0 8px #333333' }} />
         </div>
 
         {/* Ring 3 */}
@@ -384,7 +384,7 @@ export function MoleculeOrbit() {
           top: '50%', left: '50%',
           width: 28, height: 28,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, #AC033B 0%, #7c3aed 100%)',
+          background: 'radial-gradient(circle, #111111 0%, #333 100%)',
           transform: 'translate(-50%, -50%)',
           animation: 'mo-pulse-core 3s ease-in-out infinite',
           zIndex: 2,
@@ -609,7 +609,7 @@ export function LabBeaker() {
         <g clipPath="url(#beaker-clip)">
           <div className="lb-fill" />
           <rect className="lb-fill" width="120" height="120"
-            fill="rgba(172,3,59,0.2)" rx="0" style={{ transformOrigin: 'bottom' }} />
+            fill="rgba(17,17,17,0.2)" rx="0" style={{ transformOrigin: 'bottom' }} />
 
           {/* Bubbles */}
           {[
@@ -622,7 +622,7 @@ export function LabBeaker() {
               className="lb-bubble"
               cx={b.x} cy={120}
               r={b.size / 2}
-              fill="rgba(172,3,59,0.3)"
+              fill="rgba(17,17,17,0.3)"
               // @ts-ignore
               style={{ '--bb-dur': b.dur, '--bb-del': b.del }}
             />

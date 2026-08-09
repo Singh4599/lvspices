@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 export default function FinalStoryCTA() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -116,7 +116,7 @@ export default function FinalStoryCTA() {
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement;
               el.style.transform = 'translateY(-2px)';
-              el.style.boxShadow = `0 12px 40px rgba(172,3,59,0.4)`;
+              el.style.boxShadow = `0 12px 40px rgba(17,17,17,0.4)`;
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement;

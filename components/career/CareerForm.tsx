@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { gsap } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -128,7 +128,7 @@ export default function CareerForm() {
                     padding: '20px', border: 'none', borderRadius: 16,
                     cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', letterSpacing: '0.04em', textTransform: 'uppercase'
                   }}
-                    onMouseEnter={e => { const el = e.currentTarget; el.style.background = CR; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 12px 28px rgba(172,3,59,0.3)'; }}
+                    onMouseEnter={e => { const el = e.currentTarget; el.style.background = CR; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 12px 28px rgba(17,17,17,0.3)'; }}
                     onMouseLeave={e => { const el = e.currentTarget; el.style.background = '#111'; el.style.transform = 'translateY(0)'; el.style.boxShadow = 'none'; }}
                   >
                     Submit Application

@@ -8,12 +8,12 @@ const World = dynamic(() => import('@/components/ui/globe').then((m) => m.World)
   ssr: false,
   loading: () => (
     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ width: 60, height: 60, borderRadius: '50%', border: '3px solid rgba(172,3,59,0.2)', borderTopColor: '#AC033B', animation: 'spin 1s linear infinite' }} />
+      <div style={{ width: 60, height: 60, borderRadius: '50%', border: '3px solid rgba(17,17,17,0.2)', borderTopColor: '#111111', animation: 'spin 1s linear infinite' }} />
     </div>
   ),
 });
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 // Spice export arcs from India (20.5°N, 78.9°E) to major markets
 const ARCS = [
@@ -31,12 +31,12 @@ const GLOBE_CONFIG = {
   pointSize: 4,
   globeColor: '#f0ede8',
   showAtmosphere: true,
-  atmosphereColor: '#AC033B',
+  atmosphereColor: '#111111',
   atmosphereAltitude: 0.12,
   emissive: '#f0ede8',
   emissiveIntensity: 0.1,
   shininess: 0.9,
-  polygonColor: 'rgba(172,3,59,0.15)',
+  polygonColor: 'rgba(17,17,17,0.15)',
   ambientLight: '#ffffff',
   directionalLeftLight: '#ffffff',
   directionalTopLight: '#ffffff',
@@ -123,7 +123,7 @@ export default function TechGlobeOverview() {
             {/* Subtle crimson glow behind globe */}
             <div style={{
               position: 'absolute', inset: '-10%', borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(172,3,59,0.08) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(17,17,17,0.08) 0%, transparent 70%)',
               pointerEvents: 'none',
             }} />
             <World globeConfig={GLOBE_CONFIG} data={ARCS} />

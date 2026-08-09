@@ -5,7 +5,7 @@ import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import SpiceDiaryFlow from '@/components/technology/SpiceDiaryFlow';
 
 
-const CR   = '#AC033B';
+const CR   = '#111111';
 const INK  = '#1A1915';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';

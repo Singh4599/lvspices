@@ -7,7 +7,7 @@ import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import ParallaxCard from '@/components/ui/ParallaxCard';
 import FAQMindMap from '@/components/faq/FAQMindMap';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -97,14 +97,14 @@ export default function FAQPage() {
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{
         padding: 'clamp(80px,10vw,140px) clamp(24px,6vw,100px) clamp(40px,5vw,60px)',
-        background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(172,3,59,0.08) 0%, transparent 70%)',
+        background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(17,17,17,0.08) 0%, transparent 70%)',
         borderBottom: '1px solid rgba(0,0,0,0.05)',
       }}>
         <div style={{ maxWidth: 960, margin: '0 auto', textAlign: 'center' }}>
           <ScrollReveal fromY={20}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'rgba(172,3,59,0.1)', border: '1px solid rgba(172,3,59,0.3)',
+              background: 'rgba(17,17,17,0.1)', border: '1px solid rgba(17,17,17,0.3)',
               borderRadius: 999, padding: '6px 18px', marginBottom: 24,
             }}>
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: CRIMSON, display: 'inline-block' }} />
@@ -128,7 +128,7 @@ export default function FAQPage() {
               background: CRIMSON, color: '#fff', padding: '13px 32px', borderRadius: 999,
               textDecoration: 'none', transition: 'all 0.25s',
             }}
-              onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(172,3,59,0.3)'; }}
+              onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(17,17,17,0.3)'; }}
               onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0)'; el.style.boxShadow = 'none'; }}
             >
               Talk to us →
@@ -178,7 +178,7 @@ export default function FAQPage() {
               background: CRIMSON, color: '#fff', padding: '13px 32px', borderRadius: 999,
               textDecoration: 'none', transition: 'all 0.25s',
             }}
-              onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(172,3,59,0.3)'; }}
+              onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(17,17,17,0.3)'; }}
               onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0)'; el.style.boxShadow = 'none'; }}
             >
               Contact Us →

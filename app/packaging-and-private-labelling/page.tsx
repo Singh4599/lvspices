@@ -8,7 +8,7 @@ import PrivateLabelBlueprint from '@/components/packaging/PrivateLabelBlueprint'
 import PrivateLabelProcessHorizontal from '@/components/packaging/PrivateLabelProcessHorizontal';
 import PhoneContactForm from '@/components/packaging/PhoneContactForm';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';

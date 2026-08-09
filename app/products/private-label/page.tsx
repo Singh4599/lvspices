@@ -62,10 +62,10 @@ export default function PrivateLabelPage() {
       />
 
       {/* CTA strip */}
-      <section className="bg-[#AC033B] py-12 md:py-16">
+      <section className="bg-[#111111] py-12 md:py-16">
         <div className="container-lv flex flex-wrap items-center justify-between gap-4">
           <p className="font-mono text-[13px] tracking-[0.15em] text-white uppercase">Ready to build your brand?</p>
-          <Link href="/contact"><Button variant="outline" size="sm" style={{ background: 'white', color: '#AC033B', borderColor: 'white' }}>Start a Conversation</Button></Link>
+          <Link href="/contact"><Button variant="outline" size="sm" style={{ background: 'white', color: '#111111', borderColor: 'white' }}>Start a Conversation</Button></Link>
         </div>
       </section>
 
@@ -88,13 +88,13 @@ export default function PrivateLabelPage() {
       </section>
 
       {/* Categories */}
-      <section className="bg-[rgba(172,3,59,0.015)] py-20 md:py-32 lg:py-40">
+      <section className="bg-[rgba(17,17,17,0.015)] py-20 md:py-32 lg:py-40">
         <div className="container-lv">
           <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-bold text-white mb-4">Categories available for private label</h2>
           <p className="text-[15px] text-white/50 mb-10 max-w-2xl">Any product in our 500+ SKU range can be produced under your brand name.</p>
           <div className="flex flex-wrap gap-3">
             {categories.map((cat) => (
-              <span key={cat} className="font-mono text-[11px] tracking-[0.14em] uppercase text-white/50 border border-black/[0.1] px-4 py-2.5 rounded-full hover:border-[#AC033B] hover:text-[#AC033B] transition-colors cursor-default">
+              <span key={cat} className="font-mono text-[11px] tracking-[0.14em] uppercase text-white/50 border border-black/[0.1] px-4 py-2.5 rounded-full hover:border-[#111111] hover:text-[#111111] transition-colors cursor-default">
                 {cat}
               </span>
             ))}

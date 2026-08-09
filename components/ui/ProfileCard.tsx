@@ -61,7 +61,7 @@ export default function ProfileCard({
   contactText = 'Contact Me',
   avatarUrl,
   initials,
-  accentColor = '#AC033B',
+  accentColor = '#111111',
   showUserInfo = true,
   enableTilt = true,
   enableMobileTilt = false,

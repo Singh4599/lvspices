@@ -120,7 +120,7 @@ export default function TechProcessSticky() {
               opacity: i === 0 ? 1 : 0.25 
             }}
           >
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.25em', color: '#AC033B', marginBottom: 16 }}>{step.id}</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.25em', color: '#111111', marginBottom: 16 }}>{step.id}</div>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 4.5vw, 72px)', fontWeight: 700, margin: '0 0 24px', lineHeight: 1.1, letterSpacing: '-0.02em', color: '#111' }}>
               {step.title}
             </h3>

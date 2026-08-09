@@ -65,15 +65,15 @@ const ProductGallery = ({ items }: ProductGalleryProps) => {
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '32px', flexWrap: 'wrap' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '20px' }}>
-              <div style={{ width: '40px', height: '1px', background: '#AC033B' }} />
-              <span style={{ fontFamily: 'monospace', fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#AC033B' }}>
+              <div style={{ width: '40px', height: '1px', background: '#111111' }} />
+              <span style={{ fontFamily: 'monospace', fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#111111' }}>
                 All Categories
               </span>
-              <div style={{ width: '40px', height: '1px', background: '#AC033B' }} />
+              <div style={{ width: '40px', height: '1px', background: '#111111' }} />
             </div>
             <h2 className="font-display font-bold text-white" style={{ fontSize: 'clamp(2.4rem,5vw,4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: '16px' }}>
               12 categories.{' '}
-              <span className="text-[#AC033B] italic font-serif font-medium">One source.</span>
+              <span className="text-[#111111] italic font-serif font-medium">One source.</span>
             </h2>
             <p className="text-white/50" style={{ fontSize: 'clamp(0.95rem,1.3vw,1.05rem)', maxWidth: '560px', lineHeight: 1.65 }}>
               Every category is export-certified, customizable, and available in bulk or private label formats.
@@ -86,9 +86,9 @@ const ProductGallery = ({ items }: ProductGalleryProps) => {
               onClick={scrollPrev} disabled={!canPrev} aria-label="Previous"
               style={{
                 width: '52px', height: '52px', borderRadius: '50%',
-                background: canPrev ? 'rgba(172,3,59,0.06)' : 'rgba(0,0,0,0.03)',
-                border: `1.5px solid ${canPrev ? 'rgba(172,3,59,0.25)' : 'rgba(0,0,0,0.08)'}`,
-                color: canPrev ? '#AC033B' : 'rgba(0,0,0,0.25)',
+                background: canPrev ? 'rgba(17,17,17,0.06)' : 'rgba(0,0,0,0.03)',
+                border: `1.5px solid ${canPrev ? 'rgba(17,17,17,0.25)' : 'rgba(0,0,0,0.08)'}`,
+                color: canPrev ? '#111111' : 'rgba(0,0,0,0.25)',
                 cursor: canPrev ? 'pointer' : 'default',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 transition: 'all 200ms ease',
@@ -100,13 +100,13 @@ const ProductGallery = ({ items }: ProductGalleryProps) => {
               onClick={scrollNext} disabled={!canNext} aria-label="Next"
               style={{
                 width: '52px', height: '52px', borderRadius: '50%',
-                background: canNext ? 'linear-gradient(135deg,#AC033B,#d4044a)' : 'rgba(0,0,0,0.03)',
+                background: canNext ? 'linear-gradient(135deg,#111111,#333)' : 'rgba(0,0,0,0.03)',
                 border: 'none',
                 color: canNext ? '#fff' : 'rgba(0,0,0,0.25)',
                 cursor: canNext ? 'pointer' : 'default',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 transition: 'all 200ms ease',
-                boxShadow: canNext ? '0 4px 20px rgba(172,3,59,0.35)' : 'none',
+                boxShadow: canNext ? '0 4px 20px rgba(17,17,17,0.35)' : 'none',
               }}
             >
               <ArrowRight size={19} strokeWidth={2} />
@@ -181,7 +181,7 @@ const ProductGallery = ({ items }: ProductGalleryProps) => {
               }}>
                 {/* Red bar + label */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
-                  <div style={{ width: '24px', height: '2px', background: '#AC033B', borderRadius: '2px' }} />
+                  <div style={{ width: '24px', height: '2px', background: '#111111', borderRadius: '2px' }} />
                   <span style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
                     Category {String(item.index + 1).padStart(2, '0')}
                   </span>
@@ -228,7 +228,7 @@ const ProductGallery = ({ items }: ProductGalleryProps) => {
                   display: 'inline-flex', alignItems: 'center', gap: '8px',
                   fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.18em',
                   textTransform: 'uppercase', color: '#fff',
-                  padding: '10px 20px', background: '#AC033B', borderRadius: '8px',
+                  padding: '10px 20px', background: '#111111', borderRadius: '8px',
                   width: 'fit-content', transition: 'background 200ms ease, transform 200ms ease',
                 }}>
                   Explore <ArrowRight size={12} strokeWidth={2.5} />
@@ -249,7 +249,7 @@ const ProductGallery = ({ items }: ProductGalleryProps) => {
             style={{
               width: i === current ? '24px' : '8px',
               height: '8px', borderRadius: '4px', border: 'none', padding: 0, cursor: 'pointer',
-              background: i === current ? '#AC033B' : 'rgba(172,3,59,0.18)',
+              background: i === current ? '#111111' : 'rgba(17,17,17,0.18)',
               transition: 'all 300ms ease',
             }}
           />

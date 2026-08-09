@@ -30,10 +30,10 @@ interface Region {
 }
 
 const REGIONS: Region[] = [
-  { name: 'West India', center: [-2.0, 1.5, 0], spices: 'Cumin, Fenugreek', color: '#AC033B' },
-  { name: 'South India', center: [-0.5, -2.0, 0], spices: 'Black Pepper, Turmeric, Chilli', color: '#AC033B' },
-  { name: 'North India', center: [-0.5, 2.8, 0], spices: 'Kashmiri Chilli, Ginger', color: '#AC033B' },
-  { name: 'East India', center: [1.5, 1.0, 0], spices: 'Turmeric', color: '#AC033B' },
+  { name: 'West India', center: [-2.0, 1.5, 0], spices: 'Cumin, Fenugreek', color: '#111111' },
+  { name: 'South India', center: [-0.5, -2.0, 0], spices: 'Black Pepper, Turmeric, Chilli', color: '#111111' },
+  { name: 'North India', center: [-0.5, 2.8, 0], spices: 'Kashmiri Chilli, Ginger', color: '#111111' },
+  { name: 'East India', center: [1.5, 1.0, 0], spices: 'Turmeric', color: '#111111' },
 ];
 
 function IndiaDots() {
@@ -96,7 +96,7 @@ function IndiaDots() {
         >
           <circleGeometry args={[dot.size, 8]} />
           <meshBasicMaterial
-            color="#AC033B"
+            color='#111111'
             transparent
             opacity={
               hoveredRegion
@@ -122,7 +122,7 @@ function IndiaDots() {
           }}
         >
           <div className="glass-card px-4 py-2 text-center whitespace-nowrap">
-            <p className="font-mono text-[11px] font-bold text-[#AC033B]">{region.name}</p>
+            <p className="font-mono text-[11px] font-bold text-[#111111]">{region.name}</p>
             <p className="text-[10px] text-black/60">{region.spices}</p>
           </div>
         </Html>

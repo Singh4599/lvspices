@@ -152,8 +152,8 @@ export default function TechProcessHorizontal() {
               {/* Text Side */}
               <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12, marginBottom: 32 }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.25em', color: '#AC033B', fontWeight: 700 }}>STEP {step.id} / 06</span>
-                  <span style={{ width: 40, height: 1, background: '#AC033B' }} />
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.25em', color: '#111111', fontWeight: 700 }}>STEP {step.id} / 06</span>
+                  <span style={{ width: 40, height: 1, background: '#111111' }} />
                 </div>
                 
                 <h3 className="panel-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px, 6vw, 90px)', fontWeight: 800, margin: '0 0 24px', lineHeight: 1.05, letterSpacing: '-0.03em', color: '#111' }}>
@@ -182,7 +182,7 @@ export default function TechProcessHorizontal() {
                   priority={i < 2}
                 />
                 {/* Subtle gradient overlay for text contrast */}
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(172,3,59,0.06) 0%, transparent 60%)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(17,17,17,0.06) 0%, transparent 60%)', pointerEvents: 'none' }} />
               </div>
 
             </div>

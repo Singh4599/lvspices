@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 interface BrandHeroProps {
   brandsCount: number;
@@ -219,7 +219,7 @@ export default function BrandHero({ brandsCount }: BrandHeroProps) {
         {/* ── Right — Image ── */}
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {/* Decorative backdrop */}
-          <div style={{ position: 'absolute', top: '10%', right: '-5%', width: '80%', aspectRatio: '1/1', borderRadius: '50%', background: 'radial-gradient(circle, rgba(172,3,59,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: '10%', right: '-5%', width: '80%', aspectRatio: '1/1', borderRadius: '50%', background: 'radial-gradient(circle, rgba(17,17,17,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
           
           {/* Image */}
           <div

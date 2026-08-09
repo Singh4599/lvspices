@@ -34,15 +34,15 @@ export default function ContactHero() {
 
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1, textAlign: 'center' }}>
         <div className="ch-elem" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#AC033B' }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#AC033B', fontWeight: 700 }}>
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#111111' }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#111111', fontWeight: 700 }}>
             Global Export & Partnerships
           </span>
         </div>
         
         <h1 className="ch-elem" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 8vw, 96px)', fontWeight: 800, color: '#111', letterSpacing: '-0.03em', lineHeight: 1.05, margin: '0 0 24px' }}>
           Let's build<br />
-          <em style={{ color: '#AC033B' }}>together.</em>
+          <em style={{ color: '#111111' }}>together.</em>
         </h1>
         
         <p className="ch-elem" style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(15px, 1.5vw, 20px)', color: 'rgba(0,0,0,0.6)', lineHeight: 1.6, maxWidth: 640, margin: '0 auto 48px' }}>

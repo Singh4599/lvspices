@@ -39,12 +39,12 @@ export default function TechOrbits() {
         @keyframes to-counter-2 { from { transform: translateY(-50%) rotate(0deg); } to { transform: translateY(-50%) rotate(360deg); } }
         @keyframes to-counter-3 { from { transform: translateY(-50%) rotate(-60deg); } to { transform: translateY(-50%) rotate(-420deg); } }
         @keyframes to-core-pulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(172,3,59,0.3), 0 0 30px rgba(172,3,59,0.2); transform: translate(-50%,-50%) scale(1); }
-          50% { box-shadow: 0 0 0 20px rgba(172,3,59,0), 0 0 50px rgba(172,3,59,0.35); transform: translate(-50%,-50%) scale(1.05); }
+          0%, 100% { box-shadow: 0 0 0 0 rgba(17,17,17,0.3), 0 0 30px rgba(17,17,17,0.2); transform: translate(-50%,-50%) scale(1); }
+          50% { box-shadow: 0 0 0 20px rgba(17,17,17,0), 0 0 50px rgba(17,17,17,0.35); transform: translate(-50%,-50%) scale(1.05); }
         }
         @keyframes to-fade-in { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
 
-        .to-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(172,3,59,0.2); left: 50%; top: 50%; transform: translate(-50%, -50%); }
+        .to-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(17,17,17,0.2); left: 50%; top: 50%; transform: translate(-50%, -50%); }
         .to-icon {
           position: absolute;
           top: 50%;
@@ -58,14 +58,14 @@ export default function TechOrbits() {
           background: white;
           border-radius: 50%;
           box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-          border: 1px solid rgba(172,3,59,0.1);
+          border: 1px solid rgba(17,17,17,0.1);
         }
       `}</style>
 
       {/* Background grid */}
       <div style={{
         position: 'absolute', inset: 0,
-        backgroundImage: 'radial-gradient(rgba(172,3,59,0.04) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(rgba(17,17,17,0.04) 1px, transparent 1px)',
         backgroundSize: '32px 32px',
       }} />
 
@@ -90,7 +90,7 @@ export default function TechOrbits() {
       <div className="to-ring" style={{
         width: 260, height: 260,
         animation: 'to-spin-2 8s linear infinite',
-        borderColor: 'rgba(172,3,59,0.3)',
+        borderColor: 'rgba(17,17,17,0.3)',
       }}>
         {ORBIT_ICONS.filter(ic => ic.ring === 2).map((ic, i) => (
           <div key={ic.label} className="to-icon" style={{
@@ -111,7 +111,7 @@ export default function TechOrbits() {
       <div className="to-ring" style={{
         width: 130, height: 130,
         animation: 'to-spin-3 5s linear infinite',
-        borderColor: 'rgba(172,3,59,0.5)',
+        borderColor: 'rgba(17,17,17,0.5)',
         borderWidth: '1.5px',
       }} />
 
@@ -121,7 +121,7 @@ export default function TechOrbits() {
         top: '50%', left: '50%',
         width: 52, height: 52,
         borderRadius: '50%',
-        background: 'linear-gradient(135deg, #AC033B, #7c1d2b)',
+        background: 'linear-gradient(135deg, #111111, #333)',
         animation: 'to-core-pulse 3s ease-in-out infinite',
         display: 'flex',
         alignItems: 'center',
@@ -150,7 +150,7 @@ export default function TechOrbits() {
             fontSize: 'clamp(1.2rem, 2vw, 1.6rem)',
             fontWeight: 700,
             fontStyle: 'italic',
-            color: '#AC033B',
+            color: '#111111',
             lineHeight: 1,
           }}>{s.text}</div>
           <div style={{

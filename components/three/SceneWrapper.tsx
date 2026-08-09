@@ -45,8 +45,8 @@ function SceneFallback({ className = '' }: { className?: string }) {
   return (
     <div className={`w-full h-full flex items-center justify-center ${className}`}>
       <div className="flex flex-col items-center gap-3">
-        <div className="w-8 h-8 rounded-full border border-[#AC033B]/20 border-t-[#AC033B] animate-spin" />
-        <span className="font-mono text-[10px] tracking-widest text-[#AC033B]/40 uppercase">
+        <div className="w-8 h-8 rounded-full border border-[#111111]/20 border-t-['#111111'] animate-spin" />
+        <span className="font-mono text-[10px] tracking-widest text-[#111111]/40 uppercase">
           Loading 3D
         </span>
       </div>
@@ -57,10 +57,10 @@ function SceneFallback({ className = '' }: { className?: string }) {
 // Static fallback for low-end devices
 function StaticFallback({ label, className = '' }: { label: string; className?: string }) {
   return (
-    <div className={`w-full h-full flex items-center justify-center bg-[rgba(172,3,59,0.02)] rounded-3xl ${className}`}>
+    <div className={`w-full h-full flex items-center justify-center bg-[rgba(17,17,17,0.02)] rounded-3xl ${className}`}>
       <div className="text-center">
-        <div className="w-16 h-16 mx-auto mb-3 rounded-full border border-[#AC033B]/15 flex items-center justify-center">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#AC033B" strokeWidth="1.5" opacity="0.4">
+        <div className="w-16 h-16 mx-auto mb-3 rounded-full border border-[#111111]/15 flex items-center justify-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke='#111111' strokeWidth="1.5" opacity="0.4">
             <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
             <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
             <line x1="12" y1="22.08" x2="12" y2="12" />

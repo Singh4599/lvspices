@@ -28,7 +28,7 @@ export default function ProductObjectScene({ className = '' }: ProductObjectScen
             shadow-mapSize-width={1024}
             shadow-mapSize-height={1024}
           />
-          <pointLight position={[-3, 2, 2]} intensity={0.2} color="#AC033B" />
+          <pointLight position={[-3, 2, 2]} intensity={0.2} color='#111111' />
 
           <ProductPack />
 
@@ -38,7 +38,7 @@ export default function ProductObjectScene({ className = '' }: ProductObjectScen
             scale={5}
             blur={2}
             far={3}
-            color="#AC033B"
+            color='#111111'
           />
         </Suspense>
       </Canvas>

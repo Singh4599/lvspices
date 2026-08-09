@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 
-const CR = '#e62e04'; // Matching the bright red from the screenshot
+const CR = '#111111'; // Matching the bright red from the screenshot
 
 export default function ChilliHero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -193,7 +193,7 @@ export default function ChilliHero() {
         {/* ── Right — Image ── */}
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="hero-right">
           {/* Background decorative blob */}
-          <div style={{ position: 'absolute', width: '90%', aspectRatio: '1/1', borderRadius: '50%', background: 'radial-gradient(circle, rgba(230,46,4,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', width: '90%', aspectRatio: '1/1', borderRadius: '50%', background: 'radial-gradient(circle, rgba(17,17,17,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
           
           <div
             ref={bowlRef}

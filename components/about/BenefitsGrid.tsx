@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
 import { benefits } from '@/data/benefits';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 // Premium SVG icons
 const ICONS: Record<string, React.ReactNode> = {

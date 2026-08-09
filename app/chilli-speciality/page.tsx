@@ -6,7 +6,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import ChilliHero from '@/components/chilli/ChilliHero';
 import ChilliIntroMap from '@/components/chilli/ChilliIntroMap';
 
-const CR = '#e62e04'; // Bright red matching the screenshot
+const CR = '#111111'; // Bright red matching the screenshot
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -368,7 +368,7 @@ export default function ChilliSpecialityPage() {
             background: CR,
             borderRadius: 999,
             overflow: 'hidden',
-            boxShadow: '0 8px 20px rgba(230,46,4,0.15)',
+            boxShadow: '0 8px 20px rgba(17,17,17,0.15)',
             flexShrink: 0
           }}>
             {chilliCategories.map((cat, i) => (
@@ -382,7 +382,7 @@ export default function ChilliSpecialityPage() {
                   letterSpacing: '0.05em', 
                   textTransform: 'uppercase',
                   padding: '14px clamp(16px, 2vw, 24px)', 
-                  background: activeTab === cat ? '#c12502' : 'transparent',
+                  background: activeTab === cat ? '#000000' : 'transparent',
                   color: '#fff',
                   border: 'none',
                   borderRight: i < chilliCategories.length - 1 ? '1px solid rgba(0,0,0,0.12)' : 'none',

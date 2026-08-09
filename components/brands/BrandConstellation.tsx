@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const CR = '#AC033B';
+const CR = '#111111';
 const CATEGORY_COLORS: Record<string, string> = {
   'Retail': '#1a6b3c',
   'Export': '#1a4d8c',
@@ -93,7 +93,7 @@ export default function BrandConstellation({ brands }: { brands: Brand[] }) {
       <style>{CSS}</style>
 
       {/* BG grid */}
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(172,3,59,0.06) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(17,17,17,0.06) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(26,77,140,0.08), transparent)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>

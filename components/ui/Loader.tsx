@@ -119,7 +119,7 @@ export default function Loader() {
       {/* Animated line */}
       <div className="relative w-48 h-[1px] bg-black/10 mb-8 overflow-hidden rounded-full">
         <div
-          className="loader-line absolute top-0 left-0 h-full bg-[#AC033B]"
+          className="loader-line absolute top-0 left-0 h-full bg-[#111111]"
           style={{ width: '0%' }}
         />
       </div>

@@ -96,7 +96,7 @@ export default function Cursor() {
           width: isHovering ? 48 : 32,
           height: isHovering ? 48 : 32,
           borderRadius: '50%',
-          border: '1.5px solid #AC033B',
+          border: '1.5px solid #111111',
           transform: 'translate(-50%, -50%)',
           transition: 'width 0.4s cubic-bezier(0.22, 1, 0.36, 1), height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s',
           opacity: isHovering ? 0.6 : 0.4,

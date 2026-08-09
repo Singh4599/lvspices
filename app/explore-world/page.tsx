@@ -8,9 +8,9 @@ import { ComposableMap, ZoomableGroup, Geographies, Geography, Marker, Line } fr
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-const CR    = '#AC033B';
+const CR    = '#111111';
 const INK   = '#1A1915';
-const GOLD  = '#7B4E1B';
+const GOLD  = '#555555';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -177,8 +177,8 @@ const CSS = `
     cursor: pointer; transition: all 0.2s;
     border: 1px solid transparent;
   }
-  .ew-sidebar-item:hover { background: rgba(172,3,59,0.06); border-color: rgba(172,3,59,0.15); }
-  .ew-sidebar-item.active { background: rgba(172,3,59,0.1); border-color: rgba(172,3,59,0.3); }
+  .ew-sidebar-item:hover { background: rgba(17,17,17,0.06); border-color: rgba(17,17,17,0.15); }
+  .ew-sidebar-item.active { background: rgba(17,17,17,0.1); border-color: rgba(17,17,17,0.3); }
 
   .ew-info-panel {
     animation: ew-panel-in 0.4s cubic-bezier(0.16,1,0.3,1) both;
@@ -318,7 +318,7 @@ export default function ExploreWorldPage() {
                           key={`line-${c.code}`}
                           from={[77, 20]}
                           to={[c.lng, c.lat]}
-                          stroke={isSelected ? CR : 'rgba(172,3,59,0.1)'}
+                          stroke={isSelected ? CR : 'rgba(17,17,17,0.1)'}
                           strokeWidth={isSelected ? 1.5 : 0.8}
                           strokeDasharray={isSelected ? "1000" : "4 3"}
                           strokeDashoffset={0}
@@ -346,7 +346,7 @@ export default function ExploreWorldPage() {
                             {/* Main dot */}
                             <circle
                               r={isSelected ? 8 : 6}
-                              fill={isSelected ? CR : c.code === 'IN' ? GOLD : 'rgba(172,3,59,0.6)'}
+                              fill={isSelected ? CR : c.code === 'IN' ? GOLD : 'rgba(17,17,17,0.6)'}
                               stroke="#fff" strokeWidth="2"
                               style={{ transition: 'r 0.25s, fill 0.25s' }}
                             />

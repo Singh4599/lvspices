@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SERIF   = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS    = 'var(--font-sans), Inter, system-ui, sans-serif';
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const PAGE_PAD = 'clamp(20px, 5vw, 64px)';
 
 interface StickyProcessStepProps {

@@ -13,7 +13,7 @@ interface ScrollExpansionHeroProps {
   stats?: { value: string; label: string }[];
 }
 
-const CR = '#AC033B';
+const CR = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -99,8 +99,8 @@ export default function ScrollExpansionHero({ imageSrc, headingText, headingRed,
           {badge && (
             <div ref={tagRef} style={{ 
               fontFamily: MONO, fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', 
-              color: '#fff', background: 'rgba(172,3,59,0.35)', backdropFilter: 'blur(8px)',
-              padding: '8px 18px', borderRadius: 999, marginBottom: 24, border: '1px solid rgba(172,3,59,0.5)',
+              color: '#fff', background: 'rgba(17,17,17,0.35)', backdropFilter: 'blur(8px)',
+              padding: '8px 18px', borderRadius: 999, marginBottom: 24, border: '1px solid rgba(17,17,17,0.5)',
               display: 'inline-flex', alignItems: 'center', gap: 8, opacity: 0
             }}>
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#fff', display: 'inline-block' }} />

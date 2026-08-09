@@ -33,7 +33,7 @@ const defaultEdges: [number, number][] = [
 export default function Molecule({
   nodes = defaultNodes,
   edges = defaultEdges,
-  color = '#AC033B',
+  color = '#111111',
   nodeSize = 0.12,
   animated = true,
 }: MoleculeProps) {

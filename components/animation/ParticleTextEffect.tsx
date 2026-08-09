@@ -468,7 +468,7 @@ export function ParticleTextEffect({
           textAlign: 'center',
         }}>
           <p style={{ fontFamily: 'monospace', fontSize: 'clamp(10px,1.2vw,13px)', letterSpacing: '0.35em', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{subtitle}</p>
-          <div style={{ width: 32, height: 1, background: '#AC033B', margin: '8px auto 0' }} />
+          <div style={{ width: 32, height: 1, background: '#111111', margin: '8px auto 0' }} />
         </div>
       )}
     </div>

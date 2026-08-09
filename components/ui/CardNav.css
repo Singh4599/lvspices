@@ -144,8 +144,8 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: #fff5f7;
-  border: 1.5px solid #f5c2cf;
+  background: #f5f5f5;
+  border: 1.5px solid #e0e0e0;
   border-radius: 10px;
   flex-shrink: 0;
 }

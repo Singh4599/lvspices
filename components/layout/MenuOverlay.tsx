@@ -53,7 +53,7 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
       <div className="flex justify-end p-6">
         <button
           onClick={onClose}
-          className="w-10 h-10 flex items-center justify-center text-white hover:text-[#AC033B] transition-colors"
+          className="w-10 h-10 flex items-center justify-center text-white hover:text-[#111111] transition-colors"
           aria-label="Close menu"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -74,9 +74,9 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
             onClick={onClose}
             className="menu-link block"
           >
-            <span className="font-display text-[36px] md:text-[48px] font-bold text-white hover:text-[#AC033B] transition-colors duration-300 relative group">
+            <span className="font-display text-[36px] md:text-[48px] font-bold text-white hover:text-[#111111] transition-colors duration-300 relative group">
               {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#AC033B] group-hover:w-full transition-all duration-500" />
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#111111] group-hover:w-full transition-all duration-500" />
             </span>
           </Link>
         ))}
@@ -88,7 +88,7 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                 key={item.label}
                 href={item.href}
                 onClick={onClose}
-                className="menu-link text-[14px] font-sans text-white/60 hover:text-[#AC033B] transition-colors"
+                className="menu-link text-[14px] font-sans text-white/60 hover:text-[#111111] transition-colors"
               >
                 {item.label}
               </Link>

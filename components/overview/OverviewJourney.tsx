@@ -95,7 +95,7 @@ export default function OverviewJourney() {
           {/* Central Line SVG */}
           <svg style={{ position: 'absolute', top: 0, bottom: 0, right: 0, width: '4px', height: '100%', zIndex: 0 }} viewBox="0 0 4 1000" preserveAspectRatio="none">
             <line className="oj-line-path" x1="2" y1="0" x2="2" y2="1000" stroke="#333" strokeWidth="4" />
-            <line className="oj-line-path" x1="2" y1="0" x2="2" y2="1000" stroke="#AC033B" strokeWidth="4" strokeDasharray="1000" strokeDashoffset="1000" />
+            <line className="oj-line-path" x1="2" y1="0" x2="2" y2="1000" stroke='#111111' strokeWidth="4" strokeDasharray="1000" strokeDashoffset="1000" />
           </svg>
 
           {/* Milestones */}
@@ -113,13 +113,13 @@ export default function OverviewJourney() {
                   
                   {/* Text Content */}
                   <div style={{ width: 'calc(100% - 60px)', textAlign: 'right', paddingRight: '40px' }}>
-                    <h3 style={{ color: '#AC033B', fontSize: '28px', fontWeight: 700, margin: '0 0 8px' }}>{m.years}</h3>
+                    <h3 style={{ color: '#111111', fontSize: '28px', fontWeight: 700, margin: '0 0 8px' }}>{m.years}</h3>
                     <h4 style={{ color: '#fff', fontSize: '20px', fontWeight: 600, margin: '0 0 12px' }}>{m.title}</h4>
                     <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '16px', lineHeight: 1.6, margin: 0 }}>{m.desc}</p>
                   </div>
 
                   {/* Marker */}
-                  <div style={{ width: '20px', height: '20px', backgroundColor: '#fff', borderRadius: '50%', border: '4px solid #AC033B', zIndex: 2, position: 'absolute', right: '-10px', top: '50%', transform: 'translateY(-50%)', boxShadow: '0 0 0 6px rgba(172, 3, 59, 0.2)' }} />
+                  <div style={{ width: '20px', height: '20px', backgroundColor: '#fff', borderRadius: '50%', border: '4px solid #111111', zIndex: 2, position: 'absolute', right: '-10px', top: '50%', transform: 'translateY(-50%)', boxShadow: '0 0 0 6px rgba(17, 17, 17, 0.2)' }} />
                 </div>
               )
             })}

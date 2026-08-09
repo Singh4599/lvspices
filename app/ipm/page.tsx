@@ -8,7 +8,7 @@ import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 
 /* ── constants ──────────────────────────────────────────────────────────── */
-const CR    = '#AC033B';
+const CR    = '#111111';
 const GREEN = '#1A6B3E';
 const LIME  = '#2E8B57';
 const INK   = '#1A1915';
@@ -21,7 +21,7 @@ const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
 
 const SUSTAINABILITY = [
   { icon: '🌿', label: 'Monoray', color: '#2E8B57', desc: 'High pheromone pest attractants deliver better crop protection. This complex chemical pest-repellent delays harmful infestations, ensuring farmers can crop safely.' },
-  { icon: '🏛',  label: 'Government', color: '#1A5FAB', desc: 'Working with government bodies to protect farmland, our special chemical stock boxes are monitored and the water supply is safeguarded through improved farm policy.' },
+  { icon: '🏛',  label: 'Government', color: '#333333', desc: 'Working with government bodies to protect farmland, our special chemical stock boxes are monitored and the water supply is safeguarded through improved farm policy.' },
   { icon: '👨‍🌾', label: 'Farmer Training', color: GREEN, desc: 'Farmers are guided at all stages — seed selection, cross variety, growing practices — building continuous progress in quality, local knowledge and farm life.' },
 ];
 

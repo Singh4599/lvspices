@@ -150,7 +150,7 @@ export function StickyScrubSection({
 
           {steps.map((step, i) => (
             <div id={`${idPrefix}-step-${i}`} key={i} style={{ height: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ fontFamily: SERIF, fontSize: 'clamp(48px, 6vw, 80px)', fontStyle: 'italic', color: '#AC033B', lineHeight: 1, marginBottom: 16 }}>{step.num}</div>
+              <div style={{ fontFamily: SERIF, fontSize: 'clamp(48px, 6vw, 80px)', fontStyle: 'italic', color: '#111111', lineHeight: 1, marginBottom: 16 }}>{step.num}</div>
               <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(32px, 4.5vw, 64px)', fontWeight: 700, color: '#111', whiteSpace: 'pre-line', lineHeight: 1.1 }}>{step.title}</h3>
             </div>
           ))}
@@ -159,7 +159,7 @@ export function StickyScrubSection({
         {/* Right Column: Sticky Media */}
         <div style={{ flex: 1, minWidth: 'min(100%, 400px)', position: 'relative' }}>
           {/* Sticky container */}
-          <div style={{ position: 'sticky', top: 0, height: '100vh', width: '100%', background: 'red', overflow: 'hidden' }}>
+          <div style={{ position: 'sticky', top: 0, height: '100vh', width: '100%', background: '#111', overflow: 'hidden' }}>
             {steps.map((step, i) => (
               <ScrubCanvas 
                 key={i}

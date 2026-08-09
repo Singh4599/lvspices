@@ -41,7 +41,7 @@ const GLOWS: Record<string, string> = {
 };
 
 const getTint = (n: string) => TINTS[n]  ?? '#FAFAFA';
-const getGlow = (n: string) => GLOWS[n]  ?? 'rgba(172,3,59,0.18)';
+const getGlow = (n: string) => GLOWS[n]  ?? 'rgba(17,17,17,0.18)';
 
 const EASE = 'cubic-bezier(0.4,0,0.2,1)';
 const DUR  = '650ms';
@@ -83,9 +83,9 @@ const KEYFRAMES = `
   .sc-marquee-track { animation: sc-marquee 12s linear infinite; display: flex; white-space: nowrap; width: max-content; }
   .sc-marquee-track:hover { animation-play-state: paused; }
 
-  .sc-btn-outline:hover { background: #AC033B !important; color: #fff !important; transform: scale(1.06); }
-  .sc-btn-solid:hover   { transform: scale(1.06); box-shadow: 0 8px 28px rgba(172,3,59,0.38) !important; }
-  .sc-quote:hover       { background: #AC033B !important; color: #fff !important; }
+  .sc-btn-outline:hover { background: '#111111' !important; color: #fff !important; transform: scale(1.06); }
+  .sc-btn-solid:hover   { transform: scale(1.06); box-shadow: 0 8px 28px rgba(17,17,17,0.38) !important; }
+  .sc-quote:hover       { background: '#111111' !important; color: #fff !important; }
   .sc-quote:hover .sc-quote-arrow { transform: translateX(4px); }
   .sc-quote-arrow { transition: transform 220ms ease; }
 `;
@@ -284,14 +284,14 @@ export default function ProductSpiceCarousel({ products, categorySlug, categoryN
                   fontSize: mobile ? '18px' : '28px',
                   letterSpacing: '0.28em',
                   textTransform: 'uppercase',
-                  color: 'rgba(172,3,59,0.75)',
+                  color: 'rgba(17,17,17,0.75)',
                   display: 'inline-flex',
                   alignItems: 'center',
                   fontWeight: 600,
                 }}
               >
                 <span style={{ paddingLeft: '52px', paddingRight: '52px' }}>{p.name}</span>
-                <span style={{ color: 'rgba(172,3,59,0.35)', fontSize: mobile ? '13px' : '16px' }}>✦</span>
+                <span style={{ color: 'rgba(17,17,17,0.35)', fontSize: mobile ? '13px' : '16px' }}>✦</span>
               </span>
             ))}
           </div>
@@ -314,7 +314,7 @@ export default function ProductSpiceCarousel({ products, categorySlug, categoryN
               fontFamily: "'Anton', sans-serif",
               fontSize: mobile ? '20vw' : 'clamp(80px, 28vw, 380px)',
               fontWeight: 900,
-              color: 'rgba(172,3,59,0.09)',
+              color: 'rgba(17,17,17,0.09)',
               lineHeight: 1,
               letterSpacing: '-0.02em',
               whiteSpace: 'nowrap',
@@ -360,7 +360,7 @@ export default function ProductSpiceCarousel({ products, categorySlug, categoryN
               position: 'absolute',
               top: '50%', left: '72px', right: '40px',
               height: '1px',
-              background: 'linear-gradient(to right, rgba(172,3,59,0.12) 0%, rgba(172,3,59,0.05) 40%, rgba(172,3,59,0.05) 60%, rgba(172,3,59,0.12) 100%)',
+              background: 'linear-gradient(to right, rgba(17,17,17,0.12) 0%, rgba(17,17,17,0.05) 40%, rgba(17,17,17,0.05) 60%, rgba(17,17,17,0.12) 100%)',
               zIndex: 1,
               pointerEvents: 'none',
             }}
@@ -392,10 +392,10 @@ export default function ProductSpiceCarousel({ products, categorySlug, categoryN
                     <div
                       style={{
                         width: '100%', height: '100%',
-                        background: 'rgba(172,3,59,0.07)',
+                        background: 'rgba(17,17,17,0.07)',
                         borderRadius: '20px',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: '12px', color: '#AC033B',
+                        fontSize: '12px', color: '#111111',
                         fontFamily: 'monospace', letterSpacing: '0.1em',
                         textTransform: 'uppercase', textAlign: 'center', padding: '16px',
                       }}
@@ -426,14 +426,14 @@ export default function ProductSpiceCarousel({ products, categorySlug, categoryN
               marginBottom: '10px',
             }}
           >
-            <div style={{ width: '28px', height: '2px', background: '#AC033B', flexShrink: 0, borderRadius: '2px' }} />
+            <div style={{ width: '28px', height: '2px', background: '#111111', flexShrink: 0, borderRadius: '2px' }} />
             <span
               key={`idx-${activeIndex}`}
               className="sc-index"
               style={{
                 fontFamily: 'monospace', fontSize: '10px',
                 letterSpacing: '0.26em', textTransform: 'uppercase',
-                color: '#AC033B',
+                color: '#111111',
               }}
             >
               {String(activeIndex + 1).padStart(2, '0')}
@@ -494,8 +494,8 @@ export default function ProductSpiceCarousel({ products, categorySlug, categoryN
               height: mobile ? '44px' : '52px',
               borderRadius: '50%',
               background: 'rgba(255,255,255,0.9)',
-              border: '1.5px solid rgba(172,3,59,0.25)',
-              color: '#AC033B',
+              border: '1.5px solid rgba(17,17,17,0.25)',
+              color: '#111111',
               cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               transition: 'transform 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease',
@@ -515,14 +515,14 @@ export default function ProductSpiceCarousel({ products, categorySlug, categoryN
               width: mobile ? '44px' : '52px',
               height: mobile ? '44px' : '52px',
               borderRadius: '50%',
-              background: 'linear-gradient(135deg, #AC033B 0%, #d4044a 100%)',
+              background: 'linear-gradient(135deg, #111111 0%, #333 100%)',
               border: 'none',
               color: '#ffffff',
               cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               transition: 'transform 180ms ease, box-shadow 180ms ease',
               flexShrink: 0,
-              boxShadow: '0 4px 20px rgba(172,3,59,0.35)',
+              boxShadow: '0 4px 20px rgba(17,17,17,0.35)',
             }}
           >
             <ArrowRight size={mobile ? 16 : 19} strokeWidth={2} />

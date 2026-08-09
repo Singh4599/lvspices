@@ -221,8 +221,8 @@ export default function TechHero({ breadcrumb, particleWords, subtitle, stats, b
         {/* Breadcrumb */}
         <div style={{ position: 'absolute', top: 'clamp(90px,10vh,120px)', left: 'clamp(24px,5vw,60px)', zIndex: 2, pointerEvents: 'none' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 20, height: 1, background: '#AC033B' }} />
-            <span style={{ fontFamily: 'monospace', fontSize: 10, letterSpacing: '0.3em', color: 'rgba(172,3,59,0.9)', textTransform: 'uppercase' }}>Our Process</span>
+            <div style={{ width: 20, height: 1, background: '#111111' }} />
+            <span style={{ fontFamily: 'monospace', fontSize: 10, letterSpacing: '0.3em', color: 'rgba(17,17,17,0.9)', textTransform: 'uppercase' }}>Our Process</span>
             <span style={{ fontFamily: 'monospace', fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>/</span>
             <span style={{ fontFamily: 'monospace', fontSize: 10, letterSpacing: '0.2em', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' }}>{breadcrumb}</span>
           </div>
@@ -232,7 +232,7 @@ export default function TechHero({ breadcrumb, particleWords, subtitle, stats, b
         <div className="hidden md:flex" style={{ position: 'absolute', top: '50%', left: 'clamp(24px,5vw,60px)', transform: 'translateY(-50%)', zIndex: 2, pointerEvents: 'none', flexDirection: 'column', gap: 28 }}>
           {stats.map((s) => (
             <div key={s.label} style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
-              <div style={{ color: '#AC033B', marginTop: 2, flexShrink: 0 }}>{s.icon}</div>
+              <div style={{ color: '#111111', marginTop: 2, flexShrink: 0 }}>{s.icon}</div>
               <div>
                 <div style={{ fontFamily: 'monospace', fontSize: 'clamp(1rem,1.8vw,1.3rem)', fontWeight: 700, color: 'rgba(255,255,255,0.55)', lineHeight: 1 }}>{s.value}</div>
                 <div style={{ fontFamily: 'monospace', fontSize: 9, letterSpacing: '0.2em', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', marginTop: 4 }}>{s.label}</div>
@@ -251,7 +251,7 @@ export default function TechHero({ breadcrumb, particleWords, subtitle, stats, b
         {/* Scroll hint */}
         <div style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, pointerEvents: 'none' }}>
           <span style={{ fontFamily: 'monospace', fontSize: 9, letterSpacing: '0.25em', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase' }}>Scroll</span>
-          <div style={{ width: 1, height: 40, background: 'linear-gradient(to bottom, rgba(172,3,59,0.7), transparent)', animation: 'scrollHint 2s ease-in-out infinite' }} />
+          <div style={{ width: 1, height: 40, background: 'linear-gradient(to bottom, rgba(17,17,17,0.7), transparent)', animation: 'scrollHint 2s ease-in-out infinite' }} />
         </div>
 
       </section>

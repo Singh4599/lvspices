@@ -7,7 +7,7 @@ import ScrollReveal, { StaggerReveal } from '@/components/ui/ScrollReveal';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 import AnalyticalLabFlow from '@/components/analytical/AnalyticalLabFlow';
 
-const CR    = '#AC033B';
+const CR    = '#111111';
 const INK   = '#1A1915';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';

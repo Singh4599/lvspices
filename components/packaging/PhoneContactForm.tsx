@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -100,7 +100,7 @@ export default function PhoneContactForm() {
                 <button type="submit" style={{ 
                   fontFamily: SANS, fontSize: 14, fontWeight: 600, background: CRIMSON, color: '#fff', 
                   padding: '14px 20px', borderRadius: 999, border: 'none', cursor: 'pointer', transition: 'all 0.25s',
-                  boxShadow: '0 8px 20px rgba(172,3,59,0.2)'
+                  boxShadow: '0 8px 20px rgba(17,17,17,0.2)'
                 }}
                   onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
                   onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}

@@ -143,7 +143,7 @@ export default function Preloader() {
           opacity: 0,
         }}
       >
-        LV <span style={{ color: '#AC033B' }}>SPICES</span>
+        LV <span style={{ color: '#111111' }}>SPICES</span>
       </div>
 
       <div
@@ -175,7 +175,7 @@ export default function Preloader() {
           ref={barRef}
           style={{
             height: '100%',
-            background: '#AC033B',
+            background: '#111111',
             transformOrigin: 'left center',
             transform: 'scaleX(0)',
           }}

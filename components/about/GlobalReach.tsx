@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import WorldGlobe from '@/components/globe/WorldGlobe';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 const EXPORT_REGIONS = [
   { flag: '🇬🇧', name: 'UK' },
@@ -140,7 +140,7 @@ export default function GlobalReach() {
                 display: 'flex', alignItems: 'center', gap: 6,
                 padding: '5px 12px', borderRadius: 40,
                 border: `1px solid ${CR}`,
-                background: 'rgba(172,3,59,0.04)',
+                background: 'rgba(17,17,17,0.04)',
                 fontFamily: 'var(--font-mono)', fontSize: 10, color: CR, fontWeight: 700, letterSpacing: '0.1em',
               }}>
                 +30 MORE
@@ -153,7 +153,7 @@ export default function GlobalReach() {
             <div style={{ width: '100%', maxWidth: 480, aspectRatio: '1/1', position: 'relative' }}>
               <WorldGlobe />
               {/* Subtle glow under globe */}
-              <div style={{ position: 'absolute', bottom: -20, left: '10%', right: '10%', height: 60, background: 'radial-gradient(ellipse, rgba(172,3,59,0.12) 0%, transparent 70%)', filter: 'blur(16px)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', bottom: -20, left: '10%', right: '10%', height: 60, background: 'radial-gradient(ellipse, rgba(17,17,17,0.12) 0%, transparent 70%)', filter: 'blur(16px)', pointerEvents: 'none' }} />
             </div>
           </div>
         </div>

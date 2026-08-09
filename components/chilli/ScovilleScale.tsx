@@ -2,17 +2,17 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const CR = '#AC033B';
+const CR = '#111111';
 const ORANGE = '#E85D04';
 const YELLOW = '#F4A261';
 
 const VARIETIES = [
-  { name: 'Kashmiri', shu: 2000, maxShu: 2000, color: '#8B0000', asta: '120–160', origin: 'Kashmir, India', heat: 1 },
+  { name: 'Kashmiri', shu: 2000, maxShu: 2000, color: '#111111', asta: '120–160', origin: 'Kashmir, India', heat: 1 },
   { name: 'Byadgi', shu: 15000, maxShu: 15000, color: '#A52A2A', asta: '100–140', origin: 'Karnataka, India', heat: 2 },
-  { name: 'S9 Mundu', shu: 30000, maxShu: 30000, color: '#C0392B', asta: '50–60', origin: 'South India', heat: 3 },
+  { name: 'S9 Mundu', shu: 30000, maxShu: 30000, color: '#111111', asta: '50–60', origin: 'South India', heat: 3 },
   { name: 'S4 Sannam', shu: 35000, maxShu: 35000, color: '#D73027', asta: '60–80', origin: 'Guntur, AP', heat: 4 },
-  { name: 'S17 Teja', shu: 100000, maxShu: 100000, color: '#E53E0D', asta: '40–60', origin: 'Andhra Pradesh', heat: 5 },
-  { name: 'Ghost Pepper', shu: 1000000, maxShu: 1000000, color: '#FF0000', asta: 'Variable', origin: 'Northeast India', heat: 6 },
+  { name: 'S17 Teja', shu: 100000, maxShu: 100000, color: '#111111', asta: '40–60', origin: 'Andhra Pradesh', heat: 5 },
+  { name: 'Ghost Pepper', shu: 1000000, maxShu: 1000000, color: '#111111', asta: 'Variable', origin: 'Northeast India', heat: 6 },
 ];
 
 const CSS = `
@@ -97,7 +97,7 @@ export default function ScovilleScale() {
       <style>{CSS}</style>
 
       {/* BG radial glow */}
-      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(172,3,59,0.08), transparent)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(17,17,17,0.08), transparent)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
@@ -243,7 +243,7 @@ export default function ScovilleScale() {
         <div style={{ marginTop: 40, padding: '16px 24px', background: 'rgba(255,255,255,0.03)', borderRadius: 12, border: '1px solid rgba(255,255,255,0.05)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'rgba(255,255,255,0.3)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Scale</span>
-            <div style={{ flex: 1, height: 6, borderRadius: 999, background: `linear-gradient(to right, #8B0000, #C0392B, #E53E0D, #FF0000)`, minWidth: 120 }} />
+            <div style={{ flex: 1, height: 6, borderRadius: 999, background: `linear-gradient(to right, #333, #555, #888, #111)`, minWidth: 120 }} />
             <div style={{ display: 'flex', gap: 16 }}>
               {['1K', '10K', '100K', '1M'].map(l => (
                 <span key={l} style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'rgba(255,255,255,0.25)' }}>{l} SHU</span>

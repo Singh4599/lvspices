@@ -7,7 +7,7 @@ import { VelocityMarquee } from '@/components/about/MarqueeSection';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 import ProfileCard from '@/components/ui/ProfileCard';
 
-const CR    = '#AC033B';
+const CR    = '#111111';
 const INK   = '#1A1915';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
@@ -22,12 +22,12 @@ const FOUNDER = {
 };
 
 const TEAM = [
-  { name: 'Nina Karani',  title: 'Head of International Sales',     initials: 'NK', accent: '#AC033B', dept: 'Sales',       avatarUrl: '/team/nina.jpg',     backTagline: 'Building global partnerships and opening doors to 70+ countries for LV Spices.',      backStats: [{ label: 'Countries', value: '70+' }, { label: 'Years', value: '5+' }] },
-  { name: 'Hiren Shah',   title: 'Procurement Manager',             initials: 'HS', accent: '#1A5FAB', dept: 'Procurement', avatarUrl: '/team/hiren.png',    backTagline: 'Ensuring the finest raw spices reach our facilities at optimal cost and quality.',      backStats: [{ label: 'Suppliers', value: '120+' }, { label: 'SKUs', value: '500+' }] },
-  { name: 'Parth Karani', title: 'Business Development Manager',    initials: 'PK', accent: '#2E6B3E', dept: 'Business Dev',avatarUrl: '/team/parth.png',    backTagline: 'Identifying new opportunities and scaling LV Spices to new international markets.',   backStats: [{ label: 'Markets', value: '30+' }, { label: 'Deals', value: '200+' }] },
-  { name: 'Mukesh Vora',  title: 'Operations Manager',              initials: 'MV', accent: '#7B4E1B', dept: 'Operations',  avatarUrl: '/team/mukesh.png',   backTagline: 'Orchestrating seamless production cycles to deliver on time, every time.',             backStats: [{ label: 'Tonnes/Mo', value: '500+' }, { label: 'Uptime', value: '99%' }] },
+  { name: 'Nina Karani',  title: 'Head of International Sales',     initials: 'NK', accent: '#111111', dept: 'Sales',       avatarUrl: '/team/nina.jpg',     backTagline: 'Building global partnerships and opening doors to 70+ countries for LV Spices.',      backStats: [{ label: 'Countries', value: '70+' }, { label: 'Years', value: '5+' }] },
+  { name: 'Hiren Shah',   title: 'Procurement Manager',             initials: 'HS', accent: '#333333', dept: 'Procurement', avatarUrl: '/team/hiren.png',    backTagline: 'Ensuring the finest raw spices reach our facilities at optimal cost and quality.',      backStats: [{ label: 'Suppliers', value: '120+' }, { label: 'SKUs', value: '500+' }] },
+  { name: 'Parth Karani', title: 'Business Development Manager',    initials: 'PK', accent: '#111111', dept: 'Business Dev',avatarUrl: '/team/parth.png',    backTagline: 'Identifying new opportunities and scaling LV Spices to new international markets.',   backStats: [{ label: 'Markets', value: '30+' }, { label: 'Deals', value: '200+' }] },
+  { name: 'Mukesh Vora',  title: 'Operations Manager',              initials: 'MV', accent: '#555555', dept: 'Operations',  avatarUrl: '/team/mukesh.png',   backTagline: 'Orchestrating seamless production cycles to deliver on time, every time.',             backStats: [{ label: 'Tonnes/Mo', value: '500+' }, { label: 'Uptime', value: '99%' }] },
   { name: 'Minakshi Rao', title: 'Quality Control Manager',         initials: 'MR', accent: '#6B2A6B', dept: 'Quality',     avatarUrl: '/team/minakshi.jpg', backTagline: 'Upholding world-class quality standards across every batch — zero compromise.',         backStats: [{ label: 'Tests/Batch', value: '40+' }, { label: 'Certifications', value: '12' }] },
-  { name: 'Vinod Singh',  title: 'Export Documentation Specialist', initials: 'VS', accent: '#0A4D6E', dept: 'Export Docs', avatarUrl: '/team/vinod.png',    backTagline: 'Navigating complex international trade regulations with precision and speed.',          backStats: [{ label: 'Shipments', value: '1000+' }, { label: 'Countries', value: '55+' }] },
+  { name: 'Vinod Singh',  title: 'Export Documentation Specialist', initials: 'VS', accent: '#444444', dept: 'Export Docs', avatarUrl: '/team/vinod.png',    backTagline: 'Navigating complex international trade regulations with precision and speed.',          backStats: [{ label: 'Shipments', value: '1000+' }, { label: 'Countries', value: '55+' }] },
   { name: 'Vishal Seth',  title: 'Logistics Manager',               initials: 'VS', accent: '#1A7A4A', dept: 'Logistics',   avatarUrl: '/team/vishal.png',   backTagline: 'Delivering freshness to the world — end-to-end supply chain mastery.',               backStats: [{ label: 'On-Time', value: '97%' }, { label: 'Partners', value: '40+' }] },
 ];
 
@@ -180,14 +180,14 @@ const CSS = `
   .founder-section { display: flex; gap: clamp(40px,8vw,100px); align-items: flex-start; }
   .team-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; }
   .team-card { width: calc(25% - 24px); min-width: 220px; }
-  .founder-quote { padding-left: 28px; border-left: 3px solid #AC033B; text-align: left; }
-  .founder-quote-line { height: 2px; background: linear-gradient(90deg, #AC033B, transparent); margin-top: 12px; margin-left: 28px; border-radius: 2px; }
+  .founder-quote { padding-left: 28px; border-left: 3px solid '#111111'; text-align: left; }
+  .founder-quote-line { height: 2px; background: linear-gradient(90deg, '#111111', transparent); margin-top: 12px; margin-left: 28px; border-radius: 2px; }
   
   @media (max-width: 1100px) { .team-card { width: calc(33.333% - 22px); } }
   @media (max-width: 800px) {
     .founder-section { flex-direction: column !important; align-items: center; text-align: center; }
-    .founder-quote { padding-left: 0; padding-top: 24px; border-left: none; border-top: 3px solid #AC033B; text-align: center; display: inline-block; }
-    .founder-quote-line { margin-left: auto; margin-right: auto; background: linear-gradient(90deg, transparent, #AC033B, transparent); width: 60% !important; }
+    .founder-quote { padding-left: 0; padding-top: 24px; border-left: none; border-top: 3px solid '#111111'; text-align: center; display: inline-block; }
+    .founder-quote-line { margin-left: auto; margin-right: auto; background: linear-gradient(90deg, transparent, '#111111', transparent); width: 60% !important; }
     .team-card { width: 100%; max-width: 340px; margin: 0 auto; }
   }
   @media (max-width: 500px) { .team-card { width: 100%; max-width: 100%; } }
@@ -236,20 +236,20 @@ export default function OurTeamPage() {
             {/* Nodes */}
             {[
               { x: 100, y: 80, c: CR, d: 0 },
-              { x: 320, y: 200, c: '#AC033B', d: 0.3 },
+              { x: 320, y: 200, c: '#111111', d: 0.3 },
               { x: 600, y: 140, c: CR, d: 0.6 },
-              { x: 880, y: 220, c: '#AC033B', d: 0.9 },
+              { x: 880, y: 220, c: '#111111', d: 0.9 },
               { x: 1100, y: 100, c: CR, d: 1.2 },
-              { x: 500, y: 380, c: '#AC033Baa', d: 0.45 },
-              { x: 700, y: 400, c: '#AC033Baa', d: 0.75 },
-              { x: 200, y: 320, c: '#AC033Baa', d: 0.15 },
+              { x: 500, y: 380, c: '#111111aa', d: 0.45 },
+              { x: 700, y: 400, c: '#111111aa', d: 0.75 },
+              { x: 200, y: 320, c: '#111111aa', d: 0.15 },
             ].map((n, i) => <NetworkNode key={i} x={n.x} y={n.y} color={n.c} size={7} delay={n.d} />)}
           </svg>
         </div>
 
         {/* Floating blobs */}
         <FloatingBlob color={CR} x="75%" y="10%" size={320} delay={0} />
-        <FloatingBlob color="#1A5FAB" x="5%" y="60%" size={200} delay={1.5} />
+        <FloatingBlob color="#333333" x="5%" y="60%" size={200} delay={1.5} />
 
         <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <Reveal delay={0.1}>
@@ -463,7 +463,7 @@ export default function OurTeamPage() {
 
           {/* Floating accent blobs in section */}
           <FloatingBlob color={CR} x="80%" y="5%" size={280} delay={0.5} />
-          <FloatingBlob color="#1A5FAB" x="2%" y="70%" size={200} delay={2} />
+          <FloatingBlob color="#333333" x="2%" y="70%" size={200} delay={2} />
 
           <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
             <Reveal delay={0.1} style={{ textAlign: 'center', marginBottom: 56 }}>

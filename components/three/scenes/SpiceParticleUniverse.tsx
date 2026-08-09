@@ -25,11 +25,11 @@ export default function SpiceParticleUniverse({
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
-          <pointLight position={[5, 5, 5]} intensity={0.3} color="#AC033B" />
+          <pointLight position={[5, 5, 5]} intensity={0.3} color='#111111' />
 
           <ParticleField
             count={particleCount}
-            color="#AC033B"
+            color='#111111'
             size={0.015}
             radius={4}
             speed={0.05}
@@ -39,7 +39,7 @@ export default function SpiceParticleUniverse({
           {/* Secondary smaller particles for depth */}
           <ParticleField
             count={Math.floor(particleCount * 0.3)}
-            color="#AC033B"
+            color='#111111'
             size={0.008}
             radius={6}
             speed={0.02}

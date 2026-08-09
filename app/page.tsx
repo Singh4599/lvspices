@@ -29,7 +29,7 @@ const StickyProcessStep = dynamic(
 const DomeGallery = dynamic(() => import('@/components/animation/DomeGallery'), { ssr: false });
 
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -66,11 +66,13 @@ export default function HomePage() {
     <main style={{ background: 'transparent', overflowX: 'clip' }}>
       {/* <FloatingSpiceObject /> */}
       <div id="hero-section"><Hero /></div>
-      <div id="after-hero">
+      <div id="after-hero" style={{ padding: '40px 0' }}>
         <Divider />
       </div>
       <div id="who-we-are-section"><WhoWeAre /></div>
-      <Divider />
+      <div style={{ padding: '40px 0' }}>
+        <Divider />
+      </div>
       {/* PRODUCT GALLERY */}
       <section id="section-products" style={{ padding: 'clamp(16px,2vw,32px) 0 clamp(60px,8vw,80px)', overflow: 'hidden', scrollMarginTop: '80px' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: `0 ${PAGE_PAD}`, marginBottom: '16px', textAlign: 'center', overflow: 'visible' }}>
@@ -120,10 +122,14 @@ export default function HomePage() {
       </div>
       {/* GLOBAL PRESENCE MAP */}
       <GlobalPresenceMap />
-      <Divider />
+      <div style={{ padding: '40px 0' }}>
+        <Divider />
+      </div>
       {/* RESOURCES */}
       <div id="section-resources"><Resources /></div>
-      <Divider />
+      <div style={{ padding: '40px 0' }}>
+        <Divider />
+      </div>
       {/* DOME GALLERY */}
       <section id="section-dome" style={{ padding: 'clamp(24px,4vw,40px) 0 0' }}>
         <div style={{ textAlign: 'center', marginBottom: 16 }}>
@@ -168,176 +174,16 @@ function Divider() {
    • Lower minimum seek delta on mobile (skip tiny moves)
    ════════════════════════════════════════════════════════ */
 function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const canvasRef  = useRef<HTMLCanvasElement>(null);
-  const videoRef   = useRef<HTMLVideoElement>(null);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    const video   = videoRef.current!;
-    const canvas  = canvasRef.current!;
-    const section = sectionRef.current!;
-    if (!video || !canvas || !section) return;
-
-    const isMob = window.innerWidth <= 768;
-
-    video.src = isMob ? '/videos/hero-mobile-v3.mp4' : '/videos/hero-desktop-v4.mp4';
-    video.load();
-
-    // Use willReadFrequently: false — we're only writing, never reading pixels
-    const ctx = canvas.getContext('2d', { alpha: false, willReadFrequently: false })!;
-
-    const resize = () => {
-      // Use section's actual rendered size — NOT window.innerWidth/Height.
-      // On iOS Safari, window.innerHeight ≠ 100svh (address bar offset),
-      // causing the canvas buffer to mismatch the CSS size → top/bottom black bars.
-      const dpr = window.devicePixelRatio || 1;
-      const w = section.clientWidth || window.innerWidth;
-      const h = section.clientHeight || window.innerHeight;
-      
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      
-      // Keep canvas visual size same as section via CSS
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-      
-      ctx.scale(dpr, dpr);
-    };
-    resize();
-    window.addEventListener('resize', () => { resize(); drawFrame(); });
-
-    const drawFrame = () => {
-      if (!video.videoWidth) return;
-      
-      const w = section.clientWidth || window.innerWidth;
-      const h = section.clientHeight || window.innerHeight;
-
-      const hR = w / video.videoWidth;
-      const vR = h / video.videoHeight;
-      const r  = Math.max(hR, vR);
-      
-      const cx = (w - video.videoWidth * r) / 2;
-      const cy = (h - video.videoHeight * r) / 2;
-      
-      ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight,
-                    cx, cy, video.videoWidth * r, video.videoHeight * r);
-    };
-
-    let destroyed = false;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const anyVid = video as any;
-    const hasRVFC: boolean = typeof anyVid.requestVideoFrameCallback === 'function';
-
-    // ── RVFC: draw exactly once per decoded frame ──
-    // We only register a callback when a seek has been issued, not in a permanent loop.
-    // This avoids burning GPU every vsync when the user isn't scrolling.
-    let pendingDraw = false;
-    const requestDraw = () => {
-      if (pendingDraw) return;
-      pendingDraw = true;
-      if (hasRVFC) {
-        anyVid.requestVideoFrameCallback(() => { drawFrame(); pendingDraw = false; });
-      } else {
-        // fallback: draw on seeked event (registered below)
-        pendingDraw = false;
-      }
-    };
-
-    const onSeeked = () => { drawFrame(); pendingDraw = false; };
-    if (!hasRVFC) video.addEventListener('seeked', onSeeked);
-
-    // ── RAF-gated seek: at most ONE seek per animation frame ──
-    let rafPending = false;
-    let pendingSeekT = -1;
-    let lastSeekT    = -1;
-    // Larger delta on mobile = skip micro-movements = far fewer seeks
-    const MIN_DELTA = isMob ? 0.033 : 0.016; // ~30fps mobile gate vs ~60fps desktop gate
-
-    const seekTo = (t: number) => {
-      pendingSeekT = t;
-      if (rafPending) return;           // already have a frame queued, just update target
-      rafPending = true;
-      requestAnimationFrame(() => {
-        rafPending = false;
-        const target = pendingSeekT;
-        if (Math.abs(target - lastSeekT) < MIN_DELTA) return; // delta too small, skip
-        lastSeekT = target;
-        if (typeof anyVid.fastSeek === 'function') anyVid.fastSeek(target);
-        else video.currentTime = target;
-        requestDraw(); // ask for one frame draw after seek
-      });
-    };
-
-    // Mobile gets shorter scroll so the video completes sooner and CPU pressure is lower
-    const SCROLL_DISTANCE = isMob ? 1500 : 3000;
-
-    let scrollTriggerInstance: ReturnType<typeof ScrollTrigger.create> | null = null;
-    let duration = 0;
-    let setupDone = false;
-
-    const setupScroll = () => {
-      if (setupDone) return;
-      setupDone = true;
-      duration = video.duration || 10;
-      setReady(true);
-      drawFrame();
-
-      scrollTriggerInstance = ScrollTrigger.create({
-        trigger: section,
-        start:  'top 68px',
-        end:    `+=${SCROLL_DISTANCE}`,
-        pin:    true,
-        anticipatePin: 1,
-        onUpdate(self) {
-          const t = self.progress * (duration - 0.05);
-          seekTo(t); // RAF-gated, won't flood the CPU
-        },
-      });
-    };
-
-    video.addEventListener('canplaythrough', setupScroll, { once: true });
-    video.addEventListener('loadeddata', () => setTimeout(setupScroll, 300), { once: true });
-    video.addEventListener('loadedmetadata', () => { resize(); drawFrame(); });
-
-    return () => {
-      destroyed = true;
-      window.removeEventListener('resize', resize);
-      if (!hasRVFC) video.removeEventListener('seeked', onSeeked);
-      scrollTriggerInstance?.kill();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      style={{ position: 'relative', width: '100%', height: '100svh', overflow: 'hidden', background: '#000' }}
-    >
-      {!ready && (
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 10,
-          background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={typeof window !== 'undefined' && window.innerWidth <= 768
-              ? '/videos/hero-mobile-poster.webp'
-              : '/videos/hero-desktop-poster.webp'}
-            alt=""
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5 }}
-          />
-          <div style={{
-            position: 'relative', zIndex: 1,
-            width: 32, height: 32, borderRadius: '50%',
-            border: '2px solid rgba(255,255,255,0.1)',
-            borderTopColor: '#AC033B',
-            animation: 'spin 0.7s linear infinite',
-          }} />
-        </div>
-      )}
-      <video ref={videoRef} playsInline muted preload="auto" style={{ display: 'none' }} />
-      <canvas ref={canvasRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }} />
+    <section style={{ position: 'relative', width: '100%', height: '100svh', overflow: 'hidden', background: '#fff' }}>
+      <picture style={{ width: '100%', height: '100%', display: 'block' }}>
+        <source media="(max-width: 768px)" srcSet="/images/herophone.png" />
+        <img
+          src="/images/herodesktop.png"
+          alt="LV Spices"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center bottom' }}
+        />
+      </picture>
     </section>
   );
 }
@@ -444,7 +290,7 @@ function Certifications() {
 function FinalCTA() {
   return (
     <section style={{ padding: `clamp(80px, 10vw, 160px) ${PAGE_PAD} 0`, maxWidth: 1200, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
-      <ElectricBorder color="#AC033B" speed={1.2} chaos={0.1} borderRadius={32} thickness={2} style={{ width: '100%', borderRadius: '32px' }}>
+      <ElectricBorder color='#111111' speed={1.2} chaos={0.1} borderRadius={32} thickness={2} style={{ width: '100%', borderRadius: '32px' }}>
         <div style={{ padding: 'clamp(48px,6vw,96px) clamp(32px,5vw,80px)', textAlign: 'center' }}>
           <p style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 28 }}>
             Ready to Begin
@@ -472,7 +318,7 @@ function CanvasPlaceholder({ label }: { label: string }) {
       width: '100%',
       aspectRatio: '16/10',
       borderRadius: 16,
-      border: '1px dashed rgba(172,3,59,0.4)',
+      border: '1px dashed rgba(17,17,17,0.4)',
       background: 'linear-gradient(135deg, #0d0d0d 0%, #111 100%)',
       display: 'flex',
       flexDirection: 'column',
@@ -483,15 +329,15 @@ function CanvasPlaceholder({ label }: { label: string }) {
       overflow: 'hidden',
     }}>
       {/* Corner accents */}
-      <div style={{ position: 'absolute', top: 12, left: 12, width: 20, height: 20, borderTop: '2px solid #AC033B', borderLeft: '2px solid #AC033B' }} />
-      <div style={{ position: 'absolute', top: 12, right: 12, width: 20, height: 20, borderTop: '2px solid #AC033B', borderRight: '2px solid #AC033B' }} />
-      <div style={{ position: 'absolute', bottom: 12, left: 12, width: 20, height: 20, borderBottom: '2px solid #AC033B', borderLeft: '2px solid #AC033B' }} />
-      <div style={{ position: 'absolute', bottom: 12, right: 12, width: 20, height: 20, borderBottom: '2px solid #AC033B', borderRight: '2px solid #AC033B' }} />
+      <div style={{ position: 'absolute', top: 12, left: 12, width: 20, height: 20, borderTop: '2px solid #111111', borderLeft: '2px solid #111111' }} />
+      <div style={{ position: 'absolute', top: 12, right: 12, width: 20, height: 20, borderTop: '2px solid #111111', borderRight: '2px solid #111111' }} />
+      <div style={{ position: 'absolute', bottom: 12, left: 12, width: 20, height: 20, borderBottom: '2px solid #111111', borderLeft: '2px solid #111111' }} />
+      <div style={{ position: 'absolute', bottom: 12, right: 12, width: 20, height: 20, borderBottom: '2px solid #111111', borderRight: '2px solid #111111' }} />
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ opacity: 0.3 }}>
-        <circle cx="20" cy="20" r="19" stroke="#AC033B" strokeWidth="1.5"/>
-        <path d="M16 13L28 20L16 27V13Z" fill="#AC033B"/>
+        <circle cx="20" cy="20" r="19" stroke='#111111' strokeWidth="1.5"/>
+        <path d="M16 13L28 20L16 27V13Z" fill='#111111'/>
       </svg>
-      <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(172,3,59,0.6)' }}>
+      <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(17,17,17,0.6)' }}>
         {label}
       </span>
     </div>
@@ -518,7 +364,7 @@ function WhoWeAre() {
             letterSpacing: '-0.04em',
             margin: '0 0 20px',
           }}>
-            Who <span className="heading-accent" style={{ fontStyle: 'italic', color: CRIMSON }}>We</span> Are.
+            Who <span className="heading-accent" style={{ color: CRIMSON }}>We</span> Are.
           </h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: '32px' }}>
             <div style={{ width: 32, height: 1.5, background: CRIMSON }} />
@@ -574,10 +420,11 @@ function WhoWeAre() {
 
 /* WHAT WE DO — Scroll Stack */
 function StackedVideoStep({
-  num, title, video, imageRight, index, isLast,
+  num, title, video, imageRight, index, isLast, comingSoon = false,
 }: {
   num: string; title: string; video: string;
   imageRight: boolean; index: number; isLast: boolean;
+  comingSoon?: boolean;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const { ref: videoRef, inView } = useInView();
@@ -645,27 +492,61 @@ function StackedVideoStep({
         </div>
         <div className="stacked-card-video" style={{ flex: 1.6 }}>
           <div className="card-video-wrapper" style={{ position: 'relative', width: '100%' }}>
-            <div
-              className="card-fog"
-              style={{
-                position: 'absolute',
-                top: '-25%', left: '-25%', width: '150%', height: '150%',
-                background: 'radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 60%)',
-                filter: 'blur(40px)',
-                zIndex: 0, pointerEvents: 'none'
-              }}
-            />
-            <video
-              ref={videoRef}
-              src={inView ? video : undefined}
-              poster={video.replace('.mp4', '.webp')}
-              autoPlay muted loop playsInline
-              className="card-video"
-              style={{
-                position: 'absolute', inset: 0, width: '100%', height: '100%',
-                objectFit: 'cover', zIndex: 1,
-              }}
-            />
+            {comingSoon ? (
+              /* ── Coming Soon placeholder ── */
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(135deg, #f8f8f8 0%, #ebebeb 100%)',
+                display: 'flex', flexDirection: 'column',
+                alignItems: 'center', justifyContent: 'center',
+                gap: 12,
+              }}>
+                <div style={{
+                  width: 56, height: 56, borderRadius: '50%',
+                  background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5"/>
+                    <path d="M12 7v5l3 3" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </div>
+                <span style={{
+                  fontFamily: 'var(--font-mono), monospace',
+                  fontSize: 11, letterSpacing: '0.22em',
+                  textTransform: 'uppercase', color: '#111',
+                  fontWeight: 600,
+                }}>Coming Soon</span>
+                <span style={{
+                  fontFamily: 'var(--font-mono), monospace',
+                  fontSize: 10, letterSpacing: '0.12em',
+                  color: 'rgba(0,0,0,0.4)',
+                }}>Video in production</span>
+              </div>
+            ) : (
+              <>
+                <div
+                  className="card-fog"
+                  style={{
+                    position: 'absolute',
+                    top: '-25%', left: '-25%', width: '150%', height: '150%',
+                    background: 'radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 60%)',
+                    filter: 'blur(40px)',
+                    zIndex: 0, pointerEvents: 'none'
+                  }}
+                />
+                <video
+                  ref={videoRef}
+                  src={inView ? video : undefined}
+                  poster={video.replace('.mp4', '.webp')}
+                  autoPlay muted loop playsInline
+                  className="card-video"
+                  style={{
+                    position: 'absolute', inset: 0, width: '100%', height: '100%',
+                    objectFit: 'cover', zIndex: 1,
+                  }}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -720,18 +601,18 @@ function VideoStep({
 }
 
 function WhatWeDo() {
-  const steps = [
-    { num: '01', title: 'Raw Material\nProcurement', video: '/videos/raw-material-new.mp4' },
-    { num: '02', title: 'Storage',                   video: '/videos/storage-new.mp4' },
-    { num: '03', title: 'RM Inspection',              video: '/videos/inspection-new.mp4' },
-    { num: '04', title: 'Cleaning &\nSorting',        video: '/videos/cleaning-sorting.mp4' },
-    { num: '05', title: 'Metal\nDetection',           video: '/videos/metal-detction-new.mp4' },
-    { num: '06', title: 'Roasting',                   video: '/videos/roasting.mp4' },
-    { num: '07', title: 'Cryogenic\nGrinding',        video: '/videos/cryogenic-grinding-new.mp4' },
-    { num: '08', title: 'Packaging\nLine',            video: '/videos/process.mp4' },
-    { num: '09', title: 'Steam\nSterilization',       video: '/videos/steam-sterilization.mp4' },
-    { num: '10', title: 'Quality\nAssurance',         video: '/videos/quality-check-new2.mp4' },
-    { num: '11', title: 'Shipment\nClearance & Dispatch', video: '/videos/dispatch.mp4' },
+  const steps: { num: string; title: string; video: string; comingSoon?: boolean }[] = [
+    { num: '01', title: 'Raw Material\nProcurement',        video: '/videos/raw-material-new.mp4' },
+    { num: '02', title: 'Storage',                          video: '/videos/storage-new.mp4' },
+    { num: '03', title: 'RM Inspection',                    video: '/videos/inspection-new.mp4' },
+    { num: '04', title: 'Cleaning &\nSorting',              video: '/videos/cleaning-sorting.mp4',        comingSoon: true },
+    { num: '05', title: 'Metal\nDetection',                 video: '/videos/metal-detction-new.mp4' },
+    { num: '06', title: 'Roasting',                         video: '/videos/roasting.mp4',                comingSoon: true },
+    { num: '07', title: 'Cryogenic\nGrinding',              video: '/videos/cryogenic-grinding-new.mp4' },
+    { num: '08', title: 'Packaging\nLine',                  video: '/videos/process.mp4',                 comingSoon: true },
+    { num: '09', title: 'Steam\nSterilization',             video: '/videos/steam-sterilization.mp4',     comingSoon: true },
+    { num: '10', title: 'Quality\nAssurance',               video: '/videos/quality-check-new2.mp4' },
+    { num: '11', title: 'Shipment\nClearance & Dispatch',   video: '/videos/dispatch.mp4',                comingSoon: true },
   ];
 
   return (
@@ -747,7 +628,7 @@ function WhatWeDo() {
           letterSpacing: '-0.04em',
           margin: '0 0 20px',
         }}>
-          What <span className="heading-accent" style={{ fontStyle: 'italic', color: CRIMSON }}>We</span> Do.
+          What <span className="heading-accent" style={{ color: CRIMSON }}>We</span> Do.
         </h2>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ width: 32, height: 1.5, background: CRIMSON }} />
@@ -770,6 +651,7 @@ function WhatWeDo() {
             num={step.num}
             title={step.title}
             video={step.video}
+            comingSoon={step.comingSoon}
             imageRight={i % 2 !== 0}
             index={i}
             isLast={i === steps.length - 1}
@@ -784,17 +666,17 @@ function WhatWeDo() {
 
 /* RESOURCES */
 function Resources() {
-  const resourceSteps = [
-    { num: '01', title: 'Inhouse Lab',                   video: '/videos/in-house-and-rd.mp4' },
-    { num: '02', title: 'Cold Storage',                  video: '/videos/raw-material-storage.mp4' },
-    { num: '03', title: 'Product R&D',                   video: '/videos/product-rd.mp4' },
-    { num: '04', title: 'Private Label',                 video: '/videos/private-lable.mp4' },
-    { num: '05', title: 'Customized\nSolution',          video: '/videos/customised.mp4' },
-    { num: '06', title: 'Safety & Quality\nPractices',   video: '/videos/safety-quality.mp4' },
-    { num: '07', title: 'Annual Export\nSpice Stock',    video: '/videos/annual-export.mp4' },
-    { num: '08', title: 'Agent Network',                 video: '/videos/agent-network.mp4' },
-    { num: '09', title: 'Professional\nTeam',            video: '/videos/professional-team.mp4' },
-    { num: '10', title: 'Market Insights',               video: '/videos/market-insights.mp4' },
+  const resourceSteps: { num: string; title: string; video: string; comingSoon?: boolean }[] = [
+    { num: '01', title: 'Inhouse Lab',                   video: '/videos/in-house-and-rd.mp4',  comingSoon: true },
+    { num: '02', title: 'Cold Storage',                  video: '/videos/raw-material-storage.mp4', comingSoon: true },
+    { num: '03', title: 'Product R&D',                   video: '/videos/product-rd.mp4',       comingSoon: true },
+    { num: '04', title: 'Private Label',                 video: '/videos/private-lable.mp4',    comingSoon: true },
+    { num: '05', title: 'Customized\nSolution',          video: '/videos/customised.mp4',       comingSoon: true },
+    { num: '06', title: 'Safety & Quality\nPractices',   video: '/videos/safety-quality.mp4',   comingSoon: true },
+    { num: '07', title: 'Annual Export\nSpice Stock',    video: '/videos/annual-export.mp4',    comingSoon: true },
+    { num: '08', title: 'Agent Network',                 video: '/videos/agent-network.mp4',    comingSoon: true },
+    { num: '09', title: 'Professional\nTeam',            video: '/videos/professional-team.mp4', comingSoon: true },
+    { num: '10', title: 'Market Insights',               video: '/videos/market-insights.mp4',  comingSoon: true },
   ];
 
   return (
@@ -810,7 +692,7 @@ function Resources() {
           letterSpacing: '-0.04em',
           margin: '0 0 20px',
         }}>
-          Why <span className="heading-accent" style={{ fontStyle: 'italic', color: CRIMSON }}>Choose</span> Us.
+          Why <span className="heading-accent" style={{ color: CRIMSON }}>Choose</span> Us.
         </h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ width: 32, height: 1.5, background: CRIMSON }} />
@@ -833,6 +715,7 @@ function Resources() {
             num={step.num}
             title={step.title}
             video={step.video}
+            comingSoon={step.comingSoon}
             imageRight={i % 2 !== 0}
             index={i}
             isLast={i === resourceSteps.length - 1}

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const CR     = '#AC033B';
+const CR     = '#111111';
 const INK    = '#1A1818';
 const INK_L  = 'rgba(26,24,24,0.28)';
 const INK_LL = 'rgba(26,24,24,0.07)';
@@ -12,12 +12,12 @@ const FLOOR  = '#F5F3EF';
 interface Room { id:number; key:string; gate:string; name:string; stat:string; accent:string; desc:string; }
 
 const ROOMS: Room[] = [
-  { id:0, key:'reception', gate:'ENTRY POINT', name:'Sample Reception',       stat:'100% Traceability',       accent:'#7B4E1B', desc:'Every incoming raw material lot is mapped to our ERP for end-to-end traceability. AOAC/ISO standard multi-point sampling occurs prior to unloading, cross-checking physical documentation against vendor COAs.' },
-  { id:1, key:'prescreen', gate:'GATE 1',      name:'In-House Pre-Screening', stat:'Rapid Validation',        accent:'#1A5FAB', desc:'Within 2 hours of receipt, baseline physicals (moisture, bulk density, ASTA colour, extraneous matter) are verified. Non-compliant lots face immediate rejection or quarantine.' },
+  { id:0, key:'reception', gate:'ENTRY POINT', name:'Sample Reception',       stat:'100% Traceability',       accent:'#555555', desc:'Every incoming raw material lot is mapped to our ERP for end-to-end traceability. AOAC/ISO standard multi-point sampling occurs prior to unloading, cross-checking physical documentation against vendor COAs.' },
+  { id:1, key:'prescreen', gate:'GATE 1',      name:'In-House Pre-Screening', stat:'Rapid Validation',        accent:'#333333', desc:'Within 2 hours of receipt, baseline physicals (moisture, bulk density, ASTA colour, extraneous matter) are verified. Non-compliant lots face immediate rejection or quarantine.' },
   { id:2, key:'pesticide', gate:'GATE 2',      name:'Analytical Testing Lab',  stat:'500+ Residues',    accent:CR,        desc:'Equipped with LC-MS/MS and GC-MS technology, this NABL ISO 17025-accredited scope tests for 500+ pesticide residues, Aflatoxins (B1, B2, G1, G2), Ochratoxin A, heavy metals, and Sudan dyes.' },
-  { id:3, key:'allergen',  gate:'GATE 3',      name:'Allergen ELISA Lab',     stat:'14 Major Allergens',    accent:'#2E6B3E', desc:'Rigorous ELISA and PCR screening for 14 major allergen categories (including Gluten, Mustard, Sesame) to ensure absolute cross-contamination prevention for sensitive B2B clients.' },
+  { id:3, key:'allergen',  gate:'GATE 3',      name:'Allergen ELISA Lab',     stat:'14 Major Allergens',    accent:'#111111', desc:'Rigorous ELISA and PCR screening for 14 major allergen categories (including Gluten, Mustard, Sesame) to ensure absolute cross-contamination prevention for sensitive B2B clients.' },
   { id:4, key:'microbio',  gate:'GATE 4',      name:'Microbiology Lab',       stat:'5-Log Reduction', accent:'#5E2D79', desc:'Comprehensive pathogen screening (Salmonella spp., E.Coli, Listeria) alongside BAM/ISO plating methods. Correlates directly with our steam sterilization lines achieving a validated 5-log microbial kill step.' },
-  { id:5, key:'qcfloor',   gate:'GATE 5',      name:'Inline QC Monitoring',    stat:'Real-Time Telemetry',    accent:'#0A4D6E', desc:'Continuous shop-floor oversight: 30-minute sealing integrity checks, hourly metal detector calibration, and inline sensors measuring moisture and PSD across all milling and blending lines.' },
+  { id:5, key:'qcfloor',   gate:'GATE 5',      name:'Inline QC Monitoring',    stat:'Real-Time Telemetry',    accent:'#444444', desc:'Continuous shop-floor oversight: 30-minute sealing integrity checks, hourly metal detector calibration, and inline sensors measuring moisture and PSD across all milling and blending lines.' },
   { id:6, key:'training',  gate:'BRCGS COMPLIANT',  name:'Training & Documentation',stat:'Continuous GMP',     accent:'#6B4C00', desc:'FSMA and BRCGS Grade AA compliance mandates rigorous bi-annual GMP, HACCP, and allergen awareness training for all shop floor and laboratory personnel, ensuring an impeccable culture of food safety.' },
 ];
 
@@ -139,7 +139,7 @@ function Illus({ k, acc }: { k:string; acc:string }) {
           <g key={x}>
             <rect x={x}   y="24" width="8" height="38" rx="4" fill="none" stroke={INK} strokeWidth="1"/>
             <rect x={x+1} y={j%2===0?44:40} width="6" height={j%2===0?16:20} rx="3"
-              fill={j%2===0?acc:'#1A5FAB'} stroke="none"/>
+              fill={j%2===0?acc:'#333333'} stroke="none"/>
             <circle cx={x+4} cy={j%2===0?47:43} r="2" fill="#fff" className={j%2===0?'qi-bub':'qi-bub2'}/>
           </g>
         ))}

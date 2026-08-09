@@ -32,20 +32,20 @@ export default function MegaMenu({ groups, onMouseEnter, onMouseLeave }: MegaMen
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <div className="bg-white/98 backdrop-blur-xl shadow-[0_15px_30px_-5px_rgba(172,3,59,0.1)] border border-black/5 w-[360px] overflow-hidden rounded-b-2xl border-t-2 border-t-[#AC033B]">
+      <div className="bg-white/98 backdrop-blur-xl shadow-[0_15px_30px_-5px_rgba(17,17,17,0.1)] border border-black/5 w-[360px] overflow-hidden rounded-b-2xl border-t-2 border-t-['#111111']">
         {groups.map((group, groupIdx) => (
           <div key={group.title} className="flex flex-col">
             {group.items.map((item, itemIdx) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`group flex flex-col py-4 px-6 hover:bg-[#AC033B]/[0.02] transition-all duration-300 ${
+                className={`group flex flex-col py-4 px-6 hover:bg-[#111111]/[0.02] transition-all duration-300 ${
                   itemIdx !== group.items.length - 1 ? 'border-b border-black/5' : ''
                 }`}
               >
-                <div className="flex items-center justify-between text-[13px] font-bold text-white group-hover:text-[#AC033B] transition-colors duration-300">
+                <div className="flex items-center justify-between text-[13px] font-bold text-white group-hover:text-[#111111] transition-colors duration-300">
                   {item.label}
-                  <svg className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#AC033B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <svg className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#111111]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>

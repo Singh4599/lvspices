@@ -6,9 +6,9 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 import SpiceSchoolFlow from '@/components/technology/SpiceSchoolFlow';
 
-const CR    = '#AC033B';
+const CR    = '#111111';
 const INK   = '#1A1915';
-const GOLD  = '#7B4E1B';
+const GOLD  = '#555555';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
 

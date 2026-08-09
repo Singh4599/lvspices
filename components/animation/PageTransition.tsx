@@ -47,7 +47,7 @@ export default function PageTransition({ children }: { children?: React.ReactNod
           position: 'fixed',
           inset: 0,
           zIndex: 9999,
-          background: '#AC033B',
+          background: '#111111',
           transformOrigin: 'left center',
           pointerEvents: 'none',
         }}

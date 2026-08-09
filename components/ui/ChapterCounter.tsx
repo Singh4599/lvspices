@@ -8,7 +8,7 @@ export default function ChapterCounter({ number, className = '' }: ChapterCounte
 
   return (
     <span
-      className={`font-mono text-[#AC033B] font-bold leading-none select-none ${className}`}
+      className={`font-mono text-[#111111] font-bold leading-none select-none ${className}`}
       aria-hidden="true"
     >
       {display}

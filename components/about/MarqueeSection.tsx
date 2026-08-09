@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import CurvedLoop from '@/components/ui/CurvedLoop';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 // ── 1. LINEAR VELOCITY TEXT MARQUEE ───────────────────────────────────────────
 const TEXT_ITEMS = [

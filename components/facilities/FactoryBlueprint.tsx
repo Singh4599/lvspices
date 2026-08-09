@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 
-const INK    = '#2C1200';
+const INK    = '#111111';
 const INK_L  = '#6B3A1F';
 const INK_LL = 'rgba(44,18,0,0.28)';
-const CRIMSON = '#AC033B';
-const GREEN   = '#2E6B3E';
-const BLUE    = '#1A5FAB';
+const CRIMSON = '#111111';
+const GREEN   = '#111111';
+const BLUE    = '#333333';
 
 interface ZoneData {
   id: number;
@@ -20,12 +20,12 @@ interface ZoneData {
 
 const ZONES: ZoneData[] = [
   { id:0, icon:'🏭', name:'Raw Material Intake', stat:'10,000+ MT',       accent:'#5E4A00', desc:'All inbound raw spices are received in secure, weather-proof bays. We utilize automated pneumatic sampling probes to draw representative samples, ensuring zero contamination. Every lot is GPS-tagged and undergoes rigorous pre-cleaning QA clearance before entering the processing facility.' },
-  { id:1, icon:'🔍', name:'Sorting & Cleaning',  stat:'99.9% Purity',     accent:'#7B4E1B', desc:'We guarantee 99.9% physical purity through a multi-stage European automated line. Our facility utilizes advanced Vibro Sifters, precision De-Stoners, inline Magnetic Separators, and AI-powered Buhler Sortex optical sorting machines to surgically eliminate foreign matter.' },
+  { id:1, icon:'🔍', name:'Sorting & Cleaning',  stat:'99.9% Purity',     accent:'#555555', desc:'We guarantee 99.9% physical purity through a multi-stage European automated line. Our facility utilizes advanced Vibro Sifters, precision De-Stoners, inline Magnetic Separators, and AI-powered Buhler Sortex optical sorting machines to surgically eliminate foreign matter.' },
   { id:2, icon:'❄️', name:'Cryogenic Grinding',  stat:'-196°C Liquid N₂', accent: BLUE,     desc:'Unlike traditional heat-generating grinders, our proprietary liquid-nitrogen cryogenic grinding operates at an ultra-low -196°C. This state-of-the-art process locks in up to 40% more natural essential oils, volatile aromatics, and vibrant ASTA color.' },
   { id:3, icon:'♨️', name:'Steam Sterilization', stat:'5-Log Reduction',  accent:'#5E0A0A', desc:'Ensuring absolute microbial safety with FDA-compliant Continuous Flow indirect steam sterilization. This high-temperature, short-time (HTST) process delivers a validated 5-log reduction in pathogens like Salmonella and E. coli without degrading flavor.' },
   { id:4, icon:'🧪', name:'NABL Accredited Lab', stat:'500+ Parameters',  accent: GREEN,    desc:'Quality is verified at our in-house ISO/IEC 17025 (NABL) accredited laboratory. We conduct comprehensive physical, chemical, and microbiological analyses, including testing for heavy metals, aflatoxins, and pesticide residues using advanced LC-MS/MS equipment.' },
   { id:5, icon:'📦', name:'Clean Room Packing',  stat:'Class 100K HEPA',  accent:'#1B4A2E', desc:'Final products are packed in isolated Class 100,000 HEPA-filtered clean rooms under strict positive air pressure. We employ automated Form-Fill-Seal (FFS) lines with Nitrogen flushing to displace oxygen and maximize shelf life.' },
-  { id:6, icon:'🧊', name:'Smart Warehouse',     stat:'Climate Monitored',accent:'#0A4D6E', desc:'Finished goods are stored in our climate-controlled smart warehouse. Continuous 24/7 temperature and humidity monitoring, paired with automated FIFO (First-In, First-Out) inventory management, guarantees optimal freshness retention.' },
+  { id:6, icon:'🧊', name:'Smart Warehouse',     stat:'Climate Monitored',accent:'#444444', desc:'Finished goods are stored in our climate-controlled smart warehouse. Continuous 24/7 temperature and humidity monitoring, paired with automated FIFO (First-In, First-Out) inventory management, guarantees optimal freshness retention.' },
   { id:7, icon:'🚢', name:'Export Dispatch',     stat:'40+ Countries',    accent: CRIMSON,  desc:'We manage global B2B logistics natively. Container loading bays feature strict tamper-evident sealing and final pre-shipment inspections, ensuring full compliance with international regulations for export to 40+ countries.' },
 ];
 

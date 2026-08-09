@@ -2,14 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const CR    = '#AC033B';
+const CR    = '#111111';
 const INK   = '#1A1915';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
 
 const STATS = [
-  { value: 40, suffix: '+', label: 'Countries Exported', sub: 'Across 6 continents', color: '#AC033B', pct: 0.82 },
+  { value: 40, suffix: '+', label: 'Countries Exported', sub: 'Across 6 continents', color: '#111111', pct: 0.82 },
   { value: 50, suffix: '+', label: 'Years of Expertise', sub: 'B2B Spice Manufacturing', color: '#1A3F6B', pct: 0.90 },
   { value: 48, suffix: '+', label: 'Global OEM Partners', sub: 'FMCG & Retail Brands', color: '#1A6B5A', pct: 0.75 },
   { value: 99, suffix: '%', label: 'Customs Clearance', sub: 'FSSAI & FDA Compliant', color: '#C8860C', pct: 0.99 },

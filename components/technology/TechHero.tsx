@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import Image from 'next/image';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 export default function TechHero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -86,7 +86,7 @@ export default function TechHero() {
       {/* Content Grid */}
       <div ref={contentRef} style={{ position: 'relative', zIndex: 10, maxWidth: 1400, margin: '0 auto', width: '100%', display: 'flex' }}>
         <div style={{ maxWidth: 700 }}>
-          <div className="stagger-reveal" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 24, padding: '8px 16px', background: 'rgba(172,3,59,0.05)', border: '1px solid rgba(172,3,59,0.15)', borderRadius: 999 }}>
+          <div className="stagger-reveal" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 24, padding: '8px 16px', background: 'rgba(17,17,17,0.05)', border: '1px solid rgba(17,17,17,0.15)', borderRadius: 999 }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: CR, boxShadow: `0 0 10px ${CR}` }} />
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: CR, fontWeight: 700 }}>System Active</span>
           </div>

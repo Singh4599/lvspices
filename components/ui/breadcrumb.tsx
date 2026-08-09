@@ -42,7 +42,7 @@ const BreadcrumbLink = React.forwardRef<
   <a
     ref={ref}
     className={cn(
-      "inline-flex items-center gap-1.5 transition-colors hover:text-[#AC033B]",
+      "inline-flex items-center gap-1.5 transition-colors hover:text-[#111111]",
       className
     )}
     {...props}
@@ -59,7 +59,7 @@ const BreadcrumbPage = React.forwardRef<
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn("font-medium text-[#AC033B]", className)}
+    className={cn("font-medium text-[#111111]", className)}
     {...props}
   />
 ));

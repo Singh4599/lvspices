@@ -7,7 +7,7 @@ import RnDHero from '@/components/research/RnDHero';
 import RnDProcessHorizontal from '@/components/research/RnDProcessHorizontal';
 import RnDLabDiagram from '@/components/research/RnDLabDiagram';
 
-const CR   = '#AC033B';
+const CR   = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -91,9 +91,9 @@ export default function ResearchAndDevelopmentPage() {
           <StaggerReveal stagger={0.07} style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             {partnerships.map(partner => (
               <div key={partner}
-                style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, padding: '12px 24px', borderRadius: 999, background: 'rgba(172,3,59,0.06)', border: '1px solid rgba(172,3,59,0.18)', color: '#111', transition: 'all 0.25s', cursor: 'default' }}
+                style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, padding: '12px 24px', borderRadius: 999, background: 'rgba(17,17,17,0.06)', border: '1px solid rgba(17,17,17,0.18)', color: '#111', transition: 'all 0.25s', cursor: 'default' }}
                 onMouseEnter={e => { const el = e.currentTarget; el.style.background = CR; el.style.color = '#fff'; el.style.borderColor = CR; }}
-                onMouseLeave={e => { const el = e.currentTarget; el.style.background = 'rgba(172,3,59,0.06)'; el.style.color = '#111'; el.style.borderColor = 'rgba(172,3,59,0.18)'; }}>
+                onMouseLeave={e => { const el = e.currentTarget; el.style.background = 'rgba(17,17,17,0.06)'; el.style.color = '#111'; el.style.borderColor = 'rgba(17,17,17,0.18)'; }}>
                 {partner}
               </div>
             ))}
@@ -116,7 +116,7 @@ export default function ResearchAndDevelopmentPage() {
               Share your product brief with our R&D team. We'll formulate, test, and validate a blend tailored to your sensory and regulatory needs.
             </p>
             <a href="/contact"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: CR, color: '#fff', fontFamily: SANS, fontWeight: 700, fontSize: 15, padding: '18px 40px', borderRadius: 999, textDecoration: 'none', transition: 'transform 0.2s, box-shadow 0.2s', boxShadow: '0 8px 32px rgba(172,3,59,0.3)' }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: CR, color: '#fff', fontFamily: SANS, fontWeight: 700, fontSize: 15, padding: '18px 40px', borderRadius: 999, textDecoration: 'none', transition: 'transform 0.2s, box-shadow 0.2s', boxShadow: '0 8px 32px rgba(17,17,17,0.3)' }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; }}>
               Start a Conversation →

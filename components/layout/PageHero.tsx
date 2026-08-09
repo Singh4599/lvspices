@@ -41,7 +41,7 @@ export default function PageHero({
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-16 mt-14 md:mt-20 pt-12 md:pt-14 border-t border-black/[0.06]">
             {stats.map((s) => (
               <div key={s.label}>
-                <div className="font-mono text-[clamp(2rem,4vw,3.5rem)] font-bold text-[#AC033B] leading-none mb-3">{s.value}</div>
+                <div className="font-mono text-[clamp(2rem,4vw,3.5rem)] font-bold text-[#111111] leading-none mb-3">{s.value}</div>
                 <div className="font-sans text-[12px] text-black/30 tracking-[0.15em] uppercase">{s.label}</div>
               </div>
             ))}
@@ -52,8 +52,8 @@ export default function PageHero({
       </div>
 
       {/* Decorative crimson blur — adds depth */}
-      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#AC033B]/[0.04] blur-[120px] pointer-events-none" />
-      <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-[#AC033B]/[0.03] blur-[100px] pointer-events-none" />
+      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#111111]/[0.04] blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-[#111111]/[0.03] blur-[100px] pointer-events-none" />
     </section>
   );
 }

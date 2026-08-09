@@ -17,11 +17,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-[#AC033B] text-white hover:bg-[#8e0231] hover:-translate-y-[2px] active:translate-y-0',
+    'bg-[#111111] text-white hover:bg-[#333333] hover:-translate-y-[2px] active:translate-y-0',
   outline:
-    'bg-transparent text-[#AC033B] border-2 border-[#AC033B] hover:bg-[#AC033B] hover:text-white hover:-translate-y-[2px] active:translate-y-0',
+    'bg-transparent text-[#111111] border-2 border-[#111111] hover:bg-[#111111] hover:text-white hover:-translate-y-[2px] active:translate-y-0',
   ghost:
-    'bg-transparent text-white hover:text-[#AC033B]',
+    'bg-transparent text-white hover:text-[#111111]',
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -61,7 +61,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           variantStyles[variant],
           'transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
-          'focus-visible:ring-2 focus-visible:ring-[#AC033B] focus-visible:ring-offset-2',
+          'focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2',
           'disabled:opacity-50 disabled:pointer-events-none',
           className
         )}

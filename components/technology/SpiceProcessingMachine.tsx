@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const INK    = '#1A0800';
 const INK_L  = '#1A0800';
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 
 interface StationData {
   id: number;
@@ -17,10 +17,10 @@ interface StationData {
 
 const STATIONS: StationData[] = [
   { id:1, icon:'🌾', name:'Seed Cleaning',        stat:'1–3 Tons / Hr',      accent:'#8B6914', desc:'Advanced multi-deck vibro sieves meticulously remove farm admixtures, allergens, and ferrous/non-ferrous contaminants. Our line utilizes gravity separators and A+ Multivision Sortex with inline Metal Detectors for absolute purity.' },
-  { id:2, icon:'🔍', name:'Optical Sorting',       stat:'50,000 Seeds / Sec', accent:'#1A5FAB', desc:'High-speed Buhler Sortex camera arrays scan 50,000+ seeds per second. Discoloured, damaged, or foreign grains are rejected via precision air ejectors in real-time, ensuring 99.9% product purity.' },
+  { id:2, icon:'🔍', name:'Optical Sorting',       stat:'50,000 Seeds / Sec', accent:'#333333', desc:'High-speed Buhler Sortex camera arrays scan 50,000+ seeds per second. Discoloured, damaged, or foreign grains are rejected via precision air ejectors in real-time, ensuring 99.9% product purity.' },
   { id:3, icon:'🔥', name:'Drum Roasting',          stat:'4,000 Mts / Yr',    accent:'#C44B00', desc:'Precision temperature-controlled drum roasting at 4,000 MT/year capacity. This controlled thermal process develops complex, authentic flavor profiles while retaining maximum ASTA colour and essential volatile oils.' },
   { id:4, icon:'♨️', name:'Steam Sterilization',   stat:'5-Log Reduction',   accent:'#2E7D6E', desc:'FDA-compliant, validated 5-log microbial reduction via indirect high-temperature steam (HTST). No chemical treatments used, preserving full organoleptic properties. Packed directly in Class 100,000 HEPA-filtered clean rooms.' },
-  { id:5, icon:'❄️', name:'Cryogenic Grinding',    stat:'−196 °C',            accent:'#1A5FAB', desc:'Milling at −196°C (liquid nitrogen temperature) preserves up to 40% more essential oils than conventional ambient grinding. This zero-oxidation process locks in color, peak aroma, and maximum pungency.' },
+  { id:5, icon:'❄️', name:'Cryogenic Grinding',    stat:'−196 °C',            accent:'#333333', desc:'Milling at −196°C (liquid nitrogen temperature) preserves up to 40% more essential oils than conventional ambient grinding. This zero-oxidation process locks in color, peak aroma, and maximum pungency.' },
   { id:6, icon:'⚙️', name:'CFG Technology',        stat:'FDA 21 CFR',         accent:CRIMSON,   desc:"India's most advanced Continuous Flow Grinding (CFG) systems. Precision micron-level milling equipped with inline quality monitoring, real-time sensor feedback, and full FDA FSMA validation compliance." },
 ];
 
@@ -78,7 +78,7 @@ function Flame({ x, y, alt=false }: { x:number; y:number; alt?:boolean }) {
   return (
     <g className={c}>
       <path d={`M${x},${y} C${x-4},${y-10} ${x+4},${y-18} ${x},${y-26}`}
-        fill="none" stroke="#E8760A" strokeWidth="2.5" strokeLinecap="round" />
+        fill="none" stroke='#111111' strokeWidth="2.5" strokeLinecap="round" />
       <path d={`M${x},${y} C${x-2},${y-8} ${x+2},${y-14} ${x},${y-20}`}
         fill="none" stroke="#F5A623" strokeWidth="1.5" strokeLinecap="round" />
     </g>
@@ -304,11 +304,11 @@ export default function SpiceProcessingMachine() {
                   {active===4&&<rect x="778" y="222" width="124" height="130" rx="10" fill={STATIONS[4].accent} fillOpacity=".09" stroke={STATIONS[4].accent} strokeWidth="2.5" />}
                   <rect x="787" y="231" width="106" height="112" rx="7" fill="none" stroke="#A8CCE8" strokeWidth="1.5" />
                   <rect x="792" y="236" width="96" height="102" rx="5" fill="rgba(200,228,255,0.2)" />
-                  <text x="840" y="266" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="16" fontWeight="700" fill="#1A5FAB">−196°C</text>
-                  <text x="840" y="282" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="7" fill="#1A5FAB" letterSpacing=".06em">CRYOGENIC GRINDING</text>
+                  <text x="840" y="266" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="16" fontWeight="700" fill="#333333">−196°C</text>
+                  <text x="840" y="282" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="7" fill="#333333" letterSpacing=".06em">CRYOGENIC GRINDING</text>
                   <Snowflake cx={840} cy={308} r={20} />
                   <path d="M778,246 Q762,246 762,260 Q762,274 778,274" fill="none" stroke="#A8CCE8" strokeWidth="3" strokeLinecap="round" />
-                  <text x="748" y="244" fontFamily="'Courier New',monospace" fontSize="7.5" fill="#1A5FAB">LN₂</text>
+                  <text x="748" y="244" fontFamily="'Courier New',monospace" fontSize="7.5" fill="#333333">LN₂</text>
                   {[0,1,2,3].map(i=>(<text key={i} x={795+i*22} y="336" fontSize="9" fill="#A8CCE8" opacity=".65">✦</text>))}
                   <text x="788" y="240" fontFamily="Georgia,serif" fontSize="11" fill={CRIMSON} fontWeight="700">05</text>
                   <text x="840" y="455" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="9.5" fontWeight="700" fill={active===4?STATIONS[4].accent:INK_L} letterSpacing=".05em">CRYO GRINDER</text>
@@ -446,10 +446,10 @@ export default function SpiceProcessingMachine() {
                       <line x1="16" y1="106" x2="154" y2="106" stroke={INK_L} strokeWidth="6" strokeDasharray="14 7" className="belt-roll" />
                       <rect x="33" y="22" width="104" height="78" rx="8" fill="#E8F4FB" stroke={INK} strokeWidth="1.8" />
                       <rect x="40" y="29" width="90" height="64" rx="6" fill="none" stroke="#A8CCE8" strokeWidth="1.2" />
-                      <text x="85" y="52" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="13" fontWeight="700" fill="#1A5FAB">−196°C</text>
-                      <text x="85" y="64" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="6" fill="#1A5FAB" letterSpacing=".04em">CRYO GRIND</text>
+                      <text x="85" y="52" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="13" fontWeight="700" fill="#333333">−196°C</text>
+                      <text x="85" y="64" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="6" fill="#333333" letterSpacing=".04em">CRYO GRIND</text>
                       <Snowflake cx={85} cy={82} r={14} />
-                      <text x="85" y="122" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="6" fill="#1A5FAB">05</text>
+                      <text x="85" y="122" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="6" fill="#333333">05</text>
                     </svg>
                   )}
                   {s.id===6 && (

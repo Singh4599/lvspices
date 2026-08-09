@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 
-const RED   = '#AC033B';
+const RED   = '#111111';
 const INK   = '#1A1915';
-const INK_L = '#4A4A4A';
-const GOLD  = '#7B4E1B';
+const INK_L = '#666666';
+const GOLD  = '#555555';
 
 interface Lesson {
   n: number;
@@ -18,26 +18,26 @@ interface Lesson {
 
 export const LESSONS: Lesson[] = [
   { n: 1, name: 'Black Pepper', emoji: '⚫', color: '#2C3E50', tag: 'Pepper', desc: 'Sourced from the Malabar coast, Black Pepper (Piper nigrum) is prized for its high piperine content. This critical alkaloid is responsible for its sharp pungency and is widely utilized in nutraceuticals to enhance nutrient bioavailability.' },
-  { n: 2, name: 'Paprika', emoji: '🫑', color: '#C0392B', tag: 'Pepper', desc: 'Milled from dried Capsicum annuum, our commercial Paprika provides vibrant ASTA color values and mild, sweet notes. It is a fundamental ingredient in global meat processing, sausage manufacturing, and snack food seasoning.' },
+  { n: 2, name: 'Paprika', emoji: '🫑', color: '#111111', tag: 'Pepper', desc: 'Milled from dried Capsicum annuum, our commercial Paprika provides vibrant ASTA color values and mild, sweet notes. It is a fundamental ingredient in global meat processing, sausage manufacturing, and snack food seasoning.' },
   { n: 3, name: 'Cardamom', emoji: '🫙', color: '#1A6B3E', tag: 'Seed', desc: 'True green cardamom (Elettaria cardamomum) is native to the Western Ghats. Its complex, eucalyptus-citrus volatile oil profile makes it indispensable in commercial baking, artisanal chai blends, and premium savory formulations.' },
   { n: 4, name: 'Garlic', emoji: '🧄', color: '#8B4513', tag: 'Allium', desc: 'Allium sativum is dehydrated and milled to specific mesh sizes for industrial applications. Rich in allicin, it provides foundational savory depth and antimicrobial properties for soups, sauces, and dry rubs globally.' },
   { n: 5, name: 'Turmeric', emoji: '💛', color: '#F9A825', tag: 'Root', desc: 'Curcuma longa rhizomes are processed for maximum curcuminoid retention. Our high-curcumin turmeric delivers brilliant golden hues and potent anti-inflammatory properties for both the food and pharmaceutical sectors.' },
   { n: 6, name: 'Onion', emoji: '🧅', color: '#A0522D', tag: 'Allium', desc: 'Dehydrated Allium cepa is a cornerstone of industrial food manufacturing. Available in kibbled, minced, and powder forms, it offers consistent pungency, extended shelf life, and critical umami-building characteristics.' },
-  { n: 7, name: 'Chili Pepper', emoji: '🌶', color: '#C0392B', tag: 'Pepper', desc: 'Capsicum varieties (like Guntur and Byadgi) are rigorously graded by Scoville Heat Units (SHU) and ASTA color. Essential for formulating commercial hot sauces, ethnic food blends, and spicy snack dusts.' },
+  { n: 7, name: 'Chili Pepper', emoji: '🌶', color: '#111111', tag: 'Pepper', desc: 'Capsicum varieties (like Guntur and Byadgi) are rigorously graded by Scoville Heat Units (SHU) and ASTA color. Essential for formulating commercial hot sauces, ethnic food blends, and spicy snack dusts.' },
   { n: 8, name: 'Cumin', emoji: '🌾', color: '#795548', tag: 'Seed', desc: 'Cuminum cyminum seeds are roasted to release their warm, earthy volatile oils. A critical flavor driver in taco seasonings, curry powders, and Middle Eastern commercial spice blends.' },
   { n: 9, name: 'Ginger', emoji: '🫚', color: '#F57F17', tag: 'Root', desc: 'Zingiber officinale is dried and milled, optimizing gingerol and shogaol levels. Used extensively in gingerbread manufacturing, commercial ginger beer production, and functional wellness shots.' },
   { n: 10, name: 'Nutmeg', emoji: '🫀', color: '#6D4C41', tag: 'Seed', desc: 'The inner seed of Myristica fragrans provides sweet, warm, and highly aromatic notes. A key component in commercial pumpkin spice blends, béchamel sauce production, and processed meat flavorings.' },
-  { n: 11, name: 'Red Pepper', emoji: '🔴', color: '#E53935', tag: 'Pepper', desc: 'Crushed Red Pepper (Capsicum annuum) provides visual appeal and consistent, moderate heat (SHU). It is a staple ingredient for pizza chains, commercial pasta sauces, and dry seasoning shakers.' },
+  { n: 11, name: 'Red Pepper', emoji: '🔴', color: '#111111', tag: 'Pepper', desc: 'Crushed Red Pepper (Capsicum annuum) provides visual appeal and consistent, moderate heat (SHU). It is a staple ingredient for pizza chains, commercial pasta sauces, and dry seasoning shakers.' },
   { n: 12, name: 'Cinnamon', emoji: '🌰', color: '#8B4513', tag: 'Bark', desc: 'Cinnamomum verum (Ceylon) and Cinnamomum cassia offer distinct flavor profiles. High in cinnamaldehyde, it is a critical ingredient for commercial bakeries, breakfast cereals, and beverage syrups.' },
   { n: 13, name: 'White Pepper', emoji: '⚪', color: '#9E9E9E', tag: 'Pepper', desc: 'Derived from fully ripened pepper berries with the pericarp removed. White pepper delivers an earthy, fermented pungency essential for light-colored sauces, commercial soups, and traditional Asian formulations.' },
   { n: 14, name: 'Ancho Pepper', emoji: '🫑', color: '#4E342E', tag: 'Pepper', desc: 'The dried form of the poblano pepper, offering mild heat and deep, smoky, raisin-like sweetness. It is a foundational ingredient for commercial mole sauces and authentic Mexican culinary pastes.' },
   { n: 15, name: 'Coriander', emoji: '🌿', color: '#388E3C', tag: 'Seed', desc: 'Coriandrum sativum seeds are prized for their high linalool concentration. This provides a warm, citrusy, and slightly nutty flavor profile vital for global curry powder production and craft brewing.' },
   { n: 16, name: 'Oregano', emoji: '🌱', color: '#2E7D32', tag: 'Herb', desc: 'Origanum vulgare is high in carvacrol and thymol. This pungent, robust herb is an absolute requirement for commercial Italian seasoning blends, pizza sauce manufacturing, and Mediterranean marinades.' },
-  { n: 17, name: 'Guajillo', emoji: '🫑', color: '#B71C1C', tag: 'Pepper', desc: 'Dried mirasol chilies (Guajillo) offer a dynamic, tangy, and moderately spicy profile. They are heavily utilized in the production of commercial salsas, adobo pastes, and specialized Latin American spice blends.' },
+  { n: 17, name: 'Guajillo', emoji: '🫑', color: '#111111', tag: 'Pepper', desc: 'Dried mirasol chilies (Guajillo) offer a dynamic, tangy, and moderately spicy profile. They are heavily utilized in the production of commercial salsas, adobo pastes, and specialized Latin American spice blends.' },
   { n: 18, name: 'Cassia', emoji: '🌰', color: '#6D4C41', tag: 'Bark', desc: 'Cinnamomum cassia is known for its intense, spicy-sweet flavor and high coumarin levels. It is the preferred cinnamon variety for robust commercial baking applications and heavy spice blends.' },
-  { n: 19, name: 'Chili Powder', emoji: '🌶', color: '#D32F2F', tag: 'Blend', desc: 'A precisely formulated commercial blend typically combining dried chilies with cumin, garlic, and oregano. Designed for consistent heat (SHU) and flavor delivery in chili con carne and Tex-Mex manufacturing.' },
+  { n: 19, name: 'Chili Powder', emoji: '🌶', color: '#111111', tag: 'Blend', desc: 'A precisely formulated commercial blend typically combining dried chilies with cumin, garlic, and oregano. Designed for consistent heat (SHU) and flavor delivery in chili con carne and Tex-Mex manufacturing.' },
   { n: 20, name: 'Curry Powder', emoji: '🫙', color: '#F57F17', tag: 'Blend', desc: 'A complex, golden B2B spice blend driven by turmeric, coriander, and cumin. We formulate specific regional variations (e.g., Madras, Caribbean) optimized for consistent flavor release in commercial food processing.' },
-  { n: 21, name: 'Cayenne', emoji: '🔥', color: '#E53935', tag: 'Pepper', desc: 'Milled Cayenne pepper delivers pure, unadulterated heat ranging from 30,000 to 50,000 SHU. It is the primary heat source for commercial hot sauce manufacturing and spicy snack dust formulations.' },
+  { n: 21, name: 'Cayenne', emoji: '🔥', color: '#111111', tag: 'Pepper', desc: 'Milled Cayenne pepper delivers pure, unadulterated heat ranging from 30,000 to 50,000 SHU. It is the primary heat source for commercial hot sauce manufacturing and spicy snack dust formulations.' },
   { n: 22, name: 'Marjoram', emoji: '🌿', color: '#388E3C', tag: 'Herb', desc: 'A delicate, sweet pine and citrus-scented herb related to oregano. Used extensively in commercial poultry seasoning blends, European sausage manufacturing, and refined salad dressing formulations.' },
 ];
 

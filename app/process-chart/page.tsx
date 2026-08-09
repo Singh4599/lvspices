@@ -8,9 +8,9 @@ import CurvedLoop from '@/components/ui/CurvedLoop';
 import ProcessChartFlow from '@/components/technology/ProcessChartFlow';
 import ConceptFlow from '@/components/technology/ConceptFlow';
 
-const CR    = '#AC033B';
+const CR    = '#111111';
 const INK   = '#1A1915';
-const GOLD  = '#7B4E1B';
+const GOLD  = '#555555';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -67,7 +67,7 @@ const CSS = `
     transition: border-color 0.2s;
     cursor: pointer;
   }
-  .pc-step:hover { border-left-color: #AC033B; }
+  .pc-step:hover { border-left-color: '#111111'; }
   .pc-step::before {
     content: '';
     position: absolute; left: -6px; top: 16px;
@@ -75,14 +75,14 @@ const CSS = `
     background: rgba(0,0,0,0.15);
     transition: background 0.2s, transform 0.2s;
   }
-  .pc-step:hover::before { background: #AC033B; transform: scale(1.3); }
+  .pc-step:hover::before { background: '#111111'; transform: scale(1.3); }
 
-  .pc-step-active { border-left-color: #AC033B !important; }
-  .pc-step-active::before { background: #AC033B !important; }
+  .pc-step-active { border-left-color: '#111111' !important; }
+  .pc-step-active::before { background: '#111111' !important; }
 
   .pc-diamond {
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    background: rgba(172,3,59,0.12);
+    background: rgba(17,17,17,0.12);
     border: none;
     display: flex; align-items: center; justify-content: center;
     text-align: center;
@@ -99,8 +99,8 @@ const CSS = `
     letter-spacing: 0.1em; text-transform: uppercase;
     color: rgba(0,0,0,0.5);
   }
-  .pc-tab:hover { border-color: #AC033B; color: #AC033B; }
-  .pc-tab.active { background: #AC033B; border-color: #AC033B; color: #fff; }
+  .pc-tab:hover { border-color: '#111111'; color: '#111111'; }
+  .pc-tab.active { background: '#111111'; border-color: '#111111'; color: #fff; }
 
   .pc-side-note {
     font-family: var(--font-mono);
@@ -122,11 +122,11 @@ function StepConnector({ label }: { label?: string }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0, margin: '2px 0', position: 'relative' }}>
       <svg width="2" height="40" viewBox="0 0 2 40" style={{ display: 'block' }}>
-        <line x1="1" y1="0" x2="1" y2="40" stroke="#AC033B" strokeWidth="2" strokeDasharray="4 4"
+        <line x1="1" y1="0" x2="1" y2="40" stroke='#111111' strokeWidth="2" strokeDasharray="4 4"
           style={{ animation: 'pulse-connector 2s ease-in-out infinite' }}/>
       </svg>
       <svg width="10" height="8" viewBox="0 0 10 8">
-        <path d="M5 8L0 0h10z" fill="#AC033B" opacity="0.6"/>
+        <path d="M5 8L0 0h10z" fill='#111111' opacity="0.6"/>
       </svg>
     </div>
   );
@@ -151,7 +151,7 @@ function StepNode({ step, isDecision, isOptional, sideNote, leftNote, rightFlow,
           onClick={onClick}
           style={{
             width: 120, height: 120, cursor: 'pointer',
-            background: active ? CR : 'rgba(172,3,59,0.08)',
+            background: active ? CR : 'rgba(17,17,17,0.08)',
             clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
             border: 'none', color: active ? '#fff' : INK,
             fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.05em',

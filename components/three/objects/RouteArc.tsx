@@ -24,7 +24,7 @@ export default function RouteArc({
   endLng,
   radius = 2,
   altitude = 0.4,
-  color = '#AC033B',
+  color = '#111111',
 }: RouteArcProps) {
   const points = useMemo(() => {
     const start = latLngToVector3(startLat, startLng, radius);

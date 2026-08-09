@@ -11,7 +11,7 @@ import ScrollReveal, { AnimatedStat, StaggerReveal } from '@/components/ui/Scrol
 import CircularGallery from '@/components/animation/CircularGallery';
 import { productCategories } from '@/data/products';
 
-const CR = '#AC033B';
+const CR = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
@@ -116,7 +116,7 @@ export default function ProductsPage() {
         {/* Hero Content */}
         <div ref={contentRef} style={{ position: 'relative', zIndex: 10, maxWidth: 1400, margin: '0 auto', width: '100%' }}>
           <div style={{ maxWidth: 700 }}>
-            <div className="hero-reveal" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 24, padding: '8px 16px', background: 'rgba(172,3,59,0.05)', border: '1px solid rgba(172,3,59,0.15)', borderRadius: 999 }}>
+            <div className="hero-reveal" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 24, padding: '8px 16px', background: 'rgba(17,17,17,0.05)', border: '1px solid rgba(17,17,17,0.15)', borderRadius: 999 }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: CR, boxShadow: `0 0 10px ${CR}` }} />
               <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: CR, fontWeight: 700 }}>Our Products</span>
             </div>
@@ -198,7 +198,7 @@ export default function ProductsPage() {
                     const el = e.currentTarget;
                     el.style.transform = 'translateY(-6px)';
                     el.style.boxShadow = '0 24px 60px rgba(0,0,0,0.08)';
-                    el.style.borderColor = 'rgba(172,3,59,0.3)';
+                    el.style.borderColor = 'rgba(17,17,17,0.3)';
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget;
@@ -223,7 +223,7 @@ export default function ProductsPage() {
                   <div style={{ padding: 'clamp(16px,2vw,24px)', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <span style={{ fontSize: 22 }}>{categoryEmojis[cat.slug] ?? '🌿'}</span>
-                      <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: CR, background: 'rgba(172,3,59,0.06)', padding: '4px 10px', borderRadius: 999 }}>
+                      <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: CR, background: 'rgba(17,17,17,0.06)', padding: '4px 10px', borderRadius: 999 }}>
                         {cat.keyProducts.length}+ SKUs
                       </span>
                     </div>
@@ -283,7 +283,7 @@ export default function ProductsPage() {
       {/* ══ CTA BANNER ═══════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(80px,10vw,140px) clamp(24px,5vw,80px)', background: '#111', textAlign: 'center' }}>
         <ScrollReveal fromY={24}>
-          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(172,3,59,0.8)', marginBottom: 20 }}>
+          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(17,17,17,0.8)', marginBottom: 20 }}>
             Get Started
           </div>
           <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(36px,5vw,80px)', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', margin: '0 0 20px', lineHeight: 1.05 }}>
@@ -300,7 +300,7 @@ export default function ProductsPage() {
                 padding: '18px 48px', borderRadius: 999, border: 'none', cursor: 'pointer',
                 transition: 'all 0.25s',
               }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 30px rgba(172,3,59,0.4)'; }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 30px rgba(17,17,17,0.4)'; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
               >
                 Request Quotation →

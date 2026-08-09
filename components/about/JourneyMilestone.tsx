@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { gsap } from '@/lib/gsap';
 import type { Milestone } from '@/data/journey';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 interface Props {
   milestone: Milestone;
@@ -112,7 +112,7 @@ export default function JourneyMilestone({ milestone, index }: Props) {
 
         {/* Spine dot */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div className="gsap-dot" style={{ width: 14, height: 14, borderRadius: '50%', border: `2px solid ${CR}`, backgroundColor: 'transparent', flexShrink: 0, marginTop: 18, zIndex: 2, position: 'relative', boxShadow: `0 0 0 3px rgba(172,3,59,0.1)` }} />
+          <div className="gsap-dot" style={{ width: 14, height: 14, borderRadius: '50%', border: `2px solid ${CR}`, backgroundColor: 'transparent', flexShrink: 0, marginTop: 18, zIndex: 2, position: 'relative', boxShadow: `0 0 0 3px rgba(17,17,17,0.1)` }} />
         </div>
 
         {/* Right slot */}
@@ -159,7 +159,7 @@ export default function JourneyMilestone({ milestone, index }: Props) {
       >
         {/* Left spine */}
         <div style={{ flexShrink: 0, width: 28, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 4, height: '100%', minHeight: 200 }}>
-          <div className="gsap-dot" style={{ width: 10, height: 10, borderRadius: '50%', border: `2px solid ${CR}`, background: 'transparent', flexShrink: 0, zIndex: 2, boxShadow: `0 0 0 3px rgba(172,3,59,0.08)` }} />
+          <div className="gsap-dot" style={{ width: 10, height: 10, borderRadius: '50%', border: `2px solid ${CR}`, background: 'transparent', flexShrink: 0, zIndex: 2, boxShadow: `0 0 0 3px rgba(17,17,17,0.08)` }} />
           <div style={{ width: 1, height: 'calc(100% + 40px)', background: 'rgba(17,17,17,0.1)', marginTop: 6, position: 'absolute', top: 14 }} />
         </div>
 
@@ -202,9 +202,9 @@ export default function JourneyMilestone({ milestone, index }: Props) {
 
 function Pill({ label }: { label: string }) {
   return (
-    <div style={{ display: 'inline-flex', width: 'fit-content', alignItems: 'center', gap: 6, padding: '4px 12px', border: `1px solid rgba(172,3,59,0.22)`, borderRadius: 40 }}>
-      <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#AC033B' }} />
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.2em', color: '#AC033B', fontWeight: 700 }}>{label}</span>
+    <div style={{ display: 'inline-flex', width: 'fit-content', alignItems: 'center', gap: 6, padding: '4px 12px', border: `1px solid rgba(17,17,17,0.22)`, borderRadius: 40 }}>
+      <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#111111' }} />
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.2em', color: '#111111', fontWeight: 700 }}>{label}</span>
     </div>
   );
 }

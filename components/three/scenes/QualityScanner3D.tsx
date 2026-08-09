@@ -56,20 +56,20 @@ function Scanner() {
       <group ref={sampleRef} position={[0, -0.2, 0]}>
         <mesh>
           <cylinderGeometry args={[0.6, 0.6, 0.15, 32]} />
-          <meshStandardMaterial color="#AC033B" roughness={0.6} metalness={0.1} opacity={0.7} transparent />
+          <meshStandardMaterial color='#111111' roughness={0.6} metalness={0.1} opacity={0.7} transparent />
         </mesh>
       </group>
 
       {/* Scan line */}
       <mesh ref={scanLineRef} position={[0, 0, 0]}>
         <planeGeometry args={[3, 0.02]} />
-        <meshBasicMaterial color="#AC033B" transparent opacity={0.8} side={THREE.DoubleSide} />
+        <meshBasicMaterial color='#111111' transparent opacity={0.8} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Scan beam (vertical line) */}
       <mesh position={[0, 0.5, 0]}>
         <planeGeometry args={[0.005, 2.5]} />
-        <meshBasicMaterial color="#AC033B" transparent opacity={0.15} side={THREE.DoubleSide} />
+        <meshBasicMaterial color='#111111' transparent opacity={0.15} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Analysis detection points */}
@@ -81,7 +81,7 @@ function Scanner() {
           />
         </bufferGeometry>
         <pointsMaterial
-          color="#AC033B"
+          color='#111111'
           size={0.04}
           transparent
           opacity={0.6}
@@ -93,18 +93,18 @@ function Scanner() {
       {[[-1.3, 1.3], [1.3, 1.3], [-1.3, -0.8], [1.3, -0.8]].map(([x, y], i) => (
         <mesh key={i} position={[x, y, 0]}>
           <sphereGeometry args={[0.03, 8, 8]} />
-          <meshBasicMaterial color="#AC033B" opacity={0.4} transparent />
+          <meshBasicMaterial color='#111111' opacity={0.4} transparent />
         </mesh>
       ))}
 
       {/* HUD readout */}
       <Html position={[2, 0.8, 0]} center>
         <div className="font-mono text-[9px] leading-relaxed whitespace-nowrap text-left opacity-80 space-y-1">
-          <div className="text-[#AC033B] font-bold tracking-widest">SCAN ANALYSIS</div>
-          <div className="text-black/50">PATHOGENS: <span className="text-[#AC033B]">0 DETECTED</span></div>
-          <div className="text-black/50">PESTICIDES: <span className="text-[#AC033B]">COMPLIANT</span></div>
-          <div className="text-black/50">MOISTURE: <span className="text-[#AC033B]">8.2%</span></div>
-          <div className="text-black/50">VOLATILE OIL: <span className="text-[#AC033B]">3.4%</span></div>
+          <div className="text-[#111111] font-bold tracking-widest">SCAN ANALYSIS</div>
+          <div className="text-black/50">PATHOGENS: <span className="text-[#111111]">0 DETECTED</span></div>
+          <div className="text-black/50">PESTICIDES: <span className="text-[#111111]">COMPLIANT</span></div>
+          <div className="text-black/50">MOISTURE: <span className="text-[#111111]">8.2%</span></div>
+          <div className="text-black/50">VOLATILE OIL: <span className="text-[#111111]">3.4%</span></div>
         </div>
       </Html>
     </group>
@@ -127,7 +127,7 @@ export default function QualityScanner3D({ className = '' }: QualityScanner3DPro
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
           <pointLight position={[3, 5, 3]} intensity={0.6} color="#FFFFFF" />
-          <pointLight position={[0, 2, 0]} intensity={0.3} color="#AC033B" />
+          <pointLight position={[0, 2, 0]} intensity={0.3} color='#111111' />
           <Scanner />
         </Suspense>
       </Canvas>

@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 export default function CareerMission() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -71,7 +71,7 @@ export default function CareerMission() {
               fontSize: 'clamp(80px,12vw,180px)',
               fontWeight: 800,
               color: 'transparent',
-              WebkitTextStroke: `1px rgba(172,3,59,0.18)`,
+              WebkitTextStroke: `1px rgba(17,17,17,0.18)`,
               lineHeight: 1,
               letterSpacing: '-0.05em',
               clipPath: 'inset(100% 0 0 0)',

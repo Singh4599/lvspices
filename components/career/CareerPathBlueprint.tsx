@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const CR     = '#AC033B';
+const CR     = '#111111';
 const INK    = '#1A1818';
 const INK_L  = '#4A4545';
 const INK_LL = 'rgba(26,24,24,0.12)';

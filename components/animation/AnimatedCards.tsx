@@ -73,7 +73,7 @@ function AnimatedCard({ card, index }: { card: CardItem; index: number }) {
         transition: shouldReduceMotion ? 'none' : 'box-shadow 0.3s ease, transform 0.15s ease-out',
         transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         boxShadow: tilt.glow
-          ? '0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(172,3,59,0.2)'
+          ? '0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(17,17,17,0.2)'
           : '0 2px 12px rgba(0,0,0,0.4)',
         willChange: 'transform',
         cursor: 'default',
@@ -109,7 +109,7 @@ function AnimatedCard({ card, index }: { card: CardItem; index: number }) {
           inset: 0,
           borderRadius: '20px',
           background: tilt.glow
-            ? `radial-gradient(ellipse at ${50 + tilt.y * 5}% ${50 + tilt.x * 5}%, rgba(172,3,59,0.05) 0%, transparent 60%)`
+            ? `radial-gradient(ellipse at ${50 + tilt.y * 5}% ${50 + tilt.x * 5}%, rgba(17,17,17,0.05) 0%, transparent 60%)`
             : 'none',
           transition: 'background 0.15s ease-out',
           pointerEvents: 'none',
@@ -124,13 +124,13 @@ function AnimatedCard({ card, index }: { card: CardItem; index: number }) {
             width: '52px',
             height: '52px',
             borderRadius: '13px',
-            background: 'rgba(172,3,59,0.15)',
-            border: '1px solid rgba(172,3,59,0.25)',
+            background: 'rgba(17,17,17,0.15)',
+            border: '1px solid rgba(17,17,17,0.25)',
             marginBottom: '22px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#AC033B',
+            color: '#111111',
             position: 'relative',
             zIndex: 1,
           }}
@@ -181,7 +181,7 @@ function AnimatedCard({ card, index }: { card: CardItem; index: number }) {
               style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}
             >
               <span
-                className="text-[#AC033B] font-bold shrink-0"
+                className="text-[#111111] font-bold shrink-0"
                 style={{ fontSize: '12px', lineHeight: '1.65' }}
               >
                 —
@@ -204,11 +204,11 @@ function AnimatedCard({ card, index }: { card: CardItem; index: number }) {
               gap: '6px',
               padding: '4px 12px',
               borderRadius: '999px',
-              background: 'rgba(172,3,59,0.06)',
+              background: 'rgba(17,17,17,0.06)',
               fontSize: '11px',
               fontFamily: 'monospace',
               letterSpacing: '0.1em',
-              color: '#AC033B',
+              color: '#111111',
             }}
           >
             <span
@@ -216,7 +216,7 @@ function AnimatedCard({ card, index }: { card: CardItem; index: number }) {
                 width: '6px',
                 height: '6px',
                 borderRadius: '50%',
-                background: '#AC033B',
+                background: '#111111',
                 display: 'inline-block',
                 animation: 'lv-pulse-dot 1.8s ease-in-out infinite',
               }}

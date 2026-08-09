@@ -195,7 +195,7 @@ export default function FloatingSpiceObject() {
           objectFit:       'contain',
           display:         'block',
           userSelect:      'none',
-          filter:          'drop-shadow(0 8px 32px rgba(172,3,59,0.32))',
+          filter:          'drop-shadow(0 8px 32px rgba(17,17,17,0.32))',
           transformOrigin: 'center center',
         }}
       />

@@ -9,7 +9,7 @@ interface ScrollProgressProps {
 }
 
 export default function ScrollProgress({
-  color = '#AC033B',
+  color = '#111111',
   height = 2,
 }: ScrollProgressProps) {
   const barRef = useRef<HTMLDivElement>(null);

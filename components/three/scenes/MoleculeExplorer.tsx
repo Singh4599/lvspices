@@ -49,8 +49,8 @@ function InteractiveMolecule() {
           <button
             className={`px-2 py-1 rounded-full text-[9px] font-mono tracking-wider whitespace-nowrap transition-all duration-300 cursor-pointer
               ${selectedNode === node.label
-                ? 'bg-[#AC033B] text-white scale-110'
-                : 'bg-white/80 text-[#AC033B] hover:bg-[#AC033B] hover:text-white border border-[#AC033B]/20'
+                ? 'bg-[#111111] text-white scale-110'
+                : 'bg-white/80 text-[#111111] hover:bg-[#111111] hover:text-white border border-[#111111]/20'
               }`}
             onClick={() => setSelectedNode(selectedNode === node.label ? null : node.label!)}
           >
@@ -63,7 +63,7 @@ function InteractiveMolecule() {
       {selectedNode && (
         <Html position={[0, -3, 0]} center>
           <div className="glass-card px-5 py-3 max-w-[240px] text-center">
-            <p className="font-mono text-[11px] font-bold text-[#AC033B]">{selectedNode}</p>
+            <p className="font-mono text-[11px] font-bold text-[#111111]">{selectedNode}</p>
             <p className="text-[10px] text-black/60 mt-1">
               {COMPOUND_INFO[selectedNode]}
             </p>
@@ -86,14 +86,14 @@ export default function MoleculeExplorer({ className = '' }: MoleculeExplorerPro
         <Suspense fallback={null}>
           <ambientLight intensity={0.6} />
           <pointLight position={[5, 5, 5]} intensity={0.5} color="#FFFFFF" />
-          <pointLight position={[-3, -2, 3]} intensity={0.2} color="#AC033B" />
+          <pointLight position={[-3, -2, 3]} intensity={0.2} color='#111111' />
 
           <InteractiveMolecule />
 
           {/* Background particles */}
           <ParticleField
             count={1000}
-            color="#AC033B"
+            color='#111111'
             size={0.005}
             radius={8}
             speed={0.01}

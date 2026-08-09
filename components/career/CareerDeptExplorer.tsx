@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const CR    = '#AC033B';
+const CR    = '#111111';
 const INK   = '#111';
 const INK_L = 'rgba(17,17,17,0.3)';
 const INK_LL = 'rgba(17,17,17,0.07)';
@@ -33,13 +33,13 @@ const DEPTS: Dept[] = [
     perks:['Lab stipend','Conference attendance','NABL training','Publication support'],
   },
   {
-    id:3, code:'RND',  name:'R&D & Innovation', headcount:'12 Scientists', accent:'#1A5FAB', icon:'🧪',
+    id:3, code:'RND',  name:'R&D & Innovation', headcount:'12 Scientists', accent:'#333333', icon:'🧪',
     roles:['Food Scientist','Formulation Chemist','Sensory Analyst','Process Engineer','Product Developer'],
     desc:'Pioneer the future of flavor profiles. Partner with CFTRI and IIT Food Tech to develop innovative spice formulations, optimizing essential oil retention and sensory excellence.',
     perks:['Research grants','Journal allowance','Patent bonuses','Flex hours'],
   },
   {
-    id:4, code:'SALES', name:'Sales & Marketing', headcount:'80+ People', accent:'#2E6B3E', icon:'🌍',
+    id:4, code:'SALES', name:'Sales & Marketing', headcount:'80+ People', accent:'#111111', icon:'🌍',
     roles:['Export Manager','Key Account Manager','Marketing Executive','Brand Strategist','Trade Show Coordinator'],
     desc:'Expand LV Spices global footprint. Manage high-value B2B OEM accounts, participate in major international trade shows, and drive bulk export strategies across 40+ countries.',
     perks:['International travel','Performance bonuses','CRM tools','Language training'],
@@ -51,7 +51,7 @@ const DEPTS: Dept[] = [
     perks:['Freight certifications','CHA training','Port access passes','Team lunches'],
   },
   {
-    id:6, code:'CORP',  name:'Corporate & Finance', headcount:'50+ People', accent:'#0A4D6E', icon:'💼',
+    id:6, code:'CORP',  name:'Corporate & Finance', headcount:'50+ People', accent:'#444444', icon:'💼',
     roles:['Financial Analyst','HR Business Partner','SAP Consultant','Legal Executive','IT Systems Admin'],
     desc:'Drive sustainable business growth. Lead SAP ERP implementations, manage corporate governance, ensure regulatory compliance, and support strategic financial planning.',
     perks:['CPA/CA support','Remote flex','ESOP options','Leadership programmes'],

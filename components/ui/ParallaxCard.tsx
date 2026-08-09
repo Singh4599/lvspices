@@ -165,7 +165,7 @@ export default function ParallaxCard({
           width: '180px',
           height: '180px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(172,3,59,0.10) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(17,17,17,0.10) 0%, transparent 70%)',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
           opacity: 0,

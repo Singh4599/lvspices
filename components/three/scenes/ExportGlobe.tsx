@@ -67,7 +67,7 @@ function Globe() {
         <Line
           key={`grid-${i}`}
           points={pts}
-          color="#AC033B"
+          color='#111111'
           lineWidth={0.5}
           transparent
           opacity={0.08}
@@ -77,7 +77,7 @@ function Globe() {
       {/* Origin point (Mumbai) */}
       <mesh position={latLngToVector3(ORIGIN.lat, ORIGIN.lng, 2.02)}>
         <sphereGeometry args={[0.05, 12, 12]} />
-        <meshBasicMaterial color="#AC033B" />
+        <meshBasicMaterial color='#111111' />
       </mesh>
 
       {/* Trade route arcs */}
@@ -92,7 +92,7 @@ function Globe() {
             endLng={dest.lng}
             radius={2}
             altitude={0.3 + Math.random() * 0.3}
-            color="#AC033B"
+            color='#111111'
           />
         ))}
 
@@ -102,14 +102,14 @@ function Globe() {
         return (
           <mesh key={dest.city} position={pos}>
             <sphereGeometry args={[0.025, 8, 8]} />
-            <meshBasicMaterial color="#AC033B" opacity={0.7} transparent />
+            <meshBasicMaterial color='#111111' opacity={0.7} transparent />
           </mesh>
         );
       })}
 
       {/* Mumbai label */}
       <Html position={latLngToVector3(ORIGIN.lat, ORIGIN.lng, 2.15)} center>
-        <div className="font-mono text-[8px] font-bold text-[#AC033B] whitespace-nowrap tracking-wider">
+        <div className="font-mono text-[8px] font-bold text-[#111111] whitespace-nowrap tracking-wider">
           MUMBAI HQ
         </div>
       </Html>
@@ -133,7 +133,7 @@ export default function ExportGlobe({ className = '' }: ExportGlobeProps) {
         <Suspense fallback={null}>
           <ambientLight intensity={0.7} color="#FFFFFF" />
           <directionalLight position={[5, 5, 5]} intensity={0.5} />
-          <pointLight position={[-3, 2, 3]} intensity={0.15} color="#AC033B" />
+          <pointLight position={[-3, 2, 3]} intensity={0.15} color='#111111' />
           <Globe />
         </Suspense>
       </Canvas>

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from '@/lib/gsap';
 
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const INK = '#111111';
 const INK_L = 'rgba(0,0,0,0.5)';
 
@@ -54,13 +54,13 @@ const CSS = `
   }
   
   .fmm-node { cursor: pointer; }
-  .fmm-node-g:hover .node-bg { fill: #fff !important; filter: drop-shadow(0 12px 24px rgba(172,3,59,0.15)) !important; }
+  .fmm-node-g:hover .node-bg { fill: #fff !important; filter: drop-shadow(0 12px 24px rgba(17,17,17,0.15)) !important; }
   
   .blueprint-light {
     background-color: #Fdfcf9;
     background-image: 
-      linear-gradient(rgba(172,3,59,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(172,3,59,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(17,17,17,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(17,17,17,0.04) 1px, transparent 1px);
     background-size: 20px 20px;
     border: 1px solid rgba(0,0,0,0.05);
     border-radius: 24px;
@@ -74,7 +74,7 @@ const CSS = `
     position: absolute;
     top: 50%; left: 50%;
     width: 200%; height: 200%;
-    background: conic-gradient(from 0deg, transparent 70%, rgba(172,3,59,0.05) 100%);
+    background: conic-gradient(from 0deg, transparent 70%, rgba(17,17,17,0.05) 100%);
     transform-origin: center;
     animation: radarSweep 8s linear infinite;
     pointer-events: none;
@@ -95,7 +95,7 @@ function FAQAccordionItem({ faq, isOpen, onToggle }: { faq: FAQ; isOpen: boolean
 
   return (
     <div style={{
-      borderBottom: `1px solid ${isOpen ? 'rgba(172,3,59,0.2)' : 'rgba(0,0,0,0.06)'}`,
+      borderBottom: `1px solid ${isOpen ? 'rgba(17,17,17,0.2)' : 'rgba(0,0,0,0.06)'}`,
       marginBottom: 8, transition: 'all 0.4s ease'
     }}>
       <button onClick={onToggle} style={{
@@ -111,7 +111,7 @@ function FAQAccordionItem({ faq, isOpen, onToggle }: { faq: FAQ; isOpen: boolean
         </span>
         <span style={{
           width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
-          background: isOpen ? 'rgba(172,3,59,0.05)' : 'rgba(0,0,0,0.03)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          background: isOpen ? 'rgba(17,17,17,0.05)' : 'rgba(0,0,0,0.03)', display: 'flex', alignItems: 'center', justifyContent: 'center',
           color: isOpen ? CRIMSON : '#111', fontSize: 18, transition: 'all 0.4s cubic-bezier(0.34,1.56,0.64,1)',
           transform: isOpen ? 'rotate(135deg)' : 'none'
         }}>
@@ -215,7 +215,7 @@ export default function FAQMindMap({ faqData }: { faqData: { category: string; f
           {/* Central Hub */}
           <g transform="translate(200,200)">
             <circle cx="0" cy="0" r="45" fill="#fff" filter="url(#drop-shadow-light)" />
-            <circle cx="0" cy="0" r="35" fill="rgba(172,3,59,0.04)" />
+            <circle cx="0" cy="0" r="35" fill="rgba(17,17,17,0.04)" />
             <circle cx="0" cy="0" r="30" fill="none" stroke={CRIMSON} strokeWidth="1.5" strokeDasharray="3 3" className="fmm-pulse-line" />
             <text x="0" y="4" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="12" fontWeight="800" fill={CRIMSON} letterSpacing="0.1em">FAQ</text>
           </g>
@@ -250,7 +250,7 @@ export default function FAQMindMap({ faqData }: { faqData: { category: string; f
                       strokeWidth={isActive ? 1.5 : 1} 
                       className="node-bg"
                       style={{ transition: 'all 0.3s' }}
-                      filter={isActive ? 'drop-shadow(0 8px 16px rgba(172,3,59,0.15))' : 'url(#drop-shadow-light)'}
+                      filter={isActive ? 'drop-shadow(0 8px 16px rgba(17,17,17,0.15))' : 'url(#drop-shadow-light)'}
                 />
                 
                 {/* Icon */}
@@ -262,7 +262,7 @@ export default function FAQMindMap({ faqData }: { faqData: { category: string; f
                 </text>
                 
                 {/* Question Count Badge */}
-                <rect x="-16" y="16" width="32" height="14" rx="7" fill={isActive ? 'rgba(172,3,59,0.1)' : 'rgba(0,0,0,0.04)'} />
+                <rect x="-16" y="16" width="32" height="14" rx="7" fill={isActive ? 'rgba(17,17,17,0.1)' : 'rgba(0,0,0,0.04)'} />
                 <text x="0" y="26" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="7" fontWeight="700" fill={isActive ? CRIMSON : INK_L}>
                   {n.faqs.length} Qs
                 </text>
@@ -304,7 +304,7 @@ export default function FAQMindMap({ faqData }: { faqData: { category: string; f
 
             <div style={{ marginBottom: 32 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(172,3,59,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>
+                <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(17,17,17,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>
                   {activeNode.icon}
                 </div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: CRIMSON, fontWeight: 700 }}>

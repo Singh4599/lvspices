@@ -6,7 +6,7 @@ import QALabBlueprint from '@/components/quality/QALabBlueprint';
 import QualityHero from '@/components/quality/QualityHero';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 
-const CR = '#AC033B';
+const CR = '#111111';
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
@@ -91,7 +91,7 @@ function TestPanel() {
               borderRadius: 10,
               fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: active === i ? 700 : 500,
               color: active === i ? CR : 'rgba(0,0,0,0.5)',
-              background: active === i ? 'rgba(172,3,59,0.07)' : 'transparent',
+              background: active === i ? 'rgba(17,17,17,0.07)' : 'transparent',
               borderLeft: active === i ? `3px solid ${CR}` : '3px solid transparent',
               transition: 'all 0.2s ease',
               textAlign: 'left',
@@ -255,7 +255,7 @@ function CertBadges() {
           className="cert-badge"
           style={{
             background: '#fff',
-            border: `1.5px solid rgba(172,3,59,0.12)`,
+            border: `1.5px solid rgba(17,17,17,0.12)`,
             borderRadius: 14, padding: '18px 14px', textAlign: 'center',
             cursor: 'default', opacity: 0,
             transition: 'border-color 0.25s, transform 0.25s, box-shadow 0.25s',
@@ -264,16 +264,16 @@ function CertBadges() {
             const el = e.currentTarget;
             el.style.borderColor = CR;
             el.style.transform = 'translateY(-4px) scale(1.02)';
-            el.style.boxShadow = `0 12px 32px rgba(172,3,59,0.12)`;
+            el.style.boxShadow = `0 12px 32px rgba(17,17,17,0.12)`;
           }}
           onMouseLeave={(e) => {
             const el = e.currentTarget;
-            el.style.borderColor = 'rgba(172,3,59,0.12)';
+            el.style.borderColor = 'rgba(17,17,17,0.12)';
             el.style.transform = 'translateY(0) scale(1)';
             el.style.boxShadow = 'none';
           }}
         >
-          <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(172,3,59,0.08)', margin: '0 auto 10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(17,17,17,0.08)', margin: '0 auto 10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M2 6l2.5 2.5L10 3.5" stroke={CR} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

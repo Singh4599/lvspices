@@ -49,12 +49,12 @@ export default function PackagingSection({}: PackagingSectionProps) {
         <div style={{
           display: "inline-flex", alignItems: "center", gap: "8px",
           padding: "6px 18px",
-          background: "rgba(172,3,59,0.06)",
-          border: "1px solid rgba(172,3,59,0.12)",
+          background: "rgba(17,17,17,0.06)",
+          border: "1px solid rgba(17,17,17,0.12)",
           borderRadius: "100px", marginBottom: isMobile ? "14px" : "18px",
         }}>
-          <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#AC033B", display: "inline-block" }} />
-          <span className="font-mono uppercase text-[#AC033B]" style={{ fontSize: "10px", letterSpacing: "0.28em", fontWeight: 600 }}>
+          <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: '#111111', display: "inline-block" }} />
+          <span className="font-mono uppercase text-[#111111]" style={{ fontSize: "10px", letterSpacing: "0.28em", fontWeight: 600 }}>
             Packaging &amp; Specs
           </span>
         </div>
@@ -73,7 +73,7 @@ export default function PackagingSection({}: PackagingSectionProps) {
           fontSize: isMobile ? "1.4rem" : "clamp(1.6rem, 2.8vw, 2.2rem)",
           lineHeight: 1.2,
           fontStyle: "italic",
-          color: "#AC033B",
+          color: '#111111',
           margin: 0,
         }}>
           supply chain.

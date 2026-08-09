@@ -5,9 +5,9 @@ import { useState } from 'react';
 const INK    = '#1A1818';
 const INK_L  = '#4A4545';
 const INK_LL = 'rgba(26,24,24,0.2)';
-const CRIMSON = '#AC033B';
-const GREEN   = '#2E6B3E';
-const BLUE    = '#1A5FAB';
+const CRIMSON = '#111111';
+const GREEN   = '#111111';
+const BLUE    = '#333333';
 
 interface ZoneData {
   id: number;
@@ -20,11 +20,11 @@ interface ZoneData {
 
 const ZONES: ZoneData[] = [
   { id:0, icon:'🌾', name:'Raw Material Sampling', gate:'GATE 1', accent:'#5E4A00', desc:'All incoming raw spice lots are subjected to rigorous AOAC/ISO standard multi-point sampling before unloading, ensuring baseline traceability and origin compliance.' },
-  { id:1, icon:'🔬', name:'In-house Pre-screening', gate:'GATE 2', accent:'#7B4E1B', desc:'Rapid physical and organoleptic parameters (moisture, bulk density, ASTA colour) are validated in our QC lab within 2 hours of receipt to maintain strict intake specifications.' },
+  { id:1, icon:'🔬', name:'In-house Pre-screening', gate:'GATE 2', accent:'#555555', desc:'Rapid physical and organoleptic parameters (moisture, bulk density, ASTA colour) are validated in our QC lab within 2 hours of receipt to maintain strict intake specifications.' },
   { id:2, icon:'🧪', name:'Third-party Analysis', gate:'GATE 3', accent: BLUE,     desc:'Stringent verification for 500+ pesticide residues, Aflatoxin/Ochratoxin, heavy metals, and microbiological load by independent NABL-accredited and ISO 17025 certified labs.' },
   { id:3, icon:'🚧', name:'QC Hold & Release', gate:'GATE 4', accent: CRIMSON,  desc:'Zero-tolerance production entry. Material remains fully quarantined until a comprehensive Certificate of Analysis (COA) is validated by our Head of Quality Assurance.' },
   { id:4, icon:'📊', name:'In-process Monitoring', gate:'GATE 5', accent: GREEN,    desc:'Continuous inline monitoring via advanced sensors tracks thermal profiles, moisture levels, and particle size distribution (PSD) in real-time, preventing process deviations.' },
-  { id:5, icon:'✅', name:'Dispatch Verification', gate:'GATE 6', accent:'#0A4D6E', desc:'Final QA clearance involves matching pre-shipment COAs directly against B2B client specifications and destination-country FDA/EU regulatory frameworks prior to loading.' },
+  { id:5, icon:'✅', name:'Dispatch Verification', gate:'GATE 6', accent:'#444444', desc:'Final QA clearance involves matching pre-shipment COAs directly against B2B client specifications and destination-country FDA/EU regulatory frameworks prior to loading.' },
 ];
 
 const CSS = `

@@ -5,7 +5,7 @@ import { useState } from 'react';
 const INK    = '#1A1818';
 const INK_L  = '#4A4545';
 const INK_LL = 'rgba(26,24,24,0.15)';
-const CRIMSON = '#AC033B';
+const CRIMSON = '#111111';
 const GOLD   = '#C8860C';
 const TEAL   = '#1A6B5A';
 const NAVY   = '#1A3F6B';

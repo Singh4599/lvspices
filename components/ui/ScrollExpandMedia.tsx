@@ -312,7 +312,7 @@ const ScrollExpandMedia = ({
                       }}
                     >
                       <h1
-                        className={`font-display font-bold uppercase ${titleTheme === 'all-red' ? 'text-[#AC033B]' : 'text-slate-900'}`}
+                        className={`font-display font-bold uppercase ${titleTheme === 'all-red' ? 'text-[#111111]' : 'text-slate-900'}`}
                         style={{
                           fontSize: `clamp(1.8rem, ${restOfTitle.length <= 5 ? 13 : restOfTitle.length <= 9 ? 10 : 7}vw, 5rem)`,
                           letterSpacing: firstWord.length <= 3 ? '0.25em' : '-0.04em',
@@ -342,9 +342,9 @@ const ScrollExpandMedia = ({
                     >
                       <h1
                         className={
-                          titleTheme === 'all-red' ? 'font-display font-bold text-[#AC033B] uppercase'
+                          titleTheme === 'all-red' ? 'font-display font-bold text-[#111111] uppercase'
                           : titleTheme === 'all-dark' ? 'font-display font-bold text-slate-900 uppercase'
-                          : 'font-serif italic font-bold text-[#AC033B] uppercase'
+                          : 'font-serif italic font-bold text-[#111111] uppercase'
                         }
                         style={{
                           fontSize: `clamp(1.8rem, ${restOfTitle.length <= 5 ? 13 : restOfTitle.length <= 9 ? 10 : 7}vw, 5rem)`,
@@ -404,7 +404,7 @@ const ScrollExpandMedia = ({
                     {/* LEFT word — right-aligned, slides left on scroll */}
                     <div style={{ flex: 1, minWidth: 0, display: 'flex', justifyContent: 'flex-end', paddingRight: '24px', transition: 'none', overflow: 'visible' }}>
                       <h1
-                        className={`font-display font-bold uppercase ${titleTheme === 'all-red' ? 'text-[#AC033B]' : 'text-slate-900'}`}
+                        className={`font-display font-bold uppercase ${titleTheme === 'all-red' ? 'text-[#111111]' : 'text-slate-900'}`}
                         style={{
                           fontSize: `clamp(2rem, ${titleVw}vw, 10rem)`,
                           letterSpacing: firstWord.length <= 3 ? '0.25em' : '-0.04em',
@@ -425,9 +425,9 @@ const ScrollExpandMedia = ({
                     <div style={{ flex: 1, minWidth: 0, display: 'flex', justifyContent: 'flex-start', paddingLeft: '24px', transition: 'none', overflow: 'visible' }}>
                       <h1
                         className={
-                          titleTheme === 'all-red' ? 'font-display font-bold text-[#AC033B] uppercase'
+                          titleTheme === 'all-red' ? 'font-display font-bold text-[#111111] uppercase'
                           : titleTheme === 'all-dark' ? 'font-display font-bold text-slate-900 uppercase'
-                          : 'font-serif italic font-bold text-[#AC033B] uppercase'
+                          : 'font-serif italic font-bold text-[#111111] uppercase'
                         }
                         style={{
                           fontSize: `clamp(2rem, ${titleVw}vw, 10rem)`,
@@ -459,7 +459,7 @@ const ScrollExpandMedia = ({
                     textAlign: 'center',
                   }}
                 >
-                  <p className="font-mono uppercase text-[#AC033B] tracking-widest" style={{ fontSize: '13px' }}>
+                  <p className="font-mono uppercase text-[#111111] tracking-widest" style={{ fontSize: '13px' }}>
                     {subtitle}
                   </p>
                 </div>

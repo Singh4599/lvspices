@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
-const CR = '#e62e04'; // Red
-const INK = '#2C1200'; // Dark brown
-const GREEN = '#2E6B3E'; // IPM Green
-const ORANGE = '#E8760A';
+const CR = '#111111'; // Red
+const INK = '#111111'; // Dark brown
+const GREEN = '#111111'; // IPM Green
+const ORANGE = '#111111';
 
 interface NodeData {
   id: number;

@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 
-const RED    = '#AC033B';
+const RED    = '#111111';
 const INK    = '#1A2010';
-const INK_L  = '#4A4A4A';
+const INK_L  = '#666666';
 const LINE   = '#E5E5E5';
-const ACCENT = '#AC033B';
+const ACCENT = '#111111';
 
 interface Station {
   id: number;
