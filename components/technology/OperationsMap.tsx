@@ -523,9 +523,8 @@ export default function OperationsMap() {
           </div>
         </div>
 
-        {/* ═══════════ MOBILE — Vertical accordion list, no horizontal scroll ═════════════════ */}
+        {/* ═══════════ MOBILE — Vertical flowchart using cropped full SVGs ═════════════════ */}
         <div className="om-mobile">
-          {/* Paper background wrapper */}
           <div style={{
             borderRadius: 20,
             background: 'radial-gradient(ellipse at 30% 20%, #fdf8ec 0%, #f5edda 55%, #ede0c4 100%)',
@@ -533,162 +532,76 @@ export default function OperationsMap() {
             boxShadow: '0 12px 40px -12px rgba(0,0,0,0.12)',
             overflow: 'hidden', position: 'relative',
           }}>
-            {/* Grid texture */}
             <div style={{ position:'absolute', inset:0, pointerEvents:'none',
               backgroundImage:`linear-gradient(rgba(100,80,40,0.055) 1px,transparent 1px),linear-gradient(90deg,rgba(100,80,40,0.055) 1px,transparent 1px)`,
               backgroundSize:'20px 20px' }} />
 
-            {/* Title */}
-            <div style={{ padding:'18px 20px 8px', fontFamily:"'Courier New',monospace", fontSize:8, letterSpacing:'0.22em', color:INK_L, textAlign:'center', textTransform:'uppercase' }}>
-              Farm to Shelf — 8 Step Journey
-            </div>
+            <div style={{ position:'relative', zIndex:1, padding: '24px 0' }}>
+              
+              {/* Vertical connecting line */}
+              <div style={{
+                position: 'absolute', top: 60, bottom: 60, left: '50%', transform: 'translateX(-50%)',
+                width: 2, background: 'repeating-linear-gradient(to bottom, rgba(160,130,80,0.4), rgba(160,130,80,0.4) 8px, transparent 8px, transparent 16px)'
+              }} />
 
-            {/* Vertical list of stations */}
-            <div style={{ padding:'0 12px 16px', display:'flex', flexDirection:'column', gap:8, position:'relative', zIndex:1 }}>
-              {NODES.map((n, i) => (
-                <div key={n.id}>
-                  {/* Station row — tap to toggle */}
-                  <div
-                    onClick={() => toggle(i)}
-                    style={{
-                      display: 'flex', alignItems: 'center', gap: 12,
-                      background: active===i ? `${n.accent}10` : 'rgba(255,255,255,0.55)',
-                      border: `1.5px solid ${active===i ? n.accent : 'rgba(160,130,80,0.2)'}`,
-                      borderRadius: 14, padding: '12px 14px',
-                      cursor: 'pointer', transition: 'all 0.22s',
-                      boxShadow: active===i ? `0 4px 18px ${n.accent}25` : '0 1px 6px rgba(0,0,0,0.05)',
-                    }}
-                  >
-                    {/* Mini blueprint SVG illustration */}
-                    <div style={{ flexShrink:0, width:80, height:64, position:'relative' }}>
-                      <svg viewBox="0 0 80 64" style={{ width:'100%', height:'100%' }} xmlns="http://www.w3.org/2000/svg">
-                        {/* Station 1: Farm */}
-                        {n.id===1 && (<>
-                          <rect x="4" y="24" width="22" height="30" rx="2" fill="#F5EDD8" stroke={INK} strokeWidth="1.5" />
-                          <ellipse cx="15" cy="24" rx="12" ry="5" fill="#EDE0C4" stroke={INK} strokeWidth="1.2" />
-                          <line x1="4" y1="34" x2="26" y2="34" stroke={INK_L} strokeWidth=".7" strokeDasharray="3 2" />
-                          <line x1="4" y1="43" x2="26" y2="43" stroke={INK_L} strokeWidth=".7" strokeDasharray="3 2" />
-                          <line x1="52" y1="54" x2="52" y2="32" stroke={INK} strokeWidth="1.8" />
-                          <ellipse cx="52" cy="27" rx="10" ry="12" fill={GREEN} fillOpacity=".5" />
-                          <line x1="66" y1="54" x2="66" y2="38" stroke={INK} strokeWidth="1.4" />
-                          <ellipse cx="66" cy="34" rx="8" ry="10" fill={GREEN} fillOpacity=".4" />
-                          <rect x="8" y="54" width="64" height="8" rx="2" fill="#C8E6A0" fillOpacity=".4" />
-                          <circle cx="15" cy="50" r="2.5" fill={GREEN} className="pulse-dot" />
-                        </>)}
-                        {/* Station 2: Truck */}
-                        {n.id===2 && (<>
-                          <g className="truck-anim" style={{ transformOrigin:'40px 40px' }}>
-                            <rect x="8" y="26" width="22" height="22" rx="2.5" fill="#F5EDD8" stroke={INK} strokeWidth="1.4" />
-                            <rect x="10" y="28" width="18" height="13" rx="1.5" fill="rgba(168,204,232,0.4)" stroke={INK_L} strokeWidth=".8" />
-                            <rect x="30" y="21" width="38" height="27" rx="2" fill="#F5EDD8" stroke={INK} strokeWidth="1.4" />
-                            <text x="49" y="32" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="5" fill={INK}>COLD</text>
-                            <text x="49" y="40" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="5" fill={INK}>CHAIN</text>
-                            <line x1="5" y1="49" x2="72" y2="49" stroke={INK} strokeWidth="2.5" />
-                            <circle cx="20" cy="49" r="6" fill="none" stroke={INK} strokeWidth="2" />
-                            <circle cx="20" cy="49" r="2.5" fill={INK} fillOpacity=".2" />
-                            <circle cx="55" cy="49" r="6" fill="none" stroke={INK} strokeWidth="2" />
-                            <circle cx="55" cy="49" r="2.5" fill={INK} fillOpacity=".2" />
-                          </g>
-                          <g className="steam-a" style={{ transformOrigin:'10px 24px' }}>
-                            <ellipse cx="10" cy="22" rx="3" ry="2.5" fill={INK} fillOpacity=".18" />
-                          </g>
-                        </>)}
-                        {/* Station 3: Lab */}
-                        {n.id===3 && (<>
-                          <rect x="16" y="52" width="40" height="6" rx="2.5" fill={INK} fillOpacity=".13" stroke={INK} strokeWidth="1.2" />
-                          <rect x="24" y="20" width="6" height="32" rx="2" fill="#F5EDD8" stroke={INK} strokeWidth="1.2" />
-                          <path d="M 27,22 Q 42,18 46,26" fill="none" stroke={INK} strokeWidth="1.8" strokeLinecap="round" />
-                          <ellipse cx="47" cy="30" rx="6" ry="8" fill="#EDE0C4" stroke={INK} strokeWidth="1.4" />
-                          <ellipse cx="47" cy="32" rx="3.5" ry="5.5" fill="rgba(168,204,232,0.3)" />
-                          <line x1="20" y1="42" x2="47" y2="42" stroke={CRIMSON} strokeWidth="1.2" strokeOpacity=".7" className="scan-line" />
-                          <path d="M 58,18 L 58,48 Q 58,54 63,54 Q 68,54 68,48 L 68,18 Z" fill="rgba(200,228,255,0.35)" stroke={INK} strokeWidth="1.2" />
-                          <rect x="55" y="13" width="16" height="6" rx="1.5" fill={INK} fillOpacity=".13" stroke={INK} strokeWidth="1" />
-                          <rect x="59" y="44" width="8" height="6" rx="1" fill={`${BLUE}35`} />
-                        </>)}
-                        {/* Station 4: Cleaner */}
-                        {n.id===4 && (<>
-                          <rect x="18" y="20" width="48" height="36" rx="4" fill="#F5EDD8" stroke={INK} strokeWidth="1.6" />
-                          {[0,1,2].map(j => <line key={j} x1="24" y1={29+j*9} x2="60" y2={29+j*9} stroke={INK_L} strokeWidth=".8" strokeDasharray="4 2" />)}
-                          <path d="M 21,12 L 15,20 L 67,20 L 61,12 Z" fill="none" stroke={INK} strokeWidth="1.4" />
-                          <Gear cx={66} cy={38} r={9} cls="gear-cw" />
-                        </>)}
-                        {/* Station 5: Cryo */}
-                        {n.id===5 && (<>
-                          <rect x="8" y="10" width="64" height="50" rx="7" fill="#E8F4FB" stroke={INK} strokeWidth="1.5" />
-                          <rect x="14" y="16" width="52" height="38" rx="5" fill="none" stroke="#A8CCE8" strokeWidth="1.2" />
-                          <text x="40" y="34" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="11" fontWeight="700" fill={BLUE}>−196°C</text>
-                          <text x="40" y="45" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="5.5" fill={BLUE} letterSpacing=".04em">CRYO</text>
-                          <Snowflake cx={40} cy={56} r={10} />
-                        </>)}
-                        {/* Station 6: Steam */}
-                        {n.id===6 && (<>
-                          <rect x="14" y="26" width="52" height="34" rx="5" fill="#F5EDD8" stroke={INK} strokeWidth="1.6" />
-                          {[0,1].map(j => <rect key={j} x={20+j*26} y="18" width="10" height="9" rx="2" fill={INK} fillOpacity=".18" stroke={INK} strokeWidth="1.2" />)}
-                          {[0,1].map(j => (
-                            <g key={j} className={['steam-a','steam-b'][j]} style={{ transformOrigin:`${25+j*26}px 16px` }}>
-                              <ellipse cx={25+j*26} cy={15} rx="3.5" ry="3" fill={INK} fillOpacity=".18" />
-                            </g>
-                          ))}
-                          <circle cx="40" cy="43" r="14" fill="none" stroke={INK} strokeWidth="1.2" />
-                          <line x1="40" y1="43" x2={40+11*Math.cos(-20*Math.PI/180)} y2={43+11*Math.sin(-20*Math.PI/180)} stroke={CRIMSON} strokeWidth="1.5" strokeLinecap="round" />
-                          <circle cx="40" cy="43" r="2.5" fill={INK} />
-                        </>)}
-                        {/* Station 7: Packing */}
-                        {n.id===7 && (<>
-                          <rect x="16" y="18" width="48" height="36" rx="4" fill="#F5EDD8" stroke={INK} strokeWidth="1.6" />
-                          <path d="M 22,11 L 16,18 L 64,18 L 58,11 Z" fill="none" stroke={INK} strokeWidth="1.4" />
-                          <rect x="16" y="54" width="48" height="6" rx="3" fill="none" stroke={INK} strokeWidth="1.4" />
-                          <line x1="19" y1="57" x2="61" y2="57" stroke={INK_L} strokeWidth="3.5" strokeDasharray="9 5" className="belt-roll" />
-                          {[0,1,2].map(j => <rect key={j} x={20+j*14} y="48" width="11" height="7" rx="1.5" fill="#EDE0C4" stroke={INK} strokeWidth=".7" />)}
-                          <Gear cx={14} cy={36} r={8} cls="gear-cw" />
-                          <Gear cx={66} cy={36} r={8} cls="gear-ccw" />
-                          <text x="40" y="36" textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="5" fill={INK} letterSpacing=".07em">N₂ FLUSH</text>
-                        </>)}
-                        {/* Station 8: Ship */}
-                        {n.id===8 && (<>
-                          <g className="ship-anim">
-                            <path d="M 8,36 Q 5,36 4,42 L 4,54 Q 5,58 10,59 L 70,59 Q 75,58 76,54 L 76,42 Q 75,36 72,36 Z" fill="#F5EDD8" stroke={INK} strokeWidth="1.6" />
-                            <rect x="6" y="31" width="68" height="7" rx="2" fill="#EDE0C4" stroke={INK} strokeWidth="1.2" />
-                            <rect x="12" y="40" width="14" height="11" rx="1.5" fill="rgba(172,3,59,0.15)" stroke={CRIMSON} strokeWidth="1" />
-                            <rect x="32" y="40" width="14" height="11" rx="1.5" fill="rgba(26,95,171,0.15)" stroke={BLUE} strokeWidth="1" />
-                            <rect x="52" y="40" width="14" height="11" rx="1.5" fill="rgba(46,107,62,0.15)" stroke={GREEN} strokeWidth="1" />
-                            <rect x="36" y="14" width="8" height="18" rx="2" fill={INK} fillOpacity=".18" stroke={INK} strokeWidth="1" />
-                            <g className="steam-a" style={{ transformOrigin:'40px 12px' }}><ellipse cx="40" cy="11" rx="3.5" ry="3" fill={INK} fillOpacity=".18" /></g>
-                            {[0,1,2].map(j => <path key={j} d={`M ${4+j*24},63 Q ${16+j*24},67 ${28+j*24},63`} fill="none" stroke="#A8CCE8" strokeWidth="1.2" opacity=".6" />)}
-                            <line x1="40" y1="14" x2="40" y2="5" stroke={INK} strokeWidth="1.2" />
-                            <path d="M 40,5 L 52,9 L 40,13 Z" fill={CRIMSON} />
-                          </g>
-                        </>)}
+              {NODES.map((n, i) => {
+                // Map bounding boxes for each full SVG station
+                const viewBoxes = [
+                  "40 140 220 180", // 1 Farm
+                  "290 130 150 120", // 2 Truck
+                  "450 130 150 120", // 3 Lab
+                  "630 140 150 140", // 4 Cleaner
+                  "800 240 170 140", // 5 Cryo
+                  "940 330 160 180", // 6 Steam
+                  "1070 230 150 150", // 7 Packing
+                  "1120 80 180 160"   // 8 Ship
+                ];
+                const vBox = viewBoxes[i];
+
+                return (
+                  <div key={n.id} style={{
+                    position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',
+                    marginBottom: 60
+                  }}>
+                    {/* Node Circle */}
+                    <div style={{
+                      width: 28, height: 28, borderRadius: '50%', background: CRIMSON, color: '#fff',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontFamily: 'Georgia,serif', fontSize: 14, fontWeight: 700,
+                      border: '4px solid #fdf8ec', position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', zIndex: 2
+                    }}>
+                      {n.id}
+                    </div>
+
+                    {/* SVG Illustration Container */}
+                    <div style={{ width: '100%', maxWidth: 280, marginTop: 16 }}>
+                      <svg viewBox={vBox} style={{ width: '100%', height: 'auto', display: 'block' }} xmlns="http://www.w3.org/2000/svg">
+                        {i === 0 && <FarmSVG active={true} hov={false} />}
+                        {i === 1 && <TruckSVG active={true} hov={false} />}
+                        {i === 2 && <LabSVG active={true} hov={false} />}
+                        {i === 3 && <CleanerSVG active={true} hov={false} />}
+                        {i === 4 && <CryoSVG active={true} hov={false} />}
+                        {i === 5 && <SteamSVG active={true} hov={false} />}
+                        {i === 6 && <PackingSVG active={true} hov={false} />}
+                        {i === 7 && <ShipSVG active={true} hov={false} />}
                       </svg>
                     </div>
-
-                    {/* Text side */}
-                    <div style={{ flex:1, minWidth:0 }}>
-                      <div style={{ fontFamily:"'Courier New',monospace", fontSize:8, letterSpacing:'0.18em', color:n.accent, marginBottom:3 }}>
-                        STEP 0{n.id} · {n.stat}
-                      </div>
-                      <div style={{ fontFamily:'Georgia,serif', fontSize:14, fontWeight:700, color:INK, lineHeight:1.2, marginBottom:2 }}>
+                    {/* Text content */}
+                    <div style={{
+                      textAlign: 'center', background: 'rgba(255,255,255,0.8)', padding: '16px 20px',
+                      borderRadius: 12, border: `1px solid rgba(160,130,80,0.15)`,
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                      backdropFilter: 'blur(4px)', width: '85%', maxWidth: 320, marginTop: -10, position: 'relative', zIndex: 2
+                    }}>
+                      <div style={{ fontFamily: "'Courier New',monospace", fontSize: 10, letterSpacing: '0.15em', color: n.accent, marginBottom: 4, fontWeight: 700 }}>
                         {n.name}
                       </div>
-                      <div style={{ fontFamily:"'Courier New',monospace", fontSize:7.5, color:INK_L, letterSpacing:'0.12em' }}>
-                        {active===i ? 'TAP TO CLOSE ▲' : 'TAP TO EXPLORE ▼'}
-                      </div>
-                    </div>
-
-                    {/* Expand indicator */}
-                    <div style={{
-                      flexShrink:0, width:28, height:28, borderRadius:'50%',
-                      border:`1.5px solid ${active===i ? n.accent : 'rgba(92,61,30,0.18)'}`,
-                      display:'flex', alignItems:'center', justifyContent:'center',
-                      color: active===i ? n.accent : INK_L,
-                      fontSize:14, transition:'all 0.22s',
-                      transform: active===i ? 'rotate(180deg)' : 'none',
-                      fontFamily:"'Courier New',monospace",
-                    }}>
-                      ↓
+                      <p style={{ fontFamily: 'var(--font-sans),system-ui', fontSize: 13, color: 'rgba(0,0,0,0.6)', lineHeight: 1.5, margin: 0 }}>
+                        {n.desc}
+                      </p>
                     </div>
                   </div>
-                </div>
+
               ))}
             </div>
           </div>
