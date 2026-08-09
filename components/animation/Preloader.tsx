@@ -15,54 +15,102 @@ export default function Preloader() {
     // Prevent scroll during load
     document.body.style.overflow = 'hidden';
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        document.body.style.overflow = '';
-      }
-    });
-
-    // Entry — letters fade in staggered
-    tl.fromTo(
+    // 1. Entry Animation (Text fading in)
+    const tlIn = gsap.timeline();
+    tlIn.fromTo(
       line1Ref.current,
       { y: 60, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
       0.3
-    )
-    .fromTo(
+    ).fromTo(
       line2Ref.current,
       { y: 40, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' },
       0.55
-    )
-    // Bar fills
-    .fromTo(
-      barRef.current,
-      { scaleX: 0 },
-      { scaleX: 1, duration: 1.1, ease: 'power2.inOut', transformOrigin: 'left center' },
-      0.6
-    )
-    // Hold
-    .to({}, { duration: 0.2 })
-    // Panel wipes up — two panels
-    .to(
-      line1Ref.current,
-      { y: -40, opacity: 0, duration: 0.5, ease: 'power2.in' },
-      '+=0.1'
-    )
-    .to(
-      line2Ref.current,
-      { y: -30, opacity: 0, duration: 0.4, ease: 'power2.in' },
-      '<0.05'
-    )
-    .to(
-      wrap,
-      { yPercent: -100, duration: 0.9, ease: 'power4.inOut' },
-      '-=0.2'
-    )
-    .set(wrap, { display: 'none' });
+    );
+
+    let isCompleted = false;
+
+    // 3. Exit Animation (triggered when loading finishes)
+    const finishLoading = () => {
+      if (isCompleted) return;
+      isCompleted = true;
+
+      const tlOut = gsap.timeline({
+        onComplete: () => {
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Force bar to 100% smoothly before exiting
+      tlOut.to(barRef.current, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
+        .to({}, { duration: 0.2 }) // small hold
+        .to(line1Ref.current, { y: -40, opacity: 0, duration: 0.5, ease: 'power2.in' })
+        .to(line2Ref.current, { y: -30, opacity: 0, duration: 0.4, ease: 'power2.in' }, '<0.05')
+        .to(wrap, { yPercent: -100, duration: 0.9, ease: 'power4.inOut' }, '-=0.2')
+        .set(wrap, { display: 'none' });
+    };
+
+    // Safety timeout in case some media hangs
+    const fallbackTimeout = setTimeout(finishLoading, 5000);
+
+    // 2. Preload Logic
+    const initPreloader = () => {
+      const mediaElements = Array.from(document.querySelectorAll('img, video')) as (HTMLImageElement | HTMLVideoElement)[];
+      const totalMedia = mediaElements.length;
+      let loadedCount = 0;
+
+      if (totalMedia === 0) {
+        // No media on page, just run a mock loading bar for 1 second
+        gsap.to(barRef.current, { scaleX: 1, duration: 1, ease: 'power2.inOut', onComplete: finishLoading });
+        return;
+      }
+
+      const updateProgress = () => {
+        loadedCount++;
+        const progress = loadedCount / totalMedia;
+        gsap.to(barRef.current, { scaleX: progress, duration: 0.3, ease: 'power1.out' });
+        
+        if (loadedCount >= totalMedia) {
+          finishLoading();
+        }
+      };
+
+      mediaElements.forEach((media) => {
+        if (media.tagName === 'IMG') {
+          const img = media as HTMLImageElement;
+          if (img.complete) {
+            updateProgress();
+          } else {
+            img.addEventListener('load', updateProgress);
+            img.addEventListener('error', updateProgress);
+          }
+        } else if (media.tagName === 'VIDEO') {
+          const video = media as HTMLVideoElement;
+          if (video.readyState >= 3) {
+            updateProgress();
+          } else {
+            video.addEventListener('loadeddata', updateProgress);
+            video.addEventListener('error', updateProgress);
+          }
+        }
+      });
+    };
+
+    // Small delay to let Next.js render DOM nodes
+    const startTimeout = setTimeout(() => {
+      if (document.readyState === 'complete') {
+        initPreloader();
+      } else {
+        window.addEventListener('load', initPreloader);
+      }
+    }, 100);
 
     return () => {
-      tl.kill();
+      tlIn.kill();
+      clearTimeout(fallbackTimeout);
+      clearTimeout(startTimeout);
+      window.removeEventListener('load', initPreloader);
       document.body.style.overflow = '';
     };
   }, []);
