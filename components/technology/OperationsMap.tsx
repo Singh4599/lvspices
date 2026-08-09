@@ -564,41 +564,42 @@ export default function OperationsMap() {
                       <path d={pathD} fill="none" stroke="#E5E3D8" strokeWidth="18" strokeLinecap="round" />
                       <path d={pathD} fill="none" stroke="#444" strokeWidth="5" strokeLinecap="round" />
                       <path d={pathD} fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="14 14" className="belt-roll" />
-                      {mRelay.map(([cx, cy], k) => (
-                        <g key={k} transform={`translate(${cx}, ${cy})`} className="gear-cw">
-                          <circle cx="0" cy="0" r="9" fill="#F0EEE5" stroke={INK} strokeWidth="1.5"/>
-                          <circle cx="0" cy="0" r="3" fill={INK}/>
-                          <circle cx="5" cy="0" r="1.5" fill={INK}/>
-                          <circle cx="-5" cy="0" r="1.5" fill={INK}/>
-                          <circle cx="0" cy="5" r="1.5" fill={INK}/>
-                          <circle cx="0" cy="-5" r="1.5" fill={INK}/>
-                        </g>
-                      ))}
 
                       {/* Render each node on the path */}
                       {NODES.map((n, i) => {
                         const x = mSX[i];
                         const y = mSY[i];
                         const isAct = active === i;
+                        const BOX_W = 100;
+                        const BOX_H = 80;
+                        
                         return (
                           <g key={n.id} onClick={() => toggle(i)} style={{ cursor: 'pointer' }}>
                             {/* Hitbox */}
-                            <rect x={x - 60} y={y - 50} width="120" height="120" fill="transparent" />
+                            <rect x={x - 70} y={y - 60} width="140" height="140" fill="transparent" />
                             
-                            {/* Title Block */}
-                            <rect x={x - 45} y={y + 35} width="90" height="18" rx="9" fill={isAct ? CRIMSON : '#F5EDD8'} stroke={isAct ? 'none' : 'rgba(160,130,80,0.4)'} strokeWidth="1" />
-                            <text x={x} y={y + 46} textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="7.5" fontWeight="700" fill={isAct ? '#fff' : INK}>
-                              {n.name.toUpperCase()}
-                            </text>
+                            {/* Station Badge Background */}
+                            <rect x={x - BOX_W/2} y={y - BOX_H/2} width={BOX_W} height={BOX_H} rx="16" 
+                              fill={isAct ? '#fdf8ec' : '#fff'} 
+                              stroke={isAct ? CRIMSON : 'rgba(160,130,80,0.5)'} 
+                              strokeWidth={isAct ? "2" : "1.5"} 
+                              style={{ transition: 'all 0.3s' }}
+                            />
                             
-                            {/* Step Tag */}
-                            <circle cx={x - 35} cy={y - 25} r="10" fill={isAct ? CRIMSON : '#fff'} stroke={INK} strokeWidth="1.5" />
-                            <text x={x - 35} y={y - 22} textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="8" fontWeight="700" fill={isAct ? '#fff' : INK}>
+                            {/* Step Tag (Floating on top left) */}
+                            <circle cx={x - BOX_W/2} cy={y - BOX_H/2 + 10} r="14" fill={isAct ? CRIMSON : '#fff'} stroke={INK} strokeWidth="1.5" />
+                            <text x={x - BOX_W/2} y={y - BOX_H/2 + 14} textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="10" fontWeight="800" fill={isAct ? '#fff' : INK}>
                               0{n.id}
                             </text>
                             
+                            {/* Title text below */}
+                            <rect x={x - 60} y={y + BOX_H/2 + 10} width="120" height="26" rx="13" fill={isAct ? CRIMSON : '#F5EDD8'} />
+                            <text x={x} y={y + BOX_H/2 + 27} textAnchor="middle" fontFamily="'Courier New',monospace" fontSize="9" fontWeight="800" fill={isAct ? '#fff' : INK}>
+                              {n.name.toUpperCase()}
+                            </text>
+                            
                             {/* Mini Machine SVG */}
-                            <svg x={x - 30} y={y - 28} width="60" height="48" viewBox="0 0 80 64">
+                            <svg x={x - 45} y={y - 36} width="90" height="72" viewBox="0 0 80 64">
                               {/* Station 1: Farm */}
                               {n.id===1 && (<>
                                 <rect x="4" y="24" width="22" height="30" rx="2" fill="#F5EDD8" stroke={INK} strokeWidth="1.5" />
