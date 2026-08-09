@@ -184,8 +184,11 @@ function Hero() {
     const ctx = canvas.getContext('2d', { alpha: false, willReadFrequently: false })!;
 
     const resize = () => {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Use section's actual rendered size — NOT window.innerWidth/Height.
+      // On iOS Safari, window.innerHeight ≠ 100svh (address bar offset),
+      // causing the canvas buffer to mismatch the CSS size → top/bottom black bars.
+      canvas.width  = section.clientWidth  || window.innerWidth;
+      canvas.height = section.clientHeight || window.innerHeight;
     };
     resize();
     window.addEventListener('resize', resize);
