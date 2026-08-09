@@ -7,62 +7,62 @@ const features = [
   {
     title: 'High Production Capacity',
     desc: 'We employ perfect grinding procedures to preserve freshness and avoid the loss of volatile oils, which are essential for flavor and aroma. With a significant grinding capacity, our plant can meet large-scale needs without compromising quality.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=High+Production+Capacity'
+    img: '/images/infrastructure/1.webp'
   },
   {
     title: 'Individual Grinding Lines',
     desc: 'We run 18 individual grinding lines, all of which are focused on different kinds of spices. This strategy keeps cross-contamination at bay and ensures that every spice is treated under ideal conditions, giving us to preserve the consistency and purity of our products.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Individual+Grinding+Lines'
+    img: '/images/infrastructure/2.webp'
   },
   {
     title: 'Cryogenic plant',
     desc: 'Our structure, which was first established in India in 2012, has the world’s largest cryogenic grinding machine for spices, ensuring the preservation of essential oils and flavors.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Cryogenic+Plant'
+    img: '/images/infrastructure/3.webp'
   },
   {
     title: 'Blender',
     desc: 'The blender is essential to preserving consistency in the finished product and ensuring that each batch meets our high quality standards.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Blender'
+    img: '/images/infrastructure/4.webp'
   },
   {
     title: 'Hooper',
     desc: 'The hooper functions as both a storage and feeding element, carefully pouring materials into the cryogenic system. It is meant to endure low temperatures while maintaining the materials’ integrity.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Hooper'
+    img: '/images/infrastructure/5.webp'
   },
   {
     title: 'Nitrogen conveyer',
     desc: 'The nitrogen conveyer plays an essential role in cryogenic processing given that it conveys the material while preserving the extremely low temperatures required for productive grinding.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Nitrogen+Conveyer'
+    img: '/images/infrastructure/6.webp'
   },
   {
     title: 'Dust collector',
     desc: 'The dust collector is essential for maintaining a clean and safe working environment by capturing any fine particles formed during the grinding process.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Dust+Collector'
+    img: '/images/infrastructure/7.webp'
   },
   {
     title: 'Cold Grinding',
     desc: 'This approach keeps the spices from overheating and preserves their natural aroma and flavor.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Cold+Grinding'
+    img: '/images/infrastructure/8.webp'
   },
   {
     title: 'Vacuum Grinding',
     desc: 'Used to enhance the freshness and lifespan of spices.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Vacuum+Grinding'
+    img: '/images/infrastructure/9.webp'
   },
   {
     title: 'Roasting',
     desc: 'An essential first step in bringing out the taste and aroma of our spices is roasting. Lowering the moisture level of the spices not only enhances their flavor profile but also helps to preserve them by increasing their shelf stability.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Roasting'
+    img: '/images/infrastructure/10.webp'
   },
   {
     title: 'Low Friction Grinding',
     desc: 'Reduces the degradation of spices all over the grinding process, giving rise to better quality products. Food Grade Materials: All grinding equipment is made of food grade SS304 and SS316 steel wherever the material comes into direct contact, ensuring the greatest levels of safety and cleanliness.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Low+Friction+Grinding'
+    img: '/images/infrastructure/11.webp'
   },
   {
     title: 'Blending',
     desc: 'Modern blending machines are utilized to produce a specifically unified mixture, ensuring consistent flavor across all spices.',
-    img: 'https://placehold.co/600x400/f5f5f5/555555?text=Blending'
+    img: '/images/infrastructure/12.webp'
   }
 ];
 
