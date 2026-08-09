@@ -458,7 +458,7 @@ export default function Navbar() {
           </div>
 
           {/* Quick links */}
-          <div style={{ padding: '12px 16px', background: '#f8f8f8', borderTop: '1px solid rgba(0,0,0,0.06)', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={{ padding: '16px 20px', background: '#111', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             {/* 365 Spicery badge — mobile */}
             <a
               href="https://365spicery.com"
@@ -466,16 +466,15 @@ export default function Navbar() {
               rel="noopener noreferrer"
               onClick={() => setIsMobileOpen(false)}
               style={{
-                display: 'flex', justifyContent: 'center',
+                display: 'flex', alignItems: 'center',
                 textDecoration: 'none',
-                paddingBottom: 8,
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/365spicery.webp"
                 alt="365 Spicery"
-                style={{ width: 'auto', height: 64, borderRadius: 8, display: 'block', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
+                style={{ width: 'auto', height: 42, borderRadius: 4, display: 'block' }}
               />
             </a>
             <a
@@ -484,16 +483,13 @@ export default function Navbar() {
               rel="noopener noreferrer"
               onClick={() => setIsMobileOpen(false)}
               style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                background: '#AC033B', color: '#fff', padding: '14px',
-                borderRadius: 10, fontSize: 13.5, fontWeight: 700, letterSpacing: '0.06em',
-                textDecoration: 'none',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                background: '#AC033B', color: '#fff', padding: '10px 20px',
+                borderRadius: 999, fontSize: 13, fontWeight: 700, letterSpacing: '0.04em',
+                textDecoration: 'none', boxShadow: '0 2px 10px rgba(172,3,59,0.3)',
               }}
             >
               Buy Now
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
             </a>
           </div>
         </div>
