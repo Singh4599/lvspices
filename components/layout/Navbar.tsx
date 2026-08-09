@@ -307,38 +307,45 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               className="desktop-nav"
+              id="nav-365spicery-badge"
               style={{
-                display: 'flex', alignItems: 'center', gap: 8,
-                padding: '5px 14px 5px 6px',
-                border: '1.5px solid rgba(172,3,59,0.18)',
-                borderRadius: 999,
+                display: 'flex', alignItems: 'center',
                 textDecoration: 'none',
-                transition: 'border-color 0.2s, background 0.2s',
-                background: 'rgba(172,3,59,0.03)',
+                transition: 'transform 0.18s, filter 0.2s',
+                flexShrink: 0,
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = '#AC033B';
-                (e.currentTarget as HTMLElement).style.background = 'rgba(172,3,59,0.07)';
+                const el = e.currentTarget as HTMLElement;
+                el.style.transform = 'translateY(-1px)';
+                el.style.filter = 'brightness(0.95)';
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(172,3,59,0.18)';
-                (e.currentTarget as HTMLElement).style.background = 'rgba(172,3,59,0.03)';
+                const el = e.currentTarget as HTMLElement;
+                el.style.transform = 'none';
+                el.style.filter = 'none';
               }}
             >
+              {/* Logo slab — show the actual brand mark large */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/365spicery.webp"
                 alt="365 Spicery"
-                style={{ width: 30, height: 30, objectFit: 'contain', borderRadius: '50%', border: '1px solid rgba(172,3,59,0.1)' }}
+                style={{
+                  height: 48,
+                  width: 'auto',
+                  objectFit: 'contain',
+                  display: 'block',
+                  borderRadius: 6,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                }}
               />
-              <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.05em', color: '#AC033B', whiteSpace: 'nowrap' }}>
-                365 Spicery
-              </span>
             </a>
 
             {/* Buy Now — desktop */}
-            <Link
-              href="/products"
+            <a
+              href="https://365spicery.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="desktop-nav"
               style={{
                 display: 'flex', alignItems: 'center', gap: 6,
@@ -365,7 +372,7 @@ export default function Navbar() {
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </Link>
+            </a>
 
             {/* Hamburger — mobile */}
             <button
@@ -459,17 +466,22 @@ export default function Navbar() {
               rel="noopener noreferrer"
               onClick={() => setIsMobileOpen(false)}
               style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                border: '1.5px solid rgba(172,3,59,0.22)', borderRadius: 10, padding: '11px',
-                textDecoration: 'none', background: 'rgba(172,3,59,0.03)',
+                display: 'flex', justifyContent: 'center',
+                textDecoration: 'none',
+                paddingBottom: 8,
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/365spicery.webp" alt="365 Spicery" style={{ width: 28, height: 28, objectFit: 'contain', borderRadius: '50%' }} />
-              <span style={{ fontSize: 13, fontWeight: 700, color: '#AC033B', letterSpacing: '0.04em' }}>365 Spicery</span>
+              <img
+                src="/images/365spicery.webp"
+                alt="365 Spicery"
+                style={{ width: 'auto', height: 64, borderRadius: 8, display: 'block', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
+              />
             </a>
-            <Link
-              href="/products"
+            <a
+              href="https://365spicery.com"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsMobileOpen(false)}
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
@@ -482,7 +494,7 @@ export default function Navbar() {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
