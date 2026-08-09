@@ -88,7 +88,7 @@ export default function HomePage() {
             textColor="#111111"
             borderRadius={0.07}
             scrollEase={0.05}
-            scrollSpeed={2}
+            scrollSpeed={typeof window !== 'undefined' && window.innerWidth <= 768 ? 6 : 2}
             items={[
               { image: '/images/hero-spices.png', text: 'Premium Spices' },
               { image: '/images/products.png', text: 'Full Range' },
