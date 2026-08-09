@@ -103,18 +103,26 @@ export default function ChilliHero() {
         <style>{`
           @media (max-width: 900px) {
             .hero-grid {
-              grid-template-columns: 1fr !important;
+              display: flex !important;
+              flex-direction: column;
               padding: 0 24px clamp(60px,12vw,100px) !important;
-              gap: 40px !important;
+              gap: 20px !important;
             }
+            .hero-left {
+              display: contents !important;
+            }
+            .hero-heading { order: 1; }
+            .hero-sub { order: 2; margin-bottom: 20px !important; }
+            .hero-right { order: 3; width: 100%; margin-bottom: 24px; }
+            .hero-stats { order: 4; }
           }
         `}</style>
 
         {/* ── Left — Text ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative', zIndex: 2 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative', zIndex: 2 }} className="hero-left">
 
           {/* Headline 1 */}
-          <div style={{ overflow: 'hidden', marginBottom: 2 }}>
+          <div style={{ overflow: 'hidden', marginBottom: 2 }} className="hero-heading">
             <div
               ref={line1Ref}
               style={{
@@ -132,7 +140,7 @@ export default function ChilliHero() {
           </div>
 
           {/* Headline 2 */}
-          <div style={{ overflow: 'hidden', marginBottom: 28 }}>
+          <div style={{ overflow: 'hidden', marginBottom: 28 }} className="hero-heading">
             <div
               ref={line2Ref}
               style={{
@@ -162,12 +170,13 @@ export default function ChilliHero() {
               opacity: 0,
               marginBottom: 40,
             }}
+            className="hero-sub"
           >
             We boast of more than 50 Products in different form of chillies. From Raw to Stemless to Crushed to Ground, for both domestic and international market.
           </p>
 
           {/* Stats strip */}
-          <div style={{ display: 'flex', gap: 'clamp(24px,3vw,48px)', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 'clamp(24px,3vw,48px)', flexWrap: 'wrap' }} className="hero-stats">
             {[
               { value: '50+', label: 'Varieties' },
               { value: 'Whole', label: 'to Ground' },
@@ -182,7 +191,7 @@ export default function ChilliHero() {
         </div>
 
         {/* ── Right — Image ── */}
-        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="hero-right">
           {/* Background decorative blob */}
           <div style={{ position: 'absolute', width: '90%', aspectRatio: '1/1', borderRadius: '50%', background: 'radial-gradient(circle, rgba(230,46,4,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
           
@@ -191,7 +200,7 @@ export default function ChilliHero() {
             style={{ position: 'relative', width: '100%', maxWidth: 640, aspectRatio: '4/3', borderRadius: 20, overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', opacity: 0 }}
           >
             <Image
-              src="/images/cryo-dark.png" 
+              src="/images/chilli-hero-new.png"
               alt="Chilli Products"
               fill
               priority
