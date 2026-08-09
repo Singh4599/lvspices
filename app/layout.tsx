@@ -48,7 +48,7 @@ export default function RootLayout({
           <ScrollProgress />
           <NoiseOverlay />
           <Navbar />
-          <main className="flex-1" style={{ position: 'relative', zIndex: 1, paddingTop: 104 }}>{children}</main>
+          <main className="flex-1" style={{ position: 'relative', zIndex: 1, paddingTop: 68 }}>{children}</main>
           <Footer />
         </SmoothScrollProvider>
       </body>

@@ -5,14 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 /* ── Data ─────────────────────────────────────────────── */
-const topBarLinks = [
-  { label: 'Certifications', href: '/certifications' },
-  { label: 'Quality Assurance', href: '/technology/quality-assurance' },
-  { label: 'Private Label', href: '/private-label' },
-  { label: 'E-Brochure', href: '/catalog' },
-  { label: 'Contact Us', href: '/contact' },
-];
-
 type NavItem = {
   label: string;
   href?: string;
@@ -22,24 +14,35 @@ type NavItem = {
 const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   {
-    label: 'About Us',
+    label: 'Company',
     children: [
+      { label: 'Overview', href: '/overview' },
+      { label: 'About Us', href: '/about-us' },
       { label: 'Our Story', href: '/story' },
       { label: 'Mission & Vision', href: '/mission' },
-      { label: 'Sustainability', href: '/sustainability' },
+      { label: 'Our Team', href: '/our-team' },
+      { label: 'How We Operate', href: '/how-we-operate' },
+      { label: 'Facilities', href: '/facilities' },
+      { label: 'Career', href: '/career' },
+      { label: 'Testimonials', href: '/testimonials' },
       { label: 'Global Network', href: '/global-network' },
+      { label: 'Sustainability', href: '/sustainability' },
     ],
   },
   {
-    label: 'Technology',
+    label: 'Technology & QA',
     children: [
-      { label: 'Overview', href: '/technology' },
+      { label: 'Technology', href: '/technology' },
       { label: 'Cryogenic Grinding', href: '/technology/cryogenic-grinding' },
       { label: 'Steam Sterilization', href: '/technology/steam-sterilization' },
-      { label: 'CFG Science (R&D)', href: '/technology/cfg-science' },
-      { label: 'Quality Control', href: '/technology/quality-assurance' },
+      { label: 'Process Chart', href: '/technology/process-flow' },
+      { label: 'Quality Assurance', href: '/technology/quality-assurance' },
+      { label: 'Quality Control & Training', href: '/quality-control-and-training' },
+      { label: 'Certifications', href: '/certifications' },
+      { label: 'Analytical Lab', href: '/analytical' },
+      { label: 'CFG Science & R&D', href: '/technology/cfg-science' },
       { label: 'Infrastructure', href: '/technology/infrastructure' },
-      { label: 'Process Flow', href: '/technology/process-flow' },
+      { label: 'IPM', href: '/ipm' },
     ],
   },
   {
@@ -55,8 +58,19 @@ const navItems: NavItem[] = [
       { label: 'Dehydrated', href: '/products/dehydrated' },
       { label: 'Botanical Powders', href: '/products/botanical-powders' },
       { label: 'Herbal Teas', href: '/products/herbal-teas' },
-      { label: 'Private Label', href: '/products/private-label' },
     ],
+  },
+  {
+    label: 'Resources',
+    children: [
+      { label: 'E-Brochure', href: '/catalog' },
+      { label: 'Private Label', href: '/packaging-and-private-labelling' },
+      { label: 'Our Services', href: '/our-services' },
+      { label: 'Spice Diary', href: '/spice-diary' },
+      { label: 'Spice School', href: '/spice-school' },
+      { label: 'Explore World', href: '/explore-world' },
+      { label: 'FAQ', href: '/faq' },
+    ]
   },
   { label: 'Contact Us', href: '/contact' },
 ];
@@ -111,7 +125,7 @@ function NavDropdown({
           position: 'absolute',
           top: '100%',
           left: 0,
-          minWidth: 220,
+          minWidth: 240,
           background: '#fff',
           boxShadow: '0 8px 32px rgba(0,0,0,0.14)',
           borderTop: '2px solid #AC033B',
@@ -122,6 +136,8 @@ function NavDropdown({
           transform: isOpen ? 'translateY(0)' : 'translateY(-8px)',
           transition: 'opacity 0.2s, transform 0.2s',
           zIndex: 1000,
+          maxHeight: 'calc(100vh - 80px)',
+          overflowY: 'auto'
         }}>
           {item.children!.map(child => (
             <Link
@@ -249,32 +265,9 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ─── TOP UTILITY BAR ─────────────────────────── */}
-      <div style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10000,
-        background: '#111', height: 36,
-        display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
-      }}>
-        <div style={{ maxWidth: 1400, width: '100%', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 4 }}>
-          {topBarLinks.map((link, i) => (
-            <span key={link.href} style={{ display: 'flex', alignItems: 'center' }}>
-              {i > 0 && <span style={{ color: 'rgba(255,255,255,0.2)', margin: '0 2px', fontSize: 10 }}>|</span>}
-              <Link
-                href={link.href}
-                style={{ fontSize: 11, color: 'rgba(255,255,255,0.65)', textDecoration: 'none', padding: '0 8px', letterSpacing: '0.04em', transition: 'color 0.15s' }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#fff'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.65)'}
-              >
-                {link.label}
-              </Link>
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* ─── MAIN NAVBAR ─────────────────────────────── */}
       <nav style={{
-        position: 'fixed', top: 36, left: 0, right: 0, zIndex: 9999,
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9999,
         background: '#fff',
         borderBottom: scrolled ? '1px solid rgba(0,0,0,0.1)' : '1px solid rgba(0,0,0,0.07)',
         boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.1)' : 'none',
@@ -420,21 +413,6 @@ export default function Navbar() {
 
           {/* Quick links */}
           <div style={{ padding: '12px 16px', background: '#f8f8f8', borderTop: '1px solid rgba(0,0,0,0.06)', flexShrink: 0 }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 14 }}>
-              {topBarLinks.map(link => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  style={{
-                    fontSize: 11, color: '#555', textDecoration: 'none', padding: '4px 10px',
-                    background: '#eee', borderRadius: 999, letterSpacing: '0.03em',
-                  }}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
             <Link
               href="/contact"
               onClick={() => setIsMobileOpen(false)}
