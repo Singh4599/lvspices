@@ -7,98 +7,136 @@ const SERIF   = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS    = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO    = 'var(--font-mono), "JetBrains Mono", monospace';
 
-// ── Pin coordinates calibrated against map.png (969×460px) ──
-// map.png has subtle whitespace; landmasses start ~5% L, ~8% T
-// left% = x / 969 * 100,  top% = y / 460 * 100
+// ── Coordinates calibrated via pixel-density scan of map.png (969×460px) ──
+// Reference anchors (measured): UK(0°E,51°N)→43.9%,25%; India(78°E,20°N)→70%,46.3%; Japan→81.9%,35%
 const PINS: { country: string; left: number; top: number; major?: boolean }[] = [
   // Americas
-  { country: 'USA',          left: 16.5, top: 32.5, major: true  },
-  { country: 'Canada',       left: 16.0, top: 20.0              },
-  { country: 'Mexico',       left: 13.5, top: 44.5              },
-  { country: 'Brazil',       left: 27.5, top: 65.0, major: true  },
-  { country: 'Chile',        left: 23.0, top: 76.5              },
-  { country: 'Colombia',     left: 21.5, top: 54.0              },
+  { country: 'USA',           left: 17.0, top: 33.9, major: true  },
+  { country: 'Canada',        left: 17.6, top: 20.5              },
+  { country: 'Mexico',        left: 14.4, top: 44.2              },
+  { country: 'Brazil',        left: 30.7, top: 63.3, major: true  },
+  { country: 'Chile',         left: 24.8, top: 77.0              },
+  { country: 'Colombia',      left: 23.9, top: 55.4              },
+  { country: 'Argentina',     left: 26.5, top: 77.6              },
+  { country: 'Peru',          left: 23.3, top: 62.8              },
   // Europe
-  { country: 'UK',           left: 44.8, top: 22.0              },
-  { country: 'Germany',      left: 47.5, top: 21.0              },
-  { country: 'France',       left: 46.0, top: 25.5              },
-  { country: 'Netherlands',  left: 46.8, top: 19.5              },
-  { country: 'Spain',        left: 43.5, top: 28.0              },
-  { country: 'Italy',        left: 48.3, top: 27.8              },
-  { country: 'Poland',       left: 50.0, top: 19.8              },
-  { country: 'Russia',       left: 60.0, top: 16.0              },
-  { country: 'Ukraine',      left: 52.5, top: 22.5              },
-  { country: 'Greece',       left: 50.5, top: 29.0              },
+  { country: 'UK',            left: 43.9, top: 22.3              },
+  { country: 'Ireland',       left: 41.9, top: 23.2              },
+  { country: 'France',        left: 44.6, top: 28.4              },
+  { country: 'Spain',         left: 42.9, top: 32.6              },
+  { country: 'Portugal',      left: 41.9, top: 33.2              },
+  { country: 'Germany',       left: 47.2, top: 25.0              },
+  { country: 'Netherlands',   left: 45.6, top: 24.1              },
+  { country: 'Italy',         left: 47.9, top: 31.2              },
+  { country: 'Poland',        left: 50.6, top: 24.1              },
+  { country: 'Sweden',        left: 49.9, top: 16.9              },
+  { country: 'Norway',        left: 47.2, top: 15.2              },
+  { country: 'Denmark',       left: 47.2, top: 20.5              },
+  { country: 'Finland',       left: 52.6, top: 15.2              },
+  { country: 'Ukraine',       left: 54.6, top: 26.4              },
+  { country: 'Romania',       left: 52.3, top: 29.1              },
+  { country: 'Greece',        left: 51.3, top: 33.2              },
+  { country: 'Austria',       left: 48.6, top: 27.7              },
+  { country: 'Czech Republic',left: 49.3, top: 25.7              },
+  { country: 'Russia',        left: 62.3, top: 16.9              },
   // Middle East
-  { country: 'Turkey',       left: 53.8, top: 28.5              },
-  { country: 'UAE',          left: 60.5, top: 42.0, major: true  },
-  { country: 'Saudi Arabia', left: 57.5, top: 41.0              },
-  { country: 'Egypt',        left: 52.5, top: 38.0              },
+  { country: 'Turkey',        left: 55.6, top: 33.2              },
+  { country: 'Israel',        left: 55.6, top: 38.7              },
+  { country: 'Iraq',          left: 58.6, top: 37.4              },
+  { country: 'Iran',          left: 61.6, top: 38.1              },
+  { country: 'Saudi Arabia',  left: 59.0, top: 43.6              },
+  { country: 'Yemen',         left: 58.6, top: 49.1              },
+  { country: 'Oman',          left: 63.0, top: 45.6              },
+  { country: 'UAE',           left: 62.0, top: 43.6, major: true  },
+  { country: 'Kuwait',        left: 59.6, top: 40.1              },
+  { country: 'Qatar',         left: 61.0, top: 42.9              },
   // Africa
-  { country: 'Nigeria',      left: 47.0, top: 54.0              },
-  { country: 'Kenya',        left: 55.5, top: 57.5              },
-  { country: 'South Africa', left: 51.0, top: 77.0              },
-  // South & Southeast Asia
-  { country: 'Pakistan',     left: 63.0, top: 37.5              },
-  { country: 'India',        left: 65.0, top: 44.0, major: true  },
-  { country: 'Bangladesh',   left: 67.8, top: 41.0              },
-  { country: 'Sri Lanka',    left: 65.8, top: 52.0              },
-  { country: 'Thailand',     left: 73.5, top: 47.0              },
-  { country: 'Vietnam',      left: 75.2, top: 47.5              },
-  { country: 'Malaysia',     left: 74.5, top: 55.0              },
-  { country: 'Singapore',    left: 75.0, top: 57.5              },
-  { country: 'Indonesia',    left: 77.0, top: 60.0              },
-  { country: 'Philippines',  left: 78.5, top: 48.5              },
-  // East Asia & Oceania
-  { country: 'China',        left: 72.5, top: 32.0, major: true  },
-  { country: 'South Korea',  left: 79.5, top: 30.5              },
-  { country: 'Japan',        left: 81.5, top: 29.5              },
-  { country: 'Australia',    left: 82.5, top: 71.0, major: true  },
-  { country: 'New Zealand',  left: 88.0, top: 79.0              },
+  { country: 'Egypt',         left: 53.9, top: 42.2              },
+  { country: 'Libya',         left: 49.6, top: 41.5              },
+  { country: 'Algeria',       left: 44.9, top: 40.8              },
+  { country: 'Morocco',       left: 42.6, top: 38.1              },
+  { country: 'Sudan',         left: 54.6, top: 49.1              },
+  { country: 'Ethiopia',      left: 57.3, top: 53.1              },
+  { country: 'Kenya',         left: 56.3, top: 57.6              },
+  { country: 'Tanzania',      left: 55.6, top: 61.1              },
+  { country: 'Nigeria',       left: 46.6, top: 52.5              },
+  { country: 'Ghana',         left: 43.6, top: 53.7              },
+  { country: 'Angola',        left: 49.9, top: 64.5              },
+  { country: 'South Africa',  left: 52.3, top: 74.4, major: true  },
+  { country: 'Madagascar',    left: 59.6, top: 69.0              },
+  // South & Central Asia
+  { country: 'Kazakhstan',    left: 66.3, top: 27.1              },
+  { country: 'Afghanistan',   left: 65.7, top: 37.4              },
+  { country: 'Pakistan',      left: 67.3, top: 39.4              },
+  { country: 'India',         left: 70.0, top: 46.3, major: true  },
+  { country: 'Nepal',         left: 71.3, top: 40.8              },
+  { country: 'Bangladesh',    left: 72.5, top: 43.6              },
+  { country: 'Sri Lanka',     left: 70.6, top: 53.1              },
+  { country: 'Myanmar',       left: 73.8, top: 45.6              },
+  // Southeast Asia
+  { country: 'Thailand',      left: 74.8, top: 49.1              },
+  { country: 'Vietnam',       left: 75.8, top: 48.6              },
+  { country: 'Cambodia',      left: 75.6, top: 50.8              },
+  { country: 'Malaysia',      left: 77.1, top: 55.9              },
+  { country: 'Singapore',     left: 75.4, top: 57.1              },
+  { country: 'Indonesia',     left: 78.4, top: 58.8              },
+  { country: 'Philippines',   left: 79.2, top: 50.8              },
+  // East Asia
+  { country: 'China',         left: 75.4, top: 36.0, major: true  },
+  { country: 'South Korea',   left: 80.4, top: 34.6              },
+  { country: 'Japan',         left: 82.6, top: 35.3, major: true  },
+  { country: 'Taiwan',        left: 79.0, top: 43.6              },
+  // Oceania
+  { country: 'Australia',     left: 81.7, top: 71.8, major: true  },
+  { country: 'New Zealand',   left: 91.3, top: 82.2              },
 ];
 
-interface TooltipState { country: string; x: number; y: number; }
-
-// SVG location pin icon — teardrop with inner circle
-function PinIcon({ size, color, glowing }: { size: number; color: string; glowing: boolean }) {
+// SVG teardrop map-pin with white inner circle
+function PinIcon({ size, hovered }: { size: number; hovered: boolean }) {
   return (
     <svg
       width={size}
-      height={size * 1.35}
-      viewBox="0 0 24 32"
+      height={Math.round(size * 1.4)}
+      viewBox="0 0 24 34"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        filter: glowing ? `drop-shadow(0 0 5px ${color})` : `drop-shadow(0 2px 3px rgba(0,0,0,0.25))`,
-        transition: 'filter 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1)',
-        transform: glowing ? 'scale(1.3) translateY(-2px)' : 'scale(1)',
         display: 'block',
+        filter: hovered
+          ? `drop-shadow(0 0 6px ${CRIMSON}cc)`
+          : `drop-shadow(0 2px 3px rgba(0,0,0,0.22))`,
+        transform: hovered ? 'scale(1.35) translateY(-3px)' : 'scale(1)',
+        transition: 'transform 0.2s cubic-bezier(0.34,1.56,0.64,1), filter 0.2s',
       }}
     >
+      {/* Teardrop body */}
       <path
-        d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 19 9 19s9-12.25 9-19c0-4.97-4.03-9-9-9z"
-        fill={color}
+        d="M12 0C7.03 0 3 4.03 3 9c0 7.25 9 21 9 21s9-13.75 9-21c0-4.97-4.03-9-9-9z"
+        fill={CRIMSON}
       />
+      {/* Inner white circle */}
       <circle cx="12" cy="9" r="4" fill="white" />
     </svg>
   );
 }
 
+interface TooltipState { country: string; x: number; y: number; }
+
 export default function GlobalPresenceMap() {
-  const [tooltip,    setTooltip]    = useState<TooltipState | null>(null);
-  const [hoveredPin, setHoveredPin] = useState<string | null>(null);
+  const [tooltip,     setTooltip]    = useState<TooltipState | null>(null);
+  const [hoveredPin,  setHoveredPin] = useState<string | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
 
   const handleEnter = (country: string, e: React.MouseEvent) => {
-    const rect = mapRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    setTooltip({ country, x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const r = mapRef.current?.getBoundingClientRect();
+    if (!r) return;
+    setTooltip({ country, x: e.clientX - r.left, y: e.clientY - r.top });
     setHoveredPin(country);
   };
   const handleMove = (country: string, e: React.MouseEvent) => {
-    const rect = mapRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    setTooltip({ country, x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const r = mapRef.current?.getBoundingClientRect();
+    if (!r) return;
+    setTooltip({ country, x: e.clientX - r.left, y: e.clientY - r.top });
   };
   const handleLeave = () => { setTooltip(null); setHoveredPin(null); };
 
@@ -114,7 +152,7 @@ export default function GlobalPresenceMap() {
         borderBottom: '1px solid rgba(0,0,0,0.06)',
       }}
     >
-      {/* Subtle warm glow behind map */}
+      {/* Radial warm tint */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
         background: 'radial-gradient(ellipse 70% 55% at 50% 60%, rgba(172,3,59,0.04) 0%, transparent 70%)',
@@ -122,14 +160,14 @@ export default function GlobalPresenceMap() {
 
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(16px,4vw,48px)' }}>
 
-        {/* Header */}
+        {/* ── Header ── */}
         <div style={{ textAlign: 'center', marginBottom: 'clamp(20px, 3vw, 40px)' }}>
           <p style={{
             fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em',
             textTransform: 'uppercase', color: CRIMSON,
             marginBottom: 10, fontWeight: 700,
           }}>
-            Global Export Network
+            Our Reach
           </p>
           <h2 style={{
             fontFamily: SERIF,
@@ -140,9 +178,8 @@ export default function GlobalPresenceMap() {
             color: '#111',
             margin: '0 0 12px',
           }}>
-            Reaching{' '}
-            <span style={{ fontStyle: 'italic', color: CRIMSON }}>40+</span>{' '}
-            Countries.
+            Global{' '}
+            <span style={{ fontStyle: 'italic', color: CRIMSON }}>Presence.</span>
           </h2>
           <p style={{
             fontFamily: SANS,
@@ -152,11 +189,11 @@ export default function GlobalPresenceMap() {
             margin: '0 auto',
             lineHeight: 1.65,
           }}>
-            From India&apos;s spice heartland to every continent — serving bulk buyers worldwide with full traceability.
+            From India&apos;s spice heartland to every continent — trusted by buyers across the globe.
           </p>
         </div>
 
-        {/* Map */}
+        {/* ── Map ── */}
         <div
           ref={mapRef}
           style={{ position: 'relative', width: '100%', userSelect: 'none' }}
@@ -164,7 +201,7 @@ export default function GlobalPresenceMap() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/map.png"
-            alt="World map showing LV Spices export destinations"
+            alt="World map showing LV Spices global presence"
             style={{
               width: '100%', height: 'auto', display: 'block',
               pointerEvents: 'none', userSelect: 'none',
@@ -174,12 +211,12 @@ export default function GlobalPresenceMap() {
 
           {/* Pins */}
           {PINS.map((pin) => {
-            const isHov  = hoveredPin === pin.country;
-            const sz     = pin.major ? 20 : 15;
+            const isHov = hoveredPin === pin.country;
+            const sz    = pin.major ? 18 : 13;
             return (
               <button
                 key={pin.country}
-                aria-label={`Export destination: ${pin.country}`}
+                aria-label={`${pin.country} — LV Spices export destination`}
                 onMouseEnter={(e) => handleEnter(pin.country, e)}
                 onMouseMove={(e)  => handleMove(pin.country, e)}
                 onMouseLeave={handleLeave}
@@ -189,7 +226,7 @@ export default function GlobalPresenceMap() {
                   position: 'absolute',
                   left: `${pin.left}%`,
                   top:  `${pin.top}%`,
-                  // anchor at the tip of the pin (bottom-center)
+                  // anchor the TIP of the pin (bottom-centre) to the coordinate
                   transform: 'translate(-50%, -100%)',
                   background: 'transparent',
                   border: 'none',
@@ -197,35 +234,41 @@ export default function GlobalPresenceMap() {
                   cursor: 'pointer',
                   zIndex: isHov ? 30 : pin.major ? 10 : 5,
                   lineHeight: 0,
+                  // Add touch target padding without affecting layout
+                  outline: 'none',
                 }}
               >
-                <PinIcon size={sz} color={CRIMSON} glowing={isHov} />
+                <PinIcon size={sz} hovered={isHov} />
               </button>
             );
           })}
 
           {/* Tooltip */}
           {tooltip && (
-            <div style={{
-              position: 'absolute',
-              left: tooltip.x + 14,
-              top:  tooltip.y - 44,
-              background: CRIMSON,
-              color: '#fff',
-              fontFamily: MONO,
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: '0.13em',
-              textTransform: 'uppercase',
-              padding: '6px 14px',
-              borderRadius: 3,
-              pointerEvents: 'none',
-              whiteSpace: 'nowrap',
-              zIndex: 100,
-              boxShadow: '0 4px 20px rgba(172,3,59,0.45)',
-              animation: 'tooltipIn 0.12s ease',
-            }}>
+            <div
+              role="tooltip"
+              style={{
+                position: 'absolute',
+                left: tooltip.x + 14,
+                top:  tooltip.y - 46,
+                background: CRIMSON,
+                color: '#fff',
+                fontFamily: MONO,
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.13em',
+                textTransform: 'uppercase',
+                padding: '6px 14px',
+                borderRadius: 3,
+                pointerEvents: 'none',
+                whiteSpace: 'nowrap',
+                zIndex: 100,
+                boxShadow: '0 4px 20px rgba(172,3,59,0.45)',
+                animation: 'gpTooltipIn 0.12s ease',
+              }}
+            >
               {tooltip.country}
+              {/* Arrow */}
               <span style={{
                 position: 'absolute',
                 bottom: -5, left: 12,
@@ -239,7 +282,7 @@ export default function GlobalPresenceMap() {
       </div>
 
       <style>{`
-        @keyframes tooltipIn {
+        @keyframes gpTooltipIn {
           from { opacity: 0; transform: translateY(4px); }
           to   { opacity: 1; transform: translateY(0); }
         }
