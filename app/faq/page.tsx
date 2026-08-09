@@ -1,4 +1,5 @@
 'use client';
+import { generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo';
 
 import { useState } from 'react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -10,6 +11,8 @@ const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
+
+
 
 const faqCategories = [
   {
@@ -69,8 +72,27 @@ const faqCategories = [
 export default function FAQPage() {
   const totalFAQs = faqCategories.reduce((acc, c) => acc + c.faqs.length, 0);
 
+  // Build flat FAQ list for JSON-LD schema
+  const allFAQsFlat = faqCategories.flatMap(cat =>
+    cat.faqs.map(f => ({ question: f.q, answer: f.a }))
+  );
+
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'FAQ', url: '/faq' },
+  ];
+
   return (
     <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
+      {/* ── Structured Data: FAQPage + Breadcrumb (AEO/GEO) ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFAQSchema(allFAQsFlat)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbs)) }}
+      />
 
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{

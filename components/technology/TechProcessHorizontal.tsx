@@ -7,43 +7,43 @@ import Image from 'next/image';
 const steps = [
   {
     id: '01',
-    title: 'Seed Cleaning',
-    desc: 'The line primarily removes farm admixtures, insect excreta, potential allergens, and ferrous/non-ferrous contaminants using Sifters, De-Stoners, Spirals, Gravity Separators, and the latest A+ Multivision Sortex with online Metal Detectors.',
+    title: 'Seed Cleaning & Sorting',
+    desc: 'We utilize state-of-the-art A+ Multivision Buhler Sortex machines, Gravity Separators, and inline Metal Detectors. This multi-stage process guarantees the absolute removal of farm admixtures, allergens, and ferrous contaminants to achieve 99.9% product purity.',
     stat: '1–3 TONS/HR',
     img: '/images/seedcleaner.png'
   },
   {
     id: '02',
-    title: 'Milling',
-    desc: 'Temperature deltas are critically controlled to prevent overheating — ensuring retention of flavour, negligible SHU loss, ASTA colour, and volatile oil. We have 3 Milling Lines, each tailored for specific product needs.',
+    title: 'Precision Milling',
+    desc: 'Our 3 dedicated milling lines are engineered to control temperature deltas critically. This prevents overheating, ensuring maximum retention of essential volatile oils, negligible SHU (Scoville Heat Units) loss, and vibrant ASTA colour preservation.',
     stat: 'ZERO SHU LOSS',
     img: '/images/milling.png'
   },
   {
     id: '03',
-    title: 'Roasting',
-    desc: 'No Indian Spice Blend is complete without the special roasted flavour. Our dedicated Roasting Line perfectly achieves custom roasted blends to guarantee that extra special taste.',
+    title: 'Automated Roasting',
+    desc: 'We operate a high-capacity roasting line dedicated to achieving perfect, uniform custom spice blends. Our automated thermal control develops complex flavor profiles while maintaining volatile oil integrity at scale.',
     stat: '4000 MTS/YR',
     img: '/images/roasting.png'
   },
   {
     id: '04',
-    title: 'Steam Sterilization',
-    desc: 'An environmental-friendly and extremely effective sterilization method yielding a validated 5-log microbial reduction. The process uses high temperature, indirect contact and pre-heating.',
+    title: 'Steam Sterilization (HTST)',
+    desc: 'Our FDA-compliant High-Temperature Short-Time (HTST) steam sterilization process yields a validated 5-log microbial reduction. This chemical-free pathogen elimination completely eradicates Salmonella and E. coli while preserving organoleptic properties.',
     stat: '5-LOG REDUCTION',
     img: '/images/steamsterlization.png'
   },
   {
     id: '05',
     title: 'Cryogenic Grinding',
-    desc: 'Cryogenic grinding at -150°C preserves 40% more essential oils, colour, and aroma than conventional ambient grinding — making it the gold standard for premium spice processing.',
-    stat: '-150°C TEMP',
+    desc: 'Milling at -196°C utilizing liquid nitrogen prevents oxidation and thermal degradation. This advanced cryogenic technology preserves up to 40% more essential oils than ambient grinding, locking in peak aroma and pungency.',
+    stat: '-196°C TEMP',
     img: '/images/cryogenic.png'
   },
   {
     id: '06',
     title: 'CFG Technology',
-    desc: 'Continuous Flow Grinding (CFG) process is the most advanced spice processing technology in India. It eliminates batch-to-batch variation by continuously feeding, grinding, and classifying spices in a closed-loop system.',
+    desc: 'Our Continuous Flow Grinding (CFG) system represents the pinnacle of Indian spice manufacturing. This closed-loop process eliminates batch variations and features real-time sensor monitoring to ensure strict FDA FSMA compliance.',
     stat: 'FSMA VALIDATED',
     img: '/images/cfg.png'
   }

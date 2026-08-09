@@ -34,7 +34,7 @@
   --color-white: #FFFFFF;
   --color-black: #000000;
 
-  --font-display: var(--font-playfair);
+  --font-display: var(--font-anton);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains);
 
@@ -197,8 +197,16 @@ body {
    Typography Utilities
    ═══════════════════════════════════════════ */
 
-.font-display {
-  font-family: var(--font-display), Georgia, serif;
+.font-display,
+[style*="var(--font-display)"],
+.hero-title,
+.section-title,
+.cryo-title,
+.cta-title {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
 }
 
 .font-sans {

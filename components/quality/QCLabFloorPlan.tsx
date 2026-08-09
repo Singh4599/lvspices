@@ -12,13 +12,13 @@ const FLOOR  = '#F5F3EF';
 interface Room { id:number; key:string; gate:string; name:string; stat:string; accent:string; desc:string; }
 
 const ROOMS: Room[] = [
-  { id:0, key:'reception', gate:'ENTRY POINT', name:'Sample Reception',       stat:'100% Lots',       accent:'#7B4E1B', desc:'Every incoming lot is assigned a unique batch ID. AOAC/ISO standard sampling is performed at multiple points of the consignment before any material is unloaded. Physical documentation is cross-checked with the Purchase Order.' },
-  { id:1, key:'prescreen', gate:'GATE 1',      name:'In-House Pre-Screening', stat:'< 2 Hours',        accent:'#1A5FAB', desc:'Within 2 hours of receipt, our in-house QC lab checks moisture content, colour (ASTA units), particle size, and visual defects. Only pre-approved material advances. Rejections are quarantined immediately.' },
-  { id:2, key:'pesticide', gate:'GATE 2',      name:'Pesticide Testing Lab',  stat:'169 Residues',    accent:CR,        desc:'Our NABL ISO 17025-accredited lab screens 169 pesticide residues using GC-MS/MS and LC-MS/MS. Ochratoxin, Aflatoxin, heavy metals, NDPA colour value, and Curcumin are all tested on-site.' },
-  { id:3, key:'allergen',  gate:'GATE 3',      name:'Allergen ELISA Lab',     stat:'12 Allergens',    accent:'#2E6B3E', desc:'ELISA analysis is run for 12 major allergen categories including Sesame, Gluten, Mustard, and Tree Nuts. Celery allergens are verified via third-party PCR at specified frequencies.' },
-  { id:4, key:'microbio',  gate:'GATE 4',      name:'Microbiology Lab',       stat:'5-Log Reduction', accent:'#5E2D79', desc:'pH parameters, pathogens (Salmonella, E.Coli, Listeria), total plate count, yeast & mould are all in NABL scope. Steam sterilization achieves a validated 5-log microbial reduction with no chemicals.' },
-  { id:5, key:'qcfloor',   gate:'GATE 5',      name:'QC Floor Monitoring',    stat:'Every 30 Min',    accent:'#0A4D6E', desc:'Daily metal detector calibration, weight verification at every filling station, sealing integrity checks every 30 minutes, and online moisture & colour sensors on milling lines.' },
-  { id:6, key:'training',  gate:'BRC TIER 2',  name:'Training & Documentation',stat:'100% Staff',     accent:'#6B4C00', desc:'GMP training every 6 months for all shop floor staff. HACCP, allergen awareness, personal hygiene, and documentation training is mandatory for every team member.' },
+  { id:0, key:'reception', gate:'ENTRY POINT', name:'Sample Reception',       stat:'100% Traceability',       accent:'#7B4E1B', desc:'Every incoming raw material lot is mapped to our ERP for end-to-end traceability. AOAC/ISO standard multi-point sampling occurs prior to unloading, cross-checking physical documentation against vendor COAs.' },
+  { id:1, key:'prescreen', gate:'GATE 1',      name:'In-House Pre-Screening', stat:'Rapid Validation',        accent:'#1A5FAB', desc:'Within 2 hours of receipt, baseline physicals (moisture, bulk density, ASTA colour, extraneous matter) are verified. Non-compliant lots face immediate rejection or quarantine.' },
+  { id:2, key:'pesticide', gate:'GATE 2',      name:'Analytical Testing Lab',  stat:'500+ Residues',    accent:CR,        desc:'Equipped with LC-MS/MS and GC-MS technology, this NABL ISO 17025-accredited scope tests for 500+ pesticide residues, Aflatoxins (B1, B2, G1, G2), Ochratoxin A, heavy metals, and Sudan dyes.' },
+  { id:3, key:'allergen',  gate:'GATE 3',      name:'Allergen ELISA Lab',     stat:'14 Major Allergens',    accent:'#2E6B3E', desc:'Rigorous ELISA and PCR screening for 14 major allergen categories (including Gluten, Mustard, Sesame) to ensure absolute cross-contamination prevention for sensitive B2B clients.' },
+  { id:4, key:'microbio',  gate:'GATE 4',      name:'Microbiology Lab',       stat:'5-Log Reduction', accent:'#5E2D79', desc:'Comprehensive pathogen screening (Salmonella spp., E.Coli, Listeria) alongside BAM/ISO plating methods. Correlates directly with our steam sterilization lines achieving a validated 5-log microbial kill step.' },
+  { id:5, key:'qcfloor',   gate:'GATE 5',      name:'Inline QC Monitoring',    stat:'Real-Time Telemetry',    accent:'#0A4D6E', desc:'Continuous shop-floor oversight: 30-minute sealing integrity checks, hourly metal detector calibration, and inline sensors measuring moisture and PSD across all milling and blending lines.' },
+  { id:6, key:'training',  gate:'BRCGS COMPLIANT',  name:'Training & Documentation',stat:'Continuous GMP',     accent:'#6B4C00', desc:'FSMA and BRCGS Grade AA compliance mandates rigorous bi-annual GMP, HACCP, and allergen awareness training for all shop floor and laboratory personnel, ensuring an impeccable culture of food safety.' },
 ];
 
 /* ── Layout dimensions ─────────────── */
@@ -78,8 +78,8 @@ const CSS = `
   .qi-blink  { animation: qi-blink  1.4s ease-in-out infinite; }
   .qi-up     { animation: qi-up     .35s ease both; }
   .qi-room   { cursor:pointer; }
-  @media (min-width:700px) { .qc-mob { display:none !important; } }
-  @media (max-width:699px) { .qc-desk { display:none !important; } }
+  .blueprint-scroll::-webkit-scrollbar { display: none; }
+  .blueprint-scroll { -ms-overflow-style: none; scrollbar-width: none; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 `;
 
 /* ── Illustrations ────────────────────
@@ -247,7 +247,7 @@ export default function QCLabFloorPlan() {
     <div style={{ width:'100%' }}>
       <style>{CSS}</style>
 
-      <div className="qc-desk" style={{ background:FLOOR, border:`1.5px solid ${WALL}`, borderRadius:20, overflow:'hidden' }}>
+      <div style={{ background:FLOOR, border:`1.5px solid ${WALL}`, borderRadius:20, overflow:'hidden' }}>
 
         {/* header */}
         <div style={{ padding:'11px 20px', borderBottom:`1.5px solid ${WALL}`, background:'#fff', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
@@ -263,7 +263,7 @@ export default function QCLabFloorPlan() {
         </div>
 
         {/* scroll wrapper for mobile */}
-        <div style={{ overflowX:'auto', WebkitOverflowScrolling:'touch' }}>
+        <div className="blueprint-scroll" style={{ overflowX:'auto', WebkitOverflowScrolling:'touch' }}>
           <div style={{ minWidth:480, padding:'14px 14px 0' }}>
 
             <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} style={{ width:'100%', height:'auto', display:'block' }}>
@@ -357,75 +357,55 @@ export default function QCLabFloorPlan() {
             </svg>
           </div>
         </div>
+      </div>
 
-        {/* detail panel */}
-        <div style={{ minHeight:80, borderTop:`1.5px solid ${WALL}`, background:'#fff', padding:'16px 20px', display:'flex', alignItems:'center' }}>
-          {aRoom===null ? (
-            <div style={{ fontFamily:'Georgia,serif', fontSize:14, color:INK_L, fontStyle:'italic', margin:'0 auto', textAlign:'center' }}>
-              Click any room on the floor plan to view inspection details.
-            </div>
-          ) : (
-            <div key={active} className="qi-up" style={{ display:'flex', gap:24, width:'100%', flexWrap:'wrap' }}>
-              <div style={{ minWidth:160, borderRight:`1px solid ${INK_LL}`, paddingRight:20 }}>
-                <div style={{ fontFamily:"'Courier New',monospace", fontSize:9, letterSpacing:'.14em', color:aRoom.accent, marginBottom:5, fontWeight:700 }}>
-                  {aRoom.gate}
+      {/* Unified Global Floating Modal */}
+      {aRoom !== null && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+        }} onClick={() => setActive(null)}>
+          <div style={{
+            background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+            padding:'clamp(32px,5vw,48px)', maxWidth:540, width:'100%',
+            boxShadow:`8px 8px 0px ${aRoom.accent}`,
+            animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+            position:'relative',
+          }} onClick={e => e.stopPropagation()}>
+            <button onClick={()=>setActive(null)} style={{
+              position:'absolute', top:20, right:20, background:INK, border:'none',
+              fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+              display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+            }}
+              onMouseEnter={e=>(e.currentTarget.style.background=aRoom.accent)}
+              onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+            >×</button>
+            <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
+              <div style={{
+                flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                display:'flex', alignItems:'center', justifyContent:'center',
+                fontSize:26, color: aRoom.accent, fontFamily:"'Courier New',monospace", fontWeight:800,
+                boxShadow:`4px 4px 0px ${aRoom.accent}`
+              }}>
+                {String(aRoom.id + 1).padStart(2, '0')}
+              </div>
+              <div>
+                <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:aRoom.accent, marginBottom:6, fontWeight:700 }}>
+                  {aRoom.gate} | {aRoom.stat}
                 </div>
-                <div style={{ fontFamily:'Georgia,serif', fontSize:16, fontWeight:700, color:INK, lineHeight:1.2 }}>
+                <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
                   {aRoom.name}
                 </div>
-                <div style={{ fontFamily:"'Courier New',monospace", fontSize:12, color:aRoom.accent, fontWeight:700, marginTop:6 }}>
-                  {aRoom.stat}
-                </div>
-              </div>
-              <div style={{ flex:1, minWidth:180 }}>
-                <p style={{ fontFamily:'system-ui,sans-serif', fontSize:13, color:'rgba(0,0,0,0.6)', lineHeight:1.75, margin:0 }}>
-                  {aRoom.desc}
-                </p>
               </div>
             </div>
-          )}
+            <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:'0 0 24px' }}>
+              {aRoom.desc}
+            </p>
+          </div>
         </div>
-      </div>
-
-      {/* ── MOBILE CARD LIST ──────────────────────────────────── */}
-      <div className="qc-mob" style={{ padding: '0 10px', marginTop: 24 }}>
-        <div style={{ position: 'relative' }}>
-          <div style={{ position: 'absolute', left: 24, top: 0, bottom: 0, width: 2, background: 'rgba(0,0,0,0.1)' }} />
-          
-          {ROOMS.map((room) => (
-            <div key={room.id} style={{ position: 'relative', paddingLeft: 60, marginBottom: 48 }}>
-              <div style={{ 
-                position: 'absolute', left: 8, top: 0, width: 34, height: 34, borderRadius: '50%', 
-                background: '#fff', border: `3px solid ${room.accent}`, zIndex: 2,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 800, color: room.accent
-              }}>
-                {String(room.id + 1).padStart(2, '0')}
-              </div>
-              
-              <div style={{ 
-                background: '#fff', borderRadius: 16, overflow: 'hidden', 
-                border: '1px solid rgba(0,0,0,0.1)', boxShadow: '0 8px 24px rgba(0,0,0,0.06)' 
-              }}>
-                <div style={{ padding: 20 }}>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: room.accent, marginBottom: 4, fontWeight: 700 }}>
-                    {room.gate}
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-display,Georgia,serif)', fontSize: 20, fontWeight: 800, color: INK, marginBottom: 12 }}>
-                    {room.name}
-                  </div>
-                  <div style={{ display: 'flex', gap: 12, alignItems: 'baseline', marginBottom: 16 }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 20, fontWeight: 800, color: room.accent, lineHeight: 1 }}>{room.stat}</span>
-                  </div>
-                  <p style={{ fontFamily: 'var(--font-sans,system-ui)', fontSize: 14, color: 'rgba(0,0,0,0.6)', lineHeight: 1.6, margin: 0 }}>
-                    {room.desc}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 }

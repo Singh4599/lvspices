@@ -1,10 +1,10 @@
-import { Playfair_Display, Inter, JetBrains_Mono } from 'next/font/google';
+import { Anton, Inter, JetBrains_Mono } from 'next/font/google';
 
-export const playfair = Playfair_Display({
+export const anton = Anton({
   subsets: ['latin'],
-  variable: '--font-playfair',
+  variable: '--font-anton',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '900'],
+  weight: '400',
 });
 
 export const inter = Inter({
@@ -21,4 +21,4 @@ export const jetbrainsMono = JetBrains_Mono({
   weight: ['400', '500', '700'],
 });
 
-export const fontVariables = `${playfair.variable} ${inter.variable} ${jetbrainsMono.variable}`;
+export const fontVariables = `${anton.variable} ${inter.variable} ${jetbrainsMono.variable}`;

@@ -8,28 +8,28 @@ const steps = [
   {
     id: '01',
     title: 'Sample Preparation',
-    desc: 'Blind samples of new formulations are prepared under tightly controlled conditions. They are identical in visual presentation to remove all bias from the evaluators, ensuring the analysis focuses purely on sensory feedback.',
+    desc: 'Blind samples of proprietary formulations are prepared in our pilot plant under tightly controlled environmental conditions. Identical visual presentation eliminates evaluator bias, ensuring analysis focuses purely on organoleptic and rheological parameters.',
     stat: '100% BLIND',
     img: '/images/fac_lab.png'
   },
   {
     id: '02',
     title: 'Panel Evaluation',
-    desc: 'Our expertly trained panellists meticulously score the aroma, colour, heat level, mouthfeel, aftertaste, and overall acceptance of the blend against a validated reference standard.',
+    desc: 'Our ASTA-certified panellists meticulously score the aroma profile, visual colour, pungency metrics, mouthfeel, and overall acceptance of the blend against validated client reference standards to guarantee absolute batch conformity.',
     stat: 'EXPERT PANELLISTS',
     img: '/images/spices_macro.png'
   },
   {
     id: '03',
     title: 'Scoring & Analysis',
-    desc: 'We use advanced statistical analysis including spider charts and Quantitative Descriptive Analysis (QDA) to pinpoint exact areas of improvement with absolute scientific precision.',
+    desc: 'We utilize advanced multivariate statistical analysis, including spider charts and Quantitative Descriptive Analysis (QDA), to isolate flavor deviations and pinpoint exact formulation improvements with scientific precision.',
     stat: 'QDA DRIVEN',
     img: '/images/lab.png'
   },
   {
     id: '04',
     title: 'Consumer Validation',
-    desc: 'For private label blends and major new product launches, scaled consumer trials confirm market acceptability before we grant the final sign-off for full-scale commercial production.',
+    desc: 'For Private Label spice blends and major FMCG launches, scaled sensory trials confirm overarching market acceptability before our QA directors grant the final sign-off for full-scale commercial manufacturing.',
     stat: 'MARKET READY',
     img: '/images/products.png'
   }

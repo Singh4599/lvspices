@@ -13,6 +13,8 @@ const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
 
+
+
 const productCats = [
   { icon: '🌶️', name: 'Spices',         count: '150+ SKUs' },
   { icon: '🫘', name: 'Pulses',         count: '30+ SKUs'  },

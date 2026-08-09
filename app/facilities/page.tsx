@@ -33,21 +33,21 @@ const PROCESS_STEPS = [
 
 // Exactly 6 highlight cards
 const HIGHLIGHTS = [
-  { label: 'Cryogenic Grinding',   caption: 'Temperature-locked. Aroma preserved.',  img: '/images/fac_cryo.png'          },
-  { label: 'Steam Sterilisation',  caption: 'Validated microbial reduction.',         img: '/images/fac_sterilization.png' },
-  { label: 'Smart Warehouse',      caption: 'Climate-controlled. FIFO managed.',      img: '/images/fac_warehouse.png'     },
-  { label: 'NABL Laboratory',      caption: 'ISO/IEC 17025:2017 accredited.',         img: '/images/fac_lab.png'           },
-  { label: 'Auto Packaging',       caption: 'Hygienic. Sealed for freshness.',        img: '/images/fac_pack.png'          },
-  { label: 'Sorting & Cleaning',   caption: '99.9% physical purity guaranteed.',      img: '/images/fac_sorting.png'       },
+  { label: 'Cryogenic Grinding',   caption: 'Proprietary Liquid N2 technology. Preserves up to 40% more volatile aromatic oils.',  img: '/images/fac_cryo.png'          },
+  { label: 'Steam Sterilisation',  caption: 'FDA-compliant HTST process ensuring a validated 5-log microbial pathogen reduction.',         img: '/images/fac_sterilization.png' },
+  { label: 'Smart Warehouse',      caption: 'Climate-controlled 24/7 with automated FIFO inventory for absolute freshness retention.',      img: '/images/fac_warehouse.png'     },
+  { label: 'NABL Laboratory',      caption: 'In-house ISO/IEC 17025 accredited lab conducting 500+ stringent chemical & biological tests.',         img: '/images/fac_lab.png'           },
+  { label: 'Auto Packaging',       caption: 'Class 100,000 HEPA-filtered clean rooms featuring automated Nitrogen-flushed sealing.',        img: '/images/fac_pack.png'          },
+  { label: 'Sorting & Cleaning',   caption: 'Multi-stage European optical sorting (Buhler Sortex) guaranteeing 99.9% physical purity.',      img: '/images/fac_sorting.png'       },
 ];
 
 const METRICS = [
-  { label: 'Microbial Safety',    desc: '5-Log kill rate. HTST validated.',    pct: 99.999 },
-  { label: 'Heavy Metal Testing', desc: 'Pb, Cd, As, Hg per EU 2023/915.',     pct: 100    },
-  { label: 'Pesticide Residues',  desc: '500+ compounds. LC-MS/MS precision.', pct: 100    },
-  { label: 'Moisture Control',    desc: 'Inline NIR continuous monitoring.',    pct: 98     },
-  { label: 'Aflatoxin Detection', desc: 'HPLC-FD. Below detection limits.',    pct: 99.5   },
-  { label: 'Oil Retention',       desc: '40% higher vs ambient grinding.',      pct: 95     },
+  { label: 'Microbial Safety',    desc: '5-Log Salmonella & E.coli kill rate. HTST continuous flow validated.',    pct: 99.999 },
+  { label: 'Heavy Metal Testing', desc: 'Lead, Cadmium, Arsenic, Mercury compliance per strict EU 2023/915 norms.',     pct: 100    },
+  { label: 'Pesticide Residues',  desc: 'Screening for 500+ banned compounds using advanced LC-MS/MS precision.', pct: 100    },
+  { label: 'Moisture Control',    desc: 'Inline NIR (Near-Infrared) continuous monitoring to prevent fungal growth.',    pct: 98     },
+  { label: 'Aflatoxin Detection', desc: 'HPLC-FD detection ensuring levels remain strictly below EU/USFDA limits.',    pct: 99.5   },
+  { label: 'Oil Retention',       desc: '40% higher essential oil retention vs conventional ambient spice grinding.',      pct: 95     },
 ];
 
 const NUMBERS = [

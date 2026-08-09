@@ -31,37 +31,37 @@ const ROOMS: Room[] = [
   {
     id: 'reception', label: 'Reception & Lobby', shortLabel: 'Reception', icon: '🪑',
     x: 30, y: 30, w: 200, h: 110,
-    info: { heading: 'Reception', detail: 'Mon–Sat: 9am–6pm IST\nSunday: Closed\nVisitors welcome by appointment.', contact: '+91 98765 43210' },
+    info: { heading: 'Global Headquarters', detail: 'Our Mumbai corporate office coordinates all global spice sourcing, compliance auditing, and B2B export operations. Corporate buyers and OEM partners are welcome by appointment.', contact: '+91 72799 00500' },
   },
   {
     id: 'export', label: 'Export Sales Office', shortLabel: 'Export Sales', icon: '🌍',
     x: 260, y: 30, w: 220, h: 110,
-    info: { heading: 'Export Sales', detail: 'International inquiries, quotations, and bulk order processing. Response within 24 hours.', contact: 'export@lvspices.com' },
+    info: { heading: 'Export & Trade Desk', detail: 'Manages international inquiries, container load (FCL/LCL) quotations, and long-term supply contracts across 40+ countries. Standard SLA response within 24 business hours.', contact: 'export@lvspices.com' },
   },
   {
     id: 'rd', label: 'R&D Lab', shortLabel: 'R&D Lab', icon: '🔬',
     x: 510, y: 30, w: 160, h: 110,
-    info: { heading: 'R&D Laboratory', detail: 'Custom blend development, sample creation & quality testing. Minimum 5 kg sample MOQ.' },
+    info: { heading: 'R&D Laboratory', detail: 'Specialized in custom spice blend formulation, matching client taste profiles, and sensory analysis. We process B2B sample requests with a minimum 5kg sample MOQ for industrial trials.' },
   },
   {
     id: 'dispatch', label: 'Dispatch & Logistics', shortLabel: 'Dispatch', icon: '📦',
     x: 30, y: 175, w: 200, h: 110,
-    info: { heading: 'Dispatch', detail: 'Container loading, documentation, phytosanitary, and freight coordination. FCL & LCL.' },
+    info: { heading: 'Global Logistics', detail: 'Coordinates palletization, container loading, and sea/air freight. Manages critical export documentation including Bill of Lading, Phytosanitary, and Fumigation Certificates.' },
   },
   {
     id: 'qa', label: 'Quality Control', shortLabel: 'QA / QC', icon: '🏆',
     x: 260, y: 175, w: 150, h: 110,
-    info: { heading: 'Quality Control', detail: 'NABL-accredited in-house lab. HACCP / FSSC 22000 compliant testing for every batch.' },
+    info: { heading: 'Quality Assurance', detail: 'Our NABL-accredited in-house laboratory ensures absolute compliance with strict US FDA, EU MRL, and ASTA guidelines. Every outgoing batch receives a comprehensive Certificate of Analysis (CoA).' },
   },
   {
     id: 'accounts', label: 'Accounts', shortLabel: 'Accounts', icon: '💼',
     x: 440, y: 175, w: 110, h: 110,
-    info: { heading: 'Accounts', detail: 'Billing, payment terms, TT, LC, and financial documentation for export orders.' },
+    info: { heading: 'Finance & Accounts', detail: 'Handles commercial invoicing, Letter of Credit (LC) negotiations, Telegraphic Transfers (TT), and multi-currency export billing compliance.' },
   },
   {
     id: 'it', label: 'IT & Digital', shortLabel: 'IT', icon: '💻',
     x: 580, y: 175, w: 90, h: 110,
-    info: { heading: 'IT & Digital', detail: 'ERP, website, and digital brand support for private label partners.' },
+    info: { heading: 'IT & Digital Infrastructure', detail: 'Manages our internal ERP for supply chain traceability and provides GS1 barcode generation, EDI integration, and digital support for our private label FMCG partners.' },
   },
 ];
 

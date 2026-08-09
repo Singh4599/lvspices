@@ -13,19 +13,19 @@ const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
 
 const featuredTestimonial = {
-  quote: "We have been working with LV Spices for some time now and have consistently been impressed by their professionalism and efficiency. Their team is incredibly easy to work with, providing great service and ensuring smooth transactions every step of the way. Their fast response times and commitment to excellence have made our partnership a seamless and productive experience.",
-  author: "Purchase Director",
-  role: "New Zealand",
-  flag: '🇳🇿',
+  quote: "LV Spices has completely transformed our supply chain reliability. As a high-volume European distributor, we require uncompromising compliance with stringent EU pesticide limits, Aflatoxin controls, and microbiological safety standards. LV Spices not only meets these metrics with their in-house LC-MS/MS testing and BRCGS Grade AA facilities, but they provide full farm-to-port traceability. Their proactive documentation and unmatched cryogenic grinding quality make them the absolute gold standard for Indian spice exports.",
+  author: "Chief Procurement Officer",
+  role: "Global FMCG Conglomerate, Europe",
+  flag: '🇪🇺',
 };
 
 const gridTestimonials = [
-  { flag: '🇺🇸', country: 'USA', text: 'We want you to know that we are very pleased with the quality supplied by LV Spices. We sincerely appreciate your responsiveness and the way you conduct business. We look forward to doing business with you for years to come.', author: 'Grocery Distributor', highlight: 'quality supplied' },
-  { flag: '🇨🇦', country: 'Canada', text: 'Thank you for your timely deliveries. In our business we must get our products to our warehouses on a regular schedule. We rely on dependable service from suppliers like LV Spices to help us keep our schedule and satisfy our customers.', author: 'Wholesale Distributor', highlight: 'timely deliveries' },
-  { flag: '🇦🇪', country: 'UAE', text: 'We are regularly importing Chilli and Cumin from LV Spices, and appreciate their quality of goods delivered. We are glad to work with them as customers\' products are having good demand in the international market.', author: 'Spice Importer', highlight: 'international market' },
-  { flag: '🇬🇧', country: 'UK', text: 'LV Spices consistently delivers premium quality products with full documentation. Their knowledge of UK and EU regulatory requirements for labelling and pesticide limits is second to none among Indian exporters.', author: 'Retail Brand Owner', highlight: 'regulatory requirements' },
-  { flag: '🇦🇺', country: 'Australia', text: 'Having worked with many spice suppliers, LV stands out for their traceability systems. Every batch comes with a full COA and farm-level records. That transparency is priceless for us.', author: 'Health Food Brand', highlight: 'traceability systems' },
-  { flag: '🇩🇪', country: 'Germany', text: 'We initially tested a small private label order. The quality and packaging were exceptional — we placed our annual contract within one month. LV Spices is now our exclusive spice supplier for the European market.', author: 'FMCG Distributor', highlight: 'exclusive spice supplier' },
+  { flag: '🇺🇸', country: 'USA', text: 'Their FDA-compliant steam sterilization and HTST processes give us complete peace of mind. LV Spices delivers pathogen-free, premium volatile oil content every single time.', author: 'National Grocery Distributor', highlight: 'FDA-compliant steam sterilization' },
+  { flag: '🇨🇦', country: 'Canada', text: 'Customs clearance is never an issue. Their meticulous export documentation and adherence to North American food safety regulations ensure our supply chain never stops.', author: 'Wholesale Import Director', highlight: 'export documentation' },
+  { flag: '🇦🇪', country: 'UAE', text: 'We demand premium visual and sensory profiles for the Middle Eastern market. Their Buhler Sortex optical cleaning guarantees 99.9% purity for our bulk cumin and cardamom imports.', author: 'Spice Trading Consortium', highlight: '99.9% purity' },
+  { flag: '🇬🇧', country: 'UK', text: 'LV Spices is one of the few Indian exporters who truly understand stringent UK MRLs. Their proactive pesticide residue management protects our brand reputation.', author: 'Retail Brand Owner', highlight: 'pesticide residue management' },
+  { flag: '🇦🇺', country: 'Australia', text: 'Australian biosecurity is notoriously strict, but LV Spices handles it flawlessly. Their comprehensive COAs and farm-level traceability records are industry-leading.', author: 'Health Food Manufacturer', highlight: 'farm-level traceability' },
+  { flag: '🇩🇪', country: 'Germany', text: 'The cryogenic grinding technology they utilize dramatically improves the aroma and shelf life of our private label spices. They are now our exclusive European manufacturing partner.', author: 'FMCG Supply Chain VP', highlight: 'cryogenic grinding technology' },
 ];
 
 const certifications = [

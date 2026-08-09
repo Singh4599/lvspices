@@ -1,5 +1,6 @@
 'use client';
 
+
 import { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,6 +15,8 @@ const CR = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
+
+
 
 const categoryEmojis: Record<string, string> = {
   'spices-seasoning': '🌶️',

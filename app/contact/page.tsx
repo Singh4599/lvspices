@@ -1,5 +1,6 @@
 'use client';
 
+
 import { useState } from 'react';
 import { MapPin, Mail, Phone } from 'lucide-react';
 import ContactHero from '@/components/contact/ContactHero';
@@ -12,6 +13,42 @@ const CRIMSON = '#AC033B';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
 const SANS = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO = 'var(--font-mono), "JetBrains Mono", monospace';
+
+
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact LV Spices',
+  description: 'Contact page for LV Spices (Chillito Exports) — India\'s trusted spice manufacturer, supplier and exporter since 1975.',
+  url: 'https://lvspices.com/contact',
+  mainEntity: {
+    '@type': 'LocalBusiness',
+    '@id': 'https://lvspices.com',
+    name: 'LV Spices',
+    alternateName: 'Chillito Exports',
+    description: 'FSSC 22000 certified spice manufacturer, supplier & exporter based in Mumbai, India. Serving bulk buyers, OEM clients & private label brands across 40+ countries since 1975.',
+    url: 'https://lvspices.com',
+    telephone: '+917279900500',
+    email: 'cf@lvspices.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '12, Marine House, 93 Dr Maheshwari Road',
+      addressLocality: 'Mumbai',
+      addressRegion: 'Maharashtra',
+      postalCode: '400009',
+      addressCountry: 'IN',
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: 18.9633, longitude: 72.8349 },
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '09:00', closes: '18:00' },
+    ],
+    priceRange: 'Contact for bulk pricing',
+    currenciesAccepted: 'USD, EUR, GBP, AED, INR',
+    paymentAccepted: 'Bank Transfer, LC',
+    areaServed: 'Worldwide',
+  },
+};
 
 const subjects = [
   'General Inquiry',
@@ -43,6 +80,11 @@ export default function ContactPage() {
 
   return (
     <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>
+      {/* ── Structured Data: ContactPage + LocalBusiness (Local SEO) ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
 
       {/* ══ SCROLL EXPANSION HERO ════════════════════════════════ */}
       <ContactHero />

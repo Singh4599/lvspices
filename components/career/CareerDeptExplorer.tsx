@@ -23,37 +23,37 @@ const DEPTS: Dept[] = [
   {
     id:1, code:'PROD', name:'Production & Processing', headcount:'200+ People', accent:'#8B4000', icon:'⚙️',
     roles:['Machine Operator','Shift Supervisor','QC Floor Inspector','Processing Technician','Maintenance Engineer'],
-    desc:'The beating heart of LV Spices. You\'ll work on state-of-the-art milling, roasting, and sterilization lines — processing thousands of tonnes of premium spices annually.',
+    desc:'The operational core of LV Spices. Work on advanced milling, cryogenic roasting, and FDA-compliant steam sterilization lines, processing premium Indian spices at industrial scale.',
     perks:['Shift bonuses','Safety certifications','Skill upgradation','Medical coverage'],
   },
   {
     id:2, code:'QC',   name:'Quality Control', headcount:'60+ People', accent:CR, icon:'🔬',
     roles:['QC Analyst','Lab Technician','Microbiologist','NABL Auditor','Sensory Evaluator'],
-    desc:'NABL-accredited labs, GC-MS instruments, ELISA plates — our QC team is the last line of defence before products reach customers in 40+ countries.',
+    desc:'Ensure global food safety standards. Our QC teams utilize NABL-accredited labs, LC-MS/MS precision equipment, and rigorous microbiological testing protocols for Aflatoxin and pesticide residue detection.',
     perks:['Lab stipend','Conference attendance','NABL training','Publication support'],
   },
   {
     id:3, code:'RND',  name:'R&D & Innovation', headcount:'12 Scientists', accent:'#1A5FAB', icon:'🧪',
     roles:['Food Scientist','Formulation Chemist','Sensory Analyst','Process Engineer','Product Developer'],
-    desc:'Develop 50+ new formulations per year. Work with GC-MS, sensory panels, and functional ingredient research — partnering with CFTRI and IIT Food Tech.',
+    desc:'Pioneer the future of flavor profiles. Partner with CFTRI and IIT Food Tech to develop innovative spice formulations, optimizing essential oil retention and sensory excellence.',
     perks:['Research grants','Journal allowance','Patent bonuses','Flex hours'],
   },
   {
     id:4, code:'SALES', name:'Sales & Marketing', headcount:'80+ People', accent:'#2E6B3E', icon:'🌍',
     roles:['Export Manager','Key Account Manager','Marketing Executive','Brand Strategist','Trade Show Coordinator'],
-    desc:'Build relationships with clients across 40+ countries. Attend international trade shows, manage OEM accounts, and grow LV Spices\' global footprint.',
+    desc:'Expand LV Spices global footprint. Manage high-value B2B OEM accounts, participate in major international trade shows, and drive bulk export strategies across 40+ countries.',
     perks:['International travel','Performance bonuses','CRM tools','Language training'],
   },
   {
     id:5, code:'LOGI',  name:'Logistics & Supply Chain', headcount:'70+ People', accent:'#5E2D79', icon:'🚢',
     roles:['Logistics Coordinator','Customs Executive','Supply Chain Analyst','Warehouse Manager','Documentation Specialist'],
-    desc:'Coordinate global shipments from Mumbai across 40+ countries. Manage customs compliance, FSSAI documentation, and cold-chain logistics.',
+    desc:'Master international trade logistics. Coordinate seamless global shipments, ensure APEDA/FSSAI customs compliance, and oversee climate-controlled smart warehouse operations natively.',
     perks:['Freight certifications','CHA training','Port access passes','Team lunches'],
   },
   {
     id:6, code:'CORP',  name:'Corporate & Finance', headcount:'50+ People', accent:'#0A4D6E', icon:'💼',
     roles:['Financial Analyst','HR Business Partner','SAP Consultant','Legal Executive','IT Systems Admin'],
-    desc:'Drive the business engine. From SAP ERP implementation to FSSAI regulatory compliance — corporate teams ensure everything runs like clockwork.',
+    desc:'Drive sustainable business growth. Lead SAP ERP implementations, manage corporate governance, ensure regulatory compliance, and support strategic financial planning.',
     perks:['CPA/CA support','Remote flex','ESOP options','Leadership programmes'],
   },
 ];
@@ -297,38 +297,70 @@ export default function CareerDeptExplorer() {
           </div>
         </div>
 
-        {/* DETAIL PANEL (Shared) */}
-        <div style={{ minHeight:140, borderTop:'1.5px solid #D6CFC8', background:'#fff', padding:'24px 28px', display:'flex', alignItems:'flex-start' }}>
-          {aD===null ? (
-            <div style={{ fontFamily:'Georgia,serif', fontSize:15, color:INK_L, fontStyle:'italic', margin:'0 auto', alignSelf:'center' }}>
-              Click any department to see open roles and culture.
-            </div>
-          ) : (
-            <div key={active} className="cd-slide" style={{ display:'flex', gap:28, width:'100%', flexWrap:'wrap' }}>
-              <div style={{ minWidth:180, borderRight:'1px solid rgba(0,0,0,0.07)', paddingRight:24 }}>
-                <div style={{ fontSize:28, marginBottom:8 }}>{aD.icon}</div>
-                <div style={{ fontFamily:"'Courier New',monospace", fontSize:9, color:aD.accent, letterSpacing:'.14em', fontWeight:700, marginBottom:4 }}>{aD.code}</div>
-                <div style={{ fontFamily:'Georgia,serif', fontSize:16, fontWeight:700, color:INK, marginBottom:4, lineHeight:1.2 }}>{aD.name}</div>
-                <div style={{ fontFamily:"'Courier New',monospace", fontSize:11, color:aD.accent, fontWeight:700 }}>{aD.headcount}</div>
-                <div style={{ display:'flex', flexWrap:'wrap', gap:6, marginTop:14 }}>
-                  {aD.perks.map(p=>(
-                    <span key={p} style={{ fontFamily:'system-ui', fontSize:11, background:`${aD.accent}15`, color:aD.accent, border:`1px solid ${aD.accent}30`, borderRadius:999, padding:'3px 10px' }}>{p}</span>
-                  ))}
-                </div>
-              </div>
-              <div style={{ flex:1, minWidth:180 }}>
-                <p style={{ fontFamily:'system-ui', fontSize:13, color:'rgba(0,0,0,0.6)', lineHeight:1.75, margin:'0 0 14px' }}>{aD.desc}</p>
-                <div style={{ fontFamily:"'Courier New',monospace", fontSize:9, color:aD.accent, letterSpacing:'.1em', marginBottom:8, fontWeight:700 }}>OPEN ROLES</div>
-                <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
-                  {aD.roles.map(r=>(
-                    <span key={r} style={{ fontFamily:'system-ui', fontSize:12, background:'rgba(0,0,0,0.04)', color:INK, border:'1px solid rgba(0,0,0,0.08)', borderRadius:8, padding:'5px 12px' }}>{r}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
       </div>
+
+      {/* Unified Global Floating Modal */}
+      {active !== null && aD && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+        }} onClick={() => setActive(null)}>
+          <div style={{
+            background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+            padding:'clamp(32px,5vw,48px)', maxWidth:580, width:'100%',
+            boxShadow:`8px 8px 0px ${aD.accent}`,
+            animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+            position:'relative',
+          }} onClick={e => e.stopPropagation()}>
+            <button onClick={()=>setActive(null)} style={{
+              position:'absolute', top:20, right:20, background:INK, border:'none',
+              fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+              display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+            }}
+              onMouseEnter={e=>(e.currentTarget.style.background=aD.accent)}
+              onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+            >×</button>
+            <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
+              <div style={{
+                flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                display:'flex', alignItems:'center', justifyContent:'center',
+                fontSize:26,
+                boxShadow:`4px 4px 0px ${aD.accent}`
+              }}>
+                {aD.icon}
+              </div>
+              <div>
+                <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:aD.accent, marginBottom:6, fontWeight:700 }}>
+                  DEPT 0{aD.id} · {aD.code}
+                </div>
+                <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
+                  {aD.name}
+                </div>
+              </div>
+            </div>
+            <div style={{ marginBottom: 16 }}>
+              <span style={{ fontFamily:"'Courier New',monospace", fontSize:9, color:aD.accent, letterSpacing:'.1em', fontWeight:700 }}>{aD.headcount}</span>
+            </div>
+            <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:14, color:'rgba(0,0,0,0.7)', lineHeight:1.7, margin:'0 0 20px' }}>
+              {aD.desc}
+            </p>
+            <div style={{ fontFamily:"'Courier New',monospace", fontSize:9, color:INK_L, letterSpacing:'.1em', marginBottom:10, fontWeight:700 }}>OPEN ROLES</div>
+            <div style={{ display:'flex', flexWrap:'wrap', gap:6, marginBottom: 20 }}>
+              {aD.roles.map(r=>(
+                <span key={r} style={{ fontFamily:'var(--font-sans),system-ui', fontSize:12, background:'rgba(0,0,0,0.04)', color:INK, border:'1px solid rgba(0,0,0,0.08)', borderRadius:4, padding:'4px 10px' }}>{r}</span>
+              ))}
+            </div>
+            <div style={{ fontFamily:"'Courier New',monospace", fontSize:9, color:INK_L, letterSpacing:'.1em', marginBottom:10, fontWeight:700 }}>PERKS</div>
+            <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
+              {aD.perks.map(p=>(
+                <span key={p} style={{ fontFamily:'var(--font-sans),system-ui', fontSize:12, background:`${aD.accent}15`, color:aD.accent, border:`1px solid ${aD.accent}30`, borderRadius:4, padding:'4px 10px' }}>{p}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

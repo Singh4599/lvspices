@@ -20,14 +20,14 @@ interface NodeData {
 }
 
 const NODES: NodeData[] = [
-  { id:1, icon:'🌾', name:'Farm Sourcing',         stat:'6 States',         accent: GREEN,   desc:'Direct procurement from 6 Indian states — Rajasthan, M.P., Gujarat, Kerala, Andhra Pradesh, and Karnataka. Every farm is GPS-tagged for full traceability.' },
-  { id:2, icon:'🚚', name:'Inbound Logistics',     stat:'48 Hr Turnaround', accent:'#7B4E1B', desc:'Dedicated refrigerated fleet and third-party cold-chain partners. Every truck is sealed with tamper-evident seals and tracked in real time.' },
-  { id:3, icon:'🔬', name:'360° QC Intake',        stat:'200+ Tests',       accent: BLUE,    desc:'Every incoming lot tested in our NABL-accredited lab: moisture, colour (ASTA), foreign matter, pesticide residue, heavy metals, aflatoxins, and 200+ micro-biological parameters.' },
-  { id:4, icon:'🧹', name:'Automated Cleaning',    stat:'99.9% Purity',     accent:'#5E4A00', desc:'Multi-stage automated cleaning: Vibro Sifters, De-Stoners, Spiral Separators, Gravity Tables, and A+ Multivision Sortex with inline Metal Detectors.' },
-  { id:5, icon:'❄️', name:'Cryogenic Grinding',   stat:'−196 °C',          accent:'#0A4D6E', desc:'Proprietary liquid-nitrogen cryogenic grinding at −196°C locks in 40% more essential oils, volatile aromatics, and ASTA colour than conventional ambient grinding.' },
-  { id:6, icon:'♨️', name:'Steam Sterilization',  stat:'5-Log Reduction',  accent:'#5E0A0A', desc:'Validated 5-log microbial reduction using indirect high-temperature steam — CFG process certified to FDA 21 CFR 117, FSSC 22000, HACCP, and EU 2073/2005.' },
-  { id:7, icon:'📦', name:'Hygienic Packaging',    stat:'50g to 25 kg',     accent:'#1B4A2E', desc:'Automated nitrogen-flushed filling lines in Class 100,000 HEPA clean rooms. Pack sizes range from 50g retail sachets to 25kg bulk sacks and IBCs.' },
-  { id:8, icon:'🚢', name:'Global Export',         stat:'40+ Countries',    accent: CRIMSON, desc:'Full export documentation handled in-house: COA, FSSAI, Phytosanitary, Halal, Kosher certificates. Consolidated FCL/LCL shipping to 40+ countries.' },
+  { id:1, icon:'🌾', name:'Farm Sourcing',         stat:'6 States',         accent: GREEN,   desc:'We source raw materials directly from 10,000+ partnered farmers across 6 major Indian states. Our strict "Farm to Shelf" procurement policy ensures 100% GPS-tagged traceability, ethical agricultural practices, and pesticide-free cultivation.' },
+  { id:2, icon:'🚚', name:'Inbound Logistics',     stat:'48 Hr Turnaround', accent:'#7B4E1B', desc:'Quality begins in transit. We utilize a dedicated fleet of temperature-controlled vehicles to prevent moisture or fungal development. Every shipment is secured with tamper-evident seals and tracked via real-time telematics.' },
+  { id:3, icon:'🔬', name:'360° QC Intake',        stat:'200+ Tests',       accent: BLUE,    desc:'Uncompromising quality control. Every batch undergoes rigorous screening at our NABL-accredited laboratory for 200+ parameters, including pesticide residues, heavy metals, aflatoxins, and ASTA colour values before entering our facility.' },
+  { id:4, icon:'🧹', name:'Automated Cleaning',    stat:'99.9% Purity',     accent:'#5E4A00', desc:'We guarantee 99.9% physical purity using a multi-stage European automated line. Vibro Sifters, De-Stoners, Gravity Tables, and advanced Multivision Sortex machines eliminate all foreign matter and impurities with surgical precision.' },
+  { id:5, icon:'❄️', name:'Cryogenic Grinding',   stat:'−196 °C',          accent:'#0A4D6E', desc:'Unlike conventional ambient grinding that burns off flavor, our proprietary liquid-nitrogen cryogenic grinding at −196°C preserves 40% more natural essential oils, volatile aromatics, and vibrant ASTA color in every spice.' },
+  { id:6, icon:'♨️', name:'Steam Sterilization',  stat:'5-Log Reduction',  accent:'#5E0A0A', desc:'Ensuring absolute microbial safety. Our indirect high-temperature steam sterilization delivers a validated 5-log pathogen reduction. The entire process is certified to FDA 21 CFR 117, FSSC 22000, and strict EU compliance standards.' },
+  { id:7, icon:'📦', name:'Hygienic Packaging',    stat:'50g to 25 kg',     accent:'#1B4A2E', desc:'Spices are packed in Class 100,000 HEPA-filtered clean rooms using automated nitrogen flushing to extend shelf life. We offer flexible B2B packaging solutions ranging from retail-ready 50g sachets to 25kg bulk export sacks.' },
+  { id:8, icon:'🚢', name:'Global Export',         stat:'40+ Countries',    accent: CRIMSON, desc:'Seamless international distribution. Our in-house export team handles comprehensive documentation including COA, FSSAI, Phytosanitary, and Halal/Kosher certificates, enabling fast, compliant FCL/LCL shipping to 40+ countries globally.' },
 ];
 
 /* ─── CSS Keyframes ──────────────────────────────────────────────── */
@@ -521,50 +521,6 @@ export default function OperationsMap() {
               <span className="scroll-hint" style={{ transform:'scaleX(-1)', display:'inline-block' }}>›</span>
             </div>
           </div>
-
-          {/* Info panel */}
-          {node && (
-            <div key={node.id} style={{
-              marginTop: 16,
-              background: '#FFFDF5',
-              border: `1.5px solid ${node.accent}`,
-              borderRadius: 16,
-              padding: 'clamp(20px,3vw,32px) clamp(22px,4vw,40px)',
-              boxShadow: `0 8px 32px rgba(0,0,0,0.1), 0 0 0 4px ${node.accent}18`,
-              animation: 'slideUp 0.35s cubic-bezier(0.16,1,0.3,1)',
-              display: 'flex', gap: 24, alignItems: 'flex-start',
-            }}>
-              {/* Badge */}
-              <div style={{
-                flexShrink: 0, width: 52, height: 52, borderRadius: '50%',
-                background: node.accent,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 22,
-              }}>
-                {node.icon}
-              </div>
-              <div style={{ flex:1 }}>
-                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12 }}>
-                  <div>
-                    <div style={{ fontFamily:"'Courier New',monospace", fontSize:9, letterSpacing:'0.22em', textTransform:'uppercase', color:node.accent, marginBottom:6 }}>
-                      {node.stat}
-                    </div>
-                    <div style={{ fontFamily:'Georgia,serif', fontSize:'clamp(16px,1.8vw,22px)', fontWeight:700, color:INK, marginBottom:10, lineHeight:1.1 }}>
-                      {node.name}
-                    </div>
-                    <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:'clamp(13px,1vw,14.5px)', color:'rgba(92,61,30,0.7)', lineHeight:1.8, margin:0 }}>
-                      {node.desc}
-                    </p>
-                  </div>
-                  <button onClick={() => setActive(null)} style={{
-                    flexShrink:0, background:'none', border:'1px solid rgba(92,61,30,0.18)', borderRadius:8,
-                    cursor:'pointer', padding:'6px 12px', fontFamily:"'Courier New',monospace",
-                    fontSize:10, color:INK_L, letterSpacing:'0.1em', transition:'all 0.2s', marginTop:2,
-                  }}>← BACK</button>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* ═══════════ MOBILE — Vertical accordion list, no horizontal scroll ═════════════════ */}
@@ -732,23 +688,6 @@ export default function OperationsMap() {
                       ↓
                     </div>
                   </div>
-
-                  {/* Expanded description */}
-                  {active===i && (
-                    <div style={{
-                      background: '#FFFDF5',
-                      border: `1.5px solid ${n.accent}`,
-                      borderTop: 'none',
-                      borderRadius: '0 0 12px 12px',
-                      padding: '14px 16px',
-                      animation: 'slideUp 0.28s cubic-bezier(0.16,1,0.3,1)',
-                      marginTop: -8,
-                    }}>
-                      <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:13, color:'rgba(92,61,30,0.68)', lineHeight:1.8, margin:0 }}>
-                        {n.desc}
-                      </p>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
@@ -756,6 +695,54 @@ export default function OperationsMap() {
         </div>
 
       </div>
+
+      {/* Unified Global Floating Modal */}
+      {node && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+        }} onClick={() => setActive(null)}>
+          <div style={{
+            background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+            padding:'clamp(32px,5vw,48px)', maxWidth:540, width:'100%',
+            boxShadow:`8px 8px 0px ${node.accent}`,
+            animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+            position:'relative',
+          }} onClick={e => e.stopPropagation()}>
+            <button onClick={()=>setActive(null)} style={{
+              position:'absolute', top:20, right:20, background:INK, border:'none',
+              fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+              display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+            }}
+              onMouseEnter={e=>(e.currentTarget.style.background=node.accent)}
+              onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+            >×</button>
+            <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
+              <div style={{
+                flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                display:'flex', alignItems:'center', justifyContent:'center',
+                fontSize:26,
+                boxShadow:`4px 4px 0px ${node.accent}`
+              }}>
+                {node.icon}
+              </div>
+              <div>
+                <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:node.accent, marginBottom:6, fontWeight:700 }}>
+                  STEP 0{node.id} · {node.stat}
+                </div>
+                <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
+                  {node.name}
+                </div>
+              </div>
+            </div>
+            <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:0 }}>
+              {node.desc}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

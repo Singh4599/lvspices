@@ -135,7 +135,7 @@ export default function IPMPage() {
       <VelocityMarquee dark />
 
       {/* ══ 1. OVERVIEW — animated leaf SVG + stats ══════════════════════ */}
-      <section style={{ padding: 'clamp(64px,8vw,120px) clamp(24px,5vw,80px)', background: '#fff', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: 'clamp(40px,5vw,80px) clamp(24px,5vw,80px)', background: '#fff', position: 'relative', overflow: 'hidden' }}>
 
         {/* Animated SVG growing plant/leaf network */}
         <div style={{ position: 'absolute', right: 0, top: 0, width: '55%', height: '100%', pointerEvents: 'none', opacity: 0.07 }}>
@@ -179,7 +179,7 @@ export default function IPMPage() {
           <div style={{ display: 'flex', gap: 60, alignItems: 'flex-start', flexWrap: 'wrap' }}>
 
             {/* Left text block */}
-            <div style={{ flex: 1, minWidth: 300 }}>
+            <div style={{ flex: 1, minWidth: 'min(100%, 300px)' }}>
               <Reveal delay={0.1}>
                 <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: GREEN, marginBottom: 16 }}>Overview</div>
               </Reveal>
@@ -190,11 +190,8 @@ export default function IPMPage() {
                 </h1>
               </Reveal>
               <Reveal delay={0.3}>
-                <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,16px)', color: 'rgba(0,0,0,0.62)', lineHeight: 1.85, margin: '0 0 16px' }}>
-                  India's farms face growing pressure from pesticide overuse. We believe in formulating sustainable livelihoods for farmers through responsible agricultural practices. We are now in our 4th year of our IPM Country programme.
-                </p>
                 <p style={{ fontFamily: SANS, fontSize: 'clamp(14px,1.1vw,16px)', color: 'rgba(0,0,0,0.62)', lineHeight: 1.85, margin: '0 0 32px' }}>
-                  We have identified 100+ progressive farmers across 4,000 acres, helping them adopt good agricultural practices and integrated pest management, delivering traceable, residue-free spices to the world.
+                  LV Spices leads India's shift toward pesticide-free agriculture through our Integrated Pest Management (IPM) Programme. Working directly with 100+ progressive farmers across 4,000 acres, we replace harmful chemicals with sustainable bio-controls. This ensures compliance with strict global MRL (Maximum Residue Limit) standards, delivering 100% traceable, safe, and export-ready spices to the global market.
                 </p>
               </Reveal>
 
@@ -208,7 +205,7 @@ export default function IPMPage() {
             </div>
 
             {/* Right stats card */}
-            <Reveal delay={0.4} style={{ flexShrink: 0, width: 'clamp(260px,30vw,340px)' }}>
+            <Reveal delay={0.4} style={{ flexShrink: 0, width: '100%', maxWidth: 340 }}>
               <div style={{ background: '#F8F6F1', borderRadius: 24, padding: 36, border: `1.5px solid ${GREEN}20`, boxShadow: `0 12px 48px ${GREEN}12`, position: 'relative', overflow: 'hidden' }}>
                 {/* Animated corner SVG */}
                 <svg style={{ position: 'absolute', top: 0, right: 0, opacity: 0.08, pointerEvents: 'none' }} width={120} height={120} viewBox="0 0 120 120">
@@ -311,7 +308,7 @@ export default function IPMPage() {
             </h2>
           </Reveal>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 24 }}>
             {SUSTAINABILITY.map((s, i) => (
               <motion.div
                 key={s.label}

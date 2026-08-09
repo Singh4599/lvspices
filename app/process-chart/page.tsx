@@ -29,41 +29,7 @@ interface FlowNode {
   accent?: string;
 }
 
-const GROUND_SPICE_STEPS = [
-  { step: 1, label: 'Raw Material Receipt', desc: 'We purchase raw material from the local mandis or APMCs as well as outstation mandis. Material is sourced from producing centres during peak harvest to advantage freshness and colour.' },
-  { step: 2, label: 'Inspection', type: 'diamond', isDecision: true, yesLabel: 'YES', noLabel: 'NO → Return to Party', desc: 'All incoming raw material undergoes rigorous quality inspection. Samples are tested in our in-house lab. Material not conforming to standards is immediately returned to the supplier.' },
-  { step: 3, label: 'Unloading', sideBranches: ['Dry Storage', 'Cold Storage'], desc: 'Post-inspection approval, raw material is unloaded. Based on moisture content and product type, it is directed to either dry storage or cold storage.' },
-  { step: 4, label: 'Issue to Production', desc: 'Approved stored material is formally issued to the production floor with documented work orders, ensuring full traceability at every production stage.' },
-  { step: 5, label: 'Weighing', desc: 'Every batch is precisely weighed before processing begins. Our digital weighing systems ensure exact quantities, eliminating variance in formulations.' },
-  { step: 6, label: 'Mixing (if applicable)', isOptional: true, desc: 'Where required, ingredients are pre-mixed as per recipe specifications before entering the grinding line.' },
-  { step: 7, label: 'Feeding', sideNote: 'Bucket Conveyor', desc: 'The spice material is fed into the grinding line via automated bucket conveyors — ensuring consistent, contamination-free material flow.' },
-  { step: 8, label: '1st Grinding', sideNote: 'Screw Conveyor', desc: 'First pass through our high-speed grinding mills. Particle size is monitored in real time to meet the target distribution.' },
-  { step: 9, label: '2nd Grinding (if applicable)', isOptional: true, sideNote: 'Screw Conveyor', desc: 'For premium fine powders, a second grinding pass achieves sub-500 micron particle size consistency.' },
-  { step: 10, label: '3rd Grinding (if applicable)', isOptional: true, sideNote: 'Screw Conveyor', desc: 'Ultra-fine applications may require a third grinding cycle for maximum powder fineness and homogeneity.' },
-  { step: 11, label: 'Blending', sideNote: 'Oil (for blended spices)', leftNote: 'Blending Whole Ingredients as per Recipe', desc: 'All components are blended in stainless steel blenders. For spice blends, whole ingredients are incorporated as per the exact recipe. Essential oils added where required.' },
-  { step: 12, label: 'Vibroseiving', desc: 'Product passes through vibro-sieve machines to remove coarse particles, lumps, and any foreign material, ensuring uniformity.' },
-  { step: 13, label: 'Inspection', type: 'diamond', isDecision: true, yesLabel: 'YES', noLabel: 'NO → Rework', sideNote: 'Packing Material Receipt', desc: 'Final product inspection against physical, chemical, and microbiological specifications. Packing material is simultaneously received and inspected.' },
-  { step: 14, label: 'Weighing', rightFlow: ['Inspection', 'Storage', 'Printing if Needed'], desc: 'Approved product is weighed for packing. Packing materials undergo parallel inspection, storage, and printing as needed.' },
-  { step: 15, label: 'Bulk Packing in Bags', sideNote: 'Issue for Packing', desc: 'Product is packed in bulk bags (25kg / 50kg) or primary packs as per customer specification. Automated filling ensures exact fill weights.' },
-  { step: 16, label: 'Tying', desc: 'All bags are securely tied and sealed — multiple closure points ensure product integrity during transit.' },
-  { step: 17, label: 'Stitching', sideNote: 'Dispatch', desc: 'Jute/PP bags are machine-stitched for extra strength. Product is simultaneously prepared for dispatch scheduling.' },
-  { step: 18, label: 'Storage', sideNote: 'Container Fumigation', desc: 'Finished goods are stored in our controlled warehouse. Containers are pre-fumigated with approved fumigants before loading.' },
-  { step: 19, label: 'Vehicle Inspection', type: 'diamond', isDecision: true, yesLabel: 'YES → Loading/Stuffing', noLabel: 'NO → Reject', desc: 'Each vehicle undergoes inspection for cleanliness, structural integrity, and temperature conditions before loading begins.' },
-  { step: 20, label: 'Loading / Stuffing', desc: 'Products are loaded into containers with polysheet and craft paper lining on all walls. Dispatch from Mumbai Nhava Sheva / JNPT / Mundra for sailing.' },
-];
 
-const WHOLE_SEEDS_STEPS = [
-  { step: 1, label: 'Natural Whole Seeds', desc: 'Premium natural whole seeds sourced from farms following Integrated Pest Management practices.' },
-  { step: 2, label: 'Seed Cleaning', sideNote: 'Out Sort → Immediate Market', desc: 'Initial cleaning removes dust, chaff, and gross impurities. Out-sorted material goes to the domestic immediate market.' },
-  { step: 3, label: 'Seed Grading/Magnet (3 steps)', desc: 'Three-stage grading with magnet application removes dead, immature seeds and ferrous metal contaminants ensuring only premium seeds proceed.' },
-  { step: 4, label: 'Drying', desc: 'Controlled sun drying or industrial drying to reduce moisture content to export-acceptable levels while preserving colour and volatile oil content.' },
-  { step: 5, label: 'Wet Hulling', sideNote: 'Reject for Domestic Market', desc: 'Outer hull removed where required. Rejected material is redirected to the domestic market.' },
-  { step: 6, label: 'Cleaning and Grading', desc: 'Post-hulling second pass of cleaning and size grading on vibro-separators and gravity tables for export-quality selection.' },
-  { step: 7, label: 'Colour Sorting (Z-Series)', desc: 'Advanced Z-series colour sorting machines with pre-packing magnets in place remove any colour-defective seeds and residual metal.' },
-  { step: 8, label: 'Packing for Export', desc: 'Sorted, graded product is packed in new jute bags / PP bags / vacuum packs per buyer specification. Each bag is labelled with lot/batch traceability codes.' },
-  { step: 9, label: 'In-House SGS Sampling & Inspection', desc: 'Final random sampling by our quality team following SGS-equivalent methodology. Reports prepared for each consignment before shipment.' },
-  { step: 10, label: 'Container Preparation', desc: 'Cleaning, fumigation & factory stuffing of containers. Polysheet & craft paper lined walls for all shipments. Dispatch from Mumbai Nhava Sheva / JNPT / Mundra.' },
-];
 
 const CONCEPT_NODES = [
   { n: 1, label: 'Drying', sub: ['Sun Drying', 'Industrial Drying'], color: '#1A6B3E', pos: 'top-left' },

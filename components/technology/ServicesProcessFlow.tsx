@@ -16,21 +16,92 @@ interface Station {
 }
 
 const STATIONS: Station[] = [
-  { id:1,  name:'Quality Assurance',      stat:'BRC Grade AA',       desc:'Every consignment undergoes three-tier quality verification — in-house lab testing, third-party certification, and pre-shipment SGS inspection.' },
-  { id:2,  name:'International Regs',     stat:'USFDA & EU',         desc:'Compliant with USFDA, EU MRLs, FSMA, and Codex standards. Our documentation team pre-clears shipments for seamless customs in 40+ countries.' },
-  { id:3,  name:'Competitive Pricing',    stat:'Direct & FOB/CIF',   desc:'Direct farm-to-container sourcing model eliminates intermediaries. Flexible payment terms including LC, TT, and D/A for verified buyers.' },
-  { id:4,  name:'Packaging & Label',      stat:'5g to 50kg',         desc:'Complete custom packaging solutions. Our in-house design team handles artwork and label compliance for any target market.' },
-  { id:5,  name:'Logistics & Supply',     stat:'FCL & LCL',          desc:'End-to-end logistics from warehouse to destination port. Real-time container tracking with top freight forwarders.' },
-  { id:6,  name:'Product Customization',  stat:'Any Spec',           desc:'R&D lab develops custom formulations, blends, and mesh sizes to meet buyer-specific requirements and heat levels (ASTA/Scoville).' },
-  { id:7,  name:'Traceability',           stat:'100% Traceable',     desc:'Lot-level traceability from farm to delivery. Valid IT digital traceability certification provides blockchain-verified transparency.' },
-  { id:8,  name:'After-Sales Support',    stat:'24h SLA',            desc:'Dedicated account manager assigned to each buyer. We respond to all quality queries within 24 hours with standard resolution protocols.' },
-  { id:9,  name:'Market Insights',        stat:'Quarterly Reports',  desc:'Buyers receive commodity reports covering price trends, harvest forecasts, and early-warning alerts on regulatory shifts.' },
-  { id:10, name:'Risk Management',        stat:'Buffer Stock',       desc:'Forward booking contracts to lock prices. Buffer stock across key spices ensures supply continuity, protecting against supply risk.' },
-  { id:11, name:'Fast Delivery',          stat:'7-Day Dispatch',     desc:'Standard products ship within 7 days. Custom blends within 21–28 days. Full export documentation provided within 3 days.' },
-  { id:12, name:'Custom Products',        stat:'NDA Protected',      desc:'Exclusive product lines for importers who want proprietary formulations. All custom product development is covered under NDA.' },
-  { id:13, name:'Custom Formats',         stat:'Jars to Sacks',      desc:'Food-grade stand-up pouches, tin containers, glass jars, vacuum-sealed retail packs, and jute export bags available.' },
-  { id:14, name:'Cold Storage',           stat:'4°C–12°C',           desc:'In-house cold storage for temperature-sensitive spices like saffron and vanilla, preserving volatile oils and ASTA colour values.' },
+  {
+    id: 1,
+    name: 'Quality Assurance',
+    stat: 'FSSC 22000 · NABL',
+    desc: 'Every batch at LV Spices passes a strict 3-stage quality check. First, our in-house NABL-accredited lab tests for moisture, colour, and microbial safety. Next, we verify through third-party experts like SGS or Bureau Veritas. Finally, every shipment goes out with a complete Certificate of Analysis. It\'s why our global rejection rate is virtually zero.',
+  },
+  {
+    id: 2,
+    name: 'International Regs',
+    stat: 'Global Compliance',
+    desc: 'Exporting spices means navigating complex global laws. Our documentation team ensures your order complies with USFDA, European MRLs, and Middle Eastern standards before it even leaves the factory. From Health Certificates to Phyto clearance, we handle the paperwork so your shipment clears customs without delays.',
+  },
+  {
+    id: 3,
+    name: 'Competitive Pricing',
+    stat: 'Direct Sourcing',
+    desc: 'By working directly with farmers across India\'s top spice-growing regions, we eliminate middlemen and pass the savings to you. Whether you need pricing on FOB, CIF, or door-to-door (DAP) terms, we provide transparent, highly competitive rates. We also offer flexible payment options for verified buyers.',
+  },
+  {
+    id: 4,
+    name: 'Packaging & Label',
+    stat: '5g to 50kg',
+    desc: 'We pack exactly how you need it — from 5g sachets and retail zip-lock pouches to 50kg bulk export sacks. Need private label packaging? Our design team ensures your artwork perfectly meets the legal labelling requirements of your target market, whether it\'s FSSAI, FDA, or EU standards.',
+  },
+  {
+    id: 5,
+    name: 'Logistics & Supply',
+    stat: 'FCL & LCL Delivery',
+    desc: 'Shipping from major Indian ports like Nhava Sheva and Mundra, we manage your cargo from our warehouse to your destination. We partner with top shipping lines for both full containers (FCL) and smaller LCL loads. Plus, you get real-time tracking so you always know exactly where your cargo is.',
+  },
+  {
+    id: 6,
+    name: 'Product Customization',
+    stat: 'Custom R&D Lab',
+    desc: 'Looking for a unique masala blend or a specific chilli heat level? Our R&D lab works with you to develop custom formulations, matching exact colour, heat, and mesh size requirements. Everything we develop for you is strictly protected under an NDA — your recipe remains yours alone.',
+  },
+  {
+    id: 7,
+    name: 'Traceability',
+    stat: 'Farm-to-Port Tracking',
+    desc: 'Trust starts with transparency. Every shipment features a QR-scannable lot number that traces the spice all the way back to the farm. From harvest dates to lab reports and packaging records, our blockchain-ready traceability system ensures total supply chain visibility for modern retail compliance.',
+  },
+  {
+    id: 8,
+    name: 'After-Sales Support',
+    stat: 'Dedicated AM',
+    desc: 'We don\'t disappear after the container ships. You get a dedicated account manager who understands your business. If you ever face an issue, our strict Service Level Agreement means you get a response within hours, not days. We focus on building long-term partnerships, which is why most of our buyers stay with us.',
+  },
+  {
+    id: 9,
+    name: 'Market Insights',
+    stat: 'Smart Buying Alerts',
+    desc: 'The spice market is volatile, but you don\'t have to guess. We provide our buyers with regular market intelligence — crop forecasts, price trends, and regulatory updates. By knowing when to buy and when to wait, our clients consistently make smarter purchasing decisions and save money.',
+  },
+  {
+    id: 10,
+    name: 'Risk Management',
+    stat: 'Price & Supply Security',
+    desc: 'Don\'t let unexpected price spikes hurt your margins. We offer forward-booking contracts that let you lock in prices and volumes for up to a year. Combined with our massive climate-controlled buffer stock, we ensure your supply remains uninterrupted even during off-season shortages.',
+  },
+  {
+    id: 11,
+    name: 'Fast Delivery',
+    stat: '7-Day Dispatch',
+    desc: 'Speed matters in the food industry. We dispatch standard in-stock spices within just 7 days of order confirmation. Even for custom blends, we aim for a 3 to 4-week turnaround. More importantly, we ensure your critical export documents are couriered promptly so there are no port holding fees.',
+  },
+  {
+    id: 12,
+    name: 'Custom Products',
+    stat: '100% Confidential',
+    desc: 'Some of the best-known spice brands rely on our manufacturing — and we keep their secrets safe. If you want a competitive edge, we can create exclusive product lines for your brand. We sign strict Non-Disclosure Agreements, guaranteeing we will never manufacture your custom blend for anyone else.',
+  },
+  {
+    id: 13,
+    name: 'Custom Formats',
+    stat: 'Jars, Pouches, Sacks',
+    desc: 'From premium glass jars and tin canisters to nitrogen-flushed vacuum bricks, we offer a massive variety of packaging formats. Whatever your retail strategy, we have the food-grade packaging to support it. All formats are available with your custom branding, ready to hit the supermarket shelves.',
+  },
+  {
+    id: 14,
+    name: 'Cold Storage',
+    stat: 'Preserves Freshness',
+    desc: 'Heat destroys flavour. For high-value, temperature-sensitive spices like saffron, vanilla, and cardamom, we use advanced 4°C–12°C cold storage. This preserves the essential volatile oils and natural colours far better than standard warehouses, ensuring the product is as fresh as the day it was harvested.',
+  },
 ];
+
 
 const CSS = `
   @keyframes beltMove { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }

@@ -19,12 +19,12 @@ interface ZoneData {
 }
 
 const ZONES: ZoneData[] = [
-  { id:0, icon:'🌾', name:'Raw Material Sampling', gate:'GATE 1', accent:'#5E4A00', desc:'Each incoming lot is sampled using AOAC/ISO standard protocols at multiple points of the consignment before unloading begins.' },
-  { id:1, icon:'🔬', name:'In-house Pre-screening', gate:'GATE 2', accent:'#7B4E1B', desc:'Physical parameters — moisture, colour, size — are checked at our QC lab within 2 hours of receipt, ensuring only approved material enters.' },
-  { id:2, icon:'🧪', name:'Third-party Analysis', gate:'GATE 3', accent: BLUE,     desc:'Pesticide residue, mycotoxin, heavy metals, and microbiological tests are sent to 3 NABL-accredited external labs for independent verification.' },
-  { id:3, icon:'🚧', name:'QC Hold & Release', gate:'GATE 4', accent: CRIMSON,  desc:'No material enters production until a full Certificate of Analysis (COA) is reviewed and approved by the Head of Quality Assurance. Zero exceptions.' },
-  { id:4, icon:'📊', name:'In-process Monitoring', gate:'GATE 5', accent: GREEN,    desc:'Online sensors track temperature, moisture, and particle size in real time during milling. Any deviation triggers an automatic hold.' },
-  { id:5, icon:'✅', name:'Dispatch Verification', gate:'GATE 6', accent:'#0A4D6E', desc:'Pre-shipment samples are tested against the customer specification sheet and regulatory requirements of the destination country before every dispatch.' },
+  { id:0, icon:'🌾', name:'Raw Material Sampling', gate:'GATE 1', accent:'#5E4A00', desc:'All incoming raw spice lots are subjected to rigorous AOAC/ISO standard multi-point sampling before unloading, ensuring baseline traceability and origin compliance.' },
+  { id:1, icon:'🔬', name:'In-house Pre-screening', gate:'GATE 2', accent:'#7B4E1B', desc:'Rapid physical and organoleptic parameters (moisture, bulk density, ASTA colour) are validated in our QC lab within 2 hours of receipt to maintain strict intake specifications.' },
+  { id:2, icon:'🧪', name:'Third-party Analysis', gate:'GATE 3', accent: BLUE,     desc:'Stringent verification for 500+ pesticide residues, Aflatoxin/Ochratoxin, heavy metals, and microbiological load by independent NABL-accredited and ISO 17025 certified labs.' },
+  { id:3, icon:'🚧', name:'QC Hold & Release', gate:'GATE 4', accent: CRIMSON,  desc:'Zero-tolerance production entry. Material remains fully quarantined until a comprehensive Certificate of Analysis (COA) is validated by our Head of Quality Assurance.' },
+  { id:4, icon:'📊', name:'In-process Monitoring', gate:'GATE 5', accent: GREEN,    desc:'Continuous inline monitoring via advanced sensors tracks thermal profiles, moisture levels, and particle size distribution (PSD) in real-time, preventing process deviations.' },
+  { id:5, icon:'✅', name:'Dispatch Verification', gate:'GATE 6', accent:'#0A4D6E', desc:'Final QA clearance involves matching pre-shipment COAs directly against B2B client specifications and destination-country FDA/EU regulatory frameworks prior to loading.' },
 ];
 
 const CSS = `
@@ -249,30 +249,53 @@ export default function QALabBlueprint() {
             </svg>
           </div>
 
-        {/* BOTTOM DETAIL PANEL */}
-        <div style={{ minHeight: 110, borderTop: '1.5px solid rgba(0,0,0,0.1)', background: '#fff', padding: '24px 32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {active === null ? (
-            <div style={{ fontFamily: 'Georgia,serif', fontSize: 16, color: INK_L, fontStyle: 'italic', textAlign: 'center' }}>
-              Click any stage on the QA blueprint to view inspection details.
-            </div>
-          ) : (
-            <div className="qa-detail-inner" style={{ display: 'flex', gap: 40, width: '100%', maxWidth: 1000, margin: '0 auto', animation: 'slideUp 0.3s ease' }}>
-              <div className="qa-detail-left" style={{ flexShrink: 0, width: 260, borderRight: `1px solid ${INK_LL}`, paddingRight: 30 }}>
-                <div style={{ fontFamily: "'Courier New',monospace", fontSize: 11, letterSpacing: '0.14em', color: ZONES[active].accent, marginBottom: 8, fontWeight: 700 }}>
-                  {ZONES[active].gate}
+        {/* Unified Global Floating Modal */}
+        {active !== null && (
+          <div style={{
+            position: 'fixed', inset: 0, zIndex: 99999,
+            background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+          }} onClick={() => setActive(null)}>
+            <div style={{
+              background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+              padding:'clamp(32px,5vw,48px)', maxWidth:540, width:'100%',
+              boxShadow:`8px 8px 0px ${ZONES[active].accent}`,
+              animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+              position:'relative',
+            }} onClick={e => e.stopPropagation()}>
+              <button onClick={()=>setActive(null)} style={{
+                position:'absolute', top:20, right:20, background:INK, border:'none',
+                fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+                display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+              }}
+                onMouseEnter={e=>(e.currentTarget.style.background=ZONES[active].accent)}
+                onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+              >×</button>
+              <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
+                <div style={{
+                  flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                  display:'flex', alignItems:'center', justifyContent:'center',
+                  fontSize:26, color: ZONES[active].accent, fontFamily:"'Courier New',monospace", fontWeight:800,
+                  boxShadow:`4px 4px 0px ${ZONES[active].accent}`
+                }}>
+                  {String(ZONES[active].id + 1).padStart(2, '0')}
                 </div>
-                <div style={{ fontFamily: 'Georgia,serif', fontSize: 20, fontWeight: 700, color: INK, lineHeight: 1.1 }}>
-                  {ZONES[active].name}
+                <div>
+                  <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:ZONES[active].accent, marginBottom:6, fontWeight:700 }}>
+                    {ZONES[active].gate}
+                  </div>
+                  <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
+                    {ZONES[active].name}
+                  </div>
                 </div>
               </div>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontFamily: 'var(--font-sans),system-ui', fontSize: 14, color: 'rgba(0,0,0,0.7)', lineHeight: 1.6, margin: 0 }}>
-                  {ZONES[active].desc}
-                </p>
-              </div>
+              <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:'0 0 24px' }}>
+                {ZONES[active].desc}
+              </p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

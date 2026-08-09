@@ -8,29 +8,29 @@ const steps = [
   {
     id: '01',
     title: 'Brand-to-Pack Translation',
-    desc: 'We collaborate with partners to translate brand intent into compliant, production-ready packaging. Our structured approach supports efficient white labeling food products, maintaining brand clarity while ensuring manufacturability at scale.',
+    desc: 'We collaborate with partners to translate brand intent into compliant, production-ready packaging. Our structured approach supports efficient private labeling of spices and food products, maintaining absolute brand clarity while ensuring high-speed manufacturability at scale.',
     stat: 'BRAND CLARITY',
     img: '/images/private-label/product-1.png'
   },
   {
     id: '02',
-    title: 'Market-Specific Compliance Design',
-    desc: 'Packaging and labelling are aligned with market-specific regulatory frameworks, supporting smooth entry across international markets. This compliance-driven approach strengthens execution for private labeling of spices and multi-market distribution.',
-    stat: 'COMPLIANCE',
+    title: 'Market-Specific Compliance',
+    desc: 'All packaging and nutritional labelling is strictly aligned with market-specific regulatory frameworks (US FDA, EU MRL, FSSAI). This compliance-driven approach strengthens execution for private labeling, enabling frictionless multi-market distribution without customs delays.',
+    stat: 'REGULATORY COMPLIANCE',
     img: '/images/private-label/product-2.png'
   },
   {
     id: '03',
-    title: 'Packaging Aligned with Production',
-    desc: 'Our packaging workflows are coordinated with blending and processing schedules to support repeat supply programs, traceability, and accuracy - critical for brands relying on private labeling food products.',
+    title: 'Integrated Production',
+    desc: 'Our automated packaging workflows are tightly coordinated with bulk blending and sterilization schedules. This ensures airtight traceability, minimum lead times, and seamless repeat supply programs — critical for brands relying on dependable white label spice manufacturers.',
     stat: 'SCALABLE EXECUTION',
     img: '/images/private-label/product-3.png'
   },
   {
     id: '04',
-    title: 'Shelf-Ready Delivery',
-    desc: 'All packs are delivered retail or bulk-ready, supporting brands seeking reliable white label spice manufacturers capable of consistent quality and scalable execution for fast into-shelf ready delivery.',
-    stat: 'RETAIL READY',
+    title: 'Retail-Ready Logistics',
+    desc: 'Finished packs are delivered retail-ready or in bulk food-service formats (tins, stand-up pouches, PET jars). We empower FMCG brands with consistent quality, robust secondary packaging, and scalable execution for rapid shelf deployment.',
+    stat: 'RAPID DEPLOYMENT',
     img: '/images/private-label/product-4.png'
   }
 ];

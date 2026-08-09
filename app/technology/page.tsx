@@ -14,6 +14,9 @@ const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
 
+
+
+
 export default function TechnologyPage() {
   return (
     <main style={{ background: '#fff', minHeight: '100vh', color: '#111' }}>

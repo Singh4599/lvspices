@@ -1,5 +1,6 @@
 'use client';
 
+
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import TechTurbineHero from '@/components/technology/TechTurbineHero';
@@ -12,6 +13,8 @@ const INK   = '#1A1915';
 const SERIF = 'var(--font-display), Georgia, serif';
 const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
+
+
 
 interface Cert {
   id: string;
@@ -29,7 +32,7 @@ const CERTS: Cert[] = [
     name: 'USFDA Registration',
     shortName: 'USFDA',
     category: 'International',
-    desc: 'United States Food and Drug Administration registration. Authorises LV Spices to export food products directly to the United States market in compliance with all FDA food safety regulations.',
+    desc: 'Registered with the United States Food and Drug Administration (FDA) under the FSMA framework. Authorises LV Spices for direct B2B export into the US market with full regulatory compliance and seamless border clearance.',
     images: ['/certificates/usfda.jpg'],
   },
   {
@@ -37,7 +40,7 @@ const CERTS: Cert[] = [
     name: 'Valid IT Certification',
     shortName: 'Valid IT',
     category: 'Traceability',
-    desc: 'Valid IT digital traceability certification — provides end-to-end product transparency from farm to shelf using blockchain-based supply chain verification.',
+    desc: 'Valid IT digital traceability certification — ensuring 100% transparent, farm-to-fork supply chain tracking. Crucial for B2B partners requiring irrefutable origin and processing history.',
     images: ['/certificates/valitit.png'],
   },
   {
@@ -45,7 +48,7 @@ const CERTS: Cert[] = [
     name: 'Kosher Certification',
     shortName: 'Kosher',
     category: 'Dietary',
-    desc: 'Kosher certified by an internationally recognised certifying body. Confirms that all products meet the strict dietary standards required by Jewish law, enabling supply to kosher-observant consumers worldwide.',
+    desc: 'Globally recognised Kosher certification. Confirms our manufacturing lines strictly adhere to dietary Jewish law, enabling seamless integration into Kosher-certified CPG and food service supply chains.',
     images: ['/certificates/kosher.png'],
   },
   {
@@ -53,7 +56,7 @@ const CERTS: Cert[] = [
     name: 'Halal Certification',
     shortName: 'Halal',
     category: 'Dietary',
-    desc: 'Halal certified for Muslim consumer markets across 40+ countries. Covers raw material sourcing, processing, packaging, and handling — certified in line with international Halal food standards.',
+    desc: 'Internationally accredited Halal certification for export across 40+ Islamic markets. Audited for absolute separation, purity, and adherence to global Halal food manufacturing standards.',
     images: ['/certificates/halal.jpg'],
   },
   {
@@ -61,7 +64,7 @@ const CERTS: Cert[] = [
     name: 'FSMA Compliance',
     shortName: 'FSMA',
     category: 'International',
-    desc: 'Food Safety Modernization Act (FSMA) compliance — the landmark US legislation that shifted focus from responding to foodborne illness to preventing it. Required for all exporters supplying the US food market.',
+    desc: 'Food Safety Modernization Act (FSMA) compliant. We maintain strict Preventive Controls for Human Food (PCHF) plans, mitigating all biological, chemical, and physical hazards prior to US export.',
     images: ['/certificates/fsma.webp'],
   },
   {
@@ -69,7 +72,7 @@ const CERTS: Cert[] = [
     name: 'BRC Global Food Safety Standard',
     shortName: 'BRC Grade AA',
     category: 'Food Safety',
-    desc: 'BRC (British Retail Consortium) Global Standard for Food Safety — Grade AA, the highest achievable rating. Recognised by the Global Food Safety Initiative (GFSI) and required by most UK, European, and multinational retailers.',
+    desc: 'BRCGS Global Standard for Food Safety — Grade AA. The pinnacle of GFSI-recognised certification, assuring multinational retailers and brands of unparalleled food safety, quality, and operational criteria.',
     images: ['/certificates/brc.webp'],
   },
   {
@@ -77,7 +80,7 @@ const CERTS: Cert[] = [
     name: 'Organic Processing Unit',
     shortName: 'Organic Processing Unit',
     category: 'Organic',
-    desc: 'Certified Organic Processing Unit under the National Programme for Organic Production (NPOP), India. Authorises the processing, handling, and export of certified organic spices under EU and USDA NOP standards.',
+    desc: 'Certified Organic Processing Unit under NPOP, India. Fully authorised to process, handle, and export certified organic spices conforming to stringent EU and USDA NOP organic standards.',
     images: ['/certificates/opu1.webp', '/certificates/opu2.webp', '/certificates/opu3.webp'],
   },
   {
@@ -85,7 +88,7 @@ const CERTS: Cert[] = [
     name: 'Tax Certificate',
     shortName: 'Tax Certificate',
     category: 'Legal',
-    desc: 'Statutory tax registration certificate confirming LV Spices is a fully registered, compliant entity under Indian tax law — including GST registration and income tax compliance.',
+    desc: 'Statutory tax registration verifying LV Spices as a fully compliant corporate entity in India, ensuring frictionless financial transactions and supply chain reliability for global B2B contracts.',
     images: ['/certificates/taxcerti.png'],
   },
   {
@@ -93,7 +96,7 @@ const CERTS: Cert[] = [
     name: 'ISO 22000:2018',
     shortName: 'ISO 22000:2018',
     category: 'Food Safety',
-    desc: 'ISO 22000:2018 — Food Safety Management Systems. International standard specifying requirements for any organisation in the food chain. Demonstrates a systematic approach to food safety hazard control.',
+    desc: 'ISO 22000:2018 Food Safety Management System (FSMS) certified. Demonstrates a robust, internationally standardized approach to controlling food safety hazards across the entire supply chain.',
     images: ['/certificates/iso.png'],
   },
   {
@@ -101,7 +104,7 @@ const CERTS: Cert[] = [
     name: 'MSME Udyam Registration',
     shortName: 'MSME Udyam',
     category: 'Legal',
-    desc: 'Udyam Registration under the Ministry of Micro, Small & Medium Enterprises, Government of India. Grants eligibility for government export promotion schemes and priority lending.',
+    desc: 'Registered under the Ministry of Micro, Small & Medium Enterprises, Government of India, unlocking priority operational bandwidth and robust governmental export support infrastructure.',
     images: ['/certificates/msme.png'],
   },
   {
@@ -109,7 +112,7 @@ const CERTS: Cert[] = [
     name: 'Spices Board of India',
     shortName: 'Spices Board',
     category: 'Export',
-    desc: 'Registered exporter with the Spices Board of India, the apex body for development and worldwide promotion of Indian spices. Mandatory for all authorised spice exporters.',
+    desc: 'Authorised exporter registered with the Spices Board of India. Mandates strict adherence to national quality parameters and facilitates seamless global trade promotion.',
     images: ['/certificates/spiceboard.png'],
   },
   {
@@ -117,7 +120,7 @@ const CERTS: Cert[] = [
     name: 'Coffee Board Registration',
     shortName: 'Coffee Board',
     category: 'Export',
-    desc: 'Registered with the Coffee Board of India for the handling and export of coffee and related products. Demonstrates compliance with coffee export standards and traceability requirements.',
+    desc: 'Officially registered with the Coffee Board of India, guaranteeing adherence to national grading, traceability, and export standards for premium coffee products.',
     images: ['/certificates/coffeeboard.jpg'],
   },
   {
@@ -125,7 +128,7 @@ const CERTS: Cert[] = [
     name: 'RCMC — Registration-Cum-Membership Certificate',
     shortName: 'RCMC',
     category: 'Export',
-    desc: 'Registration-Cum-Membership Certificate (RCMC) issued by the Export Promotion Council. Required to avail export incentives under the Foreign Trade Policy of India.',
+    desc: 'Valid Registration-Cum-Membership Certificate (RCMC) issued by the Export Promotion Council, ensuring full alignment with India’s Foreign Trade Policy for global export operations.',
     images: ['/certificates/rcmc.png'],
   },
   {
@@ -133,7 +136,7 @@ const CERTS: Cert[] = [
     name: 'APEDA Registration',
     shortName: 'APEDA',
     category: 'Export',
-    desc: 'Agricultural & Processed Food Products Export Development Authority (APEDA) registration. Mandatory for exporters of scheduled products including processed food, fruits, vegetables, and spices.',
+    desc: 'Registered with the Agricultural & Processed Food Products Export Development Authority (APEDA), ensuring strict compliance for the export of premium processed foods and spices.',
     images: ['/certificates/apeda.jpg'],
   },
   {
@@ -141,7 +144,7 @@ const CERTS: Cert[] = [
     name: 'FSSAI License',
     shortName: 'FSSAI',
     category: 'Food Safety',
-    desc: 'Food Safety and Standards Authority of India (FSSAI) license — the primary food safety regulator in India. Covers manufacturing, processing, storage, distribution, and sale of food products across India.',
+    desc: 'Licensed by the Food Safety and Standards Authority of India (FSSAI). This central license governs all our manufacturing, processing, storage, and distribution protocols at the highest national level.',
     images: ['/certificates/fssai.jpg'],
   },
   {
@@ -149,7 +152,7 @@ const CERTS: Cert[] = [
     name: 'IEC — Import Export Code',
     shortName: 'IEC',
     category: 'Export',
-    desc: 'Import Export Code (IEC) issued by the Directorate General of Foreign Trade (DGFT), Government of India. A mandatory 10-digit business identification number for any entity engaged in import or export.',
+    desc: 'Active Import Export Code (IEC) issued by the DGFT, Government of India. The foundational statutory requirement ensuring our operations are fully authorized for international trade.',
     images: ['/certificates/iec.jpg'],
   },
 ];

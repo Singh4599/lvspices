@@ -26,32 +26,32 @@ const STAGES: Stage[] = [
   {
     id: 0, gate: 'STAGE 01', name: 'Join the Team', accent: TEAL,
     stat: '2 Weeks', statLabel: 'Onboarding',
-    desc: 'Every LV Spices journey starts with a 2-week immersive onboarding — from farm visits to facility walkthroughs. You meet your team, understand our culture, and get your hands on actual product.',
+    desc: 'Begin your journey with an intensive 2-week cross-functional onboarding. Visit our BRCGS & FDA registered processing plants, meet senior agronomists, and learn our strict QA protocols firsthand.',
   },
   {
     id: 1, gate: 'STAGE 02', name: 'Learn the Craft', accent: BROWN,
     stat: '6 Months', statLabel: 'Skill ramp',
-    desc: 'Hands-on training inside our production lines, QC labs, or export floor. Mentors are assigned from Day 1. Certifications like HACCP, FSSAI, and GMP are funded by us.',
+    desc: 'Undergo hands-on training on state-of-the-art Buhler Sortex machines or LC-MS/MS lab equipment. We fully sponsor critical industry certifications including HACCP, ISO 22000, and FSSAI FOSTAC.',
   },
   {
     id: 2, gate: 'STAGE 03', name: 'Own Your Role', accent: NAVY,
     stat: 'Year 1+', statLabel: 'Independence',
-    desc: 'After your ramp-up, you take full ownership of your function — running shifts, managing client documentation, leading QC batches, or heading R&D formulation projects.',
+    desc: 'Take absolute ownership of your function. Whether leading a clean-room packaging shift, auditing vendor compliance, or optimizing supply chain ERPs, you drive tangible operational excellence.',
   },
   {
     id: 3, gate: 'STAGE 04', name: 'Global Exposure', accent: CR,
     stat: '40+ Markets', statLabel: 'World access',
-    desc: 'Top performers get assigned to international accounts in the UK, UAE, USA, and EU. You\'ll attend trade shows, review client specs, and collaborate with buyers across continents.',
+    desc: 'Top performers manage high-stakes international accounts. Collaborate with B2B buyers from the EU, USA, and Middle East, and represent LV Spices at global trade shows like Gulfood and SIAL.',
   },
   {
     id: 4, gate: 'STAGE 05', name: 'Lead a Team', accent: GOLD,
     stat: '10–50', statLabel: 'Team size',
-    desc: 'Grow into a team lead or department head role. LV promotes from within — 80% of our current managers started as floor staff or junior analysts. Leadership training is fully sponsored.',
+    desc: 'Step into managerial leadership. With 80% of our department heads promoted internally, we provide executive mentorship to help you scale operations and lead multi-disciplinary teams.',
   },
   {
     id: 5, gate: 'STAGE 06', name: 'Shape the Future', accent: PURPLE,
     stat: 'C-Suite', statLabel: 'Destination',
-    desc: 'Senior leaders at LV Spices help define product strategy, open new markets, and build the next generation of talent. This is where your legacy in India\'s spice industry begins.',
+    desc: 'Define the future of the Indian spice export industry. Join the core leadership team to forge global market strategies, spearhead sustainable sourcing initiatives, and build a lasting legacy.',
   },
 ];
 
@@ -442,69 +442,74 @@ export default function CareerPathBlueprint() {
             })}
           </div>
 
-          {/* Detail Panel */}
+          {/* Unified Global Floating Modal */}
           {AZ !== null && (
-            <div
-              className="cpb-up"
-              style={{
-                borderTop: `2px solid ${AZ.accent}`,
-                background: '#fff',
-                padding: 'clamp(24px,4vw,40px)',
-              }}
-            >
-              <div className="cpb-detail" style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
-
-                {/* Left: stat + badge */}
-                <div className="cpb-detail-left" style={{
-                  width: 200, flexShrink: 0, borderRight: `1px solid ${INK_LL}`,
-                  paddingRight: 32,
-                }}>
+            <div style={{
+              position: 'fixed', inset: 0, zIndex: 99999,
+              background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+            }} onClick={() => setActive(null)}>
+              <div style={{
+                background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+                padding:'clamp(32px,5vw,48px)', maxWidth:540, width:'100%',
+                boxShadow:`8px 8px 0px ${AZ.accent}`,
+                animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+                position:'relative',
+              }} onClick={e => e.stopPropagation()}>
+                <button onClick={()=>setActive(null)} style={{
+                  position:'absolute', top:20, right:20, background:INK, border:'none',
+                  fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+                  display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+                }}
+                  onMouseEnter={e=>(e.currentTarget.style.background=AZ.accent)}
+                  onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+                >×</button>
+                <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
                   <div style={{
-                    fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.15em',
-                    textTransform: 'uppercase', color: AZ.accent, marginBottom: 6,
-                  }}>{AZ.gate}</div>
-                  <div style={{
-                    fontFamily: 'var(--font-display,Georgia,serif)', fontSize: 'clamp(32px,4vw,48px)',
-                    fontWeight: 900, color: AZ.accent, lineHeight: 1,
-                  }}>{AZ.stat}</div>
-                  <div style={{
-                    fontFamily: 'var(--font-sans)', fontSize: 12, color: INK_L,
-                    marginTop: 6, textTransform: 'uppercase', letterSpacing: '0.08em',
-                  }}>{AZ.statLabel}</div>
+                    flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                    display:'flex', alignItems:'center', justifyContent:'center',
+                    fontSize:26, color: AZ.accent, fontFamily:"'Courier New',monospace", fontWeight:800,
+                    boxShadow:`4px 4px 0px ${AZ.accent}`
+                  }}>
+                    {String(active! + 1).padStart(2, '0')}
+                  </div>
+                  <div>
+                    <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:AZ.accent, marginBottom:6, fontWeight:700 }}>
+                      {AZ.gate} · {AZ.statLabel}
+                    </div>
+                    <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
+                      {AZ.name}
+                    </div>
+                  </div>
                 </div>
-
-                {/* Right: name + desc + CTA */}
-                <div style={{ flex: 1 }}>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display,Georgia,serif)',
-                    fontSize: 'clamp(20px,2.5vw,30px)', fontWeight: 800, color: INK,
-                    letterSpacing: '-0.02em', margin: '0 0 14px',
-                  }}>{AZ.name}</h3>
-                  <p style={{
-                    fontFamily: 'var(--font-sans)', fontSize: 'clamp(13px,1vw,15px)',
-                    color: INK_L, lineHeight: 1.8, margin: '0 0 24px', maxWidth: 600,
-                  }}>{AZ.desc}</p>
-                  <a
-                    href="#apply"
-                    style={{
-                      display: 'inline-block',
-                      fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 700,
-                      color: AZ.accent, border: `1.5px solid ${AZ.accent}`,
-                      padding: '10px 24px', borderRadius: 999, textDecoration: 'none',
-                      transition: 'all 0.2s',
-                    }}
-                    onMouseEnter={e => {
-                      (e.currentTarget as HTMLAnchorElement).style.background = AZ.accent;
-                      (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-                    }}
-                    onMouseLeave={e => {
-                      (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
-                      (e.currentTarget as HTMLAnchorElement).style.color = AZ.accent;
-                    }}
-                  >
-                    Apply for This Stage →
-                  </a>
+                <div style={{ fontFamily:"'Courier New',monospace", fontSize:12, fontWeight:700, color:AZ.accent, marginBottom: 12 }}>
+                  {AZ.stat}
                 </div>
+                <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:'0 0 24px' }}>
+                  {AZ.desc}
+                </p>
+                <a
+                  href="#apply"
+                  style={{
+                    display: 'inline-block',
+                    fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 700,
+                    color: AZ.accent, border: `1.5px solid ${AZ.accent}`,
+                    padding: '10px 24px', borderRadius: 999, textDecoration: 'none',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = AZ.accent;
+                    (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
+                    (e.currentTarget as HTMLAnchorElement).style.color = AZ.accent;
+                  }}
+                  onClick={() => setActive(null)}
+                >
+                  Apply for This Stage →
+                </a>
               </div>
             </div>
           )}

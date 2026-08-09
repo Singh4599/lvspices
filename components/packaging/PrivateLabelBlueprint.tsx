@@ -24,43 +24,43 @@ interface Zone {
 const ZONES: Zone[] = [
   {
     id: 0, gate: 'SERVICE 01', name: 'In-House Design', accent: CRIMSON,
-    stat: '7 Days', statLabel: 'First draft',
-    desc: 'Our designers create your packaging artwork, labels, and brand identity — ready for print in any country. Multiple concept rounds included at no extra cost.',
+    stat: '7 Days', statLabel: 'Turnaround',
+    desc: 'Our design studio translates your brand identity into compliant packaging artwork. We manage die-lines, structural design, and color matching, ensuring absolute brand consistency across any global market.',
   },
   {
-    id: 1, gate: 'SERVICE 02', name: 'In-House Packing', accent: NAVY,
-    stat: '100%', statLabel: 'Zero outsourcing',
-    desc: 'Products are packed in our own facility under strict quality control — zero outsourcing, full traceability from farm to shelf.',
+    id: 1, gate: 'SERVICE 02', name: 'Integrated Packing', accent: NAVY,
+    stat: '100%', statLabel: 'In-House',
+    desc: 'All blending, sterilization, and packing occur strictly within our FSSC 22000 certified facility. Zero outsourcing guarantees unbroken traceability, superior hygiene, and precise control over raw material costs.',
   },
   {
-    id: 2, gate: 'SERVICE 03', name: 'All Pack Sizes', accent: TEAL,
-    stat: '12+', statLabel: 'Pack formats',
-    desc: '50g to 25kg bags, standup pouches, boxes, jars, and bulk — we handle every format for retail, HoReCa, and industrial use.',
+    id: 2, gate: 'SERVICE 03', name: 'Format Flexibility', accent: TEAL,
+    stat: '12+', statLabel: 'Formats',
+    desc: 'From 50g consumer retail pouches to 25kg bulk industrial sacks, we support PET jars, glass grinders, tin cans, and multi-layered foil stand-up pouches tailored to your shelf-life requirements.',
   },
   {
-    id: 3, gate: 'SERVICE 04', name: 'Flexible MOQ', accent: '#D95C14',
-    stat: 'Low MOQ', statLabel: 'Easy launch',
-    desc: 'We support low minimum order quantities so you can test new products in your market without tying up capital in excessive stock.',
+    id: 3, gate: 'SERVICE 04', name: 'Scalable Production', accent: '#D95C14',
+    stat: 'Agile', statLabel: 'MOQs',
+    desc: 'We facilitate agile go-to-market strategies with flexible minimum order quantities (MOQs). This allows rapid market testing of new SKUs without tying up capital in excessive dead stock.',
   },
   {
-    id: 4, gate: 'SERVICE 05', name: 'Certifications', accent: '#5A8F29',
-    stat: 'FSSC 22000', statLabel: 'Global standard',
-    desc: 'Our facility operates under rigorous international food safety standards including FDA, EU, FSSAI, and BRC guidelines.',
+    id: 4, gate: 'SERVICE 05', name: 'Global Standards', accent: '#5A8F29',
+    stat: 'FSSC 22000', statLabel: 'Certified',
+    desc: 'Our infrastructure operates under rigorous GFSI-benchmarked standards. We hold active US FDA, BRCGS Grade AA, Halal, Kosher, and FSSAI certifications to pass any international audit.',
   },
   {
-    id: 5, gate: 'SERVICE 06', name: 'FSSAI & Export Labels', accent: GOLD,
-    stat: '40+', statLabel: 'Country formats',
-    desc: 'All labels meet destination-country food labelling regulations — GCC, UK, USA, EU, Australia, Canada and more. Handled entirely by us.',
+    id: 5, gate: 'SERVICE 06', name: 'Regulatory Labeling', accent: GOLD,
+    stat: '40+', statLabel: 'Jurisdictions',
+    desc: 'We engineer nutritional panels, ingredient declarations, and allergen warnings specifically to meet the legal requirements of destination countries (EU, FDA, SFDA, CFIA, FSANZ).',
   },
   {
-    id: 6, gate: 'SERVICE 07', name: 'Any Market', accent: PURPLE,
-    stat: '40+', statLabel: 'Export markets',
-    desc: 'We understand labelling requirements for 40+ markets. Your product, their regulations — fully handled by our documentation team.',
+    id: 6, gate: 'SERVICE 07', name: 'Export Compliance', accent: PURPLE,
+    stat: 'End-to-End', statLabel: 'Documentation',
+    desc: 'From phytosanitary certificates and fumigation records to Certificate of Analysis (CoA) and Bill of Lading, our documentation team manages frictionless customs clearance globally.',
   },
   {
-    id: 7, gate: 'SERVICE 08', name: 'IT & Tech Support', accent: '#2A6496',
-    stat: '24hr', statLabel: 'Setup turnaround',
-    desc: 'Our in-house IT team sets up product listings, barcode systems, EAN registration, and ordering workflows for your brand launch.',
+    id: 7, gate: 'SERVICE 08', name: 'IT & Onboarding', accent: '#2A6496',
+    stat: '24hr', statLabel: 'Setup',
+    desc: 'Our technology division manages GS1 barcode generation, automated EAN-13 allocations, and integrates supply chain EDI workflows to seamlessly onboard your SKUs into retail systems.',
   },
 ];
 
@@ -346,50 +346,89 @@ export default function PrivateLabelBlueprint() {
             </svg>
           </div>
 
-          {/* Detail panel */}
-          <div style={{ minHeight: 110, borderTop: '1.5px solid rgba(0,0,0,0.08)', background: '#fff', padding: 'clamp(20px,3vw,32px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {active === null ? (
-              <p style={{ fontFamily: 'Georgia,serif', fontSize: 15, color: INK_L, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>
-                Click any service room on the blueprint to view details.
-              </p>
-            ) : (
-              <div className="plb2-detail plb2-up" style={{ display: 'flex', gap: 40, width: '100%', maxWidth: 900, margin: '0 auto' }}>
-                <div className="plb2-detail-left" style={{ flexShrink: 0, width: 220, borderRight: `1px solid ${INK_LL}`, paddingRight: 28 }}>
-                  <div style={{ fontFamily: "'Courier New',monospace", fontSize: 10, letterSpacing: '0.15em', color: ZONES[active].accent, marginBottom: 6, fontWeight: 700 }}>
-                    {ZONES[active].gate}
-                  </div>
-                  <div style={{ fontFamily: 'Georgia,serif', fontSize: 'clamp(16px,1.8vw,22px)', fontWeight: 700, color: INK, lineHeight: 1.2, marginBottom: 14 }}>
-                    {ZONES[active].name}
-                  </div>
-                  <div style={{ fontFamily: "'Courier New',monospace", fontSize: 'clamp(22px,2.5vw,32px)', fontWeight: 700, color: ZONES[active].accent, lineHeight: 1 }}>
-                    {ZONES[active].stat}
-                  </div>
-                  <div style={{ fontFamily: "'Courier New',monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: INK_L, marginTop: 4 }}>
-                    {ZONES[active].statLabel}
-                  </div>
-                </div>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 16 }}>
-                  <p style={{ fontFamily: 'var(--font-sans),system-ui', fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(0,0,0,0.65)', lineHeight: 1.75, margin: 0 }}>
-                    {ZONES[active].desc}
-                  </p>
-                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                    <a href="#contact-form" style={{
-                      fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 600,
-                      background: ZONES[active].accent, color: '#fff', padding: '9px 22px',
-                      borderRadius: 999, textDecoration: 'none'
-                    }}>Request This →</a>
-                    <button onClick={()=>setActive(null)} style={{
-                      fontFamily: 'var(--font-sans)', fontSize: 12, color: INK_L,
-                      border: '1px solid rgba(0,0,0,0.1)', background: 'transparent',
-                      padding: '9px 16px', borderRadius: 999, cursor: 'pointer'
-                    }}>Close ×</button>
-                  </div>
-                </div>
-              </div>
-            )}
+          {/* Detail panel - Helper text */}
+          <div style={{ borderTop: '1.5px solid rgba(0,0,0,0.08)', background: '#fff', padding: '16px 24px', textAlign: 'center' }}>
+            <p style={{ fontFamily: 'var(--font-sans),system-ui', fontSize: 13, color: 'rgba(0,0,0,0.5)', margin: 0, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              {active === null ? '← Click any blueprint room to explore services →' : 'Click again or use cross to close'}
+            </p>
           </div>
         </div>
       </div>
+
+      {/* Floating Modal Overlay */}
+      {active !== null && ZONES[active] && (
+        <div className="school-modal-overlay" onClick={() => setActive(null)} style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 24, animation: 'school-slideUp 0.3s cubic-bezier(0.16,1,0.3,1)'
+        }}>
+          <div style={{
+            background: '#fff', borderRadius: 0, border: `2px solid ${INK}`,
+            padding: 'clamp(32px,5vw,48px)', maxWidth: 540, width: '100%',
+            boxShadow: `8px 8px 0px ${ZONES[active].accent}`,
+            animation: 'school-popup-reveal 0.3s cubic-bezier(0.16,1,0.3,1)',
+            position: 'relative',
+          }} onClick={e => e.stopPropagation()}>
+
+            <button onClick={() => setActive(null)} style={{
+              position: 'absolute', top: 20, right: 20, background: INK, border: 'none',
+              fontSize: 24, color: '#fff', cursor: 'pointer', width: 40, height: 40,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              transition: 'all 0.2s',
+            }}
+              onMouseEnter={e => (e.currentTarget.style.background = ZONES[active].accent)}
+              onMouseLeave={e => (e.currentTarget.style.background = INK)}
+            >×</button>
+
+            <div style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 24 }}>
+              <div style={{
+                flexShrink: 0, width: 60, height: 60,
+                background: '#fff', border: `2px solid ${INK}`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: 'monospace', fontSize: 22, fontWeight: 800, color: INK,
+                boxShadow: `4px 4px 0px ${ZONES[active].accent}`
+              }}>
+                0{ZONES[active].id + 1}
+              </div>
+              <div>
+                <div style={{ fontFamily: "'Courier New',monospace", fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: ZONES[active].accent, marginBottom: 6, fontWeight: 700 }}>
+                  {ZONES[active].gate}
+                </div>
+                <div style={{ fontFamily: 'Georgia,serif', fontSize: 'clamp(22px,3vw,28px)', fontWeight: 800, color: INK, lineHeight: 1.1 }}>
+                  {ZONES[active].name}
+                </div>
+              </div>
+            </div>
+            
+            <div style={{ display: 'flex', gap: 16, marginBottom: 20 }}>
+              <div>
+                 <div style={{ fontFamily: "'Courier New',monospace", fontSize: 'clamp(22px,2.5vw,32px)', fontWeight: 700, color: ZONES[active].accent, lineHeight: 1 }}>
+                    {ZONES[active].stat}
+                 </div>
+                 <div style={{ fontFamily: "'Courier New',monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: INK_L, marginTop: 4 }}>
+                    {ZONES[active].statLabel}
+                 </div>
+              </div>
+            </div>
+
+            <p style={{ fontFamily: 'var(--font-sans),system-ui', fontSize: 15, color: 'rgba(0,0,0,0.7)', lineHeight: 1.8, margin: '0 0 24px' }}>
+              {ZONES[active].desc}
+            </p>
+
+            <a href="#contact-form" onClick={() => setActive(null)} style={{
+              display: 'inline-flex', fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 600,
+              background: ZONES[active].accent, color: '#fff', padding: '10px 24px',
+              borderRadius: 999, textDecoration: 'none', transition: 'transform 0.2s'
+            }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; }}
+            >
+              Request This Service →
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

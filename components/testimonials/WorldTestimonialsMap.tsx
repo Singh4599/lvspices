@@ -9,19 +9,19 @@ const SANS  = 'var(--font-sans), Inter, system-ui, sans-serif';
 const MONO  = 'var(--font-mono), "JetBrains Mono", monospace';
 
 const STATS = [
-  { value: 40, suffix: '+', label: 'Countries Reached', sub: 'Across 6 continents', color: '#AC033B', pct: 0.82 },
-  { value: 50, suffix: '+', label: 'Years in Business', sub: 'Decades of expertise', color: '#1A3F6B', pct: 0.90 },
-  { value: 48, suffix: '+', label: 'Global Partners', sub: 'Brands that trust us', color: '#1A6B5A', pct: 0.75 },
-  { value: 99, suffix: '%', label: 'On-Time Delivery', sub: 'Across all shipments', color: '#C8860C', pct: 0.99 },
+  { value: 40, suffix: '+', label: 'Countries Exported', sub: 'Across 6 continents', color: '#AC033B', pct: 0.82 },
+  { value: 50, suffix: '+', label: 'Years of Expertise', sub: 'B2B Spice Manufacturing', color: '#1A3F6B', pct: 0.90 },
+  { value: 48, suffix: '+', label: 'Global OEM Partners', sub: 'FMCG & Retail Brands', color: '#1A6B5A', pct: 0.75 },
+  { value: 99, suffix: '%', label: 'Customs Clearance', sub: 'FSSAI & FDA Compliant', color: '#C8860C', pct: 0.99 },
 ];
 
 const QUOTES = [
-  { flag: '🇳🇿', country: 'New Zealand', role: 'Purchase Director', text: 'Consistently impressed by their professionalism and efficiency. Fast response times and commitment to excellence have made our partnership a seamless experience.' },
-  { flag: '🇺🇸', country: 'USA', role: 'Grocery Distributor', text: 'We are very pleased with the quality supplied by LV Spices. We sincerely appreciate your responsiveness and look forward to doing business with you for years to come.' },
-  { flag: '🇩🇪', country: 'Germany', role: 'FMCG Distributor', text: 'Quality and packaging were exceptional. We placed our annual contract within one month. LV Spices is now our exclusive spice supplier for the European market.' },
-  { flag: '🇦🇺', country: 'Australia', role: 'Health Food Brand', text: 'LV stands out for their traceability systems. Every batch comes with a full COA and farm-level records. That transparency is priceless for us.' },
-  { flag: '🇬🇧', country: 'UK', role: 'Retail Brand Owner', text: 'Their knowledge of UK and EU regulatory requirements is second to none among Indian exporters. Every shipment is perfectly documented.' },
-  { flag: '🇨🇦', country: 'Canada', role: 'Wholesale Distributor', text: 'We rely on dependable service from suppliers like LV Spices to help us keep our schedule and satisfy our customers. Thank you for your timely deliveries.' },
+  { flag: '🇳🇿', country: 'New Zealand', role: 'Purchase Director', text: 'LV Spices provides unmatched GC-MS lab reports and full traceability for every batch. Their commitment to BRCGS Grade AA standards makes them our premier import partner.' },
+  { flag: '🇺🇸', country: 'USA', role: 'Grocery Distributor', text: 'We require strict FDA HTST sterilization for our retail spice blends. LV Spices consistently delivers pathogen-free, highly aromatic cumin and chili with flawless documentation.' },
+  { flag: '🇩🇪', country: 'Germany', role: 'FMCG Distributor', text: 'Their cryogenic grinding technology retains up to 40% more volatile oils. We transitioned our entire European private label contract to LV Spices within one month of testing.' },
+  { flag: '🇦🇺', country: 'Australia', role: 'Health Food Brand', text: 'Aflatoxin and pesticide residue compliance is critical for us. LV Spices’ NABL-accredited in-house testing ensures every shipment clears Australian biosecurity instantly.' },
+  { flag: '🇬🇧', country: 'UK', role: 'Retail Brand Owner', text: 'Their expertise in EU maximum residue limits (MRLs) and optical Buhler Sortex cleaning is unparalleled. They are the most reliable Indian spice exporter we have worked with.' },
+  { flag: '🇨🇦', country: 'Canada', role: 'Wholesale Distributor', text: 'From seamless cold-chain logistics to perfectly executed OEM packaging, LV Spices ensures our bulk shipments arrive on time, every time. A truly dependable supply chain partner.' },
 ];
 
 /* ── Animated Ring SVG ──────────────────────────────────── */

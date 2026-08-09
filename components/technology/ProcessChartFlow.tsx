@@ -18,39 +18,39 @@ interface ProcessStep {
 }
 
 const GROUND_SPICE_STEPS: ProcessStep[] = [
-  { n: 1, label: 'Raw Material Receipt', emoji: '📦', color: '#1A6B3E', tag: 'Sourcing', desc: 'We purchase raw material from the local mandis or APMCs as well as outstation mandis. Material is sourced from producing centres during peak harvest to advantage freshness and colour.', extraLabel1: 'Note', extraValue1: 'Sourced directly from APMCs' },
-  { n: 2, label: 'Inspection', emoji: '🔬', color: '#C0392B', tag: 'Quality', desc: 'All incoming raw material undergoes rigorous quality inspection. Samples are tested in our in-house lab. Material not conforming to standards is immediately returned to the supplier.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
-  { n: 3, label: 'Unloading', emoji: '🏗️', color: '#2980B9', tag: 'Logistics', desc: 'Post-inspection approval, raw material is unloaded. Based on moisture content and product type, it is directed to either dry storage or cold storage.', extraLabel1: 'Destinations', extraValue1: 'Dry / Cold Storage' },
-  { n: 4, label: 'Issue to Production', emoji: '📋', color: '#F39C12', tag: 'Planning', desc: 'Approved stored material is formally issued to the production floor with documented work orders, ensuring full traceability at every production stage.' },
-  { n: 5, label: 'Weighing', emoji: '⚖️', color: '#8E44AD', tag: 'Process', desc: 'Every batch is precisely weighed before processing begins. Our digital weighing systems ensure exact quantities, eliminating variance in formulations.' },
-  { n: 6, label: 'Mixing', emoji: '🔄', color: '#27AE60', tag: 'Process', desc: 'Where required, ingredients are pre-mixed as per recipe specifications before entering the grinding line.', extraLabel1: 'Type', extraValue1: 'Optional' },
-  { n: 7, label: 'Feeding', emoji: '⚙️', color: '#D35400', tag: 'Process', desc: 'The spice material is fed into the grinding line via automated bucket conveyors — ensuring consistent, contamination-free material flow.', extraLabel1: 'Machine', extraValue1: 'Bucket Conveyor' },
-  { n: 8, label: '1st Grinding', emoji: '🌪️', color: '#C0392B', tag: 'Grinding', desc: 'First pass through our high-speed grinding mills. Particle size is monitored in real time to meet the target distribution.', extraLabel1: 'Machine', extraValue1: 'Screw Conveyor' },
-  { n: 9, label: '2nd Grinding', emoji: '🌪️', color: '#C0392B', tag: 'Grinding', desc: 'For premium fine powders, a second grinding pass achieves sub-500 micron particle size consistency.', extraLabel1: 'Type', extraValue1: 'Optional' },
-  { n: 10, label: '3rd Grinding', emoji: '🌪️', color: '#C0392B', tag: 'Grinding', desc: 'Ultra-fine applications may require a third grinding cycle for maximum powder fineness and homogeneity.', extraLabel1: 'Type', extraValue1: 'Optional' },
-  { n: 11, label: 'Blending', emoji: '🧪', color: '#2980B9', tag: 'Process', desc: 'All components are blended in stainless steel blenders. For spice blends, whole ingredients are incorporated as per the exact recipe. Essential oils added where required.', extraLabel1: 'Additives', extraValue1: 'Oil (if blended)' },
-  { n: 12, label: 'Vibroseiving', emoji: '🎛️', color: '#8E44AD', tag: 'Filtration', desc: 'Product passes through vibro-sieve machines to remove coarse particles, lumps, and any foreign material, ensuring uniformity.' },
-  { n: 13, label: 'Final Inspection', emoji: '🔬', color: '#C0392B', tag: 'Quality', desc: 'Final product inspection against physical, chemical, and microbiological specifications. Packing material is simultaneously received and inspected.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
-  { n: 14, label: 'Weighing', emoji: '⚖️', color: '#8E44AD', tag: 'Packing', desc: 'Approved product is weighed for packing. Packing materials undergo parallel inspection, storage, and printing as needed.' },
-  { n: 15, label: 'Bulk Packing', emoji: '🛍️', color: '#27AE60', tag: 'Packing', desc: 'Product is packed in bulk bags (25kg / 50kg) or primary packs as per customer specification. Automated filling ensures exact fill weights.' },
-  { n: 16, label: 'Tying', emoji: '🎗️', color: '#D35400', tag: 'Packing', desc: 'All bags are securely tied and sealed — multiple closure points ensure product integrity during transit.' },
-  { n: 17, label: 'Stitching', emoji: '🧵', color: '#F39C12', tag: 'Packing', desc: 'Jute/PP bags are machine-stitched for extra strength. Product is simultaneously prepared for dispatch scheduling.' },
-  { n: 18, label: 'Storage', emoji: '🏭', color: '#1A6B3E', tag: 'Logistics', desc: 'Finished goods are stored in our controlled warehouse. Containers are pre-fumigated with approved fumigants before loading.', extraLabel1: 'Note', extraValue1: 'Container Fumigation' },
-  { n: 19, label: 'Vehicle Inspection', emoji: '🚚', color: '#C0392B', tag: 'Quality', desc: 'Each vehicle undergoes inspection for cleanliness, structural integrity, and temperature conditions before loading begins.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
-  { n: 20, label: 'Loading / Stuffing', emoji: '🚢', color: '#2980B9', tag: 'Dispatch', desc: 'Products are loaded into containers with polysheet and craft paper lining on all walls. Dispatch from Mumbai Nhava Sheva / JNPT / Mundra for sailing.', extraLabel1: 'Ports', extraValue1: 'JNPT / Mundra' },
+  { n: 1, label: 'Raw Material Receipt', emoji: '📦', color: '#1A6B3E', tag: 'Sourcing', desc: 'Strategic procurement of premium raw spices directly from designated APMCs and producing centres during peak harvest windows, ensuring maximum volatile oil retention and ASTA color integrity.', extraLabel1: 'Note', extraValue1: 'Sourced directly from APMCs' },
+  { n: 2, label: 'Inspection', emoji: '🔬', color: '#C0392B', tag: 'Quality', desc: 'Rigorous multi-point quality sampling and in-house laboratory testing against ASTA/ISO standards. Non-compliant raw material is immediately quarantined and returned to supplier, ensuring zero defect entry.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
+  { n: 3, label: 'Unloading & Segregation', emoji: '🏗️', color: '#2980B9', tag: 'Logistics', desc: 'Post-approval unloading via mechanized conveyors. Material is intelligently segregated into ambient dry storage or temperature-controlled cold storage based on specific commodity moisture and volatile profiles.', extraLabel1: 'Destinations', extraValue1: 'Dry / Cold Storage' },
+  { n: 4, label: 'Issue to Production', emoji: '📋', color: '#F39C12', tag: 'Planning', desc: 'Formally documented issuance to the manufacturing floor using our ERP system. Guarantees 100% forward and backward traceability for every processed batch.', extraLabel1: 'System', extraValue1: 'ERP Traceability' },
+  { n: 5, label: 'Weighing', emoji: '⚖️', color: '#8E44AD', tag: 'Process', desc: 'Highly calibrated digital weighing of all constituent batches before processing begins, eliminating human variance and ensuring absolute adherence to proprietary client formulations.' },
+  { n: 6, label: 'Pre-Mixing', emoji: '🔄', color: '#27AE60', tag: 'Process', desc: 'For bespoke spice blends, raw whole ingredients undergo a precise pre-mixing phase in ribbon blenders, guaranteeing a homogenous feed into the milling line.', extraLabel1: 'Type', extraValue1: 'Optional' },
+  { n: 7, label: 'Automated Feeding', emoji: '⚙️', color: '#D35400', tag: 'Process', desc: 'Material is pneumatically or mechanically conveyed via enclosed bucket elevators into the milling circuit, preventing cross-contamination and maintaining a continuous, controlled feed rate.', extraLabel1: 'Machine', extraValue1: 'Bucket Conveyor' },
+  { n: 8, label: 'Primary Grinding', emoji: '🌪️', color: '#C0392B', tag: 'Grinding', desc: 'First-stage pulverization utilizing high-capacity hammer or pin mills equipped with water-cooling jackets to prevent heat degradation of essential oils and delicate flavour profiles.', extraLabel1: 'Machine', extraValue1: 'Water-Cooled Mill' },
+  { n: 9, label: 'Secondary Grinding', emoji: '🌪️', color: '#C0392B', tag: 'Grinding', desc: 'For premium applications requiring sub-500 micron consistency, a second controlled milling pass is executed, achieving precise Particle Size Distribution (PSD) targets.', extraLabel1: 'Type', extraValue1: 'Optional' },
+  { n: 10, label: 'Micro-Milling', emoji: '🌪️', color: '#C0392B', tag: 'Grinding', desc: 'Ultra-fine micro-milling for specialized industrial applications (e.g., instant soups, extruded snacks) requiring maximum powder fineness, solubility, and rapid flavour release.', extraLabel1: 'Type', extraValue1: 'Optional' },
+  { n: 11, label: 'Final Blending', emoji: '🧪', color: '#2980B9', tag: 'Process', desc: 'Ground ingredients are homogenized in large-capacity SS304/SS316 stainless steel ribbon or paddle blenders. Essential oleoresins or liquid extracts are evenly dispersed if mandated by the recipe.', extraLabel1: 'Additives', extraValue1: 'Oil (if blended)' },
+  { n: 12, label: 'Vibroseiving', emoji: '🎛️', color: '#8E44AD', tag: 'Filtration', desc: 'In-line gyration vibro-sifters equipped with precisely calibrated stainless steel mesh screens strictly enforce the final particle size and exclude any agglomerated lumps.', extraLabel1: 'Machine', extraValue1: 'Vibro-Sifter' },
+  { n: 13, label: 'Final QA Inspection', emoji: '🔬', color: '#C0392B', tag: 'Quality', desc: 'Comprehensive batch release testing (Microbiology, Chemical, Physical). The batch only proceeds to packing upon explicit sign-off from the QA Head. Packaging materials undergo parallel inspection.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
+  { n: 14, label: 'Pack Weighing', emoji: '⚖️', color: '#8E44AD', tag: 'Packing', desc: 'Cleared bulk product is metered through automated dosing weighers, ensuring exactly calibrated net weights for every industrial or retail packing unit.' },
+  { n: 15, label: 'Bulk Filling', emoji: '🛍️', color: '#27AE60', tag: 'Packing', desc: 'Automated packing into food-grade, multi-wall Kraft paper bags, PP bags, or custom aseptic liners (25kg / 50kg) depending on client transit specifications.' },
+  { n: 16, label: 'Hermetic Sealing', emoji: '🎗️', color: '#D35400', tag: 'Packing', desc: 'Inner liners are hermetically heat-sealed or securely tied to create a moisture-proof and oxygen-barrier microenvironment, safeguarding product shelf life.' },
+  { n: 17, label: 'Bag Stitching', emoji: '🧵', color: '#F39C12', tag: 'Packing', desc: 'Outer bags are securely machine-stitched. Traceability labels containing lot number, manufacturing date, expiry, and batch codes are automatically affixed to each bag.' },
+  { n: 18, label: 'Warehouse Storage', emoji: '🏭', color: '#1A6B3E', tag: 'Logistics', desc: 'Finished goods are safely palletized and stored in our pest-controlled, FSMA-compliant warehouse. Export containers are comprehensively fumigated prior to loading.', extraLabel1: 'Note', extraValue1: 'Container Fumigation' },
+  { n: 19, label: 'Vehicle Inspection', emoji: '🚚', color: '#C0392B', tag: 'Quality', desc: 'A mandatory 7-point hygiene, structural, and odour inspection is conducted on all shipping containers and trucks prior to authorizing loading operations.', extraLabel1: 'Decision', extraValue1: 'YES/NO' },
+  { n: 20, label: 'Loading & Dispatch', emoji: '🚢', color: '#2980B9', tag: 'Dispatch', desc: 'Containers are lined with protective polysheets and craft paper. Stuffed under continuous CCTV surveillance, then sealed for dispatch to global ports (Nhava Sheva, Mundra).', extraLabel1: 'Ports', extraValue1: 'JNPT / Mundra' },
 ];
 
 const WHOLE_SEEDS_STEPS: ProcessStep[] = [
-  { n: 1, label: 'Natural Whole Seeds', emoji: '🌱', color: '#1A6B3E', tag: 'Sourcing', desc: 'Premium natural whole seeds sourced from farms following Integrated Pest Management practices.' },
-  { n: 2, label: 'Seed Cleaning', emoji: '🧹', color: '#2980B9', tag: 'Process', desc: 'Initial cleaning removes dust, chaff, and gross impurities. Out-sorted material goes to the domestic immediate market.', extraLabel1: 'Note', extraValue1: 'Out Sort → Domestic' },
-  { n: 3, label: 'Seed Grading/Magnet', emoji: '🧲', color: '#8E44AD', tag: 'Process', desc: 'Three-stage grading with magnet application removes dead, immature seeds and ferrous metal contaminants ensuring only premium seeds proceed.' },
-  { n: 4, label: 'Drying', emoji: '☀️', color: '#F39C12', tag: 'Process', desc: 'Controlled sun drying or industrial drying to reduce moisture content to export-acceptable levels while preserving colour and volatile oil content.' },
-  { n: 5, label: 'Wet Hulling', emoji: '💦', color: '#3498DB', tag: 'Process', desc: 'Outer hull removed where required. Rejected material is redirected to the domestic market.', extraLabel1: 'Note', extraValue1: 'Reject → Domestic' },
-  { n: 6, label: 'Cleaning & Grading', emoji: '🎛️', color: '#27AE60', tag: 'Process', desc: 'Post-hulling second pass of cleaning and size grading on vibro-separators and gravity tables for export-quality selection.' },
-  { n: 7, label: 'Colour Sorting', emoji: '🌈', color: '#E74C3C', tag: 'Quality', desc: 'Advanced Z-series colour sorting machines with pre-packing magnets in place remove any colour-defective seeds and residual metal.', extraLabel1: 'Machine', extraValue1: 'Z-Series Sortex' },
-  { n: 8, label: 'Packing for Export', emoji: '🛍️', color: '#D35400', tag: 'Packing', desc: 'Sorted, graded product is packed in new jute bags / PP bags / vacuum packs per buyer specification. Each bag is labelled with lot/batch traceability codes.' },
-  { n: 9, label: 'SGS Sampling', emoji: '🔬', color: '#C0392B', tag: 'Quality', desc: 'Final random sampling by our quality team following SGS-equivalent methodology. Reports prepared for each consignment before shipment.', extraLabel1: 'Report', extraValue1: 'Before Shipment' },
-  { n: 10, label: 'Container Prep', emoji: '🚢', color: '#2980B9', tag: 'Dispatch', desc: 'Cleaning, fumigation & factory stuffing of containers. Polysheet & craft paper lined walls for all shipments. Dispatch from Mumbai Nhava Sheva / JNPT / Mundra.', extraLabel1: 'Ports', extraValue1: 'JNPT / Mundra' },
+  { n: 1, label: 'Natural Whole Seeds', emoji: '🌱', color: '#1A6B3E', tag: 'Sourcing', desc: 'Premium natural whole seeds procured directly from contracted farming clusters adhering strictly to Sustainable Agriculture and Integrated Pest Management (IPM) practices.' },
+  { n: 2, label: 'Primary Cleaning', emoji: '🧹', color: '#2980B9', tag: 'Process', desc: 'Initial mechanical screening to extract dust, chaff, stems, and gross foreign matter. Out-sorted secondary grades are safely redirected to domestic non-critical markets.', extraLabel1: 'Note', extraValue1: 'Out Sort → Domestic' },
+  { n: 3, label: 'Magnetic Grading', emoji: '🧲', color: '#8E44AD', tag: 'Process', desc: 'A rigorous three-stage mechanical grading process coupled with 10,000+ Gauss rare-earth magnets, ensuring the absolute eradication of dead seeds and ferrous metal contaminants.' },
+  { n: 4, label: 'Controlled Drying', emoji: '☀️', color: '#F39C12', tag: 'Process', desc: 'Optimized sun or low-heat industrial drying to carefully lower moisture content to highly stable export thresholds (e.g., <9%), preventing mould growth while protecting delicate volatile oils.' },
+  { n: 5, label: 'Wet Hulling', emoji: '💦', color: '#3498DB', tag: 'Process', desc: 'For applicable seeds (e.g., Sesame), the outer husk is cleanly removed via a specialized wet hulling process to enhance appearance, texture, and digestability for premium applications.', extraLabel1: 'Note', extraValue1: 'Reject → Domestic' },
+  { n: 6, label: 'Gravity Separation', emoji: '🎛️', color: '#27AE60', tag: 'Process', desc: 'Advanced specific-gravity separator tables isolate and remove light, immature, or damaged seeds that survived initial screening, elevating the batch to pure export-grade density.' },
+  { n: 7, label: 'Optical Sorting', emoji: '🌈', color: '#E74C3C', tag: 'Quality', desc: 'State-of-the-art Z-Series optical color sorters utilize high-resolution cameras to detect and instantly eject microscopically discoloured or defective seeds, ensuring 99.99% visual purity.', extraLabel1: 'Machine', extraValue1: 'Z-Series Sortex' },
+  { n: 8, label: 'Export Packing', emoji: '🛍️', color: '#D35400', tag: 'Packing', desc: 'The pristine sorted product is automatically weighed and packed into virgin jute, PP, or vacuum-sealed bags. Every unit receives an indelible ERP-generated traceability barcode.' },
+  { n: 9, label: 'Independent Sampling', emoji: '🔬', color: '#C0392B', tag: 'Quality', desc: 'Final comprehensive consignment sampling executed precisely to SGS and ASTA methodologies. Complete Certificate of Analysis (COA) is generated and validated prior to shipment release.', extraLabel1: 'Report', extraValue1: 'Pre-Shipment COA' },
+  { n: 10, label: 'Container Prep', emoji: '🚢', color: '#2980B9', tag: 'Dispatch', desc: 'Shipping containers are thoroughly cleaned, lined with moisture-barrier polysheets and kraft paper, stuffed under supervision, and formally sealed for global dispatch (Nhava Sheva/Mundra).', extraLabel1: 'Ports', extraValue1: 'JNPT / Mundra' },
 ];
 
 const CSS = `
@@ -359,44 +359,50 @@ export default function ProcessChartFlow() {
         </div>
       </div>
 
+      {/* Unified Global Floating Modal */}
       {activeStep && (
-        <div className="pc-modal-overlay" onClick={() => setActive(null)}>
-          <div onClick={e => e.stopPropagation()} style={{
-            background: '#fff', width: '100%', maxWidth: 460,
-            border: `2px solid ${INK}`,
-            boxShadow: `8px 8px 0px ${activeStep.color}`,
-            padding: 'clamp(24px, 4vw, 32px)',
-            position: 'relative'
-          }}>
-            <button onClick={() => setActive(null)} style={{
-              position: 'absolute', top: 16, right: 16,
-              background: 'transparent', border: 'none', cursor: 'pointer',
-              fontSize: 24, color: INK, padding: 8, lineHeight: 1
-            }}>×</button>
-
-            <div style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 24 }}>
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+        }} onClick={() => setActive(null)}>
+          <div style={{
+            background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+            padding:'clamp(32px,5vw,48px)', maxWidth:540, width:'100%',
+            boxShadow:`8px 8px 0px ${activeStep.color}`,
+            animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+            position:'relative',
+          }} onClick={e => e.stopPropagation()}>
+            <button onClick={()=>setActive(null)} style={{
+              position:'absolute', top:20, right:20, background:INK, border:'none',
+              fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+              display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+            }}
+              onMouseEnter={e=>(e.currentTarget.style.background=activeStep.color)}
+              onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+            >×</button>
+            <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
               <div style={{
-                flexShrink: 0, width: 60, height: 60,
-                background: '#fff', border: `2px solid ${INK}`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 28, boxShadow: `4px 4px 0px ${activeStep.color}`
+                flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                display:'flex', alignItems:'center', justifyContent:'center',
+                fontSize:26, color: activeStep.color, fontFamily:"'Courier New',monospace", fontWeight:800,
+                boxShadow:`4px 4px 0px ${activeStep.color}`
               }}>
                 {activeStep.emoji}
               </div>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: activeStep.color, marginBottom: 4, fontWeight: 700 }}>
-                  STAGE {String(activeStep.n).padStart(2, '0')} — {activeStep.tag}
+                <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:activeStep.color, marginBottom:6, fontWeight:700 }}>
+                  STAGE {String(activeStep.n).padStart(2, '0')} | {activeStep.tag}
                 </div>
-                <div style={{ fontFamily: 'var(--font-display,Georgia,serif)', fontSize: 24, fontWeight: 800, color: INK, lineHeight: 1.1 }}>
+                <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
                   {activeStep.label}
                 </div>
               </div>
             </div>
-
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 14, color: 'rgba(0,0,0,0.7)', lineHeight: 1.7, margin: '0 0 24px' }}>
+            <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:'0 0 24px' }}>
               {activeStep.desc}
             </p>
-
             {activeStep.extraLabel1 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#f5f5f5', border: `1px solid ${INK_L}`, padding: '12px 16px', boxShadow: `2px 2px 0px ${INK_L}` }}>
@@ -405,7 +411,6 @@ export default function ProcessChartFlow() {
                 </div>
               </div>
             )}
-
           </div>
         </div>
       )}

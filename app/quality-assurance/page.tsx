@@ -11,36 +11,36 @@ const CR = '#AC033B';
 // ── Data ─────────────────────────────────────────────────────────────────────
 
 const qaTests = [
-  { id: 'physical', label: 'Physical', tests: ['Moisture Content', 'Bulk Density', 'Particle Size Distribution', 'Mesh Analysis', 'Foreign Matter', 'Volatile Oil Content'] },
-  { id: 'chemical', label: 'Chemical', tests: ['Total Ash', 'Acid Insoluble Ash', 'Crude Fibre', 'Total Fat', 'Protein Content', 'pH Value', 'Heavy Metals'] },
-  { id: 'colour',   label: 'Colour & Sensory', tests: ['ASTA Colour Units', 'SHU (Capsaicin)', 'Curcumin Content', 'Essential Oil (GC)', 'Organoleptic Evaluation'] },
-  { id: 'micro',    label: 'Microbiological', tests: ['Total Plate Count', 'Yeast & Mould', 'E. coli', 'Salmonella', 'Aerobic Mesophilic Count'] },
-  { id: 'contam',   label: 'Contaminants', tests: ['Pesticide Residue (500+)', 'Mycotoxins (Aflatoxin B1,G1)', 'Ochratoxin A', 'Sudan Dyes', 'Allergens (14 major)'] },
-  { id: 'pack',     label: 'Packaging & Label', tests: ['Net Weight Verification', 'Sealing Strength', 'Pack Integrity Test', 'Label Accuracy', 'Shelf Life Validation'] },
+  { id: 'physical', label: 'Physical', tests: ['Moisture Content (Vacuum Oven Method)', 'Bulk Density (Tapped & Untapped)', 'Particle Size Distribution (PSD)', 'Mesh Analysis (Rotap Sieve)', 'Extraneous & Foreign Matter', 'Volatile Oil Content (Clevenger)'] },
+  { id: 'chemical', label: 'Chemical', tests: ['Total Ash (Muffle Furnace)', 'Acid Insoluble Ash', 'Crude Fibre (Fibretec)', 'Total Fat (Soxhlet)', 'Protein Content (Kjeldahl)', 'pH Value Validation', 'Heavy Metals (AAS/ICP-MS)'] },
+  { id: 'colour',   label: 'Colour & Sensory', tests: ['ASTA Colour Units (Spectrophotometry)', 'SHU / Capsaicin (HPLC Method)', 'Curcumin Content (HPLC)', 'Essential Oil Profiling (GC)', 'Organoleptic / Sensory Evaluation'] },
+  { id: 'micro',    label: 'Microbiological', tests: ['Total Plate Count (BAM/ISO)', 'Yeast & Mould', 'E. coli & Coliforms', 'Salmonella spp. (Rapid Test)', 'Aerobic Mesophilic Count'] },
+  { id: 'contam',   label: 'Contaminants', tests: ['Pesticide Residues (LC-MS/MS 500+)', 'Mycotoxins (Aflatoxin B1, B2, G1, G2)', 'Ochratoxin A (Fluorometry)', 'Illegal Dyes (Sudan I-IV)', 'Allergen Screening (14 Major)'] },
+  { id: 'pack',     label: 'Packaging & Label', tests: ['Net Weight Verification', 'Seal Integrity & Burst Strength', 'Modified Atmosphere (MAP) Check', 'Label Accuracy & Barcoding', 'Accelerated Shelf Life Validation'] },
 ];
 
 const certifications = [
-  { name: 'FSSAI',       desc: 'Food Safety Standards' },
-  { name: 'ISO 9001',    desc: 'Quality Management' },
-  { name: 'ISO 22000',   desc: 'Food Safety Mgmt' },
-  { name: 'FSSC 22000',  desc: 'GFSI-Recognised' },
-  { name: 'HACCP',       desc: 'Hazard Analysis' },
-  { name: 'NABL',        desc: 'ISO/IEC 17025 Lab' },
-  { name: 'US FDA',      desc: 'US Market Ready' },
-  { name: 'EU Compliant',desc: 'European Standards' },
-  { name: 'Spices Board',desc: 'India Certified' },
-  { name: 'APEDA',       desc: 'Agri Export Dev.' },
-  { name: 'BRC Grade AA',desc: 'British Retail Consortium' },
-  { name: 'Kosher',      desc: 'Kosher Certified' },
+  { name: 'BRCGS Grade AA', desc: 'Global Standard for Food Safety' },
+  { name: 'FSSC 22000',  desc: 'GFSI Recognized Certification' },
+  { name: 'ISO 22000:2018', desc: 'Food Safety Management' },
+  { name: 'ISO 9001:2015',  desc: 'Quality Management Systems' },
+  { name: 'US FDA',      desc: 'FSMA Compliant Facility' },
+  { name: 'NABL',        desc: 'ISO/IEC 17025 Accredited Lab' },
+  { name: 'HACCP',       desc: 'Hazard Analysis Critical Control' },
+  { name: 'EU Compliant',desc: 'Meets European Regulations' },
+  { name: 'Spices Board',desc: 'Govt. of India Certified' },
+  { name: 'APEDA',       desc: 'Agri Export Development' },
+  { name: 'Halal',       desc: 'Global Halal Certified' },
+  { name: 'Kosher',      desc: 'Kosher Certified Production' },
 ];
 
 const qaProcess = [
-  { num: '01', title: 'Raw Material Sampling',    desc: 'Each incoming lot sampled using AOAC/ISO protocols at multiple consignment points before unloading.' },
-  { num: '02', title: 'In-house Pre-screening',   desc: 'Physical parameters — moisture, colour, size — checked in our QC lab within 2 hours of receipt.' },
-  { num: '03', title: 'Third-party Lab Analysis', desc: 'Pesticide, mycotoxin, heavy metals & micro tests sent to 3 NABL-accredited external labs per lot.' },
-  { num: '04', title: 'QC Hold & Release',        desc: 'No material enters production without a full COA reviewed by the Head of QA. Zero exceptions.' },
-  { num: '05', title: 'In-process Monitoring',    desc: 'Sensors track temperature, moisture, particle size in real time. Any deviation triggers auto-hold.' },
-  { num: '06', title: 'Finished Goods Dispatch',  desc: 'Pre-shipment samples tested against customer spec sheet and destination-country regulations.' },
+  { num: '01', title: 'Raw Material Sampling',    desc: 'Rigorous multi-point sampling via AOAC/ISO standard protocols on all incoming lots prior to warehouse entry.' },
+  { num: '02', title: 'In-house Pre-screening',   desc: 'Rapid physical validation (moisture, bulk density, ASTA colour) within 2 hours of receipt in our advanced QC lab.' },
+  { num: '03', title: 'Third-party Lab Analysis', desc: 'Independent verification of 500+ pesticide residues, mycotoxins, and heavy metals by NABL-accredited ISO 17025 labs.' },
+  { num: '04', title: 'QC Hold & Release',        desc: 'Strict quarantine protocol. No lot enters production without a comprehensive COA reviewed by the Head of QA.' },
+  { num: '05', title: 'In-process Monitoring',    desc: 'Real-time telemetry tracks thermal profiles, moisture, and particle size during milling, preventing process deviations.' },
+  { num: '06', title: 'Finished Goods Dispatch',  desc: 'Final COA generation matching B2B client specifications and destination-country FDA/EU regulatory frameworks.' },
 ];
 
 // ── Interactive Test Panel ────────────────────────────────────────────────────

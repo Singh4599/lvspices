@@ -19,12 +19,12 @@ interface Station {
 }
 
 const STATIONS: Station[] = [
-  { id:1, icon:'🌶️', name:'Formulation Desk',      stat:'425+ Blends',      accent:'#8B4000', desc:'Our R&D team designs 50+ new formulations annually — from fusion spice blends to functional food ingredients. Every formulation starts with a sensory brief, a target ASTA colour, Scoville score, and moisture spec.' },
-  { id:2, icon:'🔬', name:'GC-MS Flavour Lab',      stat:'100s of Volatiles', accent:BLUE,     desc:'Gas Chromatography–Mass Spectrometry (GC-MS) allows us to identify and quantify hundreds of volatile flavour compounds in a single spice. This drives precise reformulation and exact flavour matching for private label customers.' },
-  { id:3, icon:'⚗️', name:'Process Optimisation',   stat:'0 SHU Loss',       accent:'#6B2D00', desc:'Continuous research into milling parameters, roasting profiles, and blending ratios to preserve colour, pungency and shelf life. Temperature deltas are critically controlled to ensure negligible SHU and ASTA colour loss.' },
-  { id:4, icon:'🌿', name:'Functional Ingredients',  stat:'Bioavailability+', accent:GREEN,    desc:'Research into curcumin bioavailability, piperine enhancement, and antioxidant-rich spice extracts for nutraceutical, pharmaceutical, and health-food applications — partnering with CFTRI, Mysore and IIT Food Tech Division.' },
-  { id:5, icon:'📊', name:'Sensory Panel Room',      stat:'QDA Driven',       accent:'#5E2D79', desc:'Expertly trained panellists score aroma, colour, heat level, mouthfeel, aftertaste, and overall acceptance. Quantitative Descriptive Analysis (QDA) and spider charts pinpoint exact improvement areas with scientific precision.' },
-  { id:6, icon:'✅', name:'Consumer Validation',     stat:'Market Ready',     accent:'#0A4D6E', desc:'For private label blends and major NPD launches, scaled consumer trials confirm market acceptability. Blind triangle tests, preference scores, and purchase intent surveys complete before any commercial sign-off.' },
+  { id:1, icon:'🌶️', name:'Formulation Desk',      stat:'425+ Blends',      accent:'#8B4000', desc:'Strategic formulation design for bespoke B2B spice blends. Every prototype begins with a detailed sensory brief, specifying target ASTA colour values, precise Scoville Heat Units (SHU), and maximum moisture thresholds for prolonged shelf life.' },
+  { id:2, icon:'🔬', name:'GC-MS Flavour Lab',      stat:'100s of Volatiles', accent:BLUE,     desc:'Advanced Gas Chromatography–Mass Spectrometry (GC-MS) profiling. We identify and quantify hundreds of critical volatile flavour compounds (e.g., piperine, capsaicin, cuminaldehyde) to achieve absolute batch-to-batch flavour matching.' },
+  { id:3, icon:'⚗️', name:'Process Optimisation',   stat:'0 SHU Loss',       accent:'#6B2D00', desc:'Iterative refinement of cryogenic and water-cooled milling parameters. We optimise rotor speeds and cooling deltas to ensure negligible degradation of essential oils, preserving maximum ASTA colour and intrinsic heat (SHU).' },
+  { id:4, icon:'🌿', name:'Functional Ingredients',  stat:'Bioavailability+', accent:GREEN,    desc:'Cutting-edge research into bioactive extraction and bioavailability enhancement (e.g., Curcumin complexes). Developed in strategic partnership with premier institutions like CFTRI and IIT Food Tech Division for the nutraceutical sector.' },
+  { id:5, icon:'📊', name:'Sensory Panel Room',      stat:'QDA Driven',       accent:'#5E2D79', desc:'Quantitative Descriptive Analysis (QDA) conducted by certified sensory panellists. Objective scoring of aroma intensity, colour vibrancy, pungency, mouthfeel, and aftertaste using statistically robust spider chart mapping.' },
+  { id:6, icon:'✅', name:'Consumer Validation',     stat:'Market Ready',     accent:'#0A4D6E', desc:'Pre-commercialisation consumer acceptability trials for major FMCG and Private Label NPDs (New Product Developments). Protocols include blind triangle testing, preference mapping, and purchase intent scaling before final FSMA sign-off.' },
 ];
 
 /* ── CSS ───────────────────────────────────────────────── */
@@ -352,33 +352,55 @@ export default function RnDLabDiagram() {
           </svg>
         </div>
 
-        {/* detail panel */}
-        <div style={{ minHeight:110, borderTop:'1.5px solid #D6CFC8', background:'#fff', padding:'24px 32px', display:'flex', alignItems:'center' }}>
-          {aS===null ? (
-            <div style={{ fontFamily:'Georgia,serif', fontSize:16, color:INK_L, fontStyle:'italic', margin:'0 auto' }}>
-              Click any R&D station to view its process details.
-            </div>
-          ) : (
-            <div key={active} className="rnd-slide" style={{ display:'flex', gap:40, width:'100%', maxWidth:1000, margin:'0 auto', alignItems:'flex-start', flexWrap:'wrap' }}>
-              <div style={{ flexShrink:0, width:240, borderRight:'1px solid rgba(0,0,0,0.07)', paddingRight:28 }}>
-                <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'.15em', color:aS.accent, marginBottom:8, fontWeight:700 }}>
-                  STATION 0{aS.id}
-                </div>
-                <div style={{ display:'flex', gap:8, alignItems:'center', marginBottom:6 }}>
-                  <span style={{ fontSize:24 }}>{aS.icon}</span>
-                  <div style={{ fontFamily:'Georgia,serif', fontSize:18, fontWeight:700, color:INK, lineHeight:1.1 }}>{aS.name}</div>
-                </div>
-                <div style={{ fontFamily:"'Courier New',monospace", fontSize:12, color:aS.accent, fontWeight:700 }}>{aS.stat}</div>
-              </div>
-              <div style={{ flex:1, minWidth:200 }}>
-                <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:14, color:'rgba(0,0,0,0.6)', lineHeight:1.78, margin:0 }}>
-                  {aS.desc}
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
       </div>
+      
+      {/* Unified Global Floating Modal */}
+      {aS && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+        }} onClick={() => setActive(null)}>
+          <div style={{
+            background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+            padding:'clamp(32px,5vw,48px)', maxWidth:540, width:'100%',
+            boxShadow:`8px 8px 0px ${aS.accent}`,
+            animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+            position:'relative',
+          }} onClick={e => e.stopPropagation()}>
+            <button onClick={()=>setActive(null)} style={{
+              position:'absolute', top:20, right:20, background:INK, border:'none',
+              fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+              display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+            }}
+              onMouseEnter={e=>(e.currentTarget.style.background=aS.accent)}
+              onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+            >×</button>
+            <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
+              <div style={{
+                flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                display:'flex', alignItems:'center', justifyContent:'center',
+                fontSize:26, color: aS.accent, fontFamily:"'Courier New',monospace", fontWeight:800,
+                boxShadow:`4px 4px 0px ${aS.accent}`
+              }}>
+                {aS.icon}
+              </div>
+              <div>
+                <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:aS.accent, marginBottom:6, fontWeight:700 }}>
+                  STATION 0{aS.id} | {aS.stat}
+                </div>
+                <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
+                  {aS.name}
+                </div>
+              </div>
+            </div>
+            <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:'0 0 24px' }}>
+              {aS.desc}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

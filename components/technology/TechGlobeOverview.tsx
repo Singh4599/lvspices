@@ -50,10 +50,10 @@ const GLOBE_CONFIG = {
 };
 
 const STATS = [
-  { val: '7', suffix: '+', label: 'Manufacturing Plants' },
-  { val: '80k', suffix: '+', label: 'Mts Annual Capacity' },
-  { val: '100k', suffix: '+', label: 'Sq.Ft. Built-up Area' },
-  { val: '40', suffix: '+', label: 'Export Countries' },
+  { val: '7', suffix: '+', label: 'BRCGS Grade AA Facilities' },
+  { val: '80k', suffix: '+', label: 'MT Annual Production' },
+  { val: '100k', suffix: '+', label: 'Sq.Ft. Clean Room Area' },
+  { val: '40', suffix: '+', label: 'Global Export Markets' },
 ];
 
 export default function TechGlobeOverview() {
@@ -103,7 +103,7 @@ export default function TechGlobeOverview() {
             From India to <span style={{ color: CR, fontStyle: 'italic' }}>40+ Nations</span>
           </h2>
           <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(12px,0.9vw,14px)', color: 'rgba(0,0,0,0.45)', maxWidth: 420, margin: '0 auto', lineHeight: 1.6 }}>
-            LV Spices exports premium processed spices to over 40 countries across 6 continents — each lot backed by our NABL-certified QA chain.
+            As India's premier B2B spice exporter, LV Spices delivers FDA and FSMA compliant bulk spices to 40+ countries. Every container is backed by our NABL-accredited LC-MS/MS testing for full pesticide and Aflatoxin clearance.
           </p>
         </div>
 

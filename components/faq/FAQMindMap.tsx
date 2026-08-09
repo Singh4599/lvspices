@@ -189,18 +189,15 @@ export default function FAQMindMap({ faqData }: { faqData: { category: string; f
     <div ref={containerRef} className="fmm-wrapper">
       <style>{CSS}</style>
 
-      {/* ── LEFT: Light WOW Blueprint Mind-Map ── */}
+      {/* ── CENTRAL: Light WOW Blueprint Mind-Map ── */}
       <div className="blueprint-light" style={{
-        flex: '1 1 100%', 
-        maxWidth: '100%',
-        padding: 'clamp(16px, 4vw, 32px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+        width: '100%', maxWidth: 800, margin: '0 auto',
+        padding: 'clamp(24px, 5vw, 48px)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
       }}>
         
         {/* Compact viewBox 400x400 naturally scales to fit phone screen perfectly without scrollbars */}
-        <svg viewBox="0 0 400 400" style={{ width: '100%', height: 'auto', maxWidth: 500, overflow: 'visible' }}>
+        <svg viewBox="0 0 400 400" style={{ width: '100%', height: 'auto', maxWidth: 500, overflow: 'visible', marginBottom: 24 }}>
           
           <defs>
             <filter id="glow-crimson" x="-50%" y="-50%" width="200%" height="200%">
@@ -272,15 +269,39 @@ export default function FAQMindMap({ faqData }: { faqData: { category: string; f
               </g>
             );
           })}
-
         </svg>
+
+        <p style={{ fontFamily: 'var(--font-sans),system-ui', fontSize: 13, color: 'rgba(0,0,0,0.5)', margin: 0, letterSpacing: '0.05em', textTransform: 'uppercase', textAlign: 'center' }}>
+          ← Click any node to explore FAQs →
+        </p>
       </div>
 
-      {/* ── RIGHT: Details Panel ── */}
-      <div className="fmm-panel" style={{ flex: '1 1 100%', minWidth: 280, padding: '12px 0' }}>
-        {activeNode && (
-          <div className="fmm-panel-content" style={{ padding: '0 clamp(8px, 3vw, 40px)' }}>
-            
+      {/* Floating Modal Overlay */}
+      {activeIdx !== -1 && activeNode && (
+        <div className="school-modal-overlay" onClick={() => setActiveIdx(-1)} style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 24, animation: 'school-slideUp 0.3s cubic-bezier(0.16,1,0.3,1)'
+        }}>
+          <div style={{
+            background: '#fff', borderRadius: 0, border: `2px solid ${INK}`,
+            padding: 'clamp(32px,5vw,48px)', maxWidth: 600, width: '100%', maxHeight: '90vh', overflowY: 'auto',
+            boxShadow: `8px 8px 0px ${CRIMSON}`,
+            animation: 'school-popup-reveal 0.3s cubic-bezier(0.16,1,0.3,1)',
+            position: 'relative',
+          }} onClick={e => e.stopPropagation()}>
+
+            <button onClick={() => setActiveIdx(-1)} style={{
+              position: 'absolute', top: 20, right: 20, background: INK, border: 'none',
+              fontSize: 24, color: '#fff', cursor: 'pointer', width: 40, height: 40,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              transition: 'all 0.2s', zIndex: 2,
+            }}
+              onMouseEnter={e => (e.currentTarget.style.background = CRIMSON)}
+              onMouseLeave={e => (e.currentTarget.style.background = INK)}
+            >×</button>
+
             <div style={{ marginBottom: 32 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                 <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(172,3,59,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>
@@ -290,7 +311,7 @@ export default function FAQMindMap({ faqData }: { faqData: { category: string; f
                   Knowledge Base
                 </div>
               </div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3vw, 40px)', fontWeight: 800, color: '#111', margin: 0, lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3vw, 40px)', fontWeight: 800, color: '#111', margin: 0, lineHeight: 1.1, letterSpacing: '-0.02em', paddingRight: 40 }}>
                 {activeNode.category}
               </h3>
             </div>
@@ -305,10 +326,9 @@ export default function FAQMindMap({ faqData }: { faqData: { category: string; f
                 />
               ))}
             </div>
-
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
     </div>
   );

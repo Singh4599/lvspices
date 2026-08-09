@@ -19,14 +19,14 @@ interface ZoneData {
 }
 
 const ZONES: ZoneData[] = [
-  { id:0, icon:'🏭', name:'Raw Material Intake', stat:'10,000+ MT',       accent:'#5E4A00', desc:'Secure offloading bays with automated sampling probes. All inbound materials undergo strict initial QA clearing before entering the pre-cleaning zone.' },
-  { id:1, icon:'🔍', name:'Sorting & Cleaning',  stat:'99.9% Purity',     accent:'#7B4E1B', desc:'Advanced optical and mechanical sorting lines featuring destoners, magnetic separators, and Buhler Sortex machines to remove any physical impurities.' },
-  { id:2, icon:'❄️', name:'Cryogenic Grinding',  stat:'-196°C Liquid N₂', accent: BLUE,     desc:'Temperature-controlled grinding preserves up to 40% more essential oils and volatile aromatics compared to standard ambient grinding.' },
-  { id:3, icon:'♨️', name:'Steam Sterilization', stat:'5-Log Reduction',  accent:'#5E0A0A', desc:'Continuous Flow sterilization reduces microbial load (salmonella, E. coli) while retaining color, flavor, and sensory profile.' },
-  { id:4, icon:'🧪', name:'NABL Accredited Lab', stat:'500+ Parameters',  accent: GREEN,    desc:'In-house ISO/IEC 17025 accredited laboratory conducting comprehensive physical, chemical, microbiological, and pesticide residue testing.' },
-  { id:5, icon:'📦', name:'Clean Room Packing',  stat:'Class 100K HEPA',  accent:'#1B4A2E', desc:'Automated Form-Fill-Seal (FFS) lines with Nitrogen flushing operate under strict positive-pressure HEPA-filtered clean room conditions.' },
-  { id:6, icon:'🧊', name:'Smart Warehouse',     stat:'Climate Monitored',accent:'#0A4D6E', desc:'FIFO-managed storage with continuous temperature and humidity monitoring ensures optimal shelf-life and freshness retention.' },
-  { id:7, icon:'🚢', name:'Export Dispatch',     stat:'40+ Countries',    accent: CRIMSON,  desc:'Container loading bays with strict tamper-evident sealing and final pre-shipment inspections for international regulatory compliance.' },
+  { id:0, icon:'🏭', name:'Raw Material Intake', stat:'10,000+ MT',       accent:'#5E4A00', desc:'All inbound raw spices are received in secure, weather-proof bays. We utilize automated pneumatic sampling probes to draw representative samples, ensuring zero contamination. Every lot is GPS-tagged and undergoes rigorous pre-cleaning QA clearance before entering the processing facility.' },
+  { id:1, icon:'🔍', name:'Sorting & Cleaning',  stat:'99.9% Purity',     accent:'#7B4E1B', desc:'We guarantee 99.9% physical purity through a multi-stage European automated line. Our facility utilizes advanced Vibro Sifters, precision De-Stoners, inline Magnetic Separators, and AI-powered Buhler Sortex optical sorting machines to surgically eliminate foreign matter.' },
+  { id:2, icon:'❄️', name:'Cryogenic Grinding',  stat:'-196°C Liquid N₂', accent: BLUE,     desc:'Unlike traditional heat-generating grinders, our proprietary liquid-nitrogen cryogenic grinding operates at an ultra-low -196°C. This state-of-the-art process locks in up to 40% more natural essential oils, volatile aromatics, and vibrant ASTA color.' },
+  { id:3, icon:'♨️', name:'Steam Sterilization', stat:'5-Log Reduction',  accent:'#5E0A0A', desc:'Ensuring absolute microbial safety with FDA-compliant Continuous Flow indirect steam sterilization. This high-temperature, short-time (HTST) process delivers a validated 5-log reduction in pathogens like Salmonella and E. coli without degrading flavor.' },
+  { id:4, icon:'🧪', name:'NABL Accredited Lab', stat:'500+ Parameters',  accent: GREEN,    desc:'Quality is verified at our in-house ISO/IEC 17025 (NABL) accredited laboratory. We conduct comprehensive physical, chemical, and microbiological analyses, including testing for heavy metals, aflatoxins, and pesticide residues using advanced LC-MS/MS equipment.' },
+  { id:5, icon:'📦', name:'Clean Room Packing',  stat:'Class 100K HEPA',  accent:'#1B4A2E', desc:'Final products are packed in isolated Class 100,000 HEPA-filtered clean rooms under strict positive air pressure. We employ automated Form-Fill-Seal (FFS) lines with Nitrogen flushing to displace oxygen and maximize shelf life.' },
+  { id:6, icon:'🧊', name:'Smart Warehouse',     stat:'Climate Monitored',accent:'#0A4D6E', desc:'Finished goods are stored in our climate-controlled smart warehouse. Continuous 24/7 temperature and humidity monitoring, paired with automated FIFO (First-In, First-Out) inventory management, guarantees optimal freshness retention.' },
+  { id:7, icon:'🚢', name:'Export Dispatch',     stat:'40+ Countries',    accent: CRIMSON,  desc:'We manage global B2B logistics natively. Container loading bays feature strict tamper-evident sealing and final pre-shipment inspections, ensuring full compliance with international regulations for export to 40+ countries.' },
 ];
 
 const CSS = `
@@ -259,33 +259,7 @@ export default function FactoryBlueprint() {
           </div>
         </div>
 
-        {/* BOTTOM DETAIL PANEL */}
-        <div style={{ height: 110, borderTop: `1.5px solid ${INK_L}`, background: '#fff', padding: '24px 32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {active === null ? (
-            <div style={{ fontFamily: 'Georgia,serif', fontSize: 16, color: INK_L, fontStyle: 'italic' }}>
-              Click any zone on the blueprint to view facility details.
-            </div>
-          ) : (
-            <div style={{ display: 'flex', gap: 40, width: '100%', maxWidth: 1000, margin: '0 auto', animation: 'slideUp 0.3s ease' }}>
-              <div style={{ flexShrink: 0, width: 240, borderRight: `1px solid ${INK_LL}`, paddingRight: 30 }}>
-                <div style={{ fontFamily: "'Courier New',monospace", fontSize: 11, letterSpacing: '0.14em', color: ZONES[active].accent, marginBottom: 8, fontWeight: 700 }}>
-                  ZONE 0{ZONES[active].id + 1}
-                </div>
-                <div style={{ fontFamily: 'Georgia,serif', fontSize: 22, fontWeight: 700, color: INK, lineHeight: 1.1 }}>
-                  {ZONES[active].name}
-                </div>
-              </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontFamily: "'Courier New',monospace", fontSize: 11, color: INK, fontWeight: 700, marginBottom: 8 }}>
-                  KEY METRIC: <span style={{ color: ZONES[active].accent }}>{ZONES[active].stat}</span>
-                </div>
-                <p style={{ fontFamily: 'var(--font-sans),system-ui', fontSize: 14, color: 'rgba(92,61,30,0.75)', lineHeight: 1.6, margin: 0 }}>
-                  {ZONES[active].desc}
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
+
       </div>
 
       {/* ─── MOBILE (ACCORDION VIEW) ─── */}
@@ -331,19 +305,60 @@ export default function FactoryBlueprint() {
                   </div>
                 </div>
 
-                {/* Content Body */}
-                {isActive && (
-                  <div style={{ padding: '0 16px 20px 16px', borderTop: `1px dashed ${INK_LL}`, marginTop: 4, paddingTop: 16 }}>
-                    <p style={{ fontFamily: 'var(--font-sans),system-ui', fontSize: 14, color: 'rgba(92,61,30,0.75)', lineHeight: 1.6, margin: 0 }}>
-                      {z.desc}
-                    </p>
-                  </div>
-                )}
+
               </div>
             );
           })}
         </div>
       </div>
+
+      {/* Unified Global Floating Modal */}
+      {active !== null && ZONES[active] && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+        }} onClick={() => setActive(null)}>
+          <div style={{
+            background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+            padding:'clamp(32px,5vw,48px)', maxWidth:540, width:'100%',
+            boxShadow:`8px 8px 0px ${ZONES[active].accent}`,
+            animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+            position:'relative',
+          }} onClick={e => e.stopPropagation()}>
+            <button onClick={()=>setActive(null)} style={{
+              position:'absolute', top:20, right:20, background:INK, border:'none',
+              fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+              display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+            }}
+              onMouseEnter={e=>(e.currentTarget.style.background=ZONES[active].accent)}
+              onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+            >×</button>
+            <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
+              <div style={{
+                flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                display:'flex', alignItems:'center', justifyContent:'center',
+                fontSize:26,
+                boxShadow:`4px 4px 0px ${ZONES[active].accent}`
+              }}>
+                {ZONES[active].icon}
+              </div>
+              <div>
+                <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:ZONES[active].accent, marginBottom:6, fontWeight:700 }}>
+                  ZONE 0{ZONES[active].id + 1} · {ZONES[active].stat}
+                </div>
+                <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
+                  {ZONES[active].name}
+                </div>
+              </div>
+            </div>
+            <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:0 }}>
+              {ZONES[active].desc}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

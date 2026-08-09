@@ -16,12 +16,12 @@ interface StationData {
 }
 
 const STATIONS: StationData[] = [
-  { id:1, icon:'🌾', name:'Seed Cleaning',        stat:'1–3 Tons / Hr',      accent:'#8B6914', desc:'Multi-deck vibro sieves remove farm admixtures, insect excreta, allergens, and ferrous/non-ferrous contaminants. Sifters, De-Stoners, Spirals, Gravity Separators, and A+ Multivision Sortex with online Metal Detectors.' },
-  { id:2, icon:'🔍', name:'Optical Sorting',       stat:'50,000 Seeds / Sec', accent:'#1A5FAB', desc:'High-speed camera arrays scan 50,000+ seeds per second. Discoloured, damaged or foreign grains are rejected via precision air ejectors in real-time — no human bias, zero compromise.' },
-  { id:3, icon:'🔥', name:'Drum Roasting',          stat:'4,000 Mts / Yr',    accent:'#C44B00', desc:'Precision temperature-controlled drum roasting at 4,000 mts/yr dedicated capacity. Develops complex flavour profiles while retaining ASTA colour and volatile oils.' },
-  { id:4, icon:'♨️', name:'Steam Sterilization',   stat:'5-Log Reduction',   accent:'#2E7D6E', desc:'Validated 5-log microbial reduction via indirect high-temperature steam. No chemicals, no compromise on organoleptic properties. Post-sterilization packaging in Class 100,000 HEPA clean room.' },
-  { id:5, icon:'❄️', name:'Cryogenic Grinding',    stat:'−196 °C',            accent:'#1A5FAB', desc:'Grinding at −196°C (liquid nitrogen temperature) preserves 40% more essential oils versus conventional ambient grinding — maintaining colour, aroma, and pungency at the highest level.' },
-  { id:6, icon:'⚙️', name:'CFG Technology',        stat:'FDA 21 CFR',         accent:CRIMSON,   desc:"India's most advanced Continuous Flow Grinding (CFG) system. Precision milling with inline quality monitoring, real-time sensor feedback, and FDA 21 CFR Part 117 FSMA validation." },
+  { id:1, icon:'🌾', name:'Seed Cleaning',        stat:'1–3 Tons / Hr',      accent:'#8B6914', desc:'Advanced multi-deck vibro sieves meticulously remove farm admixtures, allergens, and ferrous/non-ferrous contaminants. Our line utilizes gravity separators and A+ Multivision Sortex with inline Metal Detectors for absolute purity.' },
+  { id:2, icon:'🔍', name:'Optical Sorting',       stat:'50,000 Seeds / Sec', accent:'#1A5FAB', desc:'High-speed Buhler Sortex camera arrays scan 50,000+ seeds per second. Discoloured, damaged, or foreign grains are rejected via precision air ejectors in real-time, ensuring 99.9% product purity.' },
+  { id:3, icon:'🔥', name:'Drum Roasting',          stat:'4,000 Mts / Yr',    accent:'#C44B00', desc:'Precision temperature-controlled drum roasting at 4,000 MT/year capacity. This controlled thermal process develops complex, authentic flavor profiles while retaining maximum ASTA colour and essential volatile oils.' },
+  { id:4, icon:'♨️', name:'Steam Sterilization',   stat:'5-Log Reduction',   accent:'#2E7D6E', desc:'FDA-compliant, validated 5-log microbial reduction via indirect high-temperature steam (HTST). No chemical treatments used, preserving full organoleptic properties. Packed directly in Class 100,000 HEPA-filtered clean rooms.' },
+  { id:5, icon:'❄️', name:'Cryogenic Grinding',    stat:'−196 °C',            accent:'#1A5FAB', desc:'Milling at −196°C (liquid nitrogen temperature) preserves up to 40% more essential oils than conventional ambient grinding. This zero-oxidation process locks in color, peak aroma, and maximum pungency.' },
+  { id:6, icon:'⚙️', name:'CFG Technology',        stat:'FDA 21 CFR',         accent:CRIMSON,   desc:"India's most advanced Continuous Flow Grinding (CFG) systems. Precision micron-level milling equipped with inline quality monitoring, real-time sensor feedback, and full FDA FSMA validation compliance." },
 ];
 
 /* ═══════ CSS Keyframes ═══════════════════════════════════════════ */
@@ -354,60 +354,6 @@ export default function SpiceProcessingMachine() {
               <span className="scroll-hint" style={{ transform:'scaleX(-1)', display:'inline-block' }}>›</span>
             </div>
           </div>
-
-          {/* ── Info panel BELOW diagram — no overlap ── */}
-          {station && (
-            <div key={station.id} style={{
-              marginTop: 16,
-              background: '#FFFDF5',
-              border: `1.5px solid ${station.accent}`,
-              borderRadius: 16,
-              padding: 'clamp(20px,3vw,32px) clamp(22px,4vw,40px)',
-              boxShadow: `0 8px 32px rgba(0,0,0,0.1), 0 0 0 4px ${station.accent}18`,
-              animation: 'slideUp 0.35s cubic-bezier(0.16,1,0.3,1)',
-              display: 'flex',
-              gap: 24,
-              alignItems: 'flex-start',
-            }}>
-              {/* Step badge */}
-              <div style={{
-                flexShrink: 0,
-                width: 52, height: 52,
-                borderRadius: '50%',
-                background: station.accent,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'Georgia,serif', fontSize: 14, fontWeight: 800, color: '#fff',
-              }}>
-                0{station.id}
-              </div>
-              {/* Text */}
-              <div style={{ flex:1 }}>
-                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12 }}>
-                  <div>
-                    <div style={{ fontFamily:"'Courier New',monospace", fontSize:9, letterSpacing:'0.22em', textTransform:'uppercase', color:station.accent, marginBottom:6 }}>
-                      {station.stat}
-                    </div>
-                    <div style={{ fontFamily:'Georgia,serif', fontSize:'clamp(16px,1.8vw,22px)', fontWeight:700, color:INK, marginBottom:10, lineHeight:1.1 }}>
-                      {station.name}
-                    </div>
-                    <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:'clamp(13px,1vw,14.5px)', color:'rgba(92,61,30,0.7)', lineHeight:1.8, margin:0 }}>
-                      {station.desc}
-                    </p>
-                  </div>
-                  <button onClick={()=>setActive(null)} style={{
-                    flexShrink:0, background:'none', border:'1px solid rgba(92,61,30,0.18)', borderRadius:8,
-                    cursor:'pointer', padding:'6px 12px', fontFamily:"'Courier New',monospace",
-                    fontSize:10, color:INK_L, letterSpacing:'0.1em', transition:'all 0.2s', marginTop:2,
-                  }}
-                    onMouseEnter={e=>{(e.target as HTMLElement).style.background='rgba(92,61,30,0.05)';}}
-                    onMouseLeave={e=>{(e.target as HTMLElement).style.background='none';}}
-                  >
-                    ← BACK
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* ═══════════════════════════════════════════════════════
@@ -532,31 +478,54 @@ export default function SpiceProcessingMachine() {
               </div>
             ))}
           </div>
-
-          {/* Mobile info panel */}
-          {station && (
-            <div key={station.id} style={{
-              marginTop: 12,
-              background: '#FFFDF5',
-              border: `1.5px solid ${station.accent}`,
-              borderRadius: 14,
-              padding: '20px 22px',
-              boxShadow: `0 6px 24px rgba(0,0,0,0.09), 0 0 0 3px ${station.accent}15`,
-              animation: 'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
-            }}>
-              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10 }}>
-                <div>
-                  <div style={{ fontFamily:"'Courier New',monospace", fontSize:8, letterSpacing:'0.2em', color:station.accent, marginBottom:4 }}>STEP 0{station.id} · {station.stat}</div>
-                  <div style={{ fontFamily:'Georgia,serif', fontSize:18, fontWeight:700, color:INK }}>{station.name}</div>
+        </div>
+        {/* Unified Global Floating Modal */}
+        {station !== null && (
+          <div style={{
+            position: 'fixed', inset: 0, zIndex: 99999,
+            background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+          }} onClick={() => setActive(null)}>
+            <div style={{
+              background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+              padding:'clamp(32px,5vw,48px)', maxWidth:540, width:'100%',
+              boxShadow:`8px 8px 0px ${station.accent}`,
+              animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+              position:'relative',
+            }} onClick={e => e.stopPropagation()}>
+              <button onClick={()=>setActive(null)} style={{
+                position:'absolute', top:20, right:20, background:INK, border:'none',
+                fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+                display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+              }}
+                onMouseEnter={e=>(e.currentTarget.style.background=station.accent)}
+                onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+              >×</button>
+              <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
+                <div style={{
+                  flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                  display:'flex', alignItems:'center', justifyContent:'center',
+                  fontSize:26, color: station.accent, fontFamily:"'Courier New',monospace", fontWeight:800,
+                  boxShadow:`4px 4px 0px ${station.accent}`
+                }}>
+                  {String(station.id).padStart(2, '0')}
                 </div>
-                <button onClick={()=>setActive(null)} style={{ background:'none', border:'none', cursor:'pointer', fontSize:22, color:INK_L }}>×</button>
+                <div>
+                  <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:station.accent, marginBottom:6, fontWeight:700 }}>
+                    {station.stat}
+                  </div>
+                  <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
+                    {station.name}
+                  </div>
+                </div>
               </div>
-              <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:13.5, color:'rgba(92,61,30,0.68)', lineHeight:1.8, margin:0 }}>
+              <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:'0 0 24px' }}>
                 {station.desc}
               </p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
       </div>
     </section>

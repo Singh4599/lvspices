@@ -23,31 +23,31 @@ interface LabTest {
 
 const TESTS: LabTest[] = [
   // CHEMICAL
-  { n: 1, category: 'CHEMICAL', id: 'color', name: 'Colour in Chilli', emoji: '🌶', color: '#C0392B', tag: 'ASTA', desc: 'Characterises the colour of the moisture-free fruits of the species Capsicum by the presence of pigments such as chlorophyll and carotenoids. Measured using ASTA method.', extraLabel1: 'Unit', extraValue1: 'ASTA Units', extraLabel2: 'Range', extraValue2: '80–200 ASTA' },
-  { n: 2, category: 'CHEMICAL', id: 'capsaicin', name: 'Capsaicin', emoji: '🔥', color: '#E67E22', tag: 'Heat', desc: 'The pungency of chilli can be expressed in Scoville heat units and traces of allied chemicals can be objectively confirmed by extracting the capsaicin content.', extraLabel1: 'Unit', extraValue1: 'Scoville / %', extraLabel2: 'Range', extraValue2: '0.1–2.0%' },
-  { n: 3, category: 'CHEMICAL', id: 'moisture', name: 'Moisture', emoji: '💧', color: '#2980B9', tag: 'Water', desc: 'Water content is a measure of the quantity of water contained in a material. Crucial for shelf life, mould prevention, and microbial stability.', extraLabel1: 'Unit', extraValue1: '% w/w', extraLabel2: 'Range', extraValue2: '≤12%' },
-  { n: 4, category: 'CHEMICAL', id: 'totalash', name: 'Total Ash', emoji: '⚗️', color: '#7F8C8D', tag: 'Mineral', desc: 'Total ash content is a measure of the total amount of minerals present within a food, indicating purity and absence of adulteration.', extraLabel1: 'Unit', extraValue1: '% w/w', extraLabel2: 'Range', extraValue2: '≤8%' },
-  { n: 5, category: 'CHEMICAL', id: 'curcuminoid', name: 'Curcuminoid', emoji: '🌿', color: '#F39C12', tag: 'Active', desc: 'Curcuminoids are natural compounds that are responsible for the bright yellow colour of turmeric — the key active bioactive compounds with antioxidant properties.', extraLabel1: 'Unit', extraValue1: '% w/w', extraLabel2: 'Range', extraValue2: '2–5%' },
-  { n: 6, category: 'CHEMICAL', id: 'piperine', name: 'Piperine', emoji: '🫙', color: '#2C3E50', tag: 'Alkaloid', desc: 'A pungent alkaloid that is concentrated in the outer skin of pepper berries. Piperine is the primary active compound giving black pepper its characteristic heat.', extraLabel1: 'Unit', extraValue1: '% w/w', extraLabel2: 'Range', extraValue2: '4–9%' },
-  { n: 7, category: 'CHEMICAL', id: 'volatile', name: 'Volatile Oil', emoji: '🧴', color: '#1ABC9C', tag: 'Aroma', desc: 'A measure of the flavour and aroma of the spices. Essential oils carry the characteristic fragrance and are key quality determinants for buyers.', extraLabel1: 'Unit', extraValue1: 'ml/100g', extraLabel2: 'Range', extraValue2: '1–4 ml/100g' },
-  { n: 8, category: 'CHEMICAL', id: 'crudefiber', name: 'Crude Fiber', emoji: '🌾', color: '#8E44AD', tag: 'Fiber', desc: 'The insoluble residue of an acid hydrolysis, followed by an alkali treatment. Crude fibre of spices mainly contains true cellulose and lignin.', extraLabel1: 'Unit', extraValue1: '% w/w', extraLabel2: 'Range', extraValue2: '15–30%' },
-  { n: 9, category: 'CHEMICAL', id: 'particle', name: 'Particle Size', emoji: '🔬', color: '#16A085', tag: 'Sieve', desc: 'An index indicating what size of particles make up a given volume. Ensures powder particle density is within standard limits for proper dispersion in recipes.', extraLabel1: 'Unit', extraValue1: 'μm', extraLabel2: 'Range', extraValue2: '< 500 μm' },
+  { n: 1, category: 'CHEMICAL', id: 'color', name: 'Colour in Chilli', emoji: '🌶', color: '#C0392B', tag: 'ASTA', desc: 'Precise spectrophotometric measurement of extractable colour (chlorophylls, carotenoids) in Capsicum species using globally recognized ASTA 20.1 methods to guarantee vibrant, consistent B2B product profiles.', extraLabel1: 'Method', extraValue1: 'ASTA 20.1', extraLabel2: 'Range', extraValue2: '80–200 ASTA' },
+  { n: 2, category: 'CHEMICAL', id: 'capsaicin', name: 'Capsaicin (Heat)', emoji: '🔥', color: '#E67E22', tag: 'Pungency', desc: 'Quantitative High-Performance Liquid Chromatography (HPLC) profiling of capsaicinoids to precisely calibrate Scoville Heat Units (SHU), ensuring uniform pungency for demanding culinary formulations.', extraLabel1: 'Method', extraValue1: 'HPLC (ASTA 21.3)', extraLabel2: 'Range', extraValue2: '0.1–2.0%' },
+  { n: 3, category: 'CHEMICAL', id: 'moisture', name: 'Moisture', emoji: '💧', color: '#2980B9', tag: 'Stability', desc: 'Accurate moisture and volatile matter determination via vacuum oven methods, critical for preventing microbial proliferation and maximizing shelf-life stability in bulk spice commodities.', extraLabel1: 'Method', extraValue1: 'Vacuum Oven', extraLabel2: 'Limit', extraValue2: '≤ 12% w/w' },
+  { n: 4, category: 'CHEMICAL', id: 'totalash', name: 'Total Ash', emoji: '⚗️', color: '#7F8C8D', tag: 'Purity', desc: 'Gravimetric determination of total mineral ash following complete incineration. A critical quality index proving the absolute absence of inorganic adulterants or extraneous mineral matter.', extraLabel1: 'Method', extraValue1: 'Gravimetric', extraLabel2: 'Limit', extraValue2: '≤ 8% w/w' },
+  { n: 5, category: 'CHEMICAL', id: 'curcuminoid', name: 'Curcuminoid', emoji: '🌿', color: '#F39C12', tag: 'Bioactive', desc: 'Spectrophotometric and chromatographic quantification of principal curcuminoids in turmeric, certifying the concentration of essential bioactive and antioxidant components for nutraceutical buyers.', extraLabel1: 'Method', extraValue1: 'Spectrophotometry', extraLabel2: 'Range', extraValue2: '2–5% w/w' },
+  { n: 6, category: 'CHEMICAL', id: 'piperine', name: 'Piperine', emoji: '🫙', color: '#2C3E50', tag: 'Alkaloid', desc: 'Rigorous extraction and HPLC analysis of piperine alkaloid content in black pepper, verifying the authentic bite and characteristic heat profile demanded by premium global markets.', extraLabel1: 'Method', extraValue1: 'HPLC', extraLabel2: 'Range', extraValue2: '4–9% w/w' },
+  { n: 7, category: 'CHEMICAL', id: 'volatile', name: 'Volatile Oil', emoji: '🧴', color: '#1ABC9C', tag: 'Aroma', desc: 'Hydrodistillation using Clevenger apparatus to precisely measure volatile (essential) oil content, guaranteeing the potent aroma and volatile flavor retention of our ground and whole spices.', extraLabel1: 'Method', extraValue1: 'Hydrodistillation', extraLabel2: 'Range', extraValue2: '1–4 ml/100g' },
+  { n: 8, category: 'CHEMICAL', id: 'crudefiber', name: 'Crude Fiber', emoji: '🌾', color: '#8E44AD', tag: 'Fiber', desc: 'Quantitative analysis of insoluble cellulose and lignin residue post acid-alkali hydrolysis, an essential parameter for determining true spice purity and detecting exhausted matrix adulteration.', extraLabel1: 'Method', extraValue1: 'Hydrolysis', extraLabel2: 'Range', extraValue2: '15–30% w/w' },
+  { n: 9, category: 'CHEMICAL', id: 'particle', name: 'Particle Size', emoji: '🔬', color: '#16A085', tag: 'Sieve', desc: 'Advanced Particle Size Distribution (PSD) analysis via mechanical sieve shakers to ensure precise granulation thresholds, enabling optimal dispersion and solubility in industrial food processing.', extraLabel1: 'Method', extraValue1: 'Ro-Tap Sieve', extraLabel2: 'Range', extraValue2: 'Micron Specific' },
   
   // MICROBIOLOGY
-  { n: 10, category: 'MICROBIOLOGY', id: 'salmonella', name: 'Salmonella', emoji: '🦠', color: '#C0392B', tag: 'Pathogen', desc: 'Food poisoning caused by infection with the Salmonella bacteria. Micro testing in products provides critical safety assurance against ingestion of contaminated food.', extraLabel1: 'Standard', extraValue1: 'Absent / 25g', extraLabel2: 'Severity', extraValue2: 'Critical' },
-  { n: 11, category: 'MICROBIOLOGY', id: 'moulds', name: 'Moulds', emoji: '🍄', color: '#E67E22', tag: 'Fungi', desc: 'Cause biodegradation of natural materials, which can be prevented when it is known where and how mould develops in food processing conditions and settings.', extraLabel1: 'Standard', extraValue1: '≤ 10⁴ CFU/g', extraLabel2: 'Severity', extraValue2: 'High' },
-  { n: 12, category: 'MICROBIOLOGY', id: 'ecoli', name: 'E. Coli', emoji: '🔴', color: '#C0392B', tag: 'Pathogen', desc: 'Can cause serious illness in humans. Infection causes symptoms and signs such as nausea, bloody diarrhoea, stomach cramps, vomiting, and occasionally fever.', extraLabel1: 'Standard', extraValue1: 'Absent / g', extraLabel2: 'Severity', extraValue2: 'Critical' },
-  { n: 13, category: 'MICROBIOLOGY', id: 'coliforms', name: 'Coliforms', emoji: '🔵', color: '#2980B9', tag: 'Indicator', desc: 'Group of bacteria that are used as indicators of the potential presence of pathogens, viruses, or parasites in a sample. Indicator organism for sanitation.', extraLabel1: 'Standard', extraValue1: '≤ 10 MPN/g', extraLabel2: 'Severity', extraValue2: 'Moderate' },
-  { n: 14, category: 'MICROBIOLOGY', id: 'tvc', name: 'Total Viable Count', emoji: '🧫', color: '#2980B9', tag: 'Bioburden', desc: 'This is a count for the number of bacteria, fungi, yeast & mould that are capable of growing and multiplying under appropriate and standard conditions.', extraLabel1: 'Standard', extraValue1: '≤ 10⁵ CFU/g', extraLabel2: 'Severity', extraValue2: 'Moderate' },
-  { n: 15, category: 'MICROBIOLOGY', id: 'others', name: 'Other Micro', emoji: '⚠️', color: '#1ABC9C', tag: 'Misc', desc: 'Yeast and fungi are commonly found on soil and surfaces. Other micro-organisms such as mites such as Acarus on bird surfaces and on top of soil nutrients.', extraLabel1: 'Standard', extraValue1: 'As per ASTA', extraLabel2: 'Severity', extraValue2: 'Low' },
+  { n: 10, category: 'MICROBIOLOGY', id: 'salmonella', name: 'Salmonella spp.', emoji: '🦠', color: '#C0392B', tag: 'Pathogen', desc: 'Stringent zero-tolerance detection of Salmonella using ISO 6579 / BAM methods. Represents a non-negotiable critical control point in preventing pathogenic adulteration in ready-to-eat supply chains.', extraLabel1: 'Standard', extraValue1: 'Absent / 25g', extraLabel2: 'Severity', extraValue2: 'Critical' },
+  { n: 11, category: 'MICROBIOLOGY', id: 'moulds', name: 'Yeast & Mould', emoji: '🍄', color: '#E67E22', tag: 'Fungi', desc: 'Quantitative enumeration of viable yeast and mould colonies. Direct correlation to storage hygiene, raw material integrity, and long-term biodeterioration prevention.', extraLabel1: 'Standard', extraValue1: '≤ 10⁴ CFU/g', extraLabel2: 'Severity', extraValue2: 'High' },
+  { n: 12, category: 'MICROBIOLOGY', id: 'ecoli', name: 'E. Coli', emoji: '🔴', color: '#C0392B', tag: 'Pathogen', desc: 'Strict screening for Escherichia coli utilizing ISO 16649 guidelines, acting as the primary indicator for faecal contamination and safeguarding against severe foodborne illness.', extraLabel1: 'Standard', extraValue1: 'Absent / g', extraLabel2: 'Severity', extraValue2: 'Critical' },
+  { n: 13, category: 'MICROBIOLOGY', id: 'coliforms', name: 'Coliforms', emoji: '🔵', color: '#2980B9', tag: 'Indicator', desc: 'Detection and Most Probable Number (MPN) enumeration of Coliform bacteria. Serves as a vital proxy for assessing overall plant sanitation and processing hygiene efficacy.', extraLabel1: 'Standard', extraValue1: '≤ 10 MPN/g', extraLabel2: 'Severity', extraValue2: 'Moderate' },
+  { n: 14, category: 'MICROBIOLOGY', id: 'tvc', name: 'Total Plate Count', emoji: '🧫', color: '#2980B9', tag: 'Bioburden', desc: 'Aerobic Plate Count (APC) assessment to determine the total bioburden of the spice matrix, validating the 5-log microbial reduction achieved by our advanced steam sterilization lines.', extraLabel1: 'Standard', extraValue1: '≤ 10⁵ CFU/g', extraLabel2: 'Severity', extraValue2: 'Moderate' },
+  { n: 15, category: 'MICROBIOLOGY', id: 'others', name: 'Staph. Aureus', emoji: '⚠️', color: '#1ABC9C', tag: 'Pathogen', desc: 'Targeted screening for enterotoxin-producing coagulase-positive Staphylococci, ensuring strict personnel hygiene standards and mitigating cross-contamination during handling.', extraLabel1: 'Standard', extraValue1: 'Absent / g', extraLabel2: 'Severity', extraValue2: 'High' },
 
   // PESTICIDES
-  { n: 16, category: 'PESTICIDE', id: 'aflatoxin', name: 'Aflatoxins B1, B2', emoji: '⚗️', color: '#7B1FA2', tag: 'Mycotoxin', desc: 'Naturally occurring mycotoxins produced by Aspergillus flavus and Aspergillus parasiticus. Aflatoxin B1 is among the most carcinogenic substances known.', extraLabel1: 'Limit', extraValue1: '≤ 10 ppb', extraLabel2: 'Class', extraValue2: 'Mycotoxin' },
-  { n: 17, category: 'PESTICIDE', id: 'organochloro', name: 'Organochlorine', emoji: '🧪', color: '#2E7D32', tag: 'Pesticide', desc: 'An organic compound combined with chlorinated aromatic molecules. They are used primarily as an alternative to chlorinated hydrocarbons that persist in the environment.', extraLabel1: 'Limit', extraValue1: '≤ 0.05 mg/kg', extraLabel2: 'Class', extraValue2: 'Pesticide' },
-  { n: 18, category: 'PESTICIDE', id: 'organophos', name: 'Organophosphorous', emoji: '🔬', color: '#2E7D32', tag: 'Pesticide', desc: 'Used primarily as insect pest control as well as an alternative to chlorinated hydrocarbons that persist in the environment.', extraLabel1: 'Limit', extraValue1: '≤ 0.05 mg/kg', extraLabel2: 'Class', extraValue2: 'Pesticide' },
-  { n: 19, category: 'PESTICIDE', id: 'pesticide', name: 'Pesticide Panels', emoji: '🌱', color: '#2E7D32', tag: 'Screening', desc: 'A substance used for destroying insects or other organisms harmful to cultivated plants or to animals. EU MRLs are strictly adhered to for all export shipments.', extraLabel1: 'Limit', extraValue1: 'EU MRL', extraLabel2: 'Class', extraValue2: 'Pesticide' },
-  { n: 20, category: 'PESTICIDE', id: 'mycotoxins', name: 'Other Mycotoxins', emoji: '🧫', color: '#7B1FA2', tag: 'Mycotoxin', desc: 'Secondary metabolites produced by micro-organisms that are capable of causing disease and death in humans, animals, and other organisms.', extraLabel1: 'Limit', extraValue1: 'EC 1881/2006', extraLabel2: 'Class', extraValue2: 'Mycotoxin' },
-  { n: 21, category: 'PESTICIDE', id: 'ochratoxin', name: 'Ochratoxin A', emoji: '⚠️', color: '#7B1FA2', tag: 'Mycotoxin', desc: 'Ochratoxin A (OTA) is a naturally occurring mycotoxic compound found in a wide variety of agricultural commodities worldwide — particularly dried spices.', extraLabel1: 'Limit', extraValue1: '≤ 30 μg/kg', extraLabel2: 'Class', extraValue2: 'Mycotoxin' },
+  { n: 16, category: 'PESTICIDE', id: 'aflatoxin', name: 'Aflatoxins B1, B2', emoji: '⚗️', color: '#7B1FA2', tag: 'Mycotoxin', desc: 'High-sensitivity LC-MS/MS quantification of carcinogenic Aflatoxins (B1, B2, G1, G2), guaranteeing absolute compliance with the strictest EU and US FDA mycotoxin thresholds.', extraLabel1: 'Method', extraValue1: 'LC-MS/MS', extraLabel2: 'Limit', extraValue2: '≤ 10 ppb' },
+  { n: 17, category: 'PESTICIDE', id: 'organochloro', name: 'Organochlorine', emoji: '🧪', color: '#2E7D32', tag: 'Residue', desc: 'Comprehensive GC-MS screening for persistent Organochlorine pesticide residues, ensuring export shipments are completely free from prohibited environmental contaminants.', extraLabel1: 'Method', extraValue1: 'GC-MS', extraLabel2: 'Limit', extraValue2: '≤ 0.05 mg/kg' },
+  { n: 18, category: 'PESTICIDE', id: 'organophos', name: 'Organophosphorous', emoji: '🔬', color: '#2E7D32', tag: 'Residue', desc: 'Rigorous multi-residue analysis targeting Organophosphorus compounds, utilizing advanced mass spectrometry to enforce stringent European MRL (Maximum Residue Limit) compliance.', extraLabel1: 'Method', extraValue1: 'GC-MS/MS', extraLabel2: 'Limit', extraValue2: '≤ 0.05 mg/kg' },
+  { n: 19, category: 'PESTICIDE', id: 'pesticide', name: '500+ MRL Panel', emoji: '🌱', color: '#2E7D32', tag: 'Screening', desc: 'Expansive QuEChERS multi-residue extraction followed by LC-MS/MS and GC-MS/MS screening for over 500 pesticides, certifying flawless adherence to global B2B supply chain MRLs.', extraLabel1: 'Scope', extraValue1: '500+ Compounds', extraLabel2: 'Standard', extraValue2: 'EU MRL' },
+  { n: 20, category: 'PESTICIDE', id: 'sudan', name: 'Sudan Dyes', emoji: '🎨', color: '#7B1FA2', tag: 'Adulterant', desc: 'Highly sensitive liquid chromatography detection of illicit synthetic red dyes (Sudan I-IV), offering clients an impenetrable guarantee of 100% natural, unadulterated spice color.', extraLabel1: 'Method', extraValue1: 'LC-MS/MS', extraLabel2: 'Limit', extraValue2: 'Absent' },
+  { n: 21, category: 'PESTICIDE', id: 'ochratoxin', name: 'Ochratoxin A', emoji: '⚠️', color: '#7B1FA2', tag: 'Mycotoxin', desc: 'Precise quantification of Ochratoxin A (OTA) utilizing immunoaffinity column clean-up and HPLC fluorescence detection, critical for securing EU clearance for premium dried spices.', extraLabel1: 'Method', extraValue1: 'HPLC-FLD', extraLabel2: 'Limit', extraValue2: '≤ 15 μg/kg' },
 ];
 
 const CSS = `
@@ -342,45 +342,50 @@ export default function AnalyticalLabFlow() {
         </div>
       </div>
 
-      {/* Modal Popup */}
+      {/* Unified Global Floating Modal */}
       {test && (
-        <div className="lab-modal-overlay" onClick={() => setActive(null)}>
-          <div onClick={e => e.stopPropagation()} style={{
-            background: '#fff', width: '100%', maxWidth: 460,
-            border: `2px solid ${INK}`,
-            boxShadow: `8px 8px 0px ${test.color}`,
-            padding: 'clamp(24px, 4vw, 32px)',
-            position: 'relative'
-          }}>
-            <button onClick={() => setActive(null)} style={{
-              position: 'absolute', top: 16, right: 16,
-              background: 'transparent', border: 'none', cursor: 'pointer',
-              fontSize: 24, color: INK, padding: 8, lineHeight: 1
-            }}>×</button>
-
-            <div style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 24 }}>
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 24, animation: 'fadeIn 0.3s cubic-bezier(0.16,1,0.3,1)'
+        }} onClick={() => setActive(null)}>
+          <div style={{
+            background:'#fff', borderRadius:0, border:`2px solid ${INK}`,
+            padding:'clamp(32px,5vw,48px)', maxWidth:540, width:'100%',
+            boxShadow:`8px 8px 0px ${test.color}`,
+            animation:'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+            position:'relative',
+          }} onClick={e => e.stopPropagation()}>
+            <button onClick={()=>setActive(null)} style={{
+              position:'absolute', top:20, right:20, background:INK, border:'none',
+              fontSize:24, color:'#fff', cursor:'pointer', width:40, height:40,
+              display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s',
+            }}
+              onMouseEnter={e=>(e.currentTarget.style.background=test.color)}
+              onMouseLeave={e=>(e.currentTarget.style.background=INK)}
+            >×</button>
+            <div style={{ display:'flex', gap:20, alignItems:'center', marginBottom:24 }}>
               <div style={{
-                flexShrink: 0, width: 60, height: 60,
-                background: '#fff', border: `2px solid ${INK}`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 28, boxShadow: `4px 4px 0px ${test.color}`
+                flexShrink:0, width:60, height:60, background:'#fff', border:`2px solid ${INK}`,
+                display:'flex', alignItems:'center', justifyContent:'center',
+                fontSize:26, color: test.color, fontFamily:"'Courier New',monospace", fontWeight:800,
+                boxShadow:`4px 4px 0px ${test.color}`
               }}>
                 {test.emoji}
               </div>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: test.color, marginBottom: 4, fontWeight: 700 }}>
-                  {test.category} — {test.tag}
+                <div style={{ fontFamily:"'Courier New',monospace", fontSize:10, letterSpacing:'0.25em', textTransform:'uppercase', color:test.color, marginBottom:6, fontWeight:700 }}>
+                  {test.category} | {test.tag}
                 </div>
-                <div style={{ fontFamily: 'var(--font-display,Georgia,serif)', fontSize: 24, fontWeight: 800, color: INK, lineHeight: 1.1 }}>
+                <div style={{ fontFamily:'var(--font-display), ui-sans-serif, system-ui, sans-serif', fontSize:'clamp(22px,3vw,28px)', fontWeight:400, color:INK, lineHeight:1.1, textTransform: 'uppercase' }}>
                   {test.name}
                 </div>
               </div>
             </div>
-
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 14, color: 'rgba(0,0,0,0.7)', lineHeight: 1.7, margin: '0 0 24px' }}>
+            <p style={{ fontFamily:'var(--font-sans),system-ui', fontSize:15, color:'rgba(0,0,0,0.7)', lineHeight:1.8, margin:'0 0 24px' }}>
               {test.desc}
             </p>
-
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#f5f5f5', border: `1px solid ${INK_L}`, padding: '12px 16px', boxShadow: `2px 2px 0px ${INK_L}` }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: INK_L, fontWeight: 700 }}>{test.extraLabel1}:</span>
@@ -391,7 +396,6 @@ export default function AnalyticalLabFlow() {
                 <span style={{ fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 700, color: test.color }}>{test.extraValue2}</span>
               </div>
             </div>
-
           </div>
         </div>
       )}

@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Script from 'next/script';
 
 const CR = '#AC033B';
 
@@ -54,7 +53,6 @@ export default function TechTurbineHero({
   marqueeText?: string;
 }) {
   const [scrollY, setScrollY] = useState(0);
-  const ModelViewer = 'model-viewer' as any;
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -134,23 +132,15 @@ export default function TechTurbineHero({
           >
             {/* Live 3D Model Render */}
             <div className="th-3d-inner" style={{ pointerEvents: 'auto', zIndex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" strategy="lazyOnload" />
-              <ModelViewer
-                src="/truck-model.glb"
-                alt="3D Delivery Truck"
-                camera-controls
-                disable-zoom
-                auto-rotate
-                rotation-per-second="3deg"
-                camera-orbit="-30deg 80deg auto"
-                shadow-intensity="1"
-                environment-image="neutral"
+              <img
+                src="/truck-nobg.png"
+                alt="Delivery Truck"
                 style={{
                   width: '100%',
-                  height: '500px',
-                  maxWidth: '800px',
+                  maxHeight: '500px',
+                  objectFit: 'contain',
                   filter: 'drop-shadow(0 25px 25px rgba(0,0,0,0.15))',
-                  transform: 'scale(1.5)'
+                  transform: 'scale(1.2)'
                 }}
               />
             </div>
