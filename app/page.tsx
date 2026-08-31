@@ -28,6 +28,11 @@ const StickyProcessStep = dynamic(
 
 const DomeGallery = dynamic(() => import('@/components/animation/DomeGallery'), { ssr: false });
 
+const HeroVideoScrub = dynamic(
+  () => import('@/components/home/HeroVideoScrub'),
+  { ssr: false }
+);
+
 
 const CRIMSON = '#111111';
 const SERIF = 'var(--font-display), Georgia, "Times New Roman", serif';
@@ -174,17 +179,11 @@ function Divider() {
    • Lower minimum seek delta on mobile (skip tiny moves)
    ════════════════════════════════════════════════════════ */
 function Hero() {
+  // marginTop: -68 counteracts layout.tsx paddingTop: 68 → full-bleed hero
   return (
-    <section style={{ position: 'relative', width: '100%', height: '100svh', overflow: 'hidden', background: '#fff' }}>
-      <picture style={{ width: '100%', height: '100%', display: 'block' }}>
-        <source media="(max-width: 768px)" srcSet="/images/herophone.png" />
-        <img
-          src="/images/herodesktop.png"
-          alt="LV Spices"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center bottom' }}
-        />
-      </picture>
-    </section>
+    <div style={{ marginTop: -68 }}>
+      <HeroVideoScrub />
+    </div>
   );
 }
 

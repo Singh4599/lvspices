@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Disable telemetry to avoid connection reset errors in dev
+  env: {
+    NEXT_TELEMETRY_DISABLED: '1',
+  },
   images: {
     remotePatterns: [
       {
